@@ -1,4 +1,4 @@
-# Athletic club
+# Athletics club
 
 **Athletic club** is a project aimed at creating a web application using the spring boot framework.
 The base of the application is the oracle 19c database engine.

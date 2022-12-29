@@ -1,0 +1,22 @@
+# OracleDB connection settings
+#spring:
+#  datasource:
+#    url: 'jdbc:oracle:thin:@//localhost:11521/ORCLPDB1'
+#    username: admin
+#    password: admin
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+#spring:
+#  datasource:
+#    url: 'jdbc:oracle:thin:@194.29.170.4:1521:XE'
+#    username: BDBTGRA04
+#    password: BDBTGRA04
+#logging:
+#  level:
+#    root: info
+
+
+  
+
+
+

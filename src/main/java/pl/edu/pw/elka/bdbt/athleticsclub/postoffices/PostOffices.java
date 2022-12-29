@@ -4,8 +4,6 @@ import pl.edu.pw.elka.bdbt.athleticsclub.addresses.Addresses;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -24,7 +22,7 @@ public class PostOffices {
     private String postOfficeCity;
 
     @OneToMany(mappedBy = "postOfficesNumber")
-    private Set<Addresses> adresies = new LinkedHashSet<>();
+    private Set<Addresses> addresses;
 
     public Integer getPostOfficeNumber() {
         return postOfficeNumber;
@@ -50,12 +48,12 @@ public class PostOffices {
         this.postOfficeCity = postOfficeCity;
     }
 
-    public Set<Addresses> getAdresies() {
-        return adresies;
+    public Set<Addresses> getAddresses() {
+        return addresses;
     }
 
-    public void setAdresies(Set<Addresses> adresies) {
-        this.adresies = adresies;
+    public void setAddresses(Set<Addresses> addresses) {
+        this.addresses = addresses;
     }
 
 }

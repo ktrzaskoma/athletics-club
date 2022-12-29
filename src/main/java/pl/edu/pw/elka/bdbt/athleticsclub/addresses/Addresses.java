@@ -8,7 +8,9 @@ import pl.edu.pw.elka.bdbt.athleticsclub.workers.Workers;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,9 +39,9 @@ public class Addresses {
     @Column(name = "NR_LOKALU")
     private String apartmentNumber;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "NR_POCZTY")
+
+    @ManyToOne
+    @JoinColumn(name = "NR_POCZTY", nullable = false)
     private PostOffices postOfficesNumber;
 
     @OneToMany(mappedBy = "addressNumber")

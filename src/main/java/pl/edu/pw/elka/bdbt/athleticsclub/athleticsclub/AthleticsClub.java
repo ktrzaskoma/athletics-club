@@ -2,12 +2,12 @@ package pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.addresses.Addresses;
 import pl.edu.pw.elka.bdbt.athleticsclub.owners.Owners;
+import pl.edu.pw.elka.bdbt.athleticsclub.sportfacilities.SportFacilities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "KLUB_LEKKOATLETYCZNY")
@@ -37,6 +37,9 @@ public class AthleticsClub {
     @Column(name = "STRONA_WWW")
     private String clubWebPage;
 
+    @OneToMany(mappedBy = "clubNumber")
+    private Set<SportFacilities> sportFacilities;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "NR_ADRESU", nullable = false)
@@ -46,6 +49,8 @@ public class AthleticsClub {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "NR_WLASCICIELA", nullable = false)
     private Owners ownerNumber;
+
+
 
     public Integer getClubNumber() {
         return clubNumber;
@@ -120,5 +125,11 @@ public class AthleticsClub {
     }
 
 
+    public Set<SportFacilities> getSportFacilities() {
+        return sportFacilities;
+    }
 
+    public void setSportFacilities(Set<SportFacilities> sportFacilities) {
+        this.sportFacilities = sportFacilities;
+    }
 }

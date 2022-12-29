@@ -36,8 +36,8 @@ public class SportFacilities {
     @Column(name = "POJEMNOSC_TRYBUN", nullable = false)
     private Integer capacityOfStands;
 
-    @NotNull
-    @OneToMany(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "NR_KLUBU", nullable = false)
     private AthleticsClub clubNumber;
 

@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @Controller
-@RequestMapping("/athleticclub")
+@RequestMapping("/athleticsclub")
 public class AthleticsClubController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AthleticsClubController.class);
     private final AthleticsClubRepository athleticsClubRepository;
@@ -29,28 +29,7 @@ public class AthleticsClubController {
     @PostMapping
     ResponseEntity<AthleticsClub> creatAthleticsClub(@RequestBody AthleticsClub toCreat) {
         AthleticsClub athleticsClub = athleticsClubRepository.save(toCreat);
-        return ResponseEntity.created(URI.create("/" + athleticsClub.getId())).body(athleticsClub);
+        return ResponseEntity.created(URI.create("/" + athleticsClub.getClubNumber())).body(athleticsClub);
     }
 
-    @PutMapping("/{id}")
-    ResponseEntity<?> updateAthleticsClub(@PathVariable Integer id, @RequestBody @Valid AthleticsClub toUpdate) {
-        if (!athleticsClubRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        athleticsClubRepository.findById(id)
-                .ifPresent(athleticsClub -> {
-                    athleticsClub.updateFormOfAthleticClub(toUpdate);
-                    athleticsClubRepository.save(athleticsClub);
-                });
-        return ResponseEntity.noContent().build();
-    }
-
-//    TODO: after calling this request error 500 display
-    @DeleteMapping("/{id}")
-    public void deleteAthleticClub(@PathVariable Integer id) {
-        if (!athleticsClubRepository.existsById(id)) {
-            ResponseEntity.notFound().build();
-        } LOGGER.info("Deleting athletics club " + id);
-        athleticsClubRepository.deleteById(id);
-    }
 }

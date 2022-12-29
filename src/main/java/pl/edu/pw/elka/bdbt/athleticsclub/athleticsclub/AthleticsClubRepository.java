@@ -8,7 +8,6 @@ public interface AthleticsClubRepository extends JpaRepository<AthleticsClub, In
 
     AthleticsClub save (AthleticsClub ACentity);
 
-    boolean existsById (Integer id);
+    boolean existsByClubNumber (Integer clubNumber);
 
-    void deleteById (Integer id);
 }

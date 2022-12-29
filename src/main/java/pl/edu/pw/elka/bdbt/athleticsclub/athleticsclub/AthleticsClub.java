@@ -1,52 +1,65 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub;
 
+import pl.edu.pw.elka.bdbt.athleticsclub.addresses.Addresses;
+import pl.edu.pw.elka.bdbt.athleticsclub.owners.Owners;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "Klub_lekkoatletyczny")
+@Table(name = "KLUB_LEKKOATLETYCZNY")
 public class AthleticsClub {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Nr_klubu")
-    private Integer id;
+    @Column(name = "NR_KLUBU")
+    private Integer clubNumber;
 
     @NotNull
-    @Column(name = "Nazwa")
+    @Column(name = "NAZWA")
     private String clubName;
 
-    @Column(name = "Data_zalozenia")
+    @NotNull
+    @Column(name = "DATA_ZALOZENIA")
     private Date establishedDate;
 
     @NotNull
-    @Column(name = "Nr_telefonu")
+    @Column(name = "NR_TELEFON")
     private String clubPhoneNumber1;
 
-    @Column(name = "Nr_telefonu2")
+    @Column(name = "NR_TELEFON2")
     private String clubPhoneNumber2;
 
-    @Column(name = "Email")
+    @Column(name = "EMAIL")
     private String clubEmail;
 
-    @Column(name = "Strona_www")
+    @Column(name = "STRONA_WWW")
     private String clubWebPage;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "NR_ADRESU", nullable = false)
+    private Addresses addressNumber;
 
-     public Integer getId() {
-        return id;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "NR_WLASCICIELA", nullable = false)
+    private Owners ownerNumber;
+
+    public Integer getClubNumber() {
+        return clubNumber;
     }
 
-     public void setId(final Integer id) {
-        this.id = id;
+    public void setClubNumber(Integer clubNumber) {
+        this.clubNumber = clubNumber;
     }
 
     public String getClubName() {
         return clubName;
     }
 
-    public void setClubName(final String clubName) {
+    public void setClubName(String clubName) {
         this.clubName = clubName;
     }
 
@@ -54,7 +67,7 @@ public class AthleticsClub {
         return establishedDate;
     }
 
-    public void setEstablishedDate(final Date establishedDate) {
+    public void setEstablishedDate(Date establishedDate) {
         this.establishedDate = establishedDate;
     }
 
@@ -62,7 +75,7 @@ public class AthleticsClub {
         return clubPhoneNumber1;
     }
 
-    public void setClubPhoneNumber1(final String clubPhoneNumber1) {
+    public void setClubPhoneNumber1(String clubPhoneNumber1) {
         this.clubPhoneNumber1 = clubPhoneNumber1;
     }
 
@@ -70,7 +83,7 @@ public class AthleticsClub {
         return clubPhoneNumber2;
     }
 
-    public void setClubPhoneNumber2(final String clubPhoneNumber2) {
+    public void setClubPhoneNumber2(String clubPhoneNumber2) {
         this.clubPhoneNumber2 = clubPhoneNumber2;
     }
 
@@ -78,25 +91,34 @@ public class AthleticsClub {
         return clubEmail;
     }
 
-    public void setClubEmail(final String clubEmail) {
-        this.clubEmail = clubEmail;
+    public void setClubEmail(String email) {
+        this.clubEmail = email;
     }
 
     public String getClubWebPage() {
         return clubWebPage;
     }
 
-    public void setClubWebPage(final String clubWebPage) {
+    public void setClubWebPage(String clubWebPage) {
         this.clubWebPage = clubWebPage;
     }
 
-//  method to update data in athletic club
-    public void updateFormOfAthleticClub(final AthleticsClub source) {
-         clubName = source.clubName;
-         establishedDate = source.establishedDate;
-         clubPhoneNumber1 = source.clubPhoneNumber1;
-         clubPhoneNumber2 = source.clubPhoneNumber2;
-         clubEmail = source.clubEmail;
-         clubWebPage = source.clubWebPage;
+    public Addresses getAddressNumber() {
+        return addressNumber;
     }
+
+    public void setAddressNumber(Addresses addressNumber) {
+        this.addressNumber = addressNumber;
+    }
+
+    public Owners getOwnerNumber() {
+        return ownerNumber;
+    }
+
+    public void setOwnerNumber(Owners ownerNumber) {
+        this.ownerNumber = ownerNumber;
+    }
+
+
+
 }

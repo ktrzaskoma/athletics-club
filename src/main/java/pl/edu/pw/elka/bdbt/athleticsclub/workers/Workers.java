@@ -1,60 +1,73 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.workers;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import pl.edu.pw.elka.bdbt.athleticsclub.addresses.Addresses;
+import pl.edu.pw.elka.bdbt.athleticsclub.salaries.Salaries;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "Pracownicy")
+@Table(name = "PRACOWNICY")
 public class Workers {
-
     @Id
-    @Column(name = "Nr_pracownika")
-    private Integer id;
+    @Column(name = "NR_PRACOWNIKA", nullable = false)
+    private Integer workerNumber;
 
     @NotNull
-    @Column(name = "Imie")
+    @Column(name = "IMIE")
     private String workerName;
 
     @NotNull
-    @Column(name = "Nazwisko")
+    @Column(name = "NAZWISKO")
     private String workerSurname;
 
     @NotNull
-    @Column(name = "Data_urodzenia")
-    private Date dateOfBirth;
+    @Column(name = "DATA_URODZENIA")
+    private LocalDate workerDateOfBirth;
 
     @Column(name = "PESEL")
-    private String socialSecurityNumber;
-
-    @Column(name = "Plec")
-    private char sex;
+    private String workerPESEL;
 
     @NotNull
-    @Column(name = "Data_zatrudnienia")
-    private Date firstDayAtWork;
+    @Column(name = "PLEC")
+    private Boolean sex = false;
 
     @NotNull
-    @Column(name = "Nr_konta_bankowego")
-    private String bankAccountNumber;
+    @Column(name = "DATA_ZATRUDNIENIA")
+    private LocalDate dateOfEmployment;
 
-    @Column(name = "Email")
-    private String workerEmail;
+    @Column(name = "NR_KONTA_BANKOWEGO")
+    private String workerBankAccount;
+
+    @Column(name = "EMAIL")
+    private String email;
 
     @NotNull
-    @Column(name = "Nr_telefonu")
+    @Column(name = "NR_TELEFONU")
     private String workerPhoneNumber;
 
+    @NotNull
+    @Column(name = "NR_KLUBU", nullable = false)
+    private Long nrKlubu;
 
-    Integer getId() {
-        return id;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "NR_ADRESU", nullable = false)
+    private Addresses addressNumber;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "NR_WYNAGRODZENIA", nullable = false)
+    private Salaries salaryNumber;
+
+    Integer getWorkerNumber() {
+        return workerNumber;
     }
 
-    void setId(final Integer id) {
-        this.id = id;
+    void setWorkerNumber(final Integer workerNumber) {
+        this.workerNumber = workerNumber;
     }
 
     String getWorkerName() {
@@ -73,52 +86,52 @@ public class Workers {
         this.workerSurname = workerSurname;
     }
 
-    Date getDateOfBirth() {
-        return dateOfBirth;
+    LocalDate getWorkerDateOfBirth() {
+        return workerDateOfBirth;
     }
 
-    void setDateOfBirth(final Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    void setWorkerDateOfBirth(final LocalDate workerDateOfBirth) {
+        this.workerDateOfBirth = workerDateOfBirth;
     }
 
-    String getSocialSecurityNumber() {
-        return socialSecurityNumber;
+    String getWorkerPESEL() {
+        return workerPESEL;
     }
 
-    void setSocialSecurityNumber(final String socialSecurityNumber) {
-        this.socialSecurityNumber = socialSecurityNumber;
+    void setWorkerPESEL(final String workerPESEL) {
+        this.workerPESEL = workerPESEL;
     }
 
-    char getSex() {
+    Boolean getSex() {
         return sex;
     }
 
-    void setSex(final char sex) {
+    void setSex(final Boolean sex) {
         this.sex = sex;
     }
 
-    Date getFirstDayAtWork() {
-        return firstDayAtWork;
+    LocalDate getDateOfEmployment() {
+        return dateOfEmployment;
     }
 
-    void setFirstDayAtWork(final Date firstDayAtWork) {
-        this.firstDayAtWork = firstDayAtWork;
+    void setDateOfEmployment(final LocalDate dateOfEmployment) {
+        this.dateOfEmployment = dateOfEmployment;
     }
 
-    String getBankAccountNumber() {
-        return bankAccountNumber;
+    String getWorkerBankAccount() {
+        return workerBankAccount;
     }
 
-    void setBankAccountNumber(final String bankAccountNumber) {
-        this.bankAccountNumber = bankAccountNumber;
+    void setWorkerBankAccount(final String workerBankAccount) {
+        this.workerBankAccount = workerBankAccount;
     }
 
-    String getWorkerEmail() {
-        return workerEmail;
+    String getEmail() {
+        return email;
     }
 
-    void setWorkerEmail(final String workerEmail) {
-        this.workerEmail = workerEmail;
+    void setEmail(final String email) {
+        this.email = email;
     }
 
     String getWorkerPhoneNumber() {
@@ -127,5 +140,29 @@ public class Workers {
 
     void setWorkerPhoneNumber(final String workerPhoneNumber) {
         this.workerPhoneNumber = workerPhoneNumber;
+    }
+
+    Long getNrKlubu() {
+        return nrKlubu;
+    }
+
+    void setNrKlubu(final Long nrKlubu) {
+        this.nrKlubu = nrKlubu;
+    }
+
+    Addresses getAddressNumber() {
+        return addressNumber;
+    }
+
+    void setAddressNumber(final Addresses addressNumber) {
+        this.addressNumber = addressNumber;
+    }
+
+    Salaries getSalaryNumber() {
+        return salaryNumber;
+    }
+
+    void setSalaryNumber(final Salaries salaryNumber) {
+        this.salaryNumber = salaryNumber;
     }
 }

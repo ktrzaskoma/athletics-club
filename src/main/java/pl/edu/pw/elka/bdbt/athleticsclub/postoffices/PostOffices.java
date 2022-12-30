@@ -7,28 +7,30 @@ import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name = "POCZTY")
+@Table(name = "Poczty")
 public class PostOffices {
+
     @Id
-    @Column(name = "NR_POCZTY")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Nr_poczty")
     private Integer postOfficeNumber;
 
     @NotNull
-    @Column(name = "KOD_POCZTY")
+    @Column(name = "Kod_poczty")
     private String zipCode;
 
     @NotNull
-    @Column(name = "POCZTA")
+    @Column(name = "Poczta")
     private String postOfficeCity;
 
-    @OneToMany(mappedBy = "postOfficesNumber")
+    @OneToMany(mappedBy = "postOffice")
     private Set<Addresses> addresses;
 
     public Integer getPostOfficeNumber() {
         return postOfficeNumber;
     }
 
-    public void setPostOfficeNumber(Integer postOfficeNumber) {
+    public void setPostOfficeNumber(final Integer postOfficeNumber) {
         this.postOfficeNumber = postOfficeNumber;
     }
 
@@ -36,7 +38,7 @@ public class PostOffices {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(final String zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -44,16 +46,15 @@ public class PostOffices {
         return postOfficeCity;
     }
 
-    public void setPostOfficeCity(String postOfficeCity) {
+    public void setPostOfficeCity(final String postOfficeCity) {
         this.postOfficeCity = postOfficeCity;
     }
 
-    public Set<Addresses> getAddresses() {
+
+    private Set<Addresses> getAddresses() {
         return addresses;
     }
-
-    public void setAddresses(Set<Addresses> addresses) {
+    private void setAddresses(Set<Addresses> addresses) {
         this.addresses = addresses;
     }
-
 }

@@ -20,33 +20,6 @@ public class OfficeWorkers {
     @Column(name = "ZNAJOMOSC_PAKIETU_OFFICE")
     private Boolean officePackageKnowledge;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "NR_PRACOWNIKA")
-    private Workers athleteNumber;
 
-    public Integer getWorkerNumber() {
-        return workerNumber;
-    }
-
-    public void setWorkerNumber(Integer id) {
-        this.workerNumber = id;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public Boolean getOfficePackageKnowledge() {
-        return officePackageKnowledge;
-    }
-
-    public void setOfficePackageKnowledge(Boolean officePackageKnowledge) {
-        this.officePackageKnowledge = officePackageKnowledge;
-    }
 
 }

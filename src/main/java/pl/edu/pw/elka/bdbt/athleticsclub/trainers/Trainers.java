@@ -10,41 +10,21 @@ import java.util.Date;
 @Table(name = "TRENERZY")
 public class Trainers {
     @Id
-    @Column(name = "NR_PRACOWNIKA")
-    private Integer workerNumber;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @NotNull
     @Column(name = "DATA_ROZPOCZECIA_KARIERY_TRENERSKIEJ")
     private Date coachCareerDateStart;
 
-    @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "NR_LICENCJI_SPORTOWEJ", nullable = false)
-    private SportLicenses sportLicenseNumber;
-
-    public Integer getWorkerNumber() {
-        return workerNumber;
+    public Long getId() {
+        return id;
     }
 
-    public void setWorkerNumber(Integer workerNumber) {
-        this.workerNumber = workerNumber;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Date getCoachCareerDateStart() {
-        return coachCareerDateStart;
-    }
-
-    public void setCoachCareerDateStart(Date coachCareerDateStart) {
-        this.coachCareerDateStart = coachCareerDateStart;
-    }
-
-    public SportLicenses getSportLicenseNumber() {
-        return sportLicenseNumber;
-    }
-
-    public void setSportLicenseNumber(SportLicenses sportLicenseNumber) {
-        this.sportLicenseNumber = sportLicenseNumber;
-    }
 
 }

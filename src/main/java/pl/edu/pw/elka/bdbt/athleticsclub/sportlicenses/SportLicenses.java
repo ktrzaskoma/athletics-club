@@ -1,44 +1,31 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.sportlicenses;
 
-import pl.edu.pw.elka.bdbt.athleticsclub.athletes.Athletes;
-import pl.edu.pw.elka.bdbt.athleticsclub.trainers.Trainers;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "LICENCJE_SPORTOWE")
+@Table(name = "Licencje_sportowe")
 public class SportLicenses {
     @Id
-    @Column(name = "NR_LICENCJI_SPORTOWEJ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Nr_licencji_sportowej")
     private Integer sportLicenseNumber;
 
     @NotNull
-    @Column(name = "DATA_WAZNOSCI")
+    @Column(name = "Data_waznosci")
     private Date expirationDate;
 
     @NotNull
-    @Column(name = "DATA_WYDANIA")
+    @Column(name = "Data_wydania")
     private Date releaseDate;
 
     @NotNull
-    @Column(name = "UPRAWNIENIA")
-    private String permissions;
+    @Column(name = "Uprawnienia")
+    private String permission;
 
-    @Column(name = "KATEGORIA_WIEKOWA")
+    @Column(name = "Kategoria_wiekowa")
     private String ageCategory;
-
-    @OneToOne(mappedBy = "sportLicenseNumber")
-    @PrimaryKeyJoinColumn
-    private Trainers trainers;
-
-    @OneToOne(mappedBy = "sportLicenseNumber")
-    @PrimaryKeyJoinColumn
-    private Athletes athletes;
 
     public Integer getSportLicenseNumber() {
         return sportLicenseNumber;
@@ -64,12 +51,12 @@ public class SportLicenses {
         this.releaseDate = releaseDate;
     }
 
-    public String getPermissions() {
-        return permissions;
+    public String getPermission() {
+        return permission;
     }
 
-    public void setPermissions(String permissions) {
-        this.permissions = permissions;
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 
     public String getAgeCategory() {
@@ -78,21 +65,5 @@ public class SportLicenses {
 
     public void setAgeCategory(String ageCategory) {
         this.ageCategory = ageCategory;
-    }
-
-    public Trainers getTrainers() {
-        return trainers;
-    }
-
-    public void setTrainers(final Trainers trainers) {
-        this.trainers = trainers;
-    }
-
-    public Athletes getAthletes() {
-        return athletes;
-    }
-
-    public void setAthletes(final Athletes athletes) {
-        this.athletes = athletes;
     }
 }

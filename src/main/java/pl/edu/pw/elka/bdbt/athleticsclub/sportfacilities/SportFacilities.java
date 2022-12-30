@@ -8,40 +8,58 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "OBIEKTY_SPORTOWE")
+@Table(name = "Obiekty_sportowe")
 public class SportFacilities {
     @Id
-    @NotNull
-    @Column(name = "NR_OBIEKTU")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Nr_obiektu")
     private Integer facilityNumber;
 
     @NotNull
-    @Column(name = "NAZWA_OBIEKTU")
+    @Column(name = "Nazwa_obiektu")
     private String facilityName;
 
     @NotNull
-    @Column(name = "DATA_ODDANIA_DO_UZYTKU")
+    @Column(name = "Data_oddania_do_uzytku")
     private Date openDate;
 
     @NotNull
-    @Column(name = "TYP_OBIEKTU")
+    @Column(name = "Typ_obiektu")
     private String facilityType;
 
     @NotNull
-    @Column(name = "ZAKRYTY_OBIEKT")
-    private Boolean coveredFacility = false;
+    @Column(name = "Zakryty_obiekt")
+    private Boolean coveredFacility;
 
     @NotNull
-    @Column(name = "POJEMNOSC_TRYBUN", nullable = false)
-    private Integer capacityOfStands;
+    @Column(name = "Pojemnosc_trybun")
+    private int capacityOfStands;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NR_KLUBU", nullable = false)
-    private AthleticsClub clubNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NR_ADRESU", nullable = false)
-    private Addresses sportFacilityAddressNumber;
+    @ManyToOne
+    @JoinColumn(name = "Nr_klubu")
+    private AthleticsClub athleticsClubFacility;
+
+    @OneToOne
+    @JoinColumn(name = "Nr_adresu")
+    private Addresses facilityAddressNumber;
+
+
+    public AthleticsClub getAthleticsClubFacility() {
+        return athleticsClubFacility;
+    }
+
+    public void setAthleticsClubFacility(AthleticsClub athleticsClubFacility) {
+        this.athleticsClubFacility = athleticsClubFacility;
+    }
+
+    public Addresses getFacilityAddressNumber() {
+        return facilityAddressNumber;
+    }
+
+    public void setFacilityAddressNumber(Addresses facilityAddressNumber) {
+        this.facilityAddressNumber = facilityAddressNumber;
+    }
 
     public Integer getFacilityNumber() {
         return facilityNumber;
@@ -83,28 +101,11 @@ public class SportFacilities {
         this.coveredFacility = coveredFacility;
     }
 
-    public Integer getCapacityOfStands() {
+    public int getCapacityOfStands() {
         return capacityOfStands;
     }
 
-    public void setCapacityOfStands(Integer capacityOfStands) {
+    public void setCapacityOfStands(int capacityOfStands) {
         this.capacityOfStands = capacityOfStands;
     }
-
-    public AthleticsClub getClubNumber() {
-        return clubNumber;
-    }
-
-    public void setClubNumber(AthleticsClub clubNumber) {
-        this.clubNumber = clubNumber;
-    }
-
-    public Addresses getSportFacilityAddressNumber() {
-        return sportFacilityAddressNumber;
-    }
-
-    public void setSportFacilityAddressNumber(Addresses addressNumber) {
-        this.sportFacilityAddressNumber = addressNumber;
-    }
-
 }

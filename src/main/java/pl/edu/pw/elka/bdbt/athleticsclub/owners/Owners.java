@@ -6,83 +6,93 @@ import pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub.AthleticsClub;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "Wlasciciele")
 public class Owners {
     @Id
-    @Column(name = "NR_WLASCICIELA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Nr_wlasciciela")
     private Integer ownerNumber;
 
     @NotNull
-    @Column(name = "IMIE")
+    @Column(name = "Imie")
     private String ownerName;
 
     @NotNull
-    @Column(name = "NAZWISKO")
+    @Column(name = "Nazwisko")
     private String ownerSurname;
 
     @NotNull
-    @Column(name = "DATA_URODZENIA")
+    @Column(name = "Data_urodzenia")
     private LocalDate ownerDateOfBirth;
 
-    @Column(name = "PESEL")
+    @Column(name = "Pesel")
     private String ownerPESEL;
 
     @NotNull
-    @Column(name = "PLEC")
-    private Boolean sex = false;
+    @Column(name = "Plec")
+    private char sex;
 
-    @Column(name = "NR_KONTA_BANKOWEGO")
+    @Column(name = "Nr_konta_bankowego")
     private String bankAccountNumber;
 
-    @Column(name = "EMAIL")
+    @Column(name = "Email")
     private String email;
 
     @NotNull
-    @Column(name = "NR_TELEFONU")
+    @Column(name = "Nr_telefonu")
     private String ownerPhoneNumber;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "NR_ADRESU", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "Nr_adresu")
     private Addresses ownerAddressNumber;
 
-    @OneToMany(mappedBy = "ownerNumber")
-    private Set<AthleticsClub> athleticsClub = new LinkedHashSet<>();
+//    sending column athletics club
+    @OneToOne(mappedBy = "ownerOfAthleticsClub")
+    private AthleticsClub athleticsClub;
+
+
+
+    public Addresses getOwnerAddressNumber() {
+        return ownerAddressNumber;
+    }
+    public void setOwnerAddressNumber(Addresses ownerAddressNumber) {
+        this.ownerAddressNumber = ownerAddressNumber;
+    }
+
+
 
     public Integer getOwnerNumber() {
         return ownerNumber;
     }
 
-    public void setOwnerNumber(Integer id) {
-        this.ownerNumber = id;
+    public void setOwnerNumber(Integer ownerNumber) {
+        this.ownerNumber = ownerNumber;
     }
 
     public String getOwnerName() {
         return ownerName;
     }
 
-    public void setOwnerName(String imie) {
-        this.ownerName = imie;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     public String getOwnerSurname() {
         return ownerSurname;
     }
 
-    public void setOwnerSurname(String nazwisko) {
-        this.ownerSurname = nazwisko;
+    public void setOwnerSurname(String ownerSurname) {
+        this.ownerSurname = ownerSurname;
     }
 
     public LocalDate getOwnerDateOfBirth() {
         return ownerDateOfBirth;
     }
 
-    public void setOwnerDateOfBirth(LocalDate dataUrodzenia) {
-        this.ownerDateOfBirth = dataUrodzenia;
+    public void setOwnerDateOfBirth(LocalDate ownerDateOfBirth) {
+        this.ownerDateOfBirth = ownerDateOfBirth;
     }
 
     public String getOwnerPESEL() {
@@ -93,20 +103,20 @@ public class Owners {
         this.ownerPESEL = ownerPESEL;
     }
 
-    public Boolean getSex() {
+    public char getSex() {
         return sex;
     }
 
-    public void setSex(Boolean plec) {
-        this.sex = plec;
+    public void setSex(char sex) {
+        this.sex = sex;
     }
 
     public String getBankAccountNumber() {
         return bankAccountNumber;
     }
 
-    public void setBankAccountNumber(String nrKontaBankowego) {
-        this.bankAccountNumber = nrKontaBankowego;
+    public void setBankAccountNumber(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
     }
 
     public String getEmail() {
@@ -121,24 +131,9 @@ public class Owners {
         return ownerPhoneNumber;
     }
 
-    public void setOwnerPhoneNumber(String nrTelefonu) {
-        this.ownerPhoneNumber = nrTelefonu;
+    public void setOwnerPhoneNumber(String ownerPhoneNumber) {
+        this.ownerPhoneNumber = ownerPhoneNumber;
     }
 
-    public Addresses getOwnerAddressNumber() {
-        return ownerAddressNumber;
-    }
-
-    public void setOwnerAddressNumber(Addresses nrAdresu) {
-        this.ownerAddressNumber = nrAdresu;
-    }
-
-    public Set<AthleticsClub> getAthleticsClub() {
-        return athleticsClub;
-    }
-
-    public void setAthleticsClub(Set<AthleticsClub> klubLekkoatletycznies) {
-        this.athleticsClub = klubLekkoatletycznies;
-    }
 
 }

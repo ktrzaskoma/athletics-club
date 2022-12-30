@@ -1,38 +1,31 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.equipmentproducers;
 
-import pl.edu.pw.elka.bdbt.athleticsclub.sportequipment.SportEquipment;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Date;
 
 @Entity
-@Table(name = "PRODUCENCI_SPRZETU")
+@Table(name = "Producenci_sprzetu")
 public class EquipmentProducers {
     @Id
-    @Column(name = "NR_PRODUCENTA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Nr_producenta")
     private Integer producerNumber;
 
     @NotNull
-    @Column(name = "MARKA")
+    @Column(name = "Marka")
     private String brand;
 
     @NotNull
-    @Column(name = "MODEL")
+    @Column(name = "Model")
     private String model;
 
     @NotNull
-    @Column(name = "ROK_PRODUKCJI")
-    private LocalDate productionYear;
+    @Column(name = "Rok_proEquidukcji")
+    private Date productionYear;
 
-    @Column(name = "PRZEZNACZENIE_DYSCYPLINOWE")
+    @Column(name = "Przeznaczenie_dyscyplinowe")
     private String destiny;
-
-    @OneToMany(mappedBy = "producerNumber")
-    private Set<SportEquipment> sportEquipment;
 
     public Integer getProducerNumber() {
         return producerNumber;
@@ -58,11 +51,11 @@ public class EquipmentProducers {
         this.model = model;
     }
 
-    public LocalDate getProductionYear() {
+    public Date getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(LocalDate productionYear) {
+    public void setProductionYear(Date productionYear) {
         this.productionYear = productionYear;
     }
 
@@ -73,13 +66,4 @@ public class EquipmentProducers {
     public void setDestiny(String destiny) {
         this.destiny = destiny;
     }
-
-    public Set<SportEquipment> getSportEquipment() {
-        return sportEquipment;
-    }
-
-    public void setSportEquipment(Set<SportEquipment> sportEquipment) {
-        this.sportEquipment = sportEquipment;
-    }
-
 }

@@ -1,57 +1,58 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.addresses;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub.AthleticsClub;
-import pl.edu.pw.elka.bdbt.athleticsclub.sportfacilities.SportFacilities;
-import pl.edu.pw.elka.bdbt.athleticsclub.postoffices.PostOffices;
 import pl.edu.pw.elka.bdbt.athleticsclub.owners.Owners;
-import pl.edu.pw.elka.bdbt.athleticsclub.workers.Workers;
+import pl.edu.pw.elka.bdbt.athleticsclub.postoffices.PostOffices;
+import pl.edu.pw.elka.bdbt.athleticsclub.sportfacilities.SportFacilities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @Entity
-@Table(name = "ADRESY")
+@Table(name = "Adresy")
 public class Addresses {
     @Id
-    @Column(name = "NR_ADRESU")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Nr_adresu")
     private Integer addressNumber;
 
     @NotNull
-    @Column(name = "KRAJ")
+    @Column(name = "Kraj")
     private String country;
 
     @NotNull
-    @Column(name = "MIASTO")
+    @Column(name = "Miasto")
     private String city;
 
     @NotNull
-    @Column(name = "ULICA")
+    @Column(name = "Ulica")
     private String street;
 
     @NotNull
-    @Column(name = "NR_BUDYNKU")
+    @Column(name = "Nr_budynku")
     private String buildingNumber;
 
-    @Column(name = "NR_LOKALU")
+    @Column(name = "Nr_lokalu")
     private String apartmentNumber;
 
-
+//    getting column from PostOffice
     @ManyToOne
-    @JoinColumn(name = "NR_POCZTY", nullable = false)
-    private PostOffices postOfficesNumber;
+    @JoinColumn(name = "Nr_poczty", nullable = false)
+    private PostOffices postOffice;
 
-    @OneToMany(mappedBy = "ownerAddressNumber")
-    private Set<Owners> owners;
+//    mapping column to athletics club
+    @OneToOne(mappedBy = "clubAddressNumber")
+    private AthleticsClub athleticsClub;
 
-    @OneToMany(mappedBy = "sportFacilityAddressNumber")
-    private Set<SportFacilities> sportFacilities;
+//    mapping column to owners
+    @OneToOne(mappedBy = "ownerAddressNumber")
+    private Owners owners;
 
-    @OneToMany(mappedBy = "workerAddressNumber")
-    private Set<Workers> workers;
+//    mapping column to sport facilities
+    @OneToOne(mappedBy = "facilityAddressNumber")
+    private SportFacilities sportFacilities;
 
-    @OneToMany(mappedBy = "athleticsClubAddressNumber")
-    private Set<AthleticsClub> athleticsClubs;
+
 
     public Integer getAddressNumber() {
         return addressNumber;
@@ -101,44 +102,11 @@ public class Addresses {
         this.apartmentNumber = apartmentNumber;
     }
 
-    public PostOffices getNrPoczty() {
-        return postOfficesNumber;
+    public PostOffices getPostOffice() {
+        return postOffice;
     }
 
-    public void setNrPoczty(PostOffices nrPostOffices) {
-        this.postOfficesNumber = nrPostOffices;
+    public void setPostOffice(PostOffices postOfficeNumber) {
+        this.postOffice = postOfficeNumber;
     }
-
-    public Set<Owners> getWlascicieles() {
-        return owners;
-    }
-
-    public void setWlascicieles(Set<Owners> owners) {
-        this.owners = owners;
-    }
-
-    public Set<SportFacilities> getObiektySportowes() {
-        return sportFacilities;
-    }
-
-    public void setObiektySportowes(Set<SportFacilities> sportFacilities) {
-        this.sportFacilities = sportFacilities;
-    }
-
-    public Set<Workers> getWorkers() {
-        return workers;
-    }
-
-    public void setWorkers(Set<Workers> pracownicies) {
-        this.workers = pracownicies;
-    }
-
-    public Set<AthleticsClub> getAthleticClubs() {
-        return athleticsClubs;
-    }
-
-    public void setAthleticClubs(Set<AthleticsClub> athleticsClubs) {
-        this.athleticsClubs = athleticsClubs;
-    }
-
 }

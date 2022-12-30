@@ -1,11 +1,13 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.workers;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.addresses.Addresses;
+import pl.edu.pw.elka.bdbt.athleticsclub.athletes.Athletes;
+import pl.edu.pw.elka.bdbt.athleticsclub.officeworkers.OfficeWorkers;
 import pl.edu.pw.elka.bdbt.athleticsclub.salaries.Salaries;
+import pl.edu.pw.elka.bdbt.athleticsclub.trainers.Trainers;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -55,12 +57,24 @@ public class Workers {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "NR_ADRESU", nullable = false)
-    private Addresses addressNumber;
+    private Addresses workerAddressNumber;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "NR_WYNAGRODZENIA", nullable = false)
     private Salaries salaryNumber;
+
+    @OneToOne(mappedBy = "athleteNumber")
+    @PrimaryKeyJoinColumn
+    private Athletes athletes;
+
+    @OneToOne(mappedBy = "trainerNumber")
+    @PrimaryKeyJoinColumn
+    private Trainers trainers;
+
+    @OneToOne(mappedBy = "officeWorkerNumber")
+    @PrimaryKeyJoinColumn
+    private OfficeWorkers officeWorkers;
 
     Integer getWorkerNumber() {
         return workerNumber;
@@ -150,12 +164,12 @@ public class Workers {
         this.nrKlubu = nrKlubu;
     }
 
-    Addresses getAddressNumber() {
-        return addressNumber;
+    Addresses getWorkerAddressNumber() {
+        return workerAddressNumber;
     }
 
-    void setAddressNumber(final Addresses addressNumber) {
-        this.addressNumber = addressNumber;
+    void setWorkerAddressNumber(final Addresses addressNumber) {
+        this.workerAddressNumber = addressNumber;
     }
 
     Salaries getSalaryNumber() {

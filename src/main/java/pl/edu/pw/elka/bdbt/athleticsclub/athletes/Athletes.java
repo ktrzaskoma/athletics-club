@@ -15,7 +15,8 @@ public class Athletes {
     private Integer workerNumber;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     @JoinColumn(name = "NR_LICENCJI_SPORTOWEJ")
     private SportLicenses sportLicenseNumber;
 

@@ -18,7 +18,8 @@ public class Trainers {
     private Date coachCareerDateStart;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     @JoinColumn(name = "NR_LICENCJI_SPORTOWEJ", nullable = false)
     private SportLicenses sportLicenseNumber;
 

@@ -32,7 +32,7 @@ public class EquipmentProducers {
     private String destiny;
 
     @OneToMany(mappedBy = "producerNumber")
-    private Set<SportEquipment> sportEquipment = new LinkedHashSet<>();
+    private Set<SportEquipment> sportEquipment;
 
     public Integer getProducerNumber() {
         return producerNumber;

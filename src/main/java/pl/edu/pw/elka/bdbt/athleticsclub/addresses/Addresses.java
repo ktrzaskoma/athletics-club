@@ -8,9 +8,6 @@ import pl.edu.pw.elka.bdbt.athleticsclub.workers.Workers;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,17 +41,17 @@ public class Addresses {
     @JoinColumn(name = "NR_POCZTY", nullable = false)
     private PostOffices postOfficesNumber;
 
-    @OneToMany(mappedBy = "addressNumber")
-    private Set<Owners> owners = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "ownerAddressNumber")
+    private Set<Owners> owners;
 
-    @OneToMany(mappedBy = "addressNumber")
-    private Set<SportFacilities> sportFacilities = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "sportFacilityAddressNumber")
+    private Set<SportFacilities> sportFacilities;
 
-    @OneToMany(mappedBy = "addressNumber")
-    private Set<Workers> workers = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "workerAddressNumber")
+    private Set<Workers> workers;
 
-    @OneToMany(mappedBy = "addressNumber")
-    private Set<AthleticsClub> athleticsClubs = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "athleticsClubAddressNumber")
+    private Set<AthleticsClub> athleticsClubs;
 
     public Integer getAddressNumber() {
         return addressNumber;

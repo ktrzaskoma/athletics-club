@@ -1,9 +1,8 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.officeworkers;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import pl.edu.pw.elka.bdbt.athleticsclub.workers.Workers;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,6 +19,11 @@ public class OfficeWorkers {
 
     @Column(name = "ZNAJOMOSC_PAKIETU_OFFICE")
     private Boolean officePackageKnowledge;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "NR_PRACOWNIKA")
+    private Workers athleteNumber;
 
     public Integer getWorkerNumber() {
         return workerNumber;

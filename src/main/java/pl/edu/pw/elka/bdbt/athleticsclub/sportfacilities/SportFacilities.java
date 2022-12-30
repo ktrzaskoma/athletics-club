@@ -5,7 +5,6 @@ import pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub.AthleticsClub;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -36,15 +35,13 @@ public class SportFacilities {
     @Column(name = "POJEMNOSC_TRYBUN", nullable = false)
     private Integer capacityOfStands;
 
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "NR_KLUBU", nullable = false)
     private AthleticsClub clubNumber;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "NR_ADRESU", nullable = false)
-    private Addresses addressNumber;
+    private Addresses sportFacilityAddressNumber;
 
     public Integer getFacilityNumber() {
         return facilityNumber;
@@ -102,12 +99,12 @@ public class SportFacilities {
         this.clubNumber = clubNumber;
     }
 
-    public Addresses getAddressNumber() {
-        return addressNumber;
+    public Addresses getSportFacilityAddressNumber() {
+        return sportFacilityAddressNumber;
     }
 
-    public void setAddressNumber(Addresses addressNumber) {
-        this.addressNumber = addressNumber;
+    public void setSportFacilityAddressNumber(Addresses addressNumber) {
+        this.sportFacilityAddressNumber = addressNumber;
     }
 
 }

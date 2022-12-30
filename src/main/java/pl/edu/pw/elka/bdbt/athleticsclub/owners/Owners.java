@@ -5,7 +5,6 @@ import pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub.AthleticsClub;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -49,7 +48,7 @@ public class Owners {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "NR_ADRESU", nullable = false)
-    private Addresses addressNumber;
+    private Addresses ownerAddressNumber;
 
     @OneToMany(mappedBy = "ownerNumber")
     private Set<AthleticsClub> athleticsClub = new LinkedHashSet<>();
@@ -126,12 +125,12 @@ public class Owners {
         this.ownerPhoneNumber = nrTelefonu;
     }
 
-    public Addresses getAddressNumber() {
-        return addressNumber;
+    public Addresses getOwnerAddressNumber() {
+        return ownerAddressNumber;
     }
 
-    public void setAddressNumber(Addresses nrAdresu) {
-        this.addressNumber = nrAdresu;
+    public void setOwnerAddressNumber(Addresses nrAdresu) {
+        this.ownerAddressNumber = nrAdresu;
     }
 
     public Set<AthleticsClub> getAthleticsClub() {

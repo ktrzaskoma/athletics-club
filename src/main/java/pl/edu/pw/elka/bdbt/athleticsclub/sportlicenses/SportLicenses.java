@@ -32,11 +32,13 @@ public class SportLicenses {
     @Column(name = "KATEGORIA_WIEKOWA")
     private String ageCategory;
 
-    @OneToMany(mappedBy = "sportLicenseNumber")
-    private Set<Trainers> trainers = new LinkedHashSet<>();
+    @OneToOne(mappedBy = "sportLicenseNumber")
+    @PrimaryKeyJoinColumn
+    private Trainers trainers;
 
-    @OneToMany(mappedBy = "sportLicenseNumber")
-    private Set<Athletes> athletes = new LinkedHashSet<>();
+    @OneToOne(mappedBy = "sportLicenseNumber")
+    @PrimaryKeyJoinColumn
+    private Athletes athletes;
 
     public Integer getSportLicenseNumber() {
         return sportLicenseNumber;
@@ -78,20 +80,19 @@ public class SportLicenses {
         this.ageCategory = ageCategory;
     }
 
-    public Set<Trainers> getTrainers() {
+    public Trainers getTrainers() {
         return trainers;
     }
 
-    public void setTrainers(Set<Trainers> trainers) {
+    public void setTrainers(final Trainers trainers) {
         this.trainers = trainers;
     }
 
-    public Set<Athletes> getAthletes() {
+    public Athletes getAthletes() {
         return athletes;
     }
 
-    public void setAthletes(Set<Athletes> athletes) {
+    public void setAthletes(final Athletes athletes) {
         this.athletes = athletes;
     }
-
 }

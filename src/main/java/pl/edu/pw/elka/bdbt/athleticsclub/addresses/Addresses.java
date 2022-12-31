@@ -4,6 +4,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.owners.Owners;
 import pl.edu.pw.elka.bdbt.athleticsclub.postoffices.PostOffices;
 import pl.edu.pw.elka.bdbt.athleticsclub.sportfacilities.SportFacilities;
+import pl.edu.pw.elka.bdbt.athleticsclub.workers.Workers;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -51,6 +52,10 @@ public class Addresses {
 //    mapping column to sport facilities
     @OneToOne(mappedBy = "facilityAddressNumber")
     private SportFacilities sportFacilities;
+
+//    mapping column to workers
+    @OneToOne(mappedBy = "workerAddressNumber")
+    private Workers workers;
 
 
 

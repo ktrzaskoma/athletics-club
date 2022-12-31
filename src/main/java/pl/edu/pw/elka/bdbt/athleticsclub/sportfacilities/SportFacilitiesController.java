@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/sportfacilities")
@@ -21,8 +22,11 @@ public class SportFacilitiesController {
     }
 
     @GetMapping
-    ResponseEntity<List<SportFacilities>> getAll() {
+    ResponseEntity<List<SportFaciltiesDTO>> getAll() {
         LOGGER.info("Showing all the records in SportFacilities entity!");
-        return ResponseEntity.ok(sportFacilitiesRepository.findAll());
+        var list = sportFacilitiesRepository.findAll().stream()
+                .map(SportFaciltiesDTO::toSportFaciltiesDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(list);
     }
 }

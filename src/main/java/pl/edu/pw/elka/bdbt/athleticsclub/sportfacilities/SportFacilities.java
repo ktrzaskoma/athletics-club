@@ -2,10 +2,12 @@ package pl.edu.pw.elka.bdbt.athleticsclub.sportfacilities;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.addresses.Addresses;
 import pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub.AthleticsClub;
+import pl.edu.pw.elka.bdbt.athleticsclub.sportequipment.SportEquipment;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Obiekty_sportowe")
@@ -44,6 +46,16 @@ public class SportFacilities {
     @JoinColumn(name = "Nr_adresu")
     private Addresses facilityAddressNumber;
 
+    @OneToMany(mappedBy = "equipmentStorage")
+    private Set<SportEquipment> sportEquipment;
+
+    private Set<SportEquipment> getSportEquipment() {
+        return sportEquipment;
+    }
+
+    private void setSportEquipment(Set<SportEquipment> sportEquipment) {
+        this.sportEquipment = sportEquipment;
+    }
 
     public AthleticsClub getAthleticsClubFacility() {
         return athleticsClubFacility;

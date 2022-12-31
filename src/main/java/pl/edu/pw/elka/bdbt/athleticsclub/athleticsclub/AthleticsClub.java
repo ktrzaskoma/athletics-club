@@ -2,7 +2,10 @@ package pl.edu.pw.elka.bdbt.athleticsclub.athleticsclub;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.addresses.Addresses;
 import pl.edu.pw.elka.bdbt.athleticsclub.owners.Owners;
+import pl.edu.pw.elka.bdbt.athleticsclub.sportequipment.SportEquipment;
 import pl.edu.pw.elka.bdbt.athleticsclub.sportfacilities.SportFacilities;
+import pl.edu.pw.elka.bdbt.athleticsclub.trainings.Trainings;
+import pl.edu.pw.elka.bdbt.athleticsclub.workers.Workers;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -38,6 +41,7 @@ public class AthleticsClub {
     @Column(name = "Strona_www")
     private String clubWebPage;
 
+//  mapping down here
 
     @OneToOne
     @JoinColumn(name = "Nr_adresu")
@@ -49,6 +53,15 @@ public class AthleticsClub {
 
     @OneToMany(mappedBy = "athleticsClubFacility")
     private Set<SportFacilities> sportFacilities;
+
+    @OneToMany(mappedBy = "athleticsClubEquipment")
+    private Set<SportEquipment> sportEquipments;
+
+    @OneToMany(mappedBy = "athleticsClubTraining")
+    private Set<Trainings> trainings;
+
+    @OneToMany(mappedBy = "athleticsClubWorker")
+    private Set<Workers> workers;
 
 
     public Integer getClubNumber() {
@@ -129,5 +142,29 @@ public class AthleticsClub {
 
     private void setSportFacilities(Set<SportFacilities> sportFacilities) {
         this.sportFacilities = sportFacilities;
+    }
+
+    private Set<SportEquipment> getSportEquipments() {
+        return sportEquipments;
+    }
+
+    private void setSportEquipments(Set<SportEquipment> sportEquipments) {
+        this.sportEquipments = sportEquipments;
+    }
+
+    private Set<Trainings> getTrainings() {
+        return trainings;
+    }
+
+    private void setTrainings(Set<Trainings> trainings) {
+        this.trainings = trainings;
+    }
+
+    private Set<Workers> getWorkers() {
+        return workers;
+    }
+
+    private void setWorkers(Set<Workers> workers) {
+        this.workers = workers;
     }
 }

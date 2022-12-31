@@ -1,8 +1,11 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.equipmentproducers;
 
+import pl.edu.pw.elka.bdbt.athleticsclub.sportequipment.SportEquipment;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Producenci_sprzetu")
@@ -21,11 +24,22 @@ public class EquipmentProducers {
     private String model;
 
     @NotNull
-    @Column(name = "Rok_proEquidukcji")
+    @Column(name = "Rok_produkcji")
     private Date productionYear;
 
     @Column(name = "Przeznaczenie_dyscyplinowe")
     private String destiny;
+
+    @OneToMany(mappedBy = "equipmentProducer")
+    private Set<SportEquipment> sportEquipment;
+
+    private Set<SportEquipment> getSportEquipment() {
+        return sportEquipment;
+    }
+
+    private void setSportEquipment(Set<SportEquipment> sportEquipment) {
+        this.sportEquipment = sportEquipment;
+    }
 
     public Integer getProducerNumber() {
         return producerNumber;

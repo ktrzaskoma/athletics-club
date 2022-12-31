@@ -19,7 +19,7 @@ The application placed in the repository is 1/2 part of the entire project creat
 
     🟩 Salaries
     
-    🟥 Workers (1 entity Many-to-many)
+    🟨 Workers (1 entity Many-to-many)
 
     🟥 OfficeWorkers
 
@@ -27,9 +27,9 @@ The application placed in the repository is 1/2 part of the entire project creat
 
     🟥 Athletes
 
-    🟥 Trainings
+    🟩 Trainings
 
-    🟥 SportEquipment (2 entity Many-to-many)
+    🟨 SportEquipment (2 entity Many-to-many)
 
  	🟨 SportFacilities (2 entity Many-to-many)
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Worker</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+<body>
+
+<main>
+    <fieldset>
+        <legend>Worker</legend>
+        <a th:href="@{/}">Strona główna</a>
+        <a th:href="@{/training}">Treningi</a>
+        <a th:href="@{/worker/getAll}">GetAllWorkers</a>
+        <a th:href="@{/worker/sortview}">SortWorkers</a>
+        <a th:href="@{/worker/salaryview}">DescendingSalaries</a>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Get All</legend>
+        <tr th:each="worker : ${workers}">
+            <td th:text="${worker.name}"></td>
+            <td th:text="${worker.surname}"></td>
+            <td th:text="${worker.dateOfBirth}"></td>
+            <td th:text="${worker.pesel}"></td>
+            <td th:text="${worker.dateOfEmployment}"></td>
+            <td th:text="${worker.sex}"></td>
+            <td th:text="${worker.phoneNumber}"></td>
+        </tr>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Hourly rate by worker</legend>
+        <tr th:each="worker : ${workers}">
+            <td th:text="${worker.number}"></td>
+            <td th:text="${worker.name}"></td>
+            <td th:text="${worker.surname}"></td>
+            <td th:text="${worker.workerSalary.hourlyRate}"></td>
+        </tr>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Create Worker</legend>
+        <form method="post" th:action="@{/worker/create}">
+            <label>FIRSTNAME
+                <!--/*@thymesVar id="workerSurname" type="java.lang.String"*/-->
+                <input type="text" th:value="${workerName}" name="workerName" autofocus="autofocus">
+            </label>
+            <label>SURNAME:
+                <!--/*@thymesVar id="workerSurname" type="java.lang.String"*/-->
+                <input type="text" th:value="${workerSurname}" name="workerSurname" autofocus="autofocus">
+            </label>
+            <input type="submit" value="Create Worker">
+        </form>
+    </fieldset>
+
+
+    <fieldset style="margin-top: 30px">
+        <legend>Number of workers</legend>
+        <div th:text="${counter}"></div>
+
+    </fieldset>
+
+</main>
+</body>
+</html>

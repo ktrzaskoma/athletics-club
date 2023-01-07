@@ -21,11 +21,11 @@ The application placed in the repository is 1/2 part of the entire project creat
     
     🟨 Workers (1 entity Many-to-many)
 
-    🟥 OfficeWorkers
+    🟩 OfficeWorkers
 
-    🟥 Trainers
+    🟩 Trainers
 
-    🟥 Athletes
+    🟩 Athletes
 
     🟩 Trainings
 

@@ -20,7 +20,7 @@
     <fieldset style="margin-top: 30px">
         <legend>Get All</legend>
         <tr th:each="training : ${trainings}">
-            <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.model.Training"*/-->
+            <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training"*/-->
             <td th:text="${training.trainingDiscipline}"></td>
             <td th:text="${training.trainingDate}"></td>
             <td th:text="${training.typeOfTraining}"></td>

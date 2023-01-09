@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Creation</title>
+  <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+<body>
+
+<main>
+  <fieldset>
+    <legend>Facility</legend>
+    <a th:href="@{/}">Strona główna</a>
+  </fieldset>
+
+  <fieldset style="margin-top: 30px">
+    <legend>Create Facility</legend>
+
+    <!--/*@thymesVar id="sportFacility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/-->
+    <form method="post" th:action="@{/createfacility/facility}" th:object="${sportFacility}" modelAttribute="sportFacility">
+      <label>NAME
+        <input type="text" autofocus="autofocus" th:field="*{facilityName}">
+      </label>
+      <label>OPEN DATE
+        <input type="date" autofocus="autofocus" th:field="*{openDate}">
+      </label>
+      <label>TYPE
+        <input type="text" autofocus="autofocus" th:field="*{facilityType}">
+      </label>
+      <label>IF COVERED?
+        <input type="text" autofocus="autofocus" th:field="*{coveredFacility}">
+      </label>
+      <label>CAPACITY
+        <input type="number" autofocus="autofocus" th:field="*{capacity}">
+      </label>
+      <label>ATHLETICS CLUB
+        <input type="number" autofocus="autofocus" th:field="*{athleticsClubFacility}">
+      </label>
+      <label>FACILITY ADDRESS
+        <input type="number" autofocus="autofocus" th:field="*{facilityAddress}">
+      </label>
+      <input type="submit" value="Create Facility">
+    </form>
+  </fieldset>
+</main>
+</body>
+</html>

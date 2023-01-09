@@ -43,22 +43,6 @@
     </fieldset>
 
     <fieldset style="margin-top: 30px">
-        <legend>Create Worker</legend>
-        <form method="post" th:action="@{/worker/create}">
-            <label>FIRSTNAME
-                <!--/*@thymesVar id="workerSurname" type="java.lang.String"*/-->
-                <input type="text" th:value="${workerName}" name="workerName" autofocus="autofocus">
-            </label>
-            <label>SURNAME:
-                <!--/*@thymesVar id="workerSurname" type="java.lang.String"*/-->
-                <input type="text" th:value="${workerSurname}" name="workerSurname" autofocus="autofocus">
-            </label>
-            <input type="submit" value="Create Worker">
-        </form>
-    </fieldset>
-
-
-    <fieldset style="margin-top: 30px">
         <legend>Number of workers</legend>
         <div th:text="${counter}"></div>
 

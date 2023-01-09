@@ -32,6 +32,7 @@
         <legend>Dodaj sprzęt</legend>
         <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipmentWriteModel"*/-->
         <form method="post" th:action="@{/equipment/create}" th:object="${equipment}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Data zakupu:
                 <input type="date" autofocus="autofocus" th:field="*{dateOfPurchase}">
             </label>

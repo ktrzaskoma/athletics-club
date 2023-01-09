@@ -2,10 +2,13 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/club")
@@ -24,11 +27,17 @@ public class AthleticsClubController {
                         AthleticsClubReadModel::toReadModel
                 ).toList();
         model.addAttribute("clubs", addressList);
+        model.addAttribute("clubs", addressList);
         return "/club";
     }
 
     @PostMapping("/create")
-    String createClub(@ModelAttribute("club") AthleticsClubWriteModel clubToWrite) {
+    String createClub(@ModelAttribute("club") @Valid
+                      AthleticsClubWriteModel clubToWrite,
+                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/club";
+        }
         athleticsClubRepository.save(AthleticsClubWriteModel.toAthleticsClub(clubToWrite));
         return "/club";
     }

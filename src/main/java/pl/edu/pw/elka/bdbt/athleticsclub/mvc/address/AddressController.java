@@ -4,10 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/address")
@@ -32,7 +35,12 @@ public class AddressController {
     }
 
     @PostMapping("/create")
-    String createAddress(@ModelAttribute("address") AddressWriteModel addressWriteModel) {
+    String createAddress(@ModelAttribute("address") @Valid
+                         AddressWriteModel addressWriteModel,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/address";
+        }
         addressRepository.save(AddressWriteModel.toAddress(addressWriteModel));
         return "/address";
     }

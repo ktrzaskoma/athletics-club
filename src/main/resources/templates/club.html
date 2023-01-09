@@ -19,6 +19,7 @@
 
     <fieldset style="margin-top: 30px">
         <legend>Wszystkie kluby</legend>
+        <!--/*@thymesVar id="clubs" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel"*/-->
         <tr th:each="club : ${clubs}">
             <td th:text="${club.name}"></td>
             <td th:text="${club.establishedDate}"></td>
@@ -34,6 +35,7 @@
         <legend>Stwórz klub</legend>
         <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
         <form method="post" th:action="@{/club/create}" th:object="${club}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{'global'}"></p>
             <label>Nazwa:
                 <input type="text" autofocus="autofocus" th:field="*{name}">
             </label>

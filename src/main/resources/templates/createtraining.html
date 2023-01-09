@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Creation</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+<body>
+
+<main>
+    <fieldset>
+        <legend>Training</legend>
+        <a th:href="@{/}">Strona główna</a>
+        <a th:href="@{/training}">Training</a>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Create Training</legend>
+
+        <!--/*@thymesVar id="train" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/-->
+        <form method="post" th:action="@{/createtraining/done}" th:object="${training}" modelAttribute="training">
+            <label>TRAINING DATE
+                <input type="date" autofocus="autofocus" th:field="*{trainingDate}">
+            </label>
+            <label>DISCIPLINE
+                <input type="text" autofocus="autofocus" th:field="*{discipline}">
+            </label>
+            <label>TYPE
+                <input type="text" autofocus="autofocus" th:field="*{type}">
+            </label>
+            <label>FORCE LOAD
+                <input type="text" autofocus="autofocus" th:field="*{forceLoad}">
+            </label>
+            <label>ATHLETICS CLUB
+                <input type="number" autofocus="autofocus" th:field="*{athleticsClub}">
+            </label>
+            <input type="submit" value="Create Training">
+        </form>
+    </fieldset>
+</main>
+</body>
+</html>

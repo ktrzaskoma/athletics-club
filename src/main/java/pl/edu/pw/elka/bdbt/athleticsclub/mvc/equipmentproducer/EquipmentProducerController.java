@@ -1,29 +1,43 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerController;
-
-import java.util.List;
 
 @Controller
-@RequestMapping("/equipmentproducers")
+@RequestMapping("/equipmentproducer")
 public class EquipmentProducerController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OwnerController.class);
     private final EquipmentProducerRepository equipmentProducerRepository;
 
     public EquipmentProducerController(EquipmentProducerRepository equipmentProducerRepository) {
         this.equipmentProducerRepository = equipmentProducerRepository;
     }
 
+    @GetMapping("/getAll")
+    String getAll(Model model) {
+        var equipmentproducers = equipmentProducerRepository.findAll()
+                .stream().map(
+                        EquipmentProducerReadModel::toReadModel
+                ).toList();
+
+        model.addAttribute("equipmentproducers", equipmentproducers);
+
+        return "/equipmentproducer";
+    }
+
+    @PostMapping("/create")
+    String createClub(@ModelAttribute("equipmentproducer") EquipmentProducerWriteModel writeModel) {
+        equipmentProducerRepository.save(EquipmentProducerWriteModel.toWriteModel(writeModel));
+        return "/equipmentproducer";
+    }
+
     @GetMapping
-    ResponseEntity<List<EquipmentProducer>> getAll() {
-        LOGGER.info("Showing all the records in EquipmentProducers entity!");
-        return ResponseEntity.ok(equipmentProducerRepository.findAll());
+    String viewPage(Model model) {
+        model.addAttribute("equipmentproducer", new EquipmentProducerWriteModel());
+        return "/equipmentproducer";
     }
 }

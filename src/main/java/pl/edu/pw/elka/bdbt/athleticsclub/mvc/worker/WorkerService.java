@@ -10,7 +10,7 @@ public class WorkerService {
     private final WorkerRepository workerRepository;
 
 //  sorting data by given parameters
-    public String feature1() {
+    public String getMenWorkersEmployedAfter2000() {
         return String.valueOf(
                 workerRepository
                         .findAll()

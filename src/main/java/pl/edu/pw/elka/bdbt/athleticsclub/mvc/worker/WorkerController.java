@@ -43,12 +43,12 @@ public class WorkerController {
 
     @GetMapping("/sort")
     ResponseEntity<String> sortByArgs() {
-        return ResponseEntity.ok(workerService.feature1());
+        return ResponseEntity.ok(workerService.getMenWorkersEmployedAfter2000());
     }
 
     @GetMapping("/sortview")
     String sortBy(Model model) {
-        model.addAttribute("counter", workerService.feature1());
+        model.addAttribute("counter", workerService.getMenWorkersEmployedAfter2000());
         return "/worker";
     }
 

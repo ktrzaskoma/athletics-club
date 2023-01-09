@@ -51,10 +51,11 @@ public class PostOffice {
     }
 
 
-    private Set<Address> getAddressSet() {
+    public Set<Address> getAddressSet() {
         return addressSet;
     }
-    private void setAddressSet(Set<Address> addressSet) {
+
+    public void setAddressSet(Set<Address> addressSet) {
         this.addressSet = addressSet;
     }
 }

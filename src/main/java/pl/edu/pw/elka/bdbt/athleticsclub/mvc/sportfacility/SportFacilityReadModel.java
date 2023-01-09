@@ -22,9 +22,6 @@ public class SportFacilityReadModel {
     AthleticsClub athleticsClubFacility;
     Address facilityAddress;
 
-
-
-
     public static SportFacilityReadModel toSportFacilityReadModel(final SportFacility sportFacility){
         return new SportFacilityReadModel(
                 sportFacility.getFacilityNumber(),

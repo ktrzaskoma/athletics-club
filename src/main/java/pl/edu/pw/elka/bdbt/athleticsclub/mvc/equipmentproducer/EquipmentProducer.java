@@ -32,11 +32,11 @@ public class EquipmentProducer {
     @OneToMany(mappedBy = "equipmentProducer")
     private Set<SportEquipment> sportEquipment;
 
-    private Set<SportEquipment> getSportEquipment() {
+    public Set<SportEquipment> getSportEquipment() {
         return sportEquipment;
     }
 
-    private void setSportEquipment(Set<SportEquipment> sportEquipment) {
+    public void setSportEquipment(Set<SportEquipment> sportEquipment) {
         this.sportEquipment = sportEquipment;
     }
 

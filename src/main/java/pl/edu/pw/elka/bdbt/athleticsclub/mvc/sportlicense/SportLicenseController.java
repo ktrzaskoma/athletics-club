@@ -1,29 +1,41 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityController;
-
-import java.util.List;
 
 @Controller
-@RequestMapping("/sportlicenses")
+@RequestMapping("/license")
 public class SportLicenseController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SportFacilityController.class);
     private final SportLicenseRepository sportLicenseRepository;
 
     public SportLicenseController(SportLicenseRepository sportLicenseRepository) {
         this.sportLicenseRepository = sportLicenseRepository;
     }
 
+    @GetMapping("/getAll")
+    String getAll(Model model) {
+        var licenses = sportLicenseRepository.findAll()
+                .stream().map(
+                        SportLicenseReadModel::toReadModel
+                ).toList();
+        model.addAttribute("licenses", licenses);
+        return "/license";
+    }
+
+    @PostMapping("/create")
+    String createLicense(@ModelAttribute("license") SportLicenseWriteModel licenseWriteModel) {
+        sportLicenseRepository.save(SportLicenseWriteModel.toSportLicense(licenseWriteModel));
+        return "/license";
+    }
+
     @GetMapping
-    ResponseEntity<List<SportLicense>> getAll() {
-        LOGGER.info("Showing all the records in SportLicenses entity!");
-        return ResponseEntity.ok(sportLicenseRepository.findAll());
+    String viewPage(Model model) {
+        model.addAttribute("license", new SportLicenseWriteModel());
+        return "/license";
     }
 }

@@ -1,21 +1,16 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel;
-
-import java.net.URI;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/club")
 public class AthleticsClubController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AthleticsClubController.class);
+
     private final AthleticsClubRepository athleticsClubRepository;
 
     public AthleticsClubController(final AthleticsClubRepository athleticsClubRepository) {
@@ -24,7 +19,6 @@ public class AthleticsClubController {
 
     @GetMapping("/getAll")
     String getAll(Model model) {
-        LOGGER.info("Showing all the records in Addresses entity!");
         var addressList = athleticsClubRepository.findAll()
                 .stream().map(
                         AthleticsClubReadModel::toReadModel

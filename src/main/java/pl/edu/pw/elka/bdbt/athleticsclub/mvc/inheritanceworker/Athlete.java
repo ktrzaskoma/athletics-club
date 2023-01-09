@@ -15,7 +15,6 @@ public class Athlete extends Worker {
     @JoinColumn(name = "nr_licencji_sportowej")
     private SportLicense sportLicenseNumber;
 
-
     public SportLicense getSportLicenseNumber() {
         return sportLicenseNumber;
     }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -14,7 +15,7 @@ import java.util.Date;
 public class AthleticsClubReadModel {
 
     String name;
-    Date establishedDate;
+    LocalDate establishedDate;
     String phoneNumber;
     String email;
     String phoneNumber2;

@@ -8,6 +8,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class AthleticsClub {
 
     @Basic(optional = false)
     @Column(name = "data_zalozenia")
-    private Date establishedDate;
+    private LocalDate establishedDate;
 
     @Basic(optional = false)
     @Column(name = "nr_telefonu")
@@ -79,11 +80,11 @@ public class AthleticsClub {
         this.clubName = clubName;
     }
 
-    public Date getEstablishedDate() {
+    public LocalDate getEstablishedDate() {
         return establishedDate;
     }
 
-    public void setEstablishedDate(Date establishedDate) {
+    public void setEstablishedDate(LocalDate establishedDate) {
         this.establishedDate = establishedDate;
     }
 

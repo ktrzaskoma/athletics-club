@@ -21,6 +21,7 @@
 
         <!--/*@thymesVar id="train" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/-->
         <form method="post" th:action="@{/createtraining/done}" th:object="${training}" modelAttribute="training">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>TRAINING DATE
                 <input type="date" autofocus="autofocus" th:field="*{trainingDate}">
             </label>

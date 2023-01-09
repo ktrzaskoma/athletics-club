@@ -7,7 +7,7 @@ import lombok.Setter;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.Owner;
 
-import java.util.Date;
+import java.sql.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +27,7 @@ public class AthleticsClubWriteModel {
     public static AthleticsClub toAthleticsClub(final AthleticsClubWriteModel athleticsClubWriteModel) {
         var athleticsClubToSave = new AthleticsClub();
         athleticsClubToSave.setClubEmail(athleticsClubWriteModel.email);
-        athleticsClubToSave.setEstablishedDate(athleticsClubWriteModel.establishedDate);
+        athleticsClubToSave.setEstablishedDate(athleticsClubWriteModel.establishedDate.toLocalDate());
         athleticsClubToSave.setClubPhoneNumber(athleticsClubWriteModel.phoneNumber);
         athleticsClubToSave.setClubName(athleticsClubWriteModel.name);
         athleticsClubToSave.setClubPhoneNumber2(athleticsClubWriteModel.phoneNumber2);

@@ -20,6 +20,7 @@
         <legend>Create Worker</legend>
         <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
         <form method="post" th:action="@{/createworker/worker}" th:object="${worker}" modelAttribute="worker">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>FIRSTNAME
                 <input type="text" autofocus="autofocus" th:field="*{name}">
             </label>

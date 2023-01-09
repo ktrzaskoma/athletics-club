@@ -20,6 +20,7 @@
 
     <!--/*@thymesVar id="sportFacility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/-->
     <form method="post" th:action="@{/createfacility/facility}" th:object="${sportFacility}" modelAttribute="sportFacility">
+      <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
       <label>NAME
         <input type="text" autofocus="autofocus" th:field="*{facilityName}">
       </label>

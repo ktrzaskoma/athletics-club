@@ -35,7 +35,7 @@
         <legend>Stwórz klub</legend>
         <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
         <form method="post" th:action="@{/club/create}" th:object="${club}">
-            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{'global'}"></p>
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Nazwa:
                 <input type="text" autofocus="autofocus" th:field="*{name}">
             </label>

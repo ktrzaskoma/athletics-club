@@ -38,5 +38,9 @@ public class AthleticsClubReadModel {
         );
     }
 
-
+    @Override
+    public String toString() {
+        return name + ", " + establishedDate + ", " + phoneNumber + ", " + email + ", " + phoneNumber2
+                + ", " + webPage + ", " + addressNumber + ", " + ownerOfAthleticsClub;
+    }
 }

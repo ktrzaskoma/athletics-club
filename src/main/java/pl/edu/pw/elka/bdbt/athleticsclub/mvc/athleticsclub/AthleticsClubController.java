@@ -11,9 +11,9 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressRepository;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerRepository;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 @Controller
@@ -32,12 +32,12 @@ public class AthleticsClubController {
 
     @GetMapping("/getAll")
     String getAll(Model model) {
-        var addressList = athleticsClubRepository.findAll()
+        var athleticsClubList = athleticsClubRepository.findAll()
                 .stream().map(
                         AthleticsClubReadModel::toReadModel
                 ).toList();
-        model.addAttribute("clubs", addressList);
-        model.addAttribute("club", new AthleticsClubWriteModel());
+        model.addAttribute("clubs", athleticsClubList);
+        prepareEntryModel(model);
         return "/club";
     }
 
@@ -57,6 +57,12 @@ public class AthleticsClubController {
 
     @GetMapping
     String viewPage(Model model) {
+        prepareEntryModel(model);
+        return "/club";
+    }
+
+
+    private Model prepareEntryModel(Model model) {
         var addresses = addressRepository.findAll().stream().map(
                 AddressReadModel::toReadModel
         ).collect(Collectors.toMap(AddressReadModel::getNumber, AddressReadModel::toString));
@@ -65,12 +71,11 @@ public class AthleticsClubController {
                 OwnerReadModel::toReadModel
         ).collect(Collectors.toMap(OwnerReadModel::getOwnerNumber, OwnerReadModel::toString));
 
-
-        model.addAttribute("club", new AthleticsClubWriteModel());
         model.addAttribute("addresses", addresses);
         model.addAttribute("owners", owners);
+        model.addAttribute("club", new AthleticsClubWriteModel());
 
-        return "/club";
+        return model;
     }
 
 }

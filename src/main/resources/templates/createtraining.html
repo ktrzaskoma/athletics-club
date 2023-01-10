@@ -4,40 +4,50 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Creation</title>
+    <title>Nowy trening</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
 <body>
 
 <main>
     <fieldset>
-        <legend>Training</legend>
-        <a th:href="@{/}">Strona główna</a>
-        <a th:href="@{/training}">Training</a>
+        <a th:href="@{/home}">Strona główna</a>
+        <a th:href="@{/club}">O klubie</a>
+        <a th:href="@{/training}">Treningi</a>
+        <a th:href="@{/}">Obiekty</a>
+        <a th:href="@{/worker}">Pracownicy</a>
+        <a th:href="@{/equipment}">Sprzęt</a>
+    </fieldset>
+
+    <fieldset>
+        <legend>Trening</legend>
+        <a th:href="@{/}">Lista treningów</a>
+        <a th:href="@{/createtraining}">Dodaj trening</a>
+        <a th:href="@{/singup}">Zapisz się!</a>
     </fieldset>
 
     <fieldset style="margin-top: 30px">
-        <legend>Create Training</legend>
+        <legend>Nowy trening</legend>
 
         <!--/*@thymesVar id="train" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/-->
         <form method="post" th:action="@{/createtraining/done}" th:object="${training}" modelAttribute="training">
             <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
-            <label>TRAINING DATE
+            <label>Data treningu
                 <input type="date" autofocus="autofocus" th:field="*{trainingDate}">
             </label>
-            <label>DISCIPLINE
+            <label>Dyscyplina
                 <input type="text" autofocus="autofocus" th:field="*{discipline}">
             </label>
-            <label>TYPE
+            <label>Typ
                 <input type="text" autofocus="autofocus" th:field="*{type}">
             </label>
-            <label>FORCE LOAD
+            <label>Obciążenie treningu
                 <input type="text" autofocus="autofocus" th:field="*{forceLoad}">
             </label>
-            <label>ATHLETICS CLUB
+            <label>ATHLETICS CLUB(?)
                 <input type="number" autofocus="autofocus" th:field="*{athleticsClub}">
             </label>
-            <input type="submit" value="Create Training">
+            <input type="submit" value="Stwórz trening">
         </form>
     </fieldset>
 </main>

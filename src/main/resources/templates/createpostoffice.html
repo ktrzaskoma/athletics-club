@@ -4,7 +4,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Adresy</title>
+    <title>Nowa poczta</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
 <body>
@@ -31,18 +31,21 @@
         <a th:href="@{/createlicense}">Dodaj licencję</a>
     </fieldset>
 
+
     <fieldset style="margin-top: 30px">
-        <legend>Wszystkie adresy</legend>
-        <tr th:each="address : ${addresses}">
-            <td th:text="${address.country}"></td>
-            <td th:text="${address.city}"></td>
-            <td th:text="${address.street}"></td>
-            <td th:text="${address.buildingNumber}"></td>
-            <td th:text="${address.apartmentNumber}"></td>
-        </tr>
+        <legend>Zarejestruj pocztę</legend>
+        <!--/*@thymesVar id="postoffice" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.postoffice.PostOfficeWriteModel"*/-->
+        <form method="post" th:action="@{/postoffice/create}" th:object="${postoffice}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+            <label>Kod pocztowy:
+                <input type="text" autofocus="autofocus" th:field="*{zipCode}">
+            </label>
+            <label>Miasto:
+                <input type="text" autofocus="autofocus" th:field="*{postOfficeCity}">
+            </label>
+            <input type="submit" value="Dodaj pocztę">
+        </form>
     </fieldset>
-
-
 </main>
 </body>
 </html>

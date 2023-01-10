@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+>
 <head>
     <meta charset="UTF-8">
-    <title>STRONA GŁÓWNA</title>
+    <title>Strona główna</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
 <body>
-<h1>TUTAJ STRONA GŁÓWNA</h1>
+
+<main>
+    <fieldset>
+        <a th:href="@{/home}">Strona główna</a>
+        <a th:href="@{/club}">O klubie</a>
+        <a th:href="@{/training}">Treningi</a>
+        <a th:href="@{/}">Obiekty</a>
+        <a th:href="@{/worker}">Pracownicy</a>
+        <a th:href="@{/equipment}">Sprzęt</a>
+    </fieldset>
+
+    <fieldset>
+        <legend>Klub</legend>
+        <a th:href="@{/owner}">Właściciele</a>
+        <a th:href="@{/createowner}">Dodaj właściciela</a>
+        <a th:href="@{/postoffice}">Poczta</a>
+        <a th:href="@{/createpostoffice}">Dodaj pocztę</a>
+        <a th:href="@{/address}">Adres</a>
+        <a th:href="@{/createaddress}">Dodaj adres</a>
+        <a th:href="@{/license}">Licencje</a>
+        <a th:href="@{/createlicense}">Dodaj licencję</a>
+    </fieldset>
+</main>
 </body>
 </html>

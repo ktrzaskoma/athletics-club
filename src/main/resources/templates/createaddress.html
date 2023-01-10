@@ -4,7 +4,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Adresy</title>
+    <title>Nowy adres</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
 <body>
@@ -32,16 +32,28 @@
     </fieldset>
 
     <fieldset style="margin-top: 30px">
-        <legend>Wszystkie adresy</legend>
-        <tr th:each="address : ${addresses}">
-            <td th:text="${address.country}"></td>
-            <td th:text="${address.city}"></td>
-            <td th:text="${address.street}"></td>
-            <td th:text="${address.buildingNumber}"></td>
-            <td th:text="${address.apartmentNumber}"></td>
-        </tr>
+        <legend>Dodaj adres</legend>
+        <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
+        <form method="post" th:action="@{/address/create}" th:object="${address}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+            <label>Kraj:
+                <input type="text" autofocus="autofocus" th:field="*{country}">
+            </label>
+            <label>Miasto:
+                <input type="text" autofocus="autofocus" th:field="*{city}">
+            </label>
+            <label>Ulica:
+                <input type="text" autofocus="autofocus" th:field="*{street}">
+            </label>
+            <label>Numer budynku:
+                <input type="number" autofocus="autofocus" th:field="*{buildingNumber}">
+            </label>
+            <label>Numer apartamentu:
+                <input type="number" autofocus="autofocus" th:field="*{apartmentNumber}">
+            </label>
+            <input type="submit" value="Dodaj adres">
+        </form>
     </fieldset>
-
 
 </main>
 </body>

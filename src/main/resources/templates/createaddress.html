@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Dodaj adres</title>
+  <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+<body>
+
+<main>
+  <fieldset>
+    <a th:href="@{/}">Strona główna</a>
+    <a th:href="@{/club}">O klubie</a>
+    <a th:href="@{/training}">Treningi</a>
+    <a th:href="@{/}">Obiekty</a>
+    <a th:href="@{/worker}">Pracownicy</a>
+    <a th:href="@{/equipment}">Sprzęt</a>
+  </fieldset>
+
+  <fieldset>
+    <legend>Adresy</legend>
+    <!--Opcje powinny być dostępne tylko po zalogowaniu-->
+    <a th:href="@{/createaddress}">Dodaj adres</a>
+    <a th:href="@{/address/getall}">Wypisz adresy</a>
+  </fieldset>
+
+
+
+  <fieldset style="margin-top: 30px">
+    <legend>Nowy adres</legend>
+    <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
+    <form method="post" th:action="@{/address/create}" th:object="${address}">
+      <label>Kraj:
+        <input type="text" autofocus="autofocus" th:field="*{country}">
+      </label>
+      <label>Miasto:
+        <input type="text" autofocus="autofocus" th:field="*{city}">
+      </label>
+      <label>Ulica:
+        <input type="text" autofocus="autofocus" th:field="*{street}">
+      </label>
+      <label>Numer budynku:
+        <input type="number" autofocus="autofocus" th:field="*{buildingNumber}">
+      </label>
+      <label>Numer apartamentu:
+        <input type="number" autofocus="autofocus" th:field="*{apartmentNumber}">
+      </label>
+      <input type="submit" value="Dodaj adres">
+    </form>
+  </fieldset>
+
+</main>
+</body>
+</html>

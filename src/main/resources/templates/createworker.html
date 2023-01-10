@@ -4,50 +4,61 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Creation</title>
+    <title>Dodaj pracownika</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
 <body>
 
 <main>
     <fieldset>
-        <legend>Worker</legend>
         <a th:href="@{/}">Strona główna</a>
-        <a th:href="@{/worker}">Worker</a>
+        <a th:href="@{/club}">O klubie</a>
+        <a th:href="@{/training}">Treningi</a>
+        <a th:href="@{/}">Obiekty</a>
+        <a th:href="@{/worker}">Pracownicy</a>
+        <a th:href="@{/equipment}">Sprzęt</a>
+    </fieldset>
+
+    <fieldset>
+        <legend>Pracownicy</legend>
+        <a th:href="@{/createworker}">Dodaj pracownika</a>
+        <a th:href="@{/templates/worker}">Wypisz pracowników</a>
+        <a th:href="@{/worker/sortedworker}">Sortuj pracowników</a>
+        <a th:href="@{/worker/salaryview}">Sortuj według płac</a>
     </fieldset>
 
     <fieldset style="margin-top: 30px">
-        <legend>Create Worker</legend>
+        <legend>Nowy pracownik</legend>
         <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
         <form method="post" th:action="@{/createworker/worker}" th:object="${worker}" modelAttribute="worker">
-            <label>FIRSTNAME
+            <label>Imię
                 <input type="text" autofocus="autofocus" th:field="*{name}">
             </label>
-            <label>SURNAME:
+            <label>Nazwisko
                 <input type="text" autofocus="autofocus" th:field="*{lastname}">
             </label>
-            <label>DATE OF BIRTH:
+            <label>Data urodzenia
                 <input type="date" autofocus="autofocus" th:field="*{dateOfBirthday}">
             </label>
             <label>PESEL
                 <input type="text" autofocus="autofocus" th:field="*{pesel}">
             </label>
-            <label>GENDER
+            <label>Płeć
                 <input type="text" autofocus="autofocus" th:field="*{sex}">
             </label>
-            <label>PHONE NUMBER
+            <label>Telefon
                 <input type="tel" autofocus="autofocus" th:field="*{phoneNumber}">
             </label>
-            <label>ADDRESS
+            <label>Adres
                 <input type="number" autofocus="autofocus" th:field="*{workerAddressNumber}">
             </label>
-            <label>ATHLETIC CLUB
+            <label>ATHLETIC CLUB(?)
                 <input type="number" autofocus="autofocus" th:field="*{athleticsClubWorker}">
             </label>
-            <label>SALARY
+            <label>Pensja
                 <input type="number" autofocus="autofocus" th:field="*{workerSalary}">
             </label>
-            <input type="submit" value="Create Worker">
+            <input type="submit" value="Dodaj pracownika">
         </form>
     </fieldset>
 

@@ -4,57 +4,69 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Kluby lekkoatletyczne</title>
+    <title>Klub lekkoatletyczny</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
 <body>
 
 <main>
     <fieldset>
-        <legend>Worker</legend>
         <a th:href="@{/}">Strona główna</a>
+        <a th:href="@{/club}">O klubie</a>
         <a th:href="@{/training}">Treningi</a>
-        <a th:href="@{/club/getAll}">Pobierz wszystkie kluby</a>
+        <a th:href="@{/}">Obiekty</a>
+        <a th:href="@{/worker}">Pracownicy</a>
+        <a th:href="@{/equipment}">Sprzęt</a>
     </fieldset>
 
-    <fieldset style="margin-top: 30px">
-        <legend>Wszystkie kluby</legend>
-        <tr th:each="club : ${clubs}">
-            <td th:text="${club.name}"></td>
-            <td th:text="${club.establishedDate}"></td>
-            <td th:text="${club.email}"></td>
-            <td th:text="${club.phoneNumber2}"></td>
-            <td th:text="${club.webPage}"></td>
-            <td th:text="${club.addressNumber}"></td>
-            <td th:text="${club.ownerOfAthleticsClub}"></td>
-        </tr>
+    <fieldset>
+        <legend>Klub</legend>
+        <a th:href="@{/address}">Adresy</a>
+        <a th:href="@{/postoffice}">Poczty</a>
+        <a th:href="@{/owner}">Właściciel</a>
+
+
     </fieldset>
 
-    <fieldset style="margin-top: 30px">
-        <legend>Stwórz klub</legend>
-        <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
-        <form method="post" th:action="@{/club/create}" th:object="${club}">
-            <label>Nazwa:
-                <input type="text" autofocus="autofocus" th:field="*{name}">
-            </label>
-            <label>Data założenia:
-                <input type="date" autofocus="autofocus" th:field="*{establishedDate}">
-            </label>
-            <label>Numer telefonu:
-                <input type="text" autofocus="autofocus" th:field="*{phoneNumber}">
-            </label>
-            <label>Numer telefonu 2:
-                <input type="text" autofocus="autofocus" th:field="*{phoneNumber2}">
-            </label>
-            <label>Email:
-                <input type="email" autofocus="autofocus" th:field="*{email}">
-            </label>
-            <label>Strona www:
-                <input type="text" autofocus="autofocus" th:field="*{webPage}">
-            </label>
-            <input type="submit" value="Dodaj klub">
-        </form>
-    </fieldset>
+
+<!--    <fieldset style="margin-top: 30px">-->
+<!--        <legend>Wszystkie kluby</legend>-->
+<!--        <tr th:each="club : ${clubs}">-->
+<!--            <td th:text="${club.name}"></td>-->
+<!--            <td th:text="${club.establishedDate}"></td>-->
+<!--            <td th:text="${club.email}"></td>-->
+<!--            <td th:text="${club.phoneNumber2}"></td>-->
+<!--            <td th:text="${club.webPage}"></td>-->
+<!--            <td th:text="${club.addressNumber}"></td>-->
+<!--            <td th:text="${club.ownerOfAthleticsClub}"></td>-->
+<!--        </tr>-->
+<!--    </fieldset>-->
+
+<!--    <fieldset style="margin-top: 30px">-->
+<!--        <legend>Stwórz klub</legend>-->
+<!--        &lt;!&ndash;/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/&ndash;&gt;-->
+<!--        <form method="post" th:action="@{/club/create}" th:object="${club}">-->
+<!--            <label>Nazwa:-->
+<!--                <input type="text" autofocus="autofocus" th:field="*{name}">-->
+<!--            </label>-->
+<!--            <label>Data założenia:-->
+<!--                <input type="date" autofocus="autofocus" th:field="*{establishedDate}">-->
+<!--            </label>-->
+<!--            <label>Numer telefonu:-->
+<!--                <input type="text" autofocus="autofocus" th:field="*{phoneNumber}">-->
+<!--            </label>-->
+<!--            <label>Numer telefonu 2:-->
+<!--                <input type="text" autofocus="autofocus" th:field="*{phoneNumber2}">-->
+<!--            </label>-->
+<!--            <label>Email:-->
+<!--                <input type="email" autofocus="autofocus" th:field="*{email}">-->
+<!--            </label>-->
+<!--            <label>Strona www:-->
+<!--                <input type="text" autofocus="autofocus" th:field="*{webPage}">-->
+<!--            </label>-->
+<!--            <input type="submit" value="Dodaj klub">-->
+<!--        </form>-->
+<!--    </fieldset>-->
 </main>
 </body>
 </html>

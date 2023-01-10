@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>STRONA GŁÓWNA</title>
+    <h2>Lekka atletyka</h2>
+<link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
-<body>
 
+<body>
+<main>
+    <fieldset>
+        <legend>Klub sportowy</legend>
+        <a th:href="@{/}">Strona główna</a>
+        <a th:href="@{/club}">O klubie</a>
+        <a th:href="@{/training}">Treningi</a>
+        <a th:href="@{/worker}">Pracownicy</a>
+        <a th:href="@{/equipment}">Sprzęt</a>
+        <a th:href="@{/sportfacility}">Obiekty sportowe</a>
+    </fieldset>
+
+</main>
 </body>
 </html>

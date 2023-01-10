@@ -11,10 +11,18 @@
 
 <main>
     <fieldset>
-        <legend>Poczta</legend>
         <a th:href="@{/}">Strona główna</a>
+        <a th:href="@{/club}">O klubie</a>
         <a th:href="@{/training}">Treningi</a>
-        <a th:href="@{/postoffice/getAll}">Pobierz wszystkie poczty</a>
+        <a th:href="@{/}">Obiekty</a>
+        <a th:href="@{/worker}">Pracownicy</a>
+        <a th:href="@{/equipment}">Sprzęt</a>
+    </fieldset>
+
+    <fieldset>
+        <legend>Poczty</legend>
+        <a th:href="@{/createpostoffice}">Dodaj pocztę</a>
+        <a th:href="@{/postoffice/getall}">Wszystkie poczty</a>
     </fieldset>
 
     <fieldset style="margin-top: 30px">
@@ -26,19 +34,6 @@
         </tr>
     </fieldset>
 
-    <fieldset style="margin-top: 30px">
-        <legend>Zarejestruj pocztę</legend>
-        <!--/*@thymesVar id="postoffice" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.postoffice.PostOfficeWriteModel"*/-->
-        <form method="post" th:action="@{/postoffice/create}" th:object="${postoffice}">
-            <label>Kod pocztowy:
-                <input type="text" autofocus="autofocus" th:field="*{zipCode}">
-            </label>
-            <label>Miasto:
-                <input type="text" autofocus="autofocus" th:field="*{postOfficeCity}">
-            </label>
-            <input type="submit" value="Dodaj pocztę">
-        </form>
-    </fieldset>
 </main>
 </body>
 </html>

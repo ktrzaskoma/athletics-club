@@ -3,7 +3,7 @@
 <head>
     <head>
         <meta charset="UTF-8">
-        <title>Training</title>
+        <title>Treningi</title>
         <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
     </head>
 </head>
@@ -11,14 +11,26 @@
 
 <main>
     <fieldset>
-        <legend>Training</legend>
-        <a th:href="@{/training/getall}">Get all trainings</a>
-        <a th:href="@{/}">Strona główna</a>
-        <a th:href="@{/worker}">Workers</a>
+        <a th:href="@{/home}">Strona główna</a>
+        <a th:href="@{/club}">O klubie</a>
+        <a th:href="@{/training}">Treningi</a>
+        <a th:href="@{/}">Obiekty</a>
+        <a th:href="@{/worker}">Pracownicy</a>
+        <a th:href="@{/equipment}">Sprzęt</a>
     </fieldset>
 
+    <fieldset>
+        <legend>Trening</legend>
+        <a th:href="@{/}">Lista treningów</a>
+        <a th:href="@{/createtraining}">Dodaj trening</a>
+        <a th:href="@{/singup}">Zapisz się!</a>
+
+    </fieldset>
+
+
+
     <fieldset style="margin-top: 30px">
-        <legend>Get All</legend>
+        <legend>Lista treningów</legend>
         <tr th:each="training : ${trainings}">
             <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training"*/-->
             <td th:text="${training.trainingDiscipline}"></td>

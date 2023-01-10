@@ -4,45 +4,55 @@
 >
 <head>
   <meta charset="UTF-8">
-  <title>Creation</title>
+  <title>Nowy obiekt</title>
   <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
 </head>
 <body>
 
 <main>
   <fieldset>
-    <legend>Facility</legend>
-    <a th:href="@{/}">Strona główna</a>
+    <a th:href="@{/home}">Strona główna</a>
+    <a th:href="@{/club}">O klubie</a>
+    <a th:href="@{/training}">Treningi</a>
+    <a th:href="@{/}">Obiekty</a>
+    <a th:href="@{/worker}">Pracownicy</a>
+    <a th:href="@{/equipment}">Sprzęt</a>
+  </fieldset>
+
+  <fieldset>
+    <legend>Obiekt sportowy</legend>
+    <a th:href="@{/}">Lista obiektów</a>
+    <a th:href="@{/createsportfacility}">Dodaj obiekt</a>
   </fieldset>
 
   <fieldset style="margin-top: 30px">
-    <legend>Create Facility</legend>
+    <legend>Nowy obiekt</legend>
 
     <!--/*@thymesVar id="sportFacility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/-->
     <form method="post" th:action="@{/createfacility/facility}" th:object="${sportFacility}" modelAttribute="sportFacility">
       <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
-      <label>NAME
+      <label>Nazwa
         <input type="text" autofocus="autofocus" th:field="*{facilityName}">
       </label>
-      <label>OPEN DATE
+      <label>Data otwarcia
         <input type="date" autofocus="autofocus" th:field="*{openDate}">
       </label>
-      <label>TYPE
+      <label>Typ
         <input type="text" autofocus="autofocus" th:field="*{facilityType}">
       </label>
-      <label>IF COVERED?
+      <label>Przykryty?
         <input type="text" autofocus="autofocus" th:field="*{coveredFacility}">
       </label>
-      <label>CAPACITY
+      <label>Pojemność
         <input type="number" autofocus="autofocus" th:field="*{capacity}">
       </label>
-      <label>ATHLETICS CLUB
+      <label>ATHLETICS CLUB(?)
         <input type="number" autofocus="autofocus" th:field="*{athleticsClubFacility}">
       </label>
-      <label>FACILITY ADDRESS
+      <label>Adres
         <input type="number" autofocus="autofocus" th:field="*{facilityAddress}">
       </label>
-      <input type="submit" value="Create Facility">
+      <input type="submit" value="Stwórz obiekt">
     </form>
   </fieldset>
 </main>

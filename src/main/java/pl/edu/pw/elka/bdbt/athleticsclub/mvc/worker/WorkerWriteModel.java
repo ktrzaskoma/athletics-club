@@ -31,21 +31,21 @@ public class WorkerWriteModel {
     Address workerAddressNumber;
 
 
-    public static Worker toWorker(WorkerWriteModel toSaveModel){
-        var workerToSave = new Worker();
-        workerToSave.setName(toSaveModel.name);
-        workerToSave.setSurname(toSaveModel.lastname);
-        workerToSave.setDateOfBirth(toSaveModel.dateOfBirthday.toLocalDate());
-        workerToSave.setPesel(toSaveModel.pesel);
-        workerToSave.setSex(toSaveModel.sex);
-        workerToSave.setDateOfEmployment(LocalDate.now());
-        workerToSave.setBankAccount(null);
-        workerToSave.setEmail(null);
-        workerToSave.setPhoneNumber(toSaveModel.phoneNumber);
-        workerToSave.setAthleticsClubWorker(toSaveModel.athleticsClubWorker);
-        workerToSave.setWorkerSalary(toSaveModel.workerSalary);
-        workerToSave.setWorkerAddressNumber(toSaveModel.workerAddressNumber);
-        return workerToSave;
+    public static Worker toEntity(WorkerWriteModel writeModel){
+        var entity = new Worker();
+        entity.setName(writeModel.getName());
+        entity.setSurname(writeModel.getLastname());
+        entity.setDateOfBirth(writeModel.dateOfBirthday.toLocalDate());
+        entity.setPesel(writeModel.getPesel());
+        entity.setSex(writeModel.getSex());
+        entity.setDateOfEmployment(LocalDate.now());
+        entity.setBankAccount(null);
+        entity.setEmail(null);
+        entity.setPhoneNumber(writeModel.getPhoneNumber());
+        entity.setAthleticsClubWorker(writeModel.getAthleticsClubWorker());
+        entity.setWorkerSalary(writeModel.getWorkerSalary());
+        entity.setWorkerAddressNumber(new Address());
+        return entity;
 
     }
 

@@ -5,8 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AthleticsClubRepository extends JpaRepository<AthleticsClub, Integer> {
-
-    AthleticsClub save (AthleticsClub athleticsClub);
-
-
 }

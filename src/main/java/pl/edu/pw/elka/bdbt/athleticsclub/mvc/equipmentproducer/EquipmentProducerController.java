@@ -28,6 +28,7 @@ public class EquipmentProducerController {
                 ).toList();
 
         model.addAttribute("equipmentproducers", equipmentproducers);
+        model.addAttribute("equipmentproducer", new EquipmentProducerWriteModel());
 
         return "/equipmentproducer";
     }
@@ -39,7 +40,7 @@ public class EquipmentProducerController {
         if (bindingResult.hasErrors()) {
             return "/equipmentproducer";
         }
-        equipmentProducerRepository.save(EquipmentProducerWriteModel.toWriteModel(writeModel));
+        equipmentProducerRepository.save(EquipmentProducerWriteModel.toEntity(writeModel));
         return "/equipmentproducer";
     }
 

@@ -14,16 +14,17 @@ import java.util.Date;
 public class SportLicenseReadModel {
 
     Date expirationDate;
+    //format + date wydania można uznać, że to jest moment tworzenia wpisu
     Date releaseDate;
     String permission;
     String ageCategory;
 
-    public static SportLicenseReadModel toReadModel(final SportLicense sportLicense) {
+    public static SportLicenseReadModel toReadModel(final SportLicense entity) {
         return new SportLicenseReadModel(
-                sportLicense.getExpirationDate(),
-                sportLicense.getReleaseDate(),
-                sportLicense.getPermission(),
-                sportLicense.getAgeCategory()
+                entity.getExpirationDate(),
+                entity.getReleaseDate(),
+                entity.getPermission(),
+                entity.getAgeCategory()
         );
     }
 }

@@ -27,21 +27,21 @@ public class WorkerReadModel {
     Integer addressNumber;
 
 
-    public static WorkerReadModel toWorkerReadModel(final Worker worker) {
+    public static WorkerReadModel toReadModel(final Worker entity) {
         return new WorkerReadModel(
-                worker.getNumber(),
-                worker.getName(),
-                worker.getSurname(),
-                worker.getDateOfBirth(),
-                worker.getPesel(),
-                worker.getSex(),
-                worker.getDateOfEmployment(),
-                worker.getBankAccount(),
-                worker.getEmail(),
-                worker.getPhoneNumber(),
-                worker.getAthleticsClubWorker().getClubName(),
-                worker.getWorkerSalary().getHourlyRate(),
-                worker.getWorkerAddressNumber().getAddressNumber());
+                entity.getNumber(),
+                entity.getName(),
+                entity.getSurname(),
+                entity.getDateOfBirth(),
+                entity.getPesel(),
+                entity.getSex(),
+                entity.getDateOfEmployment(),
+                entity.getBankAccount(),
+                entity.getEmail(),
+                entity.getPhoneNumber(),
+                entity.getAthleticsClubWorker().getClubName(),
+                entity.getWorkerSalary().getHourlyRate(),
+                entity.getWorkerAddressNumber().getAddressNumber());
     }
 
 

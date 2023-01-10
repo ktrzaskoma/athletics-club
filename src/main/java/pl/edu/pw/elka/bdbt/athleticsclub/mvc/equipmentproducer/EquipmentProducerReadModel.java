@@ -16,17 +16,18 @@ public class EquipmentProducerReadModel {
 
     String brand;
     String model;
+    //potrzeba roku, a nie całej daty!
     Date productionYear;
     String destiny;
     String sportEquipment;
 
-    public static EquipmentProducerReadModel toReadModel(final EquipmentProducer equipmentProducer) {
+    public static EquipmentProducerReadModel toReadModel(final EquipmentProducer entity) {
         return new EquipmentProducerReadModel(
-                equipmentProducer.getBrand(),
-                equipmentProducer.getModel(),
-                equipmentProducer.getProductionYear(),
-                equipmentProducer.getDestiny(),
-                equipmentProducer.getSportEquipment().stream().map(SportEquipment::getSportEquipmentNumber).toList().toString()
+                entity.getBrand(),
+                entity.getModel(),
+                entity.getProductionYear(),
+                entity.getDestiny(),
+                entity.getSportEquipment().stream().map(SportEquipment::getSportEquipmentNumber).toList().toString()
         );
     }
 }

@@ -19,13 +19,14 @@ public class EquipmentProducerWriteModel {
     Date productionYear;
     String destiny;
 
-    public static EquipmentProducer toWriteModel(final EquipmentProducerWriteModel writeModel) {
-        var toSaveModel = new EquipmentProducer();
-        toSaveModel.setBrand(writeModel.brand);
-        toSaveModel.setModel(writeModel.model);
-        toSaveModel.setProductionYear(writeModel.productionYear);
-        toSaveModel.setDestiny(writeModel.destiny);
-        toSaveModel.setSportEquipment(Collections.emptySet());
-        return toSaveModel;
+    public static EquipmentProducer toEntity(final EquipmentProducerWriteModel writeModel) {
+        var entity = new EquipmentProducer();
+        entity.setBrand(writeModel.getBrand());
+        entity.setModel(writeModel.getModel());
+        entity.setProductionYear(writeModel.getProductionYear());
+        entity.setDestiny(writeModel.getDestiny());
+        //to do refaktoru, bo tu trzeba podać listę
+        entity.setSportEquipment(Collections.emptySet());
+        return entity;
     }
 }

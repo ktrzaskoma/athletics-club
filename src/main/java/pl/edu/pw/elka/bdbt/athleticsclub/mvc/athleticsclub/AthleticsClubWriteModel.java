@@ -24,16 +24,18 @@ public class AthleticsClubWriteModel {
     Integer addressNumber;
     Integer ownerOfAthleticsClub;
 
-    public static AthleticsClub toAthleticsClub(final AthleticsClubWriteModel athleticsClubWriteModel) {
-        var athleticsClubToSave = new AthleticsClub();
-        athleticsClubToSave.setClubEmail(athleticsClubWriteModel.email);
-        athleticsClubToSave.setEstablishedDate(athleticsClubWriteModel.establishedDate.toLocalDate());
-        athleticsClubToSave.setClubPhoneNumber(athleticsClubWriteModel.phoneNumber);
-        athleticsClubToSave.setClubName(athleticsClubWriteModel.name);
-        athleticsClubToSave.setClubPhoneNumber2(athleticsClubWriteModel.phoneNumber2);
-        athleticsClubToSave.setClubWebPage(athleticsClubWriteModel.webPage);
-        athleticsClubToSave.setClubAddressNumber(new Address());
-        athleticsClubToSave.setOwnerOfAthleticsClub(new Owner());
-        return athleticsClubToSave;
+    public static AthleticsClub toEntity(final AthleticsClubWriteModel athleticsClubWriteModel,
+                                         final Address address,
+                                         final Owner owner) {
+        var entity = new AthleticsClub();
+        entity.setClubEmail(athleticsClubWriteModel.getEmail());
+        entity.setEstablishedDate(athleticsClubWriteModel.getEstablishedDate().toLocalDate());
+        entity.setClubPhoneNumber(athleticsClubWriteModel.getPhoneNumber());
+        entity.setClubName(athleticsClubWriteModel.getName());
+        entity.setClubPhoneNumber2(athleticsClubWriteModel.getPhoneNumber2());
+        entity.setClubWebPage(athleticsClubWriteModel.getWebPage());
+        entity.setClubAddressNumber(address);
+        entity.setOwnerOfAthleticsClub(owner);
+        return entity;
     }
 }

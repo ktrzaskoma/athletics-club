@@ -16,25 +16,27 @@ import java.sql.Date;
 public class SportFacilityWriteModel {
 
     String facilityName;
+    //na pewno format daty jest okej, to samo, myślę, że datę można domyślnie ustawić na dzień, w którym tworzy się ten wpis, bez formularza
     Date openDate;
     String facilityType;
     Boolean coveredFacility;
+    //dlaczego tutaj nie ma integera?
     int capacity;
     AthleticsClub athleticsClubFacility;
     Address facilityAddress;
 
-    public static SportFacility toSportFacility(SportFacilityWriteModel toSaveModel){
-        var sportFacilityToSave = new SportFacility();
-        sportFacilityToSave.setFacilityName(toSaveModel.facilityName);
-        sportFacilityToSave.setOpenDate(toSaveModel.openDate.toLocalDate());
-        sportFacilityToSave.setFacilityType(toSaveModel.facilityType);
-        sportFacilityToSave.setCoveredFacility(toSaveModel.coveredFacility);
-        sportFacilityToSave.setCapacityOfStands(toSaveModel.capacity);
-        sportFacilityToSave.setAthleticsClubFacility(toSaveModel.athleticsClubFacility);
-        sportFacilityToSave.setFacilityAddressNumber(toSaveModel.facilityAddress);
-        return sportFacilityToSave;
+    public static SportFacility toEntity(SportFacilityWriteModel writeModel) {
+        var entity = new SportFacility();
+        entity.setFacilityName(writeModel.getFacilityName());
+        entity.setOpenDate(writeModel.getOpenDate().toLocalDate());
+        entity.setFacilityType(writeModel.getFacilityType());
+        entity.setCoveredFacility(writeModel.getCoveredFacility());
+        entity.setCapacityOfStands(writeModel.getCapacity());
+        //to się pewnie wywali -> writeModel.getAthleticsClubFacility()
+        entity.setAthleticsClubFacility(new AthleticsClub());
+        //to się pewnie wywali -> writeModel.getAthleticsClubFacility()
+        entity.setFacilityAddressNumber(new Address());
+        return entity;
     }
-
-
 
 }

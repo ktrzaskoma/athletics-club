@@ -55,7 +55,7 @@ public class WorkerController {
     @GetMapping("/salary")
     ResponseEntity<List<WorkerReadModel>> salary() {
         var list = workerRepository.findAllByOrderByWorkerSalaryAsc().stream().map(
-                WorkerReadModel::toWorkerReadModel
+                WorkerReadModel::toReadModel
         ).toList();
         return ResponseEntity.ok(list);
     }

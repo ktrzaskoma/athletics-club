@@ -18,13 +18,13 @@ public class TrainingReadModel {
     String trainingForce;
     String athleticsClubTraining;
 
-    public static TrainingReadModel toTrainingDTO(final Training training) {
+    public static TrainingReadModel toReadModel(final Training entity) {
         return new TrainingReadModel(
-                training.getTrainingNumber(),
-                training.getTrainingDate(),
-                training.getTrainingDiscipline(),
-                training.getTypeOfTraining(),
-                training.getTrainingForceLoad(),
-                training.getAthleticsClubTraining().getClubName());
+                entity.getTrainingNumber(),
+                entity.getTrainingDate(),
+                entity.getTrainingDiscipline(),
+                entity.getTypeOfTraining(),
+                entity.getTrainingForceLoad(),
+                entity.getAthleticsClubTraining().getClubName());
     }
 }

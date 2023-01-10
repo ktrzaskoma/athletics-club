@@ -20,14 +20,14 @@ public class TrainingWriteModel {
     String forceLoad;
     AthleticsClub athleticsClub;
 
-    public static Training toTraining(TrainingWriteModel toSaveModel){
-        var trainingToSave = new Training();
-        trainingToSave.setTrainingDate(toSaveModel.trainingDate.toLocalDate());
-        trainingToSave.setTrainingDiscipline(toSaveModel.discipline);
-        trainingToSave.setTypeOfTraining(toSaveModel.type);
-        trainingToSave.setTrainingForceLoad(toSaveModel.forceLoad);
-        trainingToSave.setAthleticsClubTraining(toSaveModel.athleticsClub);
-        return trainingToSave;
+    public static Training toEntity(TrainingWriteModel writeModel) {
+        var entity = new Training();
+        entity.setTrainingDate(writeModel.getTrainingDate().toLocalDate());
+        entity.setTrainingDiscipline(writeModel.getDiscipline());
+        entity.setTypeOfTraining(writeModel.getType());
+        entity.setTrainingForceLoad(writeModel.getForceLoad());
+        entity.setAthleticsClubTraining(new AthleticsClub());
+        return entity;
     }
 
 }

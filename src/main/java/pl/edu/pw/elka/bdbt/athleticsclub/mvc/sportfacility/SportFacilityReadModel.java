@@ -18,20 +18,21 @@ public class SportFacilityReadModel {
     LocalDate openDate;
     String facilityType;
     Boolean coveredFacility;
+    //dlaczego tutaj nie ma Integera?
     int capacity;
     AthleticsClub athleticsClubFacility;
     Address facilityAddress;
 
-    public static SportFacilityReadModel toSportFacilityReadModel(final SportFacility sportFacility){
+    public static SportFacilityReadModel toReadModel(final SportFacility entity){
         return new SportFacilityReadModel(
-                sportFacility.getFacilityNumber(),
-                sportFacility.getFacilityName(),
-                sportFacility.getOpenDate(),
-                sportFacility.getFacilityType(),
-                sportFacility.getCoveredFacility(),
-                sportFacility.getCapacityOfStands(),
-                sportFacility.getAthleticsClubFacility(),
-                sportFacility.getFacilityAddressNumber());
+                entity.getFacilityNumber(),
+                entity.getFacilityName(),
+                entity.getOpenDate(),
+                entity.getFacilityType(),
+                entity.getCoveredFacility(),
+                entity.getCapacityOfStands(),
+                entity.getAthleticsClubFacility(),
+                entity.getFacilityAddressNumber());
     }
 
 }

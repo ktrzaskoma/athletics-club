@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +15,8 @@ import java.util.Date;
 public class AthleticsClubReadModel {
 
     String name;
+    //datą założenia, może być dzień dzisiejszy - więc nie trzeba tego wymagać
+    //sprawdzić czy format się zgadza
     LocalDate establishedDate;
     String phoneNumber;
     String email;
@@ -23,16 +25,16 @@ public class AthleticsClubReadModel {
     Integer addressNumber;
     Integer ownerOfAthleticsClub;
 
-    public static AthleticsClubReadModel toReadModel(final AthleticsClub athleticsClub) {
+    public static AthleticsClubReadModel toReadModel(final AthleticsClub entity) {
         return new AthleticsClubReadModel(
-                athleticsClub.getClubName(),
-                athleticsClub.getEstablishedDate(),
-                athleticsClub.getClubPhoneNumber(),
-                athleticsClub.getClubEmail(),
-                athleticsClub.getClubPhoneNumber2(),
-                athleticsClub.getClubWebPage(),
-                athleticsClub.getClubAddressNumber().getAddressNumber(),
-                athleticsClub.getOwnerOfAthleticsClub().getOwnerNumber()
+                entity.getClubName(),
+                LocalDateTime.now().toLocalDate(),
+                entity.getClubPhoneNumber(),
+                entity.getClubEmail(),
+                entity.getClubPhoneNumber2(),
+                entity.getClubWebPage(),
+                entity.getClubAddressNumber().getAddressNumber(),
+                entity.getOwnerOfAthleticsClub().getOwnerNumber()
         );
     }
 

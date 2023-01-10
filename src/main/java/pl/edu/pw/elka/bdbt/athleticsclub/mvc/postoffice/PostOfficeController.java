@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel;
 
 import javax.validation.Valid;
 
@@ -29,6 +27,7 @@ public class PostOfficeController {
                         PostOfficeReadModel::toReadModel
                 ).toList();
         model.addAttribute("postoffices", postoffices);
+        model.addAttribute("postoffice", new PostOfficeWriteModel());
         return "/postoffice";
     }
 
@@ -39,7 +38,7 @@ public class PostOfficeController {
         if (bindingResult.hasErrors()) {
             return "/postoffice";
         }
-        postOfficeRepository.save(PostOfficeWriteModel.toWriteModel(postOfficeWriteModel));
+        postOfficeRepository.save(PostOfficeWriteModel.toEntity(postOfficeWriteModel));
         return "/postoffice";
     }
 

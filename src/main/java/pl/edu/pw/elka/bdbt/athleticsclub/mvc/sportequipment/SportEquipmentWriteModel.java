@@ -17,6 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class SportEquipmentWriteModel {
 
+    //to samo co w ReadModelu
     Date dateOfPurchase;
     Integer numberOfEquipment;
     BigDecimal valueOfEquipment;
@@ -26,15 +27,19 @@ public class SportEquipmentWriteModel {
     SportFacility equipmentStorage;
     EquipmentProducer equipmentProducer;
 
-    public static SportEquipment toWriteModel(final SportEquipmentWriteModel equipmentWriteModel) {
+    public static SportEquipment toEntity(final SportEquipmentWriteModel writeModel) {
         var toSaveModel = new SportEquipment();
-        toSaveModel.setCondition(equipmentWriteModel.condition);
-        toSaveModel.setDateOfPurchase(equipmentWriteModel.dateOfPurchase);
-        toSaveModel.setNumberOfEquipment(equipmentWriteModel.numberOfEquipment);
-        toSaveModel.setValueOfEquipment(equipmentWriteModel.valueOfEquipment);
-        toSaveModel.setInUse(equipmentWriteModel.inUse);
+        toSaveModel.setCondition(writeModel.getCondition());
+        //nie trzeba to pobierać z formularza
+        toSaveModel.setDateOfPurchase(writeModel.getDateOfPurchase());
+        toSaveModel.setNumberOfEquipment(writeModel.getNumberOfEquipment());
+        toSaveModel.setValueOfEquipment(writeModel.getValueOfEquipment());
+        toSaveModel.setInUse(writeModel.getInUse());
+        //
         toSaveModel.setAthleticsClubEquipment(new AthleticsClub());
+        //
         toSaveModel.setEquipmentProducer(new EquipmentProducer());
+        //
         toSaveModel.setEquipmentStorage(new SportFacility());
         return toSaveModel;
     }

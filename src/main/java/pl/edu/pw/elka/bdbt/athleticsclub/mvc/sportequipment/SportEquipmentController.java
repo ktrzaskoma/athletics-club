@@ -27,6 +27,7 @@ public class SportEquipmentController {
                         SportEquipmentReadModel::toReadModel
                 ).toList();
         model.addAttribute("equipments", equipments);
+        model.addAttribute("equipment", new SportEquipmentWriteModel());
         return "/equipment";
     }
 
@@ -37,7 +38,7 @@ public class SportEquipmentController {
         if (bindingResult.hasErrors()) {
             return "/equipment";
         }
-        sportEquipmentRepository.save(SportEquipmentWriteModel.toWriteModel(equipmentWriteModel));
+        sportEquipmentRepository.save(SportEquipmentWriteModel.toEntity(equipmentWriteModel));
         return "/equipment";
     }
 

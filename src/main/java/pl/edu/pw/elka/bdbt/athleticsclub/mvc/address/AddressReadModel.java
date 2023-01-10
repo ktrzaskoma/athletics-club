@@ -11,20 +11,26 @@ import lombok.Setter;
 @Setter
 public class AddressReadModel {
 
+    Integer number;
     String country;
     String city;
     String street;
     String buildingNumber;
     String apartmentNumber;
 
-    public static AddressReadModel toReadModel(final Address address) {
+    public static AddressReadModel toReadModel(final Address entity) {
         return new AddressReadModel(
-                address.getCountry(),
-                address.getCity(),
-                address.getStreet(),
-                address.getBuildingNumber(),
-                address.getApartmentNumber()
+                entity.getAddressNumber(),
+                entity.getCountry(),
+                entity.getCity(),
+                entity.getStreet(),
+                entity.getBuildingNumber(),
+                entity.getApartmentNumber()
         );
     }
 
+    @Override
+    public String toString() {
+        return country + ", " + city + ", " + street + ", " + buildingNumber + ", " + apartmentNumber;
+    }
 }

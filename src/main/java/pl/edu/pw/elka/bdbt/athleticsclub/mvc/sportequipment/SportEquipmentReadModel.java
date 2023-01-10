@@ -14,19 +14,20 @@ import java.util.Date;
 @NoArgsConstructor
 public class SportEquipmentReadModel {
 
+    //to może być dzień dzisiejszy, ale trzeba znowu zmienić format daty / ewentualnie sprawdzić czy taki naprawdę potrzebujemy
     Date dateOfPurchase;
     Integer numberOfEquipment;
     BigDecimal valueOfEquipment;
     String condition;
     Boolean inUse;
 
-    public static SportEquipmentReadModel toReadModel(final SportEquipment sportEquipment) {
+    public static SportEquipmentReadModel toReadModel(final SportEquipment entity) {
         return new SportEquipmentReadModel(
-                sportEquipment.getDateOfPurchase(),
-                sportEquipment.getNumberOfEquipment(),
-                sportEquipment.getValueOfEquipment(),
-                sportEquipment.getCondition(),
-                sportEquipment.getInUse()
+                entity.getDateOfPurchase(),
+                entity.getNumberOfEquipment(),
+                entity.getValueOfEquipment(),
+                entity.getCondition(),
+                entity.getInUse()
         );
     }
 

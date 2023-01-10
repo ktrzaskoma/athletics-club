@@ -4,8 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel;
 
 import javax.validation.Valid;
 
@@ -31,7 +29,7 @@ public class CreateWorkerController {
         if (bindingResult.hasErrors()) {
             return "createworker";
         }
-        workerRepository.save(WorkerWriteModel.toWorker(worker));
+        workerRepository.save(WorkerWriteModel.toEntity(worker));
         return "createworker";
     }
 

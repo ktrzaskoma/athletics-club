@@ -5,25 +5,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class AddressWriteModel {
 
+    @NotBlank(message = "Bla bla bla")
     String country;
     String city;
     String street;
     String buildingNumber;
     String apartmentNumber;
 
-    public static Address toAddress(final AddressWriteModel addressWriteModel) {
-        var addressToSave = new Address();
-        addressToSave.setCountry(addressWriteModel.country);
-        addressToSave.setCity(addressWriteModel.city);
-        addressToSave.setStreet(addressWriteModel.street);
-        addressToSave.setBuildingNumber(addressWriteModel.buildingNumber);
-        addressToSave.setApartmentNumber(addressWriteModel.apartmentNumber);
-        return addressToSave;
+    public static Address toEntity(final AddressWriteModel writeModel) {
+        var entity = new Address();
+        entity.setCountry(writeModel.getCountry());
+        entity.setCity(writeModel.getCity());
+        entity.setStreet(writeModel.getStreet());
+        entity.setBuildingNumber(writeModel.getBuildingNumber());
+        entity.setApartmentNumber(writeModel.getApartmentNumber());
+        return entity;
     }
 }

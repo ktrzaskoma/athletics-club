@@ -17,11 +17,12 @@ public class PostOfficeWriteModel {
     String postOfficeCity;
     String addressSet;
 
-    public static PostOffice toWriteModel(final PostOfficeWriteModel writeModel){
-        var toSaveModel = new PostOffice();
-        toSaveModel.setZipCode(writeModel.zipCode);
-        toSaveModel.setPostOfficeCity(writeModel.postOfficeCity);
-        toSaveModel.setAddressSet(Collections.emptySet());
-        return toSaveModel;
+    public static PostOffice toEntity(final PostOfficeWriteModel writeModel){
+        var entity = new PostOffice();
+        entity.setZipCode(writeModel.getZipCode());
+        entity.setPostOfficeCity(writeModel.getPostOfficeCity());
+        //tu trzeba podać zbiór tych adresów, chociaż dla mnie to trochę nielogiczne
+        entity.setAddressSet(Collections.emptySet());
+        return entity;
     }
 }

@@ -25,7 +25,7 @@ public class SportFacilityController {
     ResponseEntity<List<SportFacilityReadModel>> getAll() {
         LOGGER.info("Showing all the records in SportFacilities entity!");
         var list = sportFacilityRepository.findAll().stream()
-                .map(SportFacilityReadModel::toSportFacilityReadModel)
+                .map(SportFacilityReadModel::toReadModel)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(list);
     }

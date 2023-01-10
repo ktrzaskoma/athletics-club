@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostOfficeRepository extends JpaRepository<PostOffice, Integer> {
-    PostOffice save (PostOffice postOffice);
+
 }

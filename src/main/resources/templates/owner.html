@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Właściciele</title>
+    <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+</head>
+<body>
+
+<main>
+    <fieldset>
+        <legend>Właścicel</legend>
+        <a th:href="@{/}">Strona główna</a>
+        <a th:href="@{/training}">Treningi</a>
+        <a th:href="@{/club}">Kluby</a>
+        <a th:href="@{/owner/getAll}">Pobierz wszystkich właścicieli</a>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Wszyscy Właściciele</legend>
+        <tr th:each="owner : ${owners}">
+            <td th:text="${owner.name}"></td>
+            <td th:text="${owner.surname}"></td>
+            <td th:text="${owner.dateOfBirth}"></td>
+            <td th:text="${owner.pesel}"></td>
+            <td th:text="${owner.bankAccountNumber}"></td>
+            <td th:text="${owner.email}"></td>
+            <td th:text="${owner.phoneNumber}"></td>
+        </tr>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Stwórz właściciela</legend>
+        <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
+        <form method="post" th:action="@{/owner/create}" th:object="${owner}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+            <label>Imię:
+                <input type="text" autofocus="autofocus" th:field="*{name}">
+            </label>
+            <label>Nazwisko:
+                <input type="text" autofocus="autofocus" th:field="*{surname}">
+            </label>
+<!--            <label>Data urodzenia:-->
+<!--                <input type="date" autofocus="autofocus" th:field="*{dateOfBirth}">-->
+<!--            </label>-->
+            <label>Pesel:
+                <input type="number" autofocus="autofocus" th:field="*{pesel}">
+            </label>
+            <label>Płeć:
+                <input type="text" autofocus="autofocus" th:field="*{sex}">
+            </label>
+            <label>Numer konta bankowego:
+                <input type="number" autofocus="autofocus" th:field="*{bankAccountNumber}">
+            </label>
+            <label>Email:
+                <input type="text" autofocus="autofocus" th:field="*{email}">
+            </label>
+            <label>Numer telefonu:
+                <input type="number" autofocus="autofocus" th:field="*{phoneNumber}">
+            </label>
+
+            <label>Adres:
+                <select th:field="*{addressNumber}" class="form-control" id="dropDownList3">
+                    <option value="0">Wybierz dostępny adres</option>
+                    <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"
+                            th:text="${address.value}"></option>
+                </select>
+            </label>
+
+            <input type="submit" value="Dodaj właściciela">
+        </form>
+    </fieldset>
+
+</main>
+</body>
+</html>

@@ -16,11 +16,11 @@ public class PostOfficeReadModel {
     String postOfficeCity;
     String addressSet;
 
-    public static PostOfficeReadModel toReadModel(final PostOffice postOffice) {
+    public static PostOfficeReadModel toReadModel(final PostOffice entity) {
         return new PostOfficeReadModel(
-                postOffice.getZipCode(),
-                postOffice.getPostOfficeCity(),
-                postOffice.getAddressSet().stream().map(Address::getAddressNumber).toList().toString()
+                entity.getZipCode(),
+                entity.getPostOfficeCity(),
+                entity.getAddressSet().stream().map(Address::getAddressNumber).toList().toString()
         );
     }
 }

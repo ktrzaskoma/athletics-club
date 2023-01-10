@@ -14,17 +14,19 @@ import java.util.Date;
 public class SportLicenseWriteModel {
 
     Date expirationDate;
+    //format + date wydania można uznać, że to jest moment tworzenia wpisu
     Date releaseDate;
     String permission;
     String ageCategory;
 
-    public static SportLicense toSportLicense(final SportLicenseWriteModel sportLicenseWriteModel){
-        var modelToSave = new SportLicense();
-        modelToSave.setAgeCategory(sportLicenseWriteModel.ageCategory);
-        modelToSave.setExpirationDate(sportLicenseWriteModel.expirationDate);
-        modelToSave.setPermission(sportLicenseWriteModel.permission);
-        modelToSave.setReleaseDate(sportLicenseWriteModel.releaseDate);
-        return modelToSave;
+    public static SportLicense toEntity(final SportLicenseWriteModel writeModel){
+        var entity = new SportLicense();
+        entity.setAgeCategory(writeModel.getAgeCategory());
+        entity.setExpirationDate(writeModel.getExpirationDate());
+        entity.setPermission(writeModel.getPermission());
+        //LocalDateTime.now()
+        entity.setReleaseDate(writeModel.getReleaseDate());
+        return entity;
 
     }
 }

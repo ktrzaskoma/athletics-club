@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel;
 
 import javax.validation.Valid;
 
@@ -35,7 +33,7 @@ public class CreateTrainingController {
         if (bindingResult.hasErrors()) {
             return "createtraining";
         }
-        trainingRepository.save(TrainingWriteModel.toTraining(training));
+        trainingRepository.save(TrainingWriteModel.toEntity(training));
         return "createtraining";
     }
 

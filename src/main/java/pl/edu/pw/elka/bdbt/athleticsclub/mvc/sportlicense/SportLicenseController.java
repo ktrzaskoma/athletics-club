@@ -27,6 +27,7 @@ public class SportLicenseController {
                         SportLicenseReadModel::toReadModel
                 ).toList();
         model.addAttribute("licenses", licenses);
+        model.addAttribute("license", new SportLicenseWriteModel());
         return "/license";
     }
 
@@ -37,7 +38,7 @@ public class SportLicenseController {
         if (bindingResult.hasErrors()) {
             return "/license";
         }
-        sportLicenseRepository.save(SportLicenseWriteModel.toSportLicense(licenseWriteModel));
+        sportLicenseRepository.save(SportLicenseWriteModel.toEntity(licenseWriteModel));
         return "/license";
     }
 

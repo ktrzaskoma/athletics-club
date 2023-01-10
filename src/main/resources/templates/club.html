@@ -54,6 +54,23 @@
             <label>Strona www:
                 <input type="text" autofocus="autofocus" th:field="*{webPage}">
             </label>
+
+            <label>Adres:
+                <select th:field="*{addressNumber}" class="form-control" id="dropDownList1">
+                    <option value="0">Wybierz dostępny adres</option>
+                    <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"
+                            th:text="${address.value}"></option>
+                </select>
+            </label>
+
+            <label>Właściciel:
+                <select th:field="*{ownerOfAthleticsClub}" class="form-control" id="dropDownList2">
+                    <option value="0">Wybierz właściciela</option>
+                    <option th:each="owner : ${owners.entrySet()}" th:value="${owner.key}"
+                            th:text="${owner.value}"></option>
+                </select>
+            </label>
+
             <input type="submit" value="Dodaj klub">
         </form>
     </fieldset>

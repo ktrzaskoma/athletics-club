@@ -14,51 +14,40 @@ import javax.validation.Valid;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/training")
-public class TrainingController {
+@RequestMapping("/createTraining")
+public class CreateTrainingController {
 
     private final TrainingRepository trainingRepository;
     private final AthleticsClubRepository athleticsClubRepository;
 
-    public TrainingController(TrainingRepository trainingRepository, AthleticsClubRepository athleticsClubRepository) {
+    public CreateTrainingController(TrainingRepository trainingRepository, AthleticsClubRepository athleticsClubRepository) {
         this.trainingRepository = trainingRepository;
         this.athleticsClubRepository = athleticsClubRepository;
     }
 
-
-    @GetMapping("getAll")
-    String getAll(Model model) {
-        var trainings = trainingRepository.findAll()
-                .stream().map(
-                        TrainingReadModel::toReadModel
-                ).toList();
-        model.addAttribute("trainings", trainings);
-        prepareEntryModel(model);
-        return "/training";
-    }
-
     @PostMapping("create")
-    String createTraining(@ModelAttribute("training") @Valid TrainingWriteModel trainingWriteModel, BindingResult bindingResult) {
+    String createTraining(@ModelAttribute("createTraining") @Valid TrainingWriteModel trainingWriteModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/training";
+            return "/createTraining";
         }
         var club = athleticsClubRepository.getById(trainingWriteModel.getAthleticsClub());
         trainingRepository.save(TrainingWriteModel.toEntity(trainingWriteModel, club));
-        return "redirect:/training";
+        return "redirect:/createTraining";
     }
 
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
-        return "/training";
+        return "/createTraining";
     }
+
 
     private Model prepareEntryModel(Model model) {
         var clubs = athleticsClubRepository.findAll()
                 .stream().map(AthleticsClubReadModel::toReadModel)
                 .collect(Collectors.toMap(AthleticsClubReadModel::getNumber, AthleticsClubReadModel::toString));
         model.addAttribute("clubs", clubs);
-        model.addAttribute("training", new TrainingWriteModel());
+        model.addAttribute("createTraining", new TrainingWriteModel());
 
         return model;
     }

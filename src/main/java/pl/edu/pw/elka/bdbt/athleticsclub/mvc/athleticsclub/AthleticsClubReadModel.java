@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 public class AthleticsClubReadModel {
 
+    Integer number;
     String name;
     //datą założenia, może być dzień dzisiejszy - więc nie trzeba tego wymagać
     //sprawdzić czy format się zgadza
@@ -27,6 +28,7 @@ public class AthleticsClubReadModel {
 
     public static AthleticsClubReadModel toReadModel(final AthleticsClub entity) {
         return new AthleticsClubReadModel(
+                entity.getClubNumber(),
                 entity.getClubName(),
                 LocalDateTime.now().toLocalDate(),
                 entity.getClubPhoneNumber(),

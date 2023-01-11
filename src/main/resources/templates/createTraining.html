@@ -22,7 +22,7 @@
     <fieldset>
         <legend>Trening</legend>
         <a th:href="@{/}">Lista treningów</a>
-        <a th:href="@{/createtraining}">Dodaj trening</a>
+        <a th:href="@{/createTraining}">Dodaj trening</a>
         <a th:href="@{/singup}">Zapisz się!</a>
     </fieldset>
 
@@ -30,7 +30,7 @@
         <legend>Nowy trening</legend>
 
         <!--/*@thymesVar id="train" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/-->
-        <form method="post" th:action="@{/createtraining/done}" th:object="${training}" modelAttribute="training">
+        <form method="post" th:action="@{/createTraining/create}" th:object="${createTraining}">
             <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Data treningu
                 <input type="date" autofocus="autofocus" th:field="*{trainingDate}">
@@ -44,8 +44,12 @@
             <label>Obciążenie treningu
                 <input type="text" autofocus="autofocus" th:field="*{forceLoad}">
             </label>
-            <label>ATHLETICS CLUB(?)
-                <input type="number" autofocus="autofocus" th:field="*{athleticsClub}">
+            <label>Wybierz klub
+                <select th:field="*{athleticsClub}" class="form-control" id="dropDownList1">
+                    <option value="0">Wybierz dostępny adres</option>
+                    <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"
+                            th:text="${club.value}"></option>
+                </select>
             </label>
             <input type="submit" value="Stwórz trening">
         </form>

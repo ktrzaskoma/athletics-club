@@ -37,7 +37,6 @@ public class SportFacility {
     @Column(name = "pojemnosc_trybun")
     private Integer capacityOfStands;
 
-
     @ManyToOne
     @JoinColumn(name = "nr_klubu")
     private AthleticsClub athleticsClubFacility;

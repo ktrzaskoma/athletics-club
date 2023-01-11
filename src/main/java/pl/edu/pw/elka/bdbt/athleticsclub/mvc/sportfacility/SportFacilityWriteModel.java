@@ -21,20 +21,18 @@ public class SportFacilityWriteModel {
     String facilityType;
     Boolean coveredFacility;
     Integer capacity;
-    AthleticsClub athleticsClubFacility;
-    Address facilityAddress;
+    Integer athleticsClubFacility;
+    Integer facilityAddress;
 
-    public static SportFacility toEntity(SportFacilityWriteModel writeModel) {
+    public static SportFacility toEntity(final SportFacilityWriteModel writeModel, final AthleticsClub club, final Address address) {
         var entity = new SportFacility();
         entity.setFacilityName(writeModel.getFacilityName());
         entity.setOpenDate(writeModel.getOpenDate().toLocalDate());
         entity.setFacilityType(writeModel.getFacilityType());
         entity.setCoveredFacility(writeModel.getCoveredFacility());
         entity.setCapacityOfStands(writeModel.getCapacity());
-        //to się pewnie wywali -> writeModel.getAthleticsClubFacility()
-        entity.setAthleticsClubFacility(new AthleticsClub());
-        //to się pewnie wywali -> writeModel.getAthleticsClubFacility()
-        entity.setFacilityAddressNumber(new Address());
+        entity.setAthleticsClubFacility(club);
+        entity.setFacilityAddressNumber(address);
         return entity;
     }
 

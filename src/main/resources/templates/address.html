@@ -40,6 +40,7 @@
         <tr th:each="address : ${addresses}">
             <td th:text="${address.country}"></td>
             <td th:text="${address.city}"></td>
+            <td th:text="${address.zipCode}"></td>
             <td th:text="${address.street}"></td>
             <td th:text="${address.buildingNumber}"></td>
             <td th:text="${address.apartmentNumber}"></td>
@@ -58,6 +59,10 @@
             <label>Miasto:
                 <input type="text" autofocus="autofocus" th:field="*{city}" th:errorclass="'Bdc(red)'" placeholder="Miasto">
                 <p class="C(red)" th:if="${#fields.hasErrors('city')}"  th:errors="*{city}"/>
+            </label>
+            <label>Kod pocztowy:
+                <input type="text" autofocus="autofocus" th:field="*{zipCode}" th:errorclass="'Bdc(red)'" placeholder="Kod pocztowy">
+                <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}"  th:errors="*{zipCode}" />
             </label>
             <label>Ulica:
                 <input type="text" autofocus="autofocus" th:field="*{street}" th:errorclass="'Bdc(red)'" placeholder="Ulica">

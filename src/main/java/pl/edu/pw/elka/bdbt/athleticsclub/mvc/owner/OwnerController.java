@@ -32,24 +32,27 @@ public class OwnerController {
                         OwnerReadModel::toReadModel
                 ).toList();
         model.addAttribute("owners", owners);
+        model.addAttribute("owner", new OwnerWriteModel());
         prepareEntryModel(model);
         return "/owner";
     }
 
     @PostMapping("/create")
-    String createAddress(@ModelAttribute("owner") @Valid OwnerWriteModel writeModel, BindingResult bindingResult) {
+    String createAddress(@ModelAttribute("owner") @Valid OwnerWriteModel writeModel,
+                         BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            prepareEntryModel(model);
             return "/owner";
         }
-        var entity = addressRepository.getById(writeModel.getAddressNumber());
-        ownerRepository.save(OwnerWriteModel.toEntity(writeModel, entity));
+        var address = addressRepository.getById(writeModel.getAddressNumber());
+        ownerRepository.save(OwnerWriteModel.toEntity(writeModel, address));
         return "redirect:/owner";
     }
 
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
-
+        model.addAttribute("owner", new OwnerWriteModel());
         return "/owner";
     }
 
@@ -57,10 +60,7 @@ public class OwnerController {
         var addresses = addressRepository.findAll().stream().map(
                 AddressReadModel::toReadModel
         ).collect(Collectors.toMap(AddressReadModel::getNumber, AddressReadModel::toString));
-
         model.addAttribute("addresses", addresses);
-        model.addAttribute("owner", new OwnerWriteModel());
-
         return model;
     }
 

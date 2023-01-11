@@ -16,8 +16,6 @@ public class AthleticsClubReadModel {
 
     Integer number;
     String name;
-    //datą założenia, może być dzień dzisiejszy - więc nie trzeba tego wymagać
-    //sprawdzić czy format się zgadza
     LocalDate establishedDate;
     String phoneNumber;
     String email;
@@ -30,7 +28,7 @@ public class AthleticsClubReadModel {
         return new AthleticsClubReadModel(
                 entity.getClubNumber(),
                 entity.getClubName(),
-                LocalDateTime.now().toLocalDate(),
+                entity.getEstablishedDate(),
                 entity.getClubPhoneNumber(),
                 entity.getClubEmail(),
                 entity.getClubPhoneNumber2(),
@@ -42,7 +40,6 @@ public class AthleticsClubReadModel {
 
     @Override
     public String toString() {
-        return name + ", " + establishedDate + ", " + phoneNumber + ", " + email + ", " + phoneNumber2
-                + ", " + webPage + ", " + addressNumber + ", " + ownerOfAthleticsClub;
+        return name;
     }
 }

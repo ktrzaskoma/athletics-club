@@ -41,7 +41,6 @@ public class AthleticsClub {
     @Column(name = "strona_www")
     private String clubWebPage;
 
-//  mapping down here
 
     @OneToOne
     @JoinColumn(name = "nr_adresu")

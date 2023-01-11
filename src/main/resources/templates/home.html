@@ -6,17 +6,56 @@
     <meta charset="UTF-8">
     <title>Strona główna</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <main>
     <fieldset>
-        <a th:href="@{/home}">Strona główna</a>
-        <a th:href="@{/club}">O klubie</a>
-        <a th:href="@{/training}">Treningi</a>
-        <a th:href="@{/sportfacility}">Obiekty</a>
-        <a th:href="@{/worker}">Pracownicy</a>
-        <a th:href="@{/equipment}">Sprzęt</a>
+        <a class="nav-link dropdown-toggle" th:href="@{/home}" role="button" data-bs-toggle="dropdown" aria-expanded="false"Strona główna</a>
+        <div class="dropdown-menu">
+        </div>
+
+        <a class="nav-link dropdown-toggle" th:href="@{/club}" role="button" data-bs-toggle="dropdown" aria-expanded="false">O klubie</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/owner}">Właściciele</a>
+            <a class="dropdown-item" th:href="@{/createowner}">Dodaj właściciela</a>
+            <a class="dropdown-item" th:href="@{/postoffice}">Poczta</a>
+            <a class="dropdown-item" th:href="@{/createpostoffice}">Dodaj pocztę</a>
+            <a class="dropdown-item" th:href="@{/address}">Adres</a>
+            <a class="dropdown-item" th:href="@{/createaddress}">Dodaj adres</a>
+            <a class="dropdown-item" th:href="@{/license}">Licencje</a>
+            <a class="dropdown-item" th:href="@{/createlicense}">Dodaj licencję</a>
+        </div>
+
+        <a class="nav-link dropdown-toggle" th:href="@{/training}" role="button" data-bs-toggle="dropdown" aria-expanded="false"Treningi</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/}">Lista treningów</a>
+            <a class="dropdown-item" th:href="@{/createTraining}">Dodaj trening</a>
+            <a class="dropdown-item" th:href="@{/singup}">Zapisz się!</a>
+        </div>
+
+        <a class="nav-link dropdown-toggle" th:href="@{/sportfacilities}" role="button" data-bs-toggle="dropdown" aria-expanded="false"Obiekty</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/sportfacility/getAll}">Lista obiektów</a>
+            <a class="dropdown-item" th:href="@{/createSportFacility}">Dodaj obiekt</a>
+        </div>
+
+        <a class="nav-link dropdown-toggle" th:href="@{/worker}" role="button" data-bs-toggle="dropdown" aria-expanded="false"Pracownicy</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/createworker}">Dodaj pracownika</a>
+            <a class="dropdown-item" th:href="@{/worker/getAll}">Wypisz pracowników</a>
+            <a class="dropdown-item" th:href="@{/worker/sortview}">Sortuj pracowników</a>
+            <a class="dropdown-item" th:href="@{/worker/salaryview}">Sortuj wg płac</a>
+        </div>
+        <a class="nav-link dropdown-toggle" th:href="@{/equipment}" role="button" data-bs-toggle="dropdown" aria-expanded="false"Sprzęt</a>
+        <div class="dropdown-menu">
+            <a  class="dropdown-item" th:href="@{/getll}">Cały sprzęt</a>
+            <a  class="dropdown-item" th:href="@{/createequpment}">Dodaj sprzęt</a>
+            <a  class="dropdown-item" th:href="@{/createequipmentproducer}">Dodaj producenta</a>
+            <a  class="dropdown-item" th:href="@{/equipmentproducer.html}">Wyświetl producentów</a>
+        </div>
+
     </fieldset>
     <fieldset style="margin-top: 30px">
         <legend>Wszystkie kluby</legend>

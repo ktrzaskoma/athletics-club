@@ -19,8 +19,7 @@ public class SportFacilityReadModel {
     String facilityType;
     Boolean coveredFacility;
     Integer capacity;
-    AthleticsClub athleticsClubFacility;
-    Address facilityAddress;
+
 
     public static SportFacilityReadModel toReadModel(final SportFacility entity){
         return new SportFacilityReadModel(
@@ -29,9 +28,8 @@ public class SportFacilityReadModel {
                 entity.getOpenDate(),
                 entity.getFacilityType(),
                 entity.getCoveredFacility(),
-                entity.getCapacityOfStands(),
-                entity.getAthleticsClubFacility(),
-                entity.getFacilityAddressNumber());
+                entity.getCapacityOfStands());
+
     }
 
 }

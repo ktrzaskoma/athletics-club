@@ -19,7 +19,7 @@ public class OwnerReadModel {
     String surname;
     LocalDate dateOfBirth;
     String pesel;
-    char sex;
+    String sex;
     String bankAccountNumber;
     String email;
     String phoneNumber;

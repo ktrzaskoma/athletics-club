@@ -31,7 +31,7 @@ public class Owner {
 
     @Basic(optional = false)
     @Column(name = "plec")
-    private char sex;
+    private String sex;
 
     @Column(name = "nr_konta_bankowego")
     private String bankAccountNumber;
@@ -102,11 +102,11 @@ public class Owner {
         this.ownerPESEL = ownerPESEL;
     }
 
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(char sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

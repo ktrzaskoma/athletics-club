@@ -12,32 +12,19 @@
 <main>
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
-        <a th:href="@{/club}">O klubie</a>
-        <a th:href="@{/training}">Treningi</a>
-        <a th:href="@{/}">Obiekty</a>
-        <a th:href="@{/worker}">Pracownicy</a>
-        <a th:href="@{/equipment}">Sprzęt</a>
-    </fieldset>
-
-    <fieldset>
-        <legend>Pracownicy</legend>
-        <a th:href="@{/createworker}">Dodaj pracownika</a>
         <a th:href="@{/worker/getAll}">Wypisz pracowników</a>
-        <a th:href="@{/worker/sortview}">Sortuj pracowników</a>
-        <a th:href="@{/worker/salaryview}">Sortuj wg płac</a>
+<!--        <a th:href="@{/worker/salaryview}">Sortuj wg płac</a>-->
     </fieldset>
 
-    <fieldset style="margin-top: 30px">
-        <legend>Liczba pracowników</legend>
-        <div th:text="${counter}"></div>
-    </fieldset>
 
     <fieldset style="margin-top: 30px">
         <legend>Wszyscy pracownicy</legend>
+
+        <!--/*@thymesVar id="work" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel"*/-->
         <tr th:each="worker : ${workers}">
             <td th:text="${worker.name}"></td>
             <td th:text="${worker.surname}"></td>
-            <td th:text="${worker.dateOfBirth}"></td>
+            <td th:text="${worker.birthday}"></td>
             <td th:text="${worker.pesel}"></td>
             <td th:text="${worker.dateOfEmployment}"></td>
             <td th:text="${worker.sex}"></td>
@@ -46,15 +33,40 @@
     </fieldset>
 
     <fieldset style="margin-top: 30px">
-        <legend>Sortowanie wg płac</legend>
-        <tr th:each="worker : ${workers}">
-            <td th:text="${worker.number}"></td>
-            <td th:text="${worker.name}"></td>
-            <td th:text="${worker.surname}"></td>
-            <td th:text="${worker.workerSalary.hourlyRate}"></td>
-        </tr>
+        <legend>Nowy pracownik</legend>
+        <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
+        <form method="post" th:action="@{/worker/create}" th:object="${worker}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+            <label>Imię
+                <input type="text" autofocus="autofocus" th:field="*{name}">
+            </label>
+            <label>Nazwisko
+                <input type="text" autofocus="autofocus" th:field="*{lastname}">
+            </label>
+            <label>Data urodzenia
+                <input type="date" autofocus="autofocus" th:field="*{dateOfBirthday}">
+            </label>
+            <label>Numer PESEL
+                <input type="text" autofocus="autofocus" th:field="*{pesel}">
+            </label>
+            <label>Płeć
+                <input type="text" autofocus="autofocus" th:field="*{sex}">
+            </label>
+            <label>Numer telefonu
+                <input type="tel" autofocus="autofocus" th:field="*{phoneNumber}">
+            </label>
+            <label>Adres
+                <input type="number" autofocus="autofocus" th:field="*{workerAddressNumber}">
+            </label>
+            <label>Klub lekkoatletyczny
+                <input type="number" autofocus="autofocus" th:field="*{athleticsClubWorker}">
+            </label>
+            <label>Pensja
+                <input type="number" autofocus="autofocus" th:field="*{workerSalary}">
+            </label>
+            <input type="submit" value="Dodaj pracownika">
+        </form>
     </fieldset>
-
 
 </main>
 </body>

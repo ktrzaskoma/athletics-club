@@ -20,8 +20,7 @@ public class SportFacilityWriteModel {
     Date openDate;
     String facilityType;
     Boolean coveredFacility;
-    //dlaczego tutaj nie ma integera?
-    int capacity;
+    Integer capacity;
     AthleticsClub athleticsClubFacility;
     Address facilityAddress;
 

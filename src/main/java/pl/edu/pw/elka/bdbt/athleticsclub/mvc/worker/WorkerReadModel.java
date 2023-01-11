@@ -17,14 +17,12 @@ public class WorkerReadModel {
     String surname;
     LocalDate birthday;
     String pesel;
-    char sex;
+    String sex;
     LocalDate dateOfEmployment;
     String bankAccount;
     String email;
     String phoneNumber;
-    String athleticsClubWorker;
-    BigDecimal salary;
-    Integer addressNumber;
+
 
 
     public static WorkerReadModel toReadModel(final Worker entity) {
@@ -38,10 +36,7 @@ public class WorkerReadModel {
                 entity.getDateOfEmployment(),
                 entity.getBankAccount(),
                 entity.getEmail(),
-                entity.getPhoneNumber(),
-                entity.getAthleticsClubWorker().getClubName(),
-                entity.getWorkerSalary().getHourlyRate(),
-                entity.getWorkerAddressNumber().getAddressNumber());
+                entity.getPhoneNumber());
     }
 
 

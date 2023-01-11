@@ -30,7 +30,7 @@
     <fieldset style="margin-top: 30px">
         <legend>Nowy pracownik</legend>
         <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
-        <form method="post" th:action="@{/createworker/worker}" th:object="${worker}" modelAttribute="worker">
+        <form method="post" th:action="@{/worker/create}" th:object="${worker}" modelAttribute="worker">
             <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Imię
                 <input type="text" autofocus="autofocus" th:field="*{name}">

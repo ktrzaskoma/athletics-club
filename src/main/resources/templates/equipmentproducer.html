@@ -12,18 +12,7 @@
 <main>
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
-        <a th:href="@{/club}">O klubie</a>
-        <a th:href="@{/training}">Treningi</a>
-        <a th:href="@{/}">Obiekty</a>
-        <a th:href="@{/worker}">Pracownicy</a>
-        <a th:href="@{/equipment}">Sprzęt</a>
-    </fieldset>
-    <fieldset>
-        <legend>Sprzęt</legend>
-        <a th:href="@{/getll}">Cały sprzęt</a>
-        <a th:href="@{/createequpment}">Dodaj sprzęt</a>
-        <a th:href="@{/createequipmentproducer.html}">Dodaj producenta</a>
-        <a th:href="@{/equipmentproducer.html}">Wyświetl producentów</a>
+        <a th:href="@{equipmentproducer/getAll}">Pokaż wszystkich producentów</a>
     </fieldset>
 
     <fieldset style="margin-top: 30px">
@@ -35,6 +24,27 @@
             <td th:text="${equipmentproducer.destiny}"></td>
             <td th:text="${equipmentproducer.sportEquipment}"></td>
         </tr>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Dodaj producenta sprzętu</legend>
+        <!--/*@thymesVar id="equipmentproducer" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer.EquipmentProducerWriteModel"*/-->
+        <form method="post" th:action="@{/equipmentproducer/create}" th:object="${equipmentproducer}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+            <label>Marka:
+                <input type="text" autofocus="autofocus" th:field="*{brand}">
+            </label>
+            <label>Model:
+                <input type="text" autofocus="autofocus" th:field="*{model}">
+            </label>
+            <label>Data produkcji:
+                <input type="date" autofocus="autofocus" th:field="*{productionYear}">
+            </label>
+            <label>Przeznaczenie:
+                <input type="text" autofocus="autofocus" th:field="*{destiny}">
+            </label>
+            <input type="submit" value="Dodaj producenta">
+        </form>
     </fieldset>
 
 

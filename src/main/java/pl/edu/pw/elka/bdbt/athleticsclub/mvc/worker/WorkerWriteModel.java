@@ -21,7 +21,7 @@ public class WorkerWriteModel {
     String lastname;
     Date dateOfBirthday;
     String pesel;
-    char sex;
+    String sex;
     Date dateOfEmployment;
     String bankAccount;
     String email;
@@ -44,7 +44,7 @@ public class WorkerWriteModel {
         entity.setPhoneNumber(writeModel.getPhoneNumber());
         entity.setAthleticsClubWorker(writeModel.getAthleticsClubWorker());
         entity.setWorkerSalary(writeModel.getWorkerSalary());
-        entity.setWorkerAddressNumber(new Address());
+        entity.setWorkerAddressNumber(writeModel.getWorkerAddressNumber());
         return entity;
 
     }

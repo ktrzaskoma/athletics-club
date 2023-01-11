@@ -14,6 +14,7 @@ public class AddressReadModel {
     Integer number;
     String country;
     String city;
+    String zipCode;
     String street;
     String buildingNumber;
     String apartmentNumber;
@@ -23,6 +24,7 @@ public class AddressReadModel {
                 entity.getAddressNumber(),
                 entity.getCountry(),
                 entity.getCity(),
+                entity.getZipCode(),
                 entity.getStreet(),
                 entity.getBuildingNumber(),
                 entity.getApartmentNumber()
@@ -31,6 +33,10 @@ public class AddressReadModel {
 
     @Override
     public String toString() {
-        return country + ", " + city + ", " + street + ", " + buildingNumber + ", " + apartmentNumber;
+        if (apartmentNumber.isEmpty()) {
+            return country + ", " + city + ", "+ zipCode + ", ul." + street + " " + buildingNumber;
+        }else
+            return country + ", " + city + ", "+ zipCode + ", ul." + street + " " + buildingNumber + "/" + apartmentNumber;
+
     }
 }

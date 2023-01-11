@@ -37,14 +37,16 @@ public class AthleticsClubController {
                         AthleticsClubReadModel::toReadModel
                 ).toList();
         model.addAttribute("clubs", athleticsClubList);
+        model.addAttribute("club", new AthleticsClubWriteModel());
         prepareEntryModel(model);
         return "/club";
     }
 
     @PostMapping("/create")
     String createClub(@ModelAttribute("club") @Valid AthleticsClubWriteModel clubToWrite,
-                      BindingResult bindingResult) {
+                      BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            prepareEntryModel(model);
             return "/club";
         }
 
@@ -58,6 +60,7 @@ public class AthleticsClubController {
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
+        model.addAttribute("club", new AthleticsClubWriteModel());
         return "/club";
     }
 
@@ -73,9 +76,6 @@ public class AthleticsClubController {
 
         model.addAttribute("addresses", addresses);
         model.addAttribute("owners", owners);
-        model.addAttribute("club", new AthleticsClubWriteModel());
-
         return model;
     }
-
 }

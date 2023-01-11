@@ -2,7 +2,6 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.address;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.Owner;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.postoffice.PostOffice;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
@@ -25,6 +24,10 @@ public class Address {
     private String city;
 
     @Basic(optional = false)
+    @Column(name = "kod_pocztowy")
+    private String zipCode;
+
+    @Basic(optional = false)
     @Column(name = "ulica")
     private String street;
 
@@ -35,10 +38,7 @@ public class Address {
     @Column(name = "nr_lokalu")
     private String apartmentNumber;
 
-//    getting column from PostOffice
-    @ManyToOne
-    @JoinColumn(name = "nr_poczty")
-    private PostOffice postOffice;
+
 
 //    mapping column to athletics club
     @OneToOne(mappedBy = "clubAddressNumber")
@@ -57,6 +57,13 @@ public class Address {
     private Worker worker;
 
 
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 
     public Integer getAddressNumber() {
         return addressNumber;
@@ -106,11 +113,4 @@ public class Address {
         this.apartmentNumber = apartmentNumber;
     }
 
-    public PostOffice getPostOffice() {
-        return postOffice;
-    }
-
-    public void setPostOffice(PostOffice postOfficeNumber) {
-        this.postOffice = postOfficeNumber;
-    }
 }

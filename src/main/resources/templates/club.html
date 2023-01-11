@@ -6,6 +6,26 @@
     <meta charset="UTF-8">
     <title>Kluby lekkoatletyczne</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+    <style>
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: red;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+        .P\(10px\) {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,24 +53,26 @@
         <legend>Stwórz klub</legend>
         <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
         <form method="post" th:action="@{/club/create}" th:object="${club}">
-            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Nazwa:
-                <input type="text" autofocus="autofocus" th:field="*{name}">
+                <input type="text" autofocus="autofocus" th:field="*{name}" th:errorclass="'Bdc(red)'" placeholder="Nazwa">
+                <p class="C(red)" th:if="${#fields.hasErrors('name')}"  th:errors="*{name}"/>
             </label>
             <label>Data założenia:
-                <input type="date" autofocus="autofocus" th:field="*{establishedDate}">
+                <input type="date" autofocus="autofocus" th:field="*{establishedDate}" th:errorclass="'Bdc(red)'" placeholder="Data założenie">
+                <p class="C(red)" th:if="${#fields.hasErrors('establishedDate')}"  th:errors="*{establishedDate}"/>
             </label>
             <label>Numer telefonu:
-                <input type="text" autofocus="autofocus" th:field="*{phoneNumber}">
+                <input type="text" autofocus="autofocus" th:field="*{phoneNumber}" th:errorclass="'Bdc(red)'" placeholder="Numer telefonu">
+                <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}"  th:errors="*{phoneNumber}"/>
             </label>
-            <label>Numer telefonu 2:
-                <input type="text" autofocus="autofocus" th:field="*{phoneNumber2}">
+            <label>Dodatkowy numer telefonu :
+                <input type="text" autofocus="autofocus" th:field="*{phoneNumber2}" placeholder="Dodatkowy numer telefonu">
             </label>
             <label>Email:
-                <input type="email" autofocus="autofocus" th:field="*{email}">
+                <input type="email" autofocus="autofocus" th:field="*{email}" placeholder="Email">
             </label>
-            <label>Strona www:
-                <input type="text" autofocus="autofocus" th:field="*{webPage}">
+            <label>Strona WWW:
+                <input type="text" autofocus="autofocus" th:field="*{webPage}" placeholder="Strona WWW">
             </label>
 
             <label>Adres:
@@ -69,7 +91,10 @@
                 </select>
             </label>
 
-            <input type="submit" value="Dodaj klub">
+            <button type="submit">Dodaj klub</button>
+            <button type="reset">Wyczyść dane</button>
+
+
         </form>
     </fieldset>
 </main>

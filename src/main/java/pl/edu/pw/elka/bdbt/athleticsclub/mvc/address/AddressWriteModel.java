@@ -17,6 +17,8 @@ public class AddressWriteModel {
     String country;
     @NotBlank(message = "Pole Miasto nie może być puste!")
     String city;
+    @NotBlank(message = "Pole Kod pocztowy nie może być puste!")
+    String zipCode;
     @NotBlank(message = "Pole Ulica nie może być puste!")
     String street;
     @NotBlank(message = "Pole Numer budynku nie może być puste!")
@@ -27,6 +29,7 @@ public class AddressWriteModel {
         var entity = new Address();
         entity.setCountry(writeModel.getCountry());
         entity.setCity(writeModel.getCity());
+        entity.setZipCode(writeModel.getZipCode());
         entity.setStreet(writeModel.getStreet());
         entity.setBuildingNumber(writeModel.getBuildingNumber());
         entity.setApartmentNumber(writeModel.getApartmentNumber());

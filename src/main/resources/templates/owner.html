@@ -6,6 +6,26 @@
     <meta charset="UTF-8">
     <title>Właściciele</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+    <style>
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: red;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+        .P\(10px\) {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -31,32 +51,37 @@
 
     <fieldset style="margin-top: 30px">
         <legend>Stwórz właściciela</legend>
-        <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
+        <!--/*@thymesVar id="owner" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerWriteModel"*/-->
         <form method="post" th:action="@{/owner/create}" th:object="${owner}">
-            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Imię:
-                <input type="text" autofocus="autofocus" th:field="*{name}">
+                <input type="text" autofocus="autofocus" th:field="*{name}" th:errorclass="'Bdc(red)'" placeholder="Imię">
+                <p class="C(red)" th:if="${#fields.hasErrors('name')}"  th:errors="*{name}" />
             </label>
             <label>Nazwisko:
-                <input type="text" autofocus="autofocus" th:field="*{surname}">
+                <input type="text" autofocus="autofocus" th:field="*{surname}" th:errorclass="'Bdc(red)'" placeholder="Nazwisko">
+                <p class="C(red)" th:if="${#fields.hasErrors('surname')}"  th:errors="*{surname}" />
             </label>
             <label>Data urodzenia:
-                <input type="date" autofocus="autofocus" th:field="*{dateOfBirth}">
+                <input type="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" autofocus="autofocus" th:field="*{dateOfBirth}" th:errorclass="'Bdc(red)'"
+                placeholder="Data urodzenia">
+                <p class="C(red)" th:if="${#fields.hasErrors('dateOfBirth')}"  th:errors="*{dateOfBirth}" />
             </label>
-            <label>Pesel:
-                <input type="number" autofocus="autofocus" th:field="*{pesel}">
+            <label>PESEL:
+                <input type="number" autofocus="autofocus" th:field="*{pesel}" placeholder="PESEL" >
             </label>
             <label>Płeć:
-                <input type="text" autofocus="autofocus" th:field="*{sex}">
+                <input type="text" autofocus="autofocus" th:field="*{sex}" th:errorclass="'Bdc(red)'">
+                <p class="C(red)" th:if="${#fields.hasErrors('sex')}"  th:errors="*{sex}" />
             </label>
             <label>Numer konta bankowego:
-                <input type="number" autofocus="autofocus" th:field="*{bankAccountNumber}">
+                <input type="number" autofocus="autofocus" th:field="*{bankAccountNumber}" placeholder="Numer konta bankowego">
             </label>
             <label>Email:
-                <input type="text" autofocus="autofocus" th:field="*{email}">
+                <input type="text" autofocus="autofocus" th:field="*{email}" placeholder="Email">
             </label>
             <label>Numer telefonu:
-                <input type="number" autofocus="autofocus" th:field="*{phoneNumber}">
+                <input type="number" autofocus="autofocus" th:field="*{phoneNumber}" th:errorclass="'Bdc(red)'" placeholder="Numer telefonu">
+                <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}"  th:errors="*{phoneNumber}" />
             </label>
 
             <label>Adres:
@@ -66,8 +91,8 @@
                             th:text="${address.value}"></option>
                 </select>
             </label>
-
-            <input type="submit" value="Dodaj właściciela">
+            <button type="submit">Dodaj właściciela</button>
+            <button type="reset">Wyczyść</button>
         </form>
     </fieldset>
 </main>

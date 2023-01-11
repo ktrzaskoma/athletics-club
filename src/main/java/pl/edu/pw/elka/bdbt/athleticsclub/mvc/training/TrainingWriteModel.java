@@ -19,15 +19,15 @@ public class TrainingWriteModel {
     String discipline;
     String type;
     String forceLoad;
-    AthleticsClub athleticsClub;
+    Integer athleticsClub;
 
-    public static Training toEntity(TrainingWriteModel writeModel) {
+    public static Training toEntity(final TrainingWriteModel writeModel, final AthleticsClub athleticsClub) {
         var entity = new Training();
         entity.setTrainingDate(writeModel.getTrainingDate());
         entity.setTrainingDiscipline(writeModel.getDiscipline());
         entity.setTypeOfTraining(writeModel.getType());
         entity.setTrainingForceLoad(writeModel.getForceLoad());
-        entity.setAthleticsClubTraining(new AthleticsClub());
+        entity.setAthleticsClubTraining(athleticsClub);
         return entity;
     }
 

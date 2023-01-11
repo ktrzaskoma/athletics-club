@@ -16,46 +16,36 @@ import javax.validation.Valid;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/sportfacility")
-public class SportFacilityController {
+@RequestMapping("/createSportFacility")
+public class CreateSportFacilityController {
 
     private final SportFacilityRepository sportFacilityRepository;
     private final AthleticsClubRepository athleticsClubRepository;
     private final AddressRepository addressRepository;
 
-    public SportFacilityController(SportFacilityRepository sportFacilityRepository, AthleticsClubRepository athleticsClubRepository, AddressRepository addressRepository) {
+    public CreateSportFacilityController(SportFacilityRepository sportFacilityRepository, AthleticsClubRepository athleticsClubRepository, AddressRepository addressRepository) {
         this.sportFacilityRepository = sportFacilityRepository;
         this.athleticsClubRepository = athleticsClubRepository;
         this.addressRepository = addressRepository;
     }
 
-    @GetMapping("/getAll")
-    String getAll(Model model) {
-        var sportFacilities = sportFacilityRepository.findAll()
-                .stream().map(
-                        SportFacilityReadModel::toReadModel
-                ).toList();
-        model.addAttribute("sportfacilities", sportFacilities);
-        prepareEntryModel(model);
-        return "/sportfacility";
-    }
-
-    @GetMapping
-    String viewPage(Model model) {
-       prepareEntryModel(model);
-        return "/sportfacility";
-    }
-
     @PostMapping("create")
     String createSportFacility(@ModelAttribute("sportFacility") @Valid SportFacilityWriteModel sportFacilityWriteModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/sportfacility";
+            return "/createSportFacility";
         }
         var club = athleticsClubRepository.getById(sportFacilityWriteModel.getAthleticsClubFacility());
         var address = addressRepository.getById(sportFacilityWriteModel.getFacilityAddress());
         sportFacilityRepository.save(SportFacilityWriteModel.toEntity(sportFacilityWriteModel, club, address));
-        return "redirect:/sportfacility";
+        return "redirect:/createSportFacility";
     }
+
+    @GetMapping
+    String viewPage(Model model) {
+        prepareEntryModel(model);
+        return "/createSportFacility";
+    }
+
 
     private Model prepareEntryModel(Model model) {
         var clubs = athleticsClubRepository.findAll()

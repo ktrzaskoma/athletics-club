@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TrainingReadModel {
 
-    Integer number;
     LocalDate trainingDate;
     String discipline;
     String typeOfTraining;
@@ -20,7 +19,7 @@ public class TrainingReadModel {
 
     public static TrainingReadModel toReadModel(final Training entity) {
         return new TrainingReadModel(
-                entity.getTrainingNumber(),
+
                 entity.getTrainingDate(),
                 entity.getTrainingDiscipline(),
                 entity.getTypeOfTraining(),

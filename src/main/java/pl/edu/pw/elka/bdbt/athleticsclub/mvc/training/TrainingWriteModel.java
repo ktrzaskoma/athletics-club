@@ -7,6 +7,7 @@ import lombok.Setter;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +15,7 @@ import java.sql.Date;
 @Setter
 public class TrainingWriteModel {
 
-    Date trainingDate;
+    LocalDate trainingDate;
     String discipline;
     String type;
     String forceLoad;
@@ -22,7 +23,7 @@ public class TrainingWriteModel {
 
     public static Training toEntity(TrainingWriteModel writeModel) {
         var entity = new Training();
-        entity.setTrainingDate(writeModel.getTrainingDate().toLocalDate());
+        entity.setTrainingDate(writeModel.getTrainingDate());
         entity.setTrainingDiscipline(writeModel.getDiscipline());
         entity.setTypeOfTraining(writeModel.getType());
         entity.setTrainingForceLoad(writeModel.getForceLoad());

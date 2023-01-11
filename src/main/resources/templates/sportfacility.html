@@ -10,19 +10,55 @@
 <main>
   <fieldset>
     <a th:href="@{/home}">Strona główna</a>
-    <a th:href="@{/club}">O klubie</a>
-    <a th:href="@{/training}">Treningi</a>
-    <a th:href="@{/}">Obiekty</a>
-    <a th:href="@{/worker}">Pracownicy</a>
-    <a th:href="@{/equipment}">Sprzęt</a>
-  </fieldset>
-  <fieldset>
-    <legend>Obiekt sportowy</legend>
-    <a th:href="@{/}">Lista obiektów</a>
-    <a th:href="@{/createsportfacility}">Dodaj obiekt</a>
+    <a th:href="@{/sportfacility/getAll}">Pokaż wszystkie obiekty</a>
   </fieldset>
 
-</main>
+  <fieldset style="margin-top: 30px">
+    <legend>Lista obiektów</legend>
+    <!--/*@thymesVar id="facilities" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityReadModel"*/-->
+    <tr th:each="facility : ${facilities}">
+      <td th:text="${facilities.facilityName}"></td>
+      <td th:text="${facilities.openDate}"></td>
+      <td th:text="${facilities.facilityType}"></td>
+      <td th:text="${facilities.coveredFacility}"></td>
+      <td th:text="${facilities.capacity}"></td>
+      <td th:text="${facilities.athleticsClubFacility}"></td>
+      <td th:text="${facilities.facilityAddress}"></td>
+    </tr>
+  </fieldset>
+
+
+<!--  <fieldset style="margin-top: 30px">-->
+<!--    <legend>Nowy obiekt</legend>-->
+
+<!--    &lt;!&ndash;/*@thymesVar id="sportfacilit" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/&ndash;&gt;-->
+<!--    <form method="post" th:action="@{/sportfacility/create}" th:object="${sportfacility}">-->
+<!--      <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>-->
+<!--      <label>Nazwa-->
+<!--        <input type="text" autofocus="autofocus" th:field="*{sportfacilit.facilityName}">-->
+<!--      </label>-->
+<!--      <label>Data otwarcia-->
+<!--        <input type="date" autofocus="autofocus" th:field="*{openDate}">-->
+<!--      </label>-->
+<!--      <label>Typ-->
+<!--        <input type="text" autofocus="autofocus" th:field="*{facilityType}">-->
+<!--      </label>-->
+<!--      <label>Przykryty?-->
+<!--        <input type="text" autofocus="autofocus" th:field="*{coveredFacility}">-->
+<!--      </label>-->
+<!--      <label>Pojemność-->
+<!--        <input type="number" autofocus="autofocus" th:field="*{capacity}">-->
+<!--      </label>-->
+<!--      <label>ATHLETICS CLUB(?)-->
+<!--        <input type="number" autofocus="autofocus" th:field="*{athleticsClubFacility}">-->
+<!--      </label>-->
+<!--      <label>Adres-->
+<!--        <input type="number" autofocus="autofocus" th:field="*{facilityAddress}">-->
+<!--      </label>-->
+<!--      <input type="submit" value="Stwórz obiekt">-->
+<!--    </form>-->
+<!--  </fieldset>-->
+<!--</main>-->
 
 </body>
 </html>

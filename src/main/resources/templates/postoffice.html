@@ -12,24 +12,9 @@
 <main>
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
-        <a th:href="@{/club}">O klubie</a>
-        <a th:href="@{/training}">Treningi</a>
-        <a th:href="@{/}">Obiekty</a>
-        <a th:href="@{/worker}">Pracownicy</a>
-        <a th:href="@{/equipment}">Sprzęt</a>
+        <a th:href="@{/postoffice/getAll}">Pokaż wszystkie poczty</a>
     </fieldset>
 
-    <fieldset>
-        <legend>Klub</legend>
-        <a th:href="@{/owner}">Właściciele</a>
-        <a th:href="@{/createowner}">Dodaj właściciela</a>
-        <a th:href="@{/postoffice}">Poczta</a>
-        <a th:href="@{/createpostoffice}">Dodaj pocztę</a>
-        <a th:href="@{/address}">Adres</a>
-        <a th:href="@{/createaddress}">Dodaj adres</a>
-        <a th:href="@{/license}">Licencje</a>
-        <a th:href="@{/createlicense}">Dodaj licencję</a>
-    </fieldset>
 
     <fieldset style="margin-top: 30px">
         <legend>Wszystkie poczty</legend>
@@ -38,6 +23,21 @@
             <td th:text="${postoffice.postOfficeCity}"></td>
             <td th:text="${postoffice.addressSet}"></td>
         </tr>
+    </fieldset>
+
+    <fieldset style="margin-top: 30px">
+        <legend>Zarejestruj pocztę</legend>
+        <!--/*@thymesVar id="postoffice" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.postoffice.PostOfficeWriteModel"*/-->
+        <form method="post" th:action="@{/postoffice/create}" th:object="${postoffice}">
+            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
+            <label>Kod pocztowy:
+                <input type="text" autofocus="autofocus" th:field="*{zipCode}">
+            </label>
+            <label>Miasto:
+                <input type="text" autofocus="autofocus" th:field="*{postOfficeCity}">
+            </label>
+            <input type="submit" value="Dodaj pocztę">
+        </form>
     </fieldset>
 
 

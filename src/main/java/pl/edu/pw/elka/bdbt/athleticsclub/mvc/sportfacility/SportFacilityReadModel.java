@@ -18,8 +18,7 @@ public class SportFacilityReadModel {
     LocalDate openDate;
     String facilityType;
     Boolean coveredFacility;
-    //dlaczego tutaj nie ma Integera?
-    int capacity;
+    Integer capacity;
     AthleticsClub athleticsClubFacility;
     Address facilityAddress;
 

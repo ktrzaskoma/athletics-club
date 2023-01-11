@@ -15,7 +15,7 @@ public class WorkerService {
                 workerRepository
                         .findAll()
                         .stream()
-                        .filter(entry -> entry.getDateOfEmployment().getYear() > 2000 && entry.getSex() == 'M')
+                        .filter(entry -> entry.getDateOfEmployment().getYear() > 2000 && entry.getSex().equals('M'))
                         .count()
         );
     }

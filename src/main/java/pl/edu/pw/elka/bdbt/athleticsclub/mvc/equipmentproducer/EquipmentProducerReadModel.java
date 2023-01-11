@@ -16,7 +16,7 @@ public class EquipmentProducerReadModel {
 
     String brand;
     String model;
-    //potrzeba roku, a nie całej daty!
+    // TODO: Zmiana date na YEAR (model, writemodel i  readmodel)
     Date productionYear;
     String destiny;
     String sportEquipment;

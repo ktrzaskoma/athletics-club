@@ -12,34 +12,45 @@
 <main>
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
-        <a th:href="@{/club}">O klubie</a>
-        <a th:href="@{/training}">Treningi</a>
-        <a th:href="@{/}">Obiekty</a>
-        <a th:href="@{/worker}">Pracownicy</a>
-        <a th:href="@{/equipment}">Sprzęt</a>
+        <a th:href="@{/training/getAll}">Pokaż wszystkie treningi</a>
     </fieldset>
-
-    <fieldset>
-        <legend>Trening</legend>
-        <a th:href="@{/}">Lista treningów</a>
-        <a th:href="@{/createtraining}">Dodaj trening</a>
-        <a th:href="@{/singup}">Zapisz się!</a>
-
-    </fieldset>
-
 
 
     <fieldset style="margin-top: 30px">
         <legend>Lista treningów</legend>
+        <!--/*@thymesVar id="trainings" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingReadModel"*/-->
         <tr th:each="training : ${trainings}">
-            <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training"*/-->
-            <td th:text="${training.trainingDiscipline}"></td>
-            <td th:text="${training.trainingDate}"></td>
-            <td th:text="${training.typeOfTraining}"></td>
-            <td th:text="${training.trainingForceLoad}"></td>
-            <td th:text="${training.athleticsClubTraining.clubName}"></td>
+            <td th:text="${trainings.trainingDate}"></td>
+            <td th:text="${trainings.discipline}"></td>
+            <td th:text="${trainings.typeOfTraining}"></td>
+            <td th:text="${trainings.trainingForce}"></td>
+            <td th:text="${trainings.athleticsClubTraining}"></td>
         </tr>
     </fieldset>
+
+<!--    <fieldset style="margin-top: 30px">-->
+<!--        <legend>Nowy trening</legend>-->
+<!--        &lt;!&ndash;/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/&ndash;&gt;-->
+<!--        <form method="post" th:action="@{/training/create}" th:object="${training}" modelattribute="training">-->
+<!--            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>-->
+<!--            <label>Data treningu-->
+<!--                <input type="date" autofocus="autofocus" th:field="*{training.trainingDate}">-->
+<!--            </label>-->
+<!--            <label>Dyscyplina-->
+<!--                <input type="text" autofocus="autofocus" th:field="*{training.discipline}">-->
+<!--            </label>-->
+<!--            <label>Typ-->
+<!--                <input type="text" autofocus="autofocus" th:field="*{training.type}">-->
+<!--            </label>-->
+<!--            <label>Obciążenie treningu-->
+<!--                <input type="text" autofocus="autofocus" th:field="*{training.forceLoad}">-->
+<!--            </label>-->
+<!--            <label>Klub lekkoateltyczny-->
+<!--                <input type="number" autofocus="autofocus" th:field="*{training.athleticsClub}">-->
+<!--            </label>-->
+<!--            <input type="submit" value="Stwórz trening">-->
+<!--        </form>-->
+<!--    </fieldset>-->
 </main>
 </body>
 </html>

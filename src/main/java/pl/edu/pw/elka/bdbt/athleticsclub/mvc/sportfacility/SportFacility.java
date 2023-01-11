@@ -35,7 +35,7 @@ public class SportFacility {
 
     @Basic(optional = false)
     @Column(name = "pojemnosc_trybun")
-    private int capacityOfStands;
+    private Integer capacityOfStands;
 
 
     @ManyToOne
@@ -113,11 +113,11 @@ public class SportFacility {
         this.coveredFacility = coveredFacility;
     }
 
-    public int getCapacityOfStands() {
+    public Integer getCapacityOfStands() {
         return capacityOfStands;
     }
 
-    public void setCapacityOfStands(int capacityOfStands) {
+    public void setCapacityOfStands(Integer capacityOfStands) {
         this.capacityOfStands = capacityOfStands;
     }
 }

@@ -33,7 +33,7 @@ public class Worker {
 
     @Basic(optional = false)
     @Column(name = "plec")
-    private char sex;
+    private String sex;
 
     @Basic(optional = false)
     @Column(name = "data_zatrudnienia")
@@ -125,11 +125,11 @@ public class Worker {
         this.pesel = workerPESEL;
     }
 
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(char workerSex) {
+    public void setSex(String workerSex) {
         this.sex = workerSex;
     }
 

@@ -1,32 +1,34 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Controller
-@RequestMapping("/sportfacilities")
+@RequestMapping("/sportfacility")
 public class SportFacilityController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SportFacilityController.class);
     private final SportFacilityRepository sportFacilityRepository;
 
     public SportFacilityController(SportFacilityRepository sportFacilityRepository) {
         this.sportFacilityRepository = sportFacilityRepository;
     }
 
+    @GetMapping("/getAll")
+    String getAll(Model model) {
+        var sportFacilities = sportFacilityRepository.findAll()
+                .stream().map(
+                        SportFacilityReadModel::toReadModel
+                ).toList();
+        model.addAttribute("sportfacilities", sportFacilities);
+        model.addAttribute("sportfacility", new SportFacilityWriteModel());
+        return "/sportfacility";
+    }
+
     @GetMapping
-    ResponseEntity<List<SportFacilityReadModel>> getAll() {
-        LOGGER.info("Showing all the records in SportFacilities entity!");
-        var list = sportFacilityRepository.findAll().stream()
-                .map(SportFacilityReadModel::toReadModel)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(list);
+    String viewPage(Model model) {
+        model.addAttribute("sportfacility", new SportFacilityWriteModel());
+        return "/sportfacility";
     }
 }

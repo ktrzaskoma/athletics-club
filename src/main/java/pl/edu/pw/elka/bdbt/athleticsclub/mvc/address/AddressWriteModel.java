@@ -13,13 +13,13 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class AddressWriteModel {
 
-    @NotBlank(message = "Pole Kraj nie może być puste")
+    @NotBlank(message = "Pole Kraj nie może być puste!")
     String country;
-    @NotBlank(message = "Pole Miasto nie może być puste")
+    @NotBlank(message = "Pole Miasto nie może być puste!")
     String city;
-    @NotBlank(message = "Pole Ulica nie może być puste")
+    @NotBlank(message = "Pole Ulica nie może być puste!")
     String street;
-    @NotBlank(message = "Pole Numer budynku nie może być puste")
+    @NotBlank(message = "Pole Numer budynku nie może być puste!")
     String buildingNumber;
     String apartmentNumber;
 

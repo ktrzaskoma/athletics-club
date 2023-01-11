@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressRepository;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel;
 
 import javax.validation.Valid;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class OwnerController {
                         OwnerReadModel::toReadModel
                 ).toList();
         model.addAttribute("owners", owners);
-        model.addAttribute("owner", new OwnerWriteModel());
+        prepareEntryModel(model);
         return "/owner";
     }
 
@@ -47,13 +48,21 @@ public class OwnerController {
 
     @GetMapping
     String viewPage(Model model) {
+        prepareEntryModel(model);
+
+        return "/owner";
+    }
+
+    private Model prepareEntryModel(Model model) {
         var addresses = addressRepository.findAll().stream().map(
                 AddressReadModel::toReadModel
         ).collect(Collectors.toMap(AddressReadModel::getNumber, AddressReadModel::toString));
 
-        model.addAttribute("owner", new OwnerWriteModel());
         model.addAttribute("addresses", addresses);
+        model.addAttribute("owner", new OwnerWriteModel());
 
-        return "/owner";
+        return model;
     }
+
+
 }

@@ -6,6 +6,26 @@
     <meta charset="UTF-8">
     <title>Adresy</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+    <style>
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: red;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+        .P\(10px\) {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -31,23 +51,27 @@
         <legend>Dodaj adres</legend>
         <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
         <form method="post" th:action="@{/address/create}" th:object="${address}">
-            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Kraj:
-                <input type="text" autofocus="autofocus" th:field="*{country}">
+                <input type="text" autofocus="autofocus" th:field="*{country}" th:errorclass="'Bdc(red)'" placeholder="Kraj">
+                <p class="C(red)" th:if="${#fields.hasErrors('country')}"  th:errors="*{country}" />
             </label>
             <label>Miasto:
-                <input type="text" autofocus="autofocus" th:field="*{city}">
+                <input type="text" autofocus="autofocus" th:field="*{city}" th:errorclass="'Bdc(red)'" placeholder="Miasto">
+                <p class="C(red)" th:if="${#fields.hasErrors('city')}"  th:errors="*{city}"/>
             </label>
             <label>Ulica:
-                <input type="text" autofocus="autofocus" th:field="*{street}">
+                <input type="text" autofocus="autofocus" th:field="*{street}" th:errorclass="'Bdc(red)'" placeholder="Ulica">
+                <p class="C(red)" th:if="${#fields.hasErrors('street')}"  th:errors="*{street}"/>
             </label>
             <label>Numer budynku:
-                <input type="number" autofocus="autofocus" th:field="*{buildingNumber}">
+                <input type="number" autofocus="autofocus" th:field="*{buildingNumber}" th:errorclass="'Bdc(red)'" placeholder="Numer budynku">
+                <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}"  th:errors="*{buildingNumber}"/>
             </label>
             <label>Numer apartamentu:
-                <input type="number" autofocus="autofocus" th:field="*{apartmentNumber}">
+                <input type="number" autofocus="autofocus" th:field="*{apartmentNumber}" placeholder="Numer apartamentu">
             </label>
-            <input type="submit" value="Dodaj adres">
+            <button type="submit">Dodaj adres</button>
+            <button type="reset">Wyczyść</button>
         </form>
     </fieldset>
 

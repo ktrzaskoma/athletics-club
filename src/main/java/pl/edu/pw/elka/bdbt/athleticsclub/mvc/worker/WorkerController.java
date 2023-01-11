@@ -20,7 +20,6 @@ public class WorkerController {
         this.workerRepository = workerRepository;
     }
 
-
     @GetMapping("/getAll")
     String getAll(Model model) {
         var workers = workerRepository.findAll()
@@ -28,6 +27,17 @@ public class WorkerController {
                         WorkerReadModel::toReadModel
                 ).toList();
         model.addAttribute("workers", workers);
+        model.addAttribute("worker", new WorkerWriteModel());
+        return "/worker";
+    }
+
+    @GetMapping("/sortbysalary")
+    String sortBySalary(Model model) {
+        var workersBySalary = workerRepository.findAllByOrderByWorkerSalaryAsc()
+                .stream().map(
+                        WorkerReadModel::toReadModel
+                ).toList();
+        model.addAttribute("workers", workersBySalary);
         model.addAttribute("worker", new WorkerWriteModel());
         return "/worker";
     }

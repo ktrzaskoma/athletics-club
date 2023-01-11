@@ -10,11 +10,10 @@
 </head>
 <body>
 
-
-        <a class="nav-link dropdown-toggle" th:href="@{/home}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Strona główna</a>
-        <div class="dropdown-menu">
-        </div>
-
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/club}">Strona główna</a>
+        </li>
 
         <a class="nav-link dropdown-toggle" th:href="@{/club}" role="button" data-bs-toggle="dropdown" aria-expanded="false">O klubie</a>
         <div class="dropdown-menu">
@@ -55,6 +54,7 @@
             <a  class="dropdown-item" th:href="@{/createequipmentproducer}">Dodaj producenta</a>
             <a  class="dropdown-item" th:href="@{/equipmentproducer.html}">Wyświetl producentów</a>
         </div>
+    </ul>
     <fieldset style="margin-top: 30px">
         <legend>Wszystkie kluby</legend>
         <!--/*@thymesVar id="clubs" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel"*/-->

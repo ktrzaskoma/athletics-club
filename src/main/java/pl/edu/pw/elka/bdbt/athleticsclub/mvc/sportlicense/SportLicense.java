@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -13,11 +14,11 @@ public class SportLicense {
 
     @Basic(optional = false)
     @Column(name = "data_waznosci")
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     @Basic(optional = false)
     @Column(name = "data_wydania")
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     @Basic(optional = false)
     @Column(name = "uprawnienia")
@@ -34,19 +35,19 @@ public class SportLicense {
         this.sportLicenseNumber = sportLicenseNumber;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -24,7 +26,6 @@ public class WorkerReadModel {
     String phoneNumber;
 
 
-
     public static WorkerReadModel toReadModel(final Worker entity) {
         return new WorkerReadModel(
                 entity.getNumber(),
@@ -39,5 +40,8 @@ public class WorkerReadModel {
                 entity.getPhoneNumber());
     }
 
-
+    @Override
+    public String toString() {
+        return name + ", " + surname + ", " + pesel;
+    }
 }

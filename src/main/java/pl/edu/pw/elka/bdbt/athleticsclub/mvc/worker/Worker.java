@@ -28,6 +28,7 @@ public class Worker {
     @Column(name = "data_urodzenia")
     private LocalDate dateOfBirth;
 
+    @Basic(optional = false)
     @Column(name = "pesel", unique = true)
     private String pesel;
 

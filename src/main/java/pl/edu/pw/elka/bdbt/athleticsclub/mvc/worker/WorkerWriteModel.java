@@ -4,11 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.salary.Salary;
 
-import java.sql.Date;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -17,36 +18,47 @@ import java.time.LocalDate;
 @Setter
 public class WorkerWriteModel {
 
+    @NotBlank(message = "Pole Imię nie może być puste!")
     String name;
+    @NotBlank(message = "Pole Nazwisko nie może być puste!")
     String lastname;
-    Date dateOfBirthday;
+    @NotNull(message = "Pole Data urodzenia nie może być puste!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate dateOfBirthday;
+    @NotBlank(message = "Pole PESEL nie może być puste!")
     String pesel;
+    @NotBlank(message = "Pole Płeć nie może być puste!")
     String sex;
-    Date dateOfEmployment;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate dateOfEmployment;
     String bankAccount;
     String email;
+    @NotBlank(message = "Pole Numer telefonu nie może być puste!")
     String phoneNumber;
-    AthleticsClub athleticsClubWorker;
-    Salary workerSalary;
-    Address workerAddressNumber;
+
+    Integer athleticsClubWorker;
+    Integer workerSalary;
+    Integer workerAddressNumber;
 
 
-    public static Worker toEntity(WorkerWriteModel writeModel){
+    public static Worker toEntity(
+            final WorkerWriteModel writeModel,
+            final AthleticsClub athleticsClub,
+            final Address address){
         var entity = new Worker();
         entity.setName(writeModel.getName());
         entity.setSurname(writeModel.getLastname());
-        entity.setDateOfBirth(writeModel.dateOfBirthday.toLocalDate());
+        entity.setDateOfBirth(writeModel.getDateOfBirthday());
         entity.setPesel(writeModel.getPesel());
         entity.setSex(writeModel.getSex());
         entity.setDateOfEmployment(LocalDate.now());
-        entity.setBankAccount(null);
-        entity.setEmail(null);
+        entity.setBankAccount(writeModel.getBankAccount());
+        entity.setEmail(writeModel.getEmail());
         entity.setPhoneNumber(writeModel.getPhoneNumber());
-        entity.setAthleticsClubWorker(writeModel.getAthleticsClubWorker());
-        entity.setWorkerSalary(writeModel.getWorkerSalary());
-        entity.setWorkerAddressNumber(writeModel.getWorkerAddressNumber());
+        entity.setAthleticsClubWorker(athleticsClub);
+//        entity.setWorkerSalary(salary);
+        entity.setWorkerAddressNumber(address);
         return entity;
-
     }
 
 }

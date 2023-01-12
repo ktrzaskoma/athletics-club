@@ -4,7 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -13,9 +17,13 @@ import java.util.Date;
 @NoArgsConstructor
 public class SportLicenseWriteModel {
 
-    Date expirationDate;
-    //format + date wydania można uznać, że to jest moment tworzenia wpisu
-    Date releaseDate;
+    @NotNull(message = "Pole Data ważności nie może być puste!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate expirationDate;
+    @NotNull(message = "Pole Data wydania nie może być puste!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate releaseDate;
+    @NotBlank(message = "Pole Uprawnienia nie może być puste!")
     String permission;
     String ageCategory;
 
@@ -24,7 +32,6 @@ public class SportLicenseWriteModel {
         entity.setAgeCategory(writeModel.getAgeCategory());
         entity.setExpirationDate(writeModel.getExpirationDate());
         entity.setPermission(writeModel.getPermission());
-        //LocalDateTime.now()
         entity.setReleaseDate(writeModel.getReleaseDate());
         return entity;
 

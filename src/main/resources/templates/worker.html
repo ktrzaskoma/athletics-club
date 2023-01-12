@@ -6,6 +6,26 @@
     <meta charset="UTF-8">
     <title>Pracownicy</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+    <style>
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: red;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+        .P\(10px\) {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,7 +40,7 @@
     <fieldset style="margin-top: 30px">
         <legend>Wszyscy pracownicy</legend>
 
-        <!--/*@thymesVar id="work" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel"*/-->
+        <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel"*/-->
         <tr th:each="worker : ${workers}">
             <td th:text="${worker.name}"></td>
             <td th:text="${worker.surname}"></td>
@@ -35,36 +55,61 @@
     <fieldset style="margin-top: 30px">
         <legend>Nowy pracownik</legend>
         <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
-        <form method="post" th:action="@{/worker/create}" th:object="${worker}">
-            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
-            <label>Imię
-                <input type="text" autofocus="autofocus" th:field="*{name}">
+        <form  method="post" th:action="@{/worker/create}" th:object="${worker}">
+
+            <div class="form-group">
+            <label>Imię:
+                <input type="text" autofocus="autofocus" th:field="*{name}" th:errorclass="'Bdc(red)'" placeholder="Imię">
+                <p class="C(red)" th:if="${#fields.hasErrors('name')}"  th:errors="*{name}" />
             </label>
-            <label>Nazwisko
-                <input type="text" autofocus="autofocus" th:field="*{lastname}">
+
+
+            <label>Nazwisko:
+                <input type="text" autofocus="autofocus" th:field="*{lastname}" th:errorclass="'Bdc(red)'" placeholder="Nazwisko">
+                <p class="C(red)" th:if="${#fields.hasErrors('lastname')}"  th:errors="*{lastname}" />
             </label>
-            <label>Data urodzenia
-                <input type="date" autofocus="autofocus" th:field="*{dateOfBirthday}">
+            <label>Data urodzenia:
+                <input type="date" autofocus="autofocus" th:field="*{dateOfBirthday}" th:errorclass="'Bdc(red)'" placeholder="Data urodzenia">
+                <p class="C(red)" th:if="${#fields.hasErrors('dateOfBirthday')}"  th:errors="*{dateOfBirthday}" />
             </label>
-            <label>Numer PESEL
-                <input type="text" autofocus="autofocus" th:field="*{pesel}">
+            <label>Numer PESEL:
+                <input type="text" autofocus="autofocus" th:field="*{pesel}" th:errorclass="'Bdc(red)'" placeholder="PESEL">
+                <p class="C(red)" th:if="${#fields.hasErrors('pesel')}"  th:errors="*{pesel}" />
             </label>
-            <label>Płeć
-                <input type="text" autofocus="autofocus" th:field="*{sex}">
+            <label>Płeć:
+                <input type="text" autofocus="autofocus" th:field="*{sex}" th:errorclass="'Bdc(red)'" placeholder="Płeć">
+                <p class="C(red)" th:if="${#fields.hasErrors('sex')}"  th:errors="*{sex}" />
             </label>
-            <label>Numer telefonu
-                <input type="tel" autofocus="autofocus" th:field="*{phoneNumber}">
+            <label>Numer telefonu:
+                <input type="tel" autofocus="autofocus" th:field="*{phoneNumber}" th:errorclass="'Bdc(red)'" placeholder="Numer telefonu">
+                <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}"  th:errors="*{phoneNumber}" />
             </label>
-            <label>Adres
-                <input type="number" autofocus="autofocus" th:field="*{workerAddressNumber}">
+            <label>Numer konta bankowego:
+                <input type="text" autofocus="autofocus" th:field="*{bankAccount}" placeholder="Numer konta bankowego">
             </label>
-            <label>Klub lekkoatletyczny
-                <input type="number" autofocus="autofocus" th:field="*{athleticsClubWorker}">
+            <label>Email:
+                <input type="email" autofocus="autofocus" th:field="*{email}" placeholder="Email">
             </label>
-            <label>Pensja
-                <input type="number" autofocus="autofocus" th:field="*{workerSalary}">
+
+
+            <label>Wybierz adres:
+                <select th:field="*{workerAddressNumber}" class="form-control" id="dropDownList2">
+                    <option value="0">Wybierz dostępny adres</option>
+                    <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"
+                            th:text="${address.value}"></option>
+                </select>
             </label>
-            <input type="submit" value="Dodaj pracownika">
+
+            <label>Wybierz klub:
+                <select th:field="*{athleticsClubWorker}" class="form-control" id="dropDownList1">
+                    <option value="0">Wybierz dostępny klub</option>
+                    <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"
+                            th:text="${club.value}"></option>
+                </select>
+            </label>
+
+            <button class="btn btn-success" type="submit">Dodaj pracownika</button>
+            <button class="btn btn-warning" type="reset">Wyczyść</button>
         </form>
     </fieldset>
 

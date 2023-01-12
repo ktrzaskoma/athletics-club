@@ -6,6 +6,26 @@
     <meta charset="UTF-8">
     <title>Licencje</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+    <style>
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: red;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+        .P\(10px\) {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -30,20 +50,32 @@
         <legend>Zarejestruj licencje</legend>
         <!--/*@thymesVar id="license" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicenseWriteModel"*/-->
         <form method="post" th:action="@{/license/create}" th:object="${license}">
-            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Data ważności:
                 <input type="date" autofocus="autofocus" th:field="*{expirationDate}">
+                <p class="C(red)" th:if="${#fields.hasErrors('expirationDate')}"  th:errors="*{expirationDate}" />
             </label>
             <label>Data wydania:
                 <input type="date" autofocus="autofocus" th:field="*{releaseDate}">
+                <p class="C(red)" th:if="${#fields.hasErrors('releaseDate')}"  th:errors="*{releaseDate}" />
             </label>
             <label>Uprawnienia:
-                <input type="text" autofocus="autofocus" th:field="*{permission}">
+                <select th:field="*{permission}" class="form-control" id="dropDownList1" th:errorclass="'Bdc(red)'">
+                    <option value="Trener">Trener</option>
+                    <option value="Zawodnik">Zawodnik</option>
+                    <p class="C(red)" th:if="${#fields.hasErrors('permission')}"  th:errors="*{permission}" />
+                </select>
             </label>
             <label>Kategoria wiekowa:
-                <input type="text" autofocus="autofocus" th:field="*{ageCategory}">
+                <select th:field="*{ageCategory}" class="form-control" id="dropDownList2" >
+                    <option value="Młodzik">Młodzik</option>
+                    <option value="Junior młodszy">Junior młodszy</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Młodzieżowiec">Młodzieżowiec</option>
+                    <option value="Senior">Senior</option>
+                </select>
             </label>
-            <input type="submit" value="Dodaj licencje">
+            <button type="submit">Dodaj licencję</button>
+            <button type="reset">Wyczyść</button>
         </form>
     </fieldset>
 

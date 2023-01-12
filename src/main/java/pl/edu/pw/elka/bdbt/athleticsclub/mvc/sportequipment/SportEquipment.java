@@ -6,6 +6,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,7 +19,7 @@ public class SportEquipment {
 
     @Basic(optional = false)
     @Column(name = "data_zakupu")
-    private Date dateOfPurchase;
+    private LocalDate dateOfPurchase;
 
     @Basic(optional = false)
     @Column(name = "liczba_sprzetu")
@@ -81,11 +82,11 @@ public class SportEquipment {
         this.sportEquipmentNumber = sportEquipmentNumber;
     }
 
-    public Date getDateOfPurchase() {
+    public LocalDate getDateOfPurchase() {
         return dateOfPurchase;
     }
 
-    public void setDateOfPurchase(Date dateOfPurchase) {
+    public void setDateOfPurchase(LocalDate dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
     }
 

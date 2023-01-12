@@ -6,6 +6,26 @@
     <meta charset="UTF-8">
     <title>Sprzęt sportowy</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+    <style>
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: red;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+        .P\(10px\) {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 <main>
@@ -30,23 +50,52 @@
         <legend>Dodaj sprzęt</legend>
         <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipmentWriteModel"*/-->
         <form method="post" th:action="@{/equipment/create}" th:object="${equipment}">
-            <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Data zakupu:
-                <input type="date" autofocus="autofocus" th:field="*{dateOfPurchase}">
+                <input type="date" autofocus="autofocus" th:field="*{dateOfPurchase}" th:errorclass="'Bdc(red)'" placeholder="Data zakupu">
+                <p class="C(red)" th:if="${#fields.hasErrors('dateOfPurchase')}"  th:errors="*{dateOfPurchase}" />
             </label>
-            <label>Ilość sprzętu
-                <input type="number" autofocus="autofocus" th:field="*{numberOfEquipment}">
+            <label>Ilość sprzętu:
+                <input type="number" autofocus="autofocus" th:field="*{numberOfEquipment}" th:errorclass="'Bdc(red)'" placeholder="Ilość sprzętu">
+                <p class="C(red)" th:if="${#fields.hasErrors('numberOfEquipment')}"  th:errors="*{numberOfEquipment}" />
             </label>
             <label>Wartość sprzętu:
-                <input type="number" autofocus="autofocus" th:field="*{valueOfEquipment}">
+                <input type="number" autofocus="autofocus" th:field="*{valueOfEquipment}" th:errorclass="'Bdc(red)'" placeholder="Wartość sprzętu">
+                <p class="C(red)" th:if="${#fields.hasErrors('valueOfEquipment')}"  th:errors="*{valueOfEquipment}" />
             </label>
             <label>Stan:
-                <input type="text" autofocus="autofocus" th:field="*{condition}">
+                <input type="text" autofocus="autofocus" th:field="*{condition}" th:errorclass="'Bdc(red)'" placeholder="Stan">
+                <p class="C(red)" th:if="${#fields.hasErrors('condition')}"  th:errors="*{condition}" />
             </label>
             <label>W użyciu:
-                <input type="checkbox" autofocus="autofocus" th:field="*{inUse}">
+                <input type="checkbox" autofocus="autofocus" th:field="*{inUse}"> Tak
+
             </label>
-            <input type="submit" value="Dodaj sprzęt">
+
+            <label>Wybierz producenta:
+                <select th:field="*{equipmentProducer}" class="form-control" id="dropDownList1">
+                    <option value="0">Wybierz dostępnego producenta</option>
+                    <option th:each="producer : ${producers.entrySet()}" th:value="${producer.key}"
+                            th:text="${producer.value}"></option>
+                </select>
+            </label>
+
+            <label>Wybierz klub:
+                <select th:field="*{athleticsClubEquipment}" class="form-control" id="dropDownList2">
+                    <option value="0">Wybierz dostępny klub</option>
+                    <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"
+                            th:text="${club.value}"></option>
+                </select>
+            </label>
+                <label>Wybierz obiekt:
+                    <select th:field="*{equipmentStorage}" class="form-control" id="dropDownList3">
+                        <option value="0">Wybierz dostępny adres</option>
+                        <option th:each="facility : ${facilities.entrySet()}" th:value="${facility.key}"
+                                th:text="${facility.value}"></option>
+                    </select>
+                </label>
+
+            <button type="submit">Dodaj sprzęt sportowy</button>
+            <button type="reset">Wyczyść</button>
         </form>
     </fieldset>
 

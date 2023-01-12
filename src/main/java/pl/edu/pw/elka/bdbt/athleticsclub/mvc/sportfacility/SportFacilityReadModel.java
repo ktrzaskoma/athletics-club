@@ -32,4 +32,9 @@ public class SportFacilityReadModel {
 
     }
 
+    @Override
+    public String toString() {
+        return facilityName + ", " + facilityType;
+    }
+
 }

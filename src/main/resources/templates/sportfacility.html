@@ -38,7 +38,7 @@
     <tr th:each="sportfacility : ${sportfacilities}">
       <td th:text="${sportfacility.facilityName}"></td>
       <td th:text="${sportfacility.openDate}"></td>
-      <td th:text="${facility.facilityType}"></td>
+      <td th:text="${sportfacility.facilityType}"></td>
       <td th:text="${sportfacility.coveredFacility}"></td>
       <td th:text="${sportfacility.capacity}"></td>
     </tr>
@@ -85,6 +85,8 @@
                   th:text="${address.value}"></option>
         </select>
       </label>
+
+
       <button type="submit">Dodaj obiekt sportowy</button>
       <button type="reset">Wyczyść</button>
     </form>

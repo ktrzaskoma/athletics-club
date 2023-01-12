@@ -33,13 +33,16 @@ public class TrainingController {
                         TrainingReadModel::toReadModel
                 ).toList();
         model.addAttribute("trainings", trainings);
+        model.addAttribute("training", new TrainingWriteModel());
         prepareEntryModel(model);
         return "/training";
     }
 
     @PostMapping("create")
-    String createTraining(@ModelAttribute("training") @Valid TrainingWriteModel trainingWriteModel, BindingResult bindingResult) {
+    String createTraining(@ModelAttribute("training") @Valid TrainingWriteModel trainingWriteModel,
+                          BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            prepareEntryModel(model);
             return "/training";
         }
         var club = athleticsClubRepository.getById(trainingWriteModel.getAthleticsClub());
@@ -50,16 +53,15 @@ public class TrainingController {
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
+        model.addAttribute("training", new TrainingWriteModel());
         return "/training";
     }
 
     private Model prepareEntryModel(Model model) {
-        var clubs = athleticsClubRepository.findAll()
-                .stream().map(AthleticsClubReadModel::toReadModel)
-                .collect(Collectors.toMap(AthleticsClubReadModel::getNumber, AthleticsClubReadModel::toString));
+        var clubs = athleticsClubRepository.findAll().stream().map(
+                        AthleticsClubReadModel::toReadModel
+                ).collect(Collectors.toMap(AthleticsClubReadModel::getNumber, AthleticsClubReadModel::toString));
         model.addAttribute("clubs", clubs);
-        model.addAttribute("training", new TrainingWriteModel());
-
         return model;
     }
 }

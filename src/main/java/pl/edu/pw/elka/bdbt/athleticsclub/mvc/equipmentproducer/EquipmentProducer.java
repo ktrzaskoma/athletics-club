@@ -3,6 +3,8 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.Date;
 import java.util.Set;
 
@@ -24,7 +26,7 @@ public class EquipmentProducer {
 
     @Basic(optional = false)
     @Column(name = "rok_produkcji")
-    private Date productionYear;
+    private LocalDate productionYear;
 
     @Column(name = "przeznaczenie_dyscyplinowe")
     private String destiny;
@@ -64,11 +66,11 @@ public class EquipmentProducer {
         this.model = model;
     }
 
-    public Date getProductionYear() {
+    public LocalDate getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(Date productionYear) {
+    public void setProductionYear(LocalDate productionYear) {
         this.productionYear = productionYear;
     }
 

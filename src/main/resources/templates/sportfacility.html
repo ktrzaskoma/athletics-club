@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <title>Obiekty sportowe</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+  <style>
+    .Bd {
+      border: solid 1px black;
+    }
 
+    .Bdc\(red\) {
+      border-color: red !important;
+    }
+
+    .C\(red\) {
+      color: red;
+    }
+
+    .P\(0\) {
+      padding: 0;
+    }
+    .P\(10px\) {
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
 <main>
@@ -16,12 +35,12 @@
   <fieldset style="margin-top: 30px">
     <legend>Lista obiektów</legend>
     <!--/*@thymesVar id="sportfacilities" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityReadModel"*/-->
-    <tr th:each="facility : ${sportfacilities}">
-      <td th:text="${facility.facilityName}"></td>
-      <td th:text="${facility.openDate}"></td>
+    <tr th:each="sportfacility : ${sportfacilities}">
+      <td th:text="${sportfacility.facilityName}"></td>
+      <td th:text="${sportfacility.openDate}"></td>
       <td th:text="${facility.facilityType}"></td>
-      <td th:text="${facility.coveredFacility}"></td>
-      <td th:text="${facility.capacity}"></td>
+      <td th:text="${sportfacility.coveredFacility}"></td>
+      <td th:text="${sportfacility.capacity}"></td>
     </tr>
   </fieldset>
 
@@ -29,23 +48,27 @@
   <fieldset style="margin-top: 30px">
     <legend>Nowy obiekt</legend>
 
-    <!--/*@thymesVar id="sportFacility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/-->
-    <form method="post" th:action="@{/sportfacility/create}" th:object="${sportFacility}">
-      <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
-      <label>Nazwa
-        <input type="text" autofocus="autofocus" th:field="*{facilityName}">
+    <!--/*@thymesVar id="sportfacility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/-->
+    <form method="post" th:action="@{/sportfacility/create}" th:object="${sportfacility}">
+      <label>Nazwa:
+        <input type="text" autofocus="autofocus" th:field="*{facilityName}" th:errorclass="'Bdc(red)'" placeholder="Nazwa">
+        <p class="C(red)" th:if="${#fields.hasErrors('facilityName')}"  th:errors="*{facilityName}" />
       </label>
-      <label>Data otwarcia
-        <input type="date" autofocus="autofocus" th:field="*{openDate}">
+      <label>Data otwarcia:
+        <input type="date" autofocus="autofocus" th:field="*{openDate}" th:errorclass="'Bdc(red)'" placeholder="Data otwarcia">
+        <p class="C(red)" th:if="${#fields.hasErrors('openDate')}"  th:errors="*{openDate}" />
       </label>
-      <label>Typ
-        <input type="text" autofocus="autofocus" th:field="*{facilityType}">
+      <label>Typ obiektu:
+        <input type="text" autofocus="autofocus" th:field="*{facilityType}" th:errorclass="'Bdc(red)'" placeholder="Typ obiektu">
+        <p class="C(red)" th:if="${#fields.hasErrors('facilityType')}"  th:errors="*{facilityType}" />
       </label>
-      <label>Czy zakryty
-        <input type="text" autofocus="autofocus" th:field="*{coveredFacility}">
+      <label>Czy obiekt jest zakryty:
+        <input type="text" autofocus="autofocus" th:field="*{coveredFacility}" th:errorclass="'Bdc(red)'" placeholder="TAK/NIE">
+        <p class="C(red)" th:if="${#fields.hasErrors('coveredFacility')}"  th:errors="*{coveredFacility}" />
       </label>
-      <label>Pojemność
-        <input type="number" autofocus="autofocus" th:field="*{capacity}">
+      <label>Pojemność trybun:
+        <input type="number" autofocus="autofocus" th:field="*{capacity}" th:errorclass="'Bdc(red)'" placeholder="Pojemność trybun">
+        <p class="C(red)" th:if="${#fields.hasErrors('capacity')}"  th:errors="*{capacity}" />
       </label>
       <label>Wybierz klub:
       <select th:field="*{athleticsClubFacility}" class="form-control" id="dropDownList1">
@@ -62,7 +85,8 @@
                   th:text="${address.value}"></option>
         </select>
       </label>
-      <input type="submit" value="Stwórz obiekt">
+      <button type="submit">Dodaj obiekt sportowy</button>
+      <button type="reset">Wyczyść</button>
     </form>
   </fieldset>
 </main>

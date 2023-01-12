@@ -36,19 +36,16 @@ public class SportFacilityController {
                         SportFacilityReadModel::toReadModel
                 ).toList();
         model.addAttribute("sportfacilities", sportFacilities);
+        model.addAttribute("sportfacility", new SportFacilityWriteModel());
         prepareEntryModel(model);
         return "/sportfacility";
     }
 
-    @GetMapping
-    String viewPage(Model model) {
-       prepareEntryModel(model);
-        return "/sportfacility";
-    }
-
     @PostMapping("create")
-    String createSportFacility(@ModelAttribute("sportFacility") @Valid SportFacilityWriteModel sportFacilityWriteModel, BindingResult bindingResult) {
+    String createSportFacility(@ModelAttribute("sportFacility") @Valid SportFacilityWriteModel sportFacilityWriteModel,
+                               BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            prepareEntryModel(model);
             return "/sportfacility";
         }
         var club = athleticsClubRepository.getById(sportFacilityWriteModel.getAthleticsClubFacility());
@@ -57,19 +54,22 @@ public class SportFacilityController {
         return "redirect:/sportfacility";
     }
 
+    @GetMapping
+    String viewPage(Model model) {
+       prepareEntryModel(model);
+        model.addAttribute("sportfacility", new SportFacilityWriteModel());
+        return "/sportfacility";
+    }
+
     private Model prepareEntryModel(Model model) {
         var clubs = athleticsClubRepository.findAll()
                 .stream().map(AthleticsClubReadModel::toReadModel)
                 .collect(Collectors.toMap(AthleticsClubReadModel::getNumber, AthleticsClubReadModel::toString));
-
         var addresses = addressRepository.findAll().stream().map(
                 AddressReadModel::toReadModel
         ).collect(Collectors.toMap(AddressReadModel::getNumber, AddressReadModel::toString));
-
         model.addAttribute("clubs", clubs);
         model.addAttribute("addresses", addresses);
-        model.addAttribute("sportFacility", new SportFacilityWriteModel());
-
         return model;
     }
 }

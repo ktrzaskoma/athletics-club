@@ -26,22 +26,18 @@ public class EquipmentProducerController {
                 .stream().map(
                         EquipmentProducerReadModel::toReadModel
                 ).toList();
-
         model.addAttribute("equipmentproducers", equipmentproducers);
         model.addAttribute("equipmentproducer", new EquipmentProducerWriteModel());
-
         return "/equipmentproducer";
     }
 
     @PostMapping("/create")
-    String createClub(@ModelAttribute("equipmentproducer") @Valid
-                      EquipmentProducerWriteModel writeModel,
-                      BindingResult bindingResult) {
+    String createClub(@ModelAttribute("equipmentproducer") @Valid EquipmentProducerWriteModel equipmentProducerWriteModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/equipmentproducer";
         }
-        equipmentProducerRepository.save(EquipmentProducerWriteModel.toEntity(writeModel));
-        return "/equipmentproducer";
+        equipmentProducerRepository.save(EquipmentProducerWriteModel.toEntity(equipmentProducerWriteModel));
+        return "redirect:/equipmentproducer";
     }
 
     @GetMapping

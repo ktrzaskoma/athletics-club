@@ -16,6 +16,7 @@ import java.util.Date;
 @Setter
 public class EquipmentProducerReadModel {
 
+    Integer number;
     String brand;
     String model;
     LocalDate productionYear;
@@ -25,11 +26,17 @@ public class EquipmentProducerReadModel {
 
     public static EquipmentProducerReadModel toReadModel(final EquipmentProducer entity) {
         return new EquipmentProducerReadModel(
+                entity.getProducerNumber(),
                 entity.getBrand(),
                 entity.getModel(),
                 entity.getProductionYear(),
                 entity.getDestiny(),
                 entity.getSportEquipment().stream().map(SportEquipment::getSportEquipmentNumber).toList().toString()
         );
+    }
+
+    @Override
+    public String toString() {
+        return brand + ", " + model;
     }
 }

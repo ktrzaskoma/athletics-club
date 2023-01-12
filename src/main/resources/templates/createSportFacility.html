@@ -29,42 +29,42 @@
     <legend>Nowy obiekt</legend>
 
     <!--/*@thymesVar id="sportFacility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/-->
-    <form method="post" th:action="@{/createSportFacility/create}" th:object="${sportFacility}">
-      <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
-      <label>Nazwa
-        <input type="text" autofocus="autofocus" th:field="*{facilityName}">
-      </label>
-      <label>Data otwarcia
-        <input type="date" autofocus="autofocus" th:field="*{openDate}">
-      </label>
-      <label>Typ
-        <input type="text" autofocus="autofocus" th:field="*{facilityType}">
-      </label>
-      <label>Czy zakryty
-        <input type="text" autofocus="autofocus" th:field="*{coveredFacility}">
-      </label>
-      <label>Pojemność
-        <input type="number" autofocus="autofocus" th:field="*{capacity}">
-      </label>
+<!--    <form method="post" th:action="@{/createSportFacility/create}" th:object="${sportFacility}">-->
+<!--      <p th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>-->
+<!--      <label>Nazwa-->
+<!--        <input type="text" autofocus="autofocus" th:field="*{facilityName}">-->
+<!--      </label>-->
+<!--      <label>Data otwarcia-->
+<!--        <input type="date" autofocus="autofocus" th:field="*{openDate}">-->
+<!--      </label>-->
+<!--      <label>Typ-->
+<!--        <input type="text" autofocus="autofocus" th:field="*{facilityType}">-->
+<!--      </label>-->
+<!--      <label>Czy zakryty-->
+<!--        <input type="text" autofocus="autofocus" th:field="*{coveredFacility}">-->
+<!--      </label>-->
+<!--      <label>Pojemność-->
+<!--        <input type="number" autofocus="autofocus" th:field="*{capacity}">-->
+<!--      </label>-->
 
-      <label>Wybierz klub:
-        <select th:field="*{athleticsClubFacility}" class="form-control" id="dropDownList1">
-          <option value="0">Wybierz dostępny klub</option>
-          <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"
-                  th:text="${club.value}"></option>
-        </select>
-      </label>
+<!--      <label>Wybierz klub:-->
+<!--        <select th:field="*{athleticsClubFacility}" class="form-control" id="dropDownList1">-->
+<!--          <option value="0">Wybierz dostępny klub</option>-->
+<!--          <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"-->
+<!--                  th:text="${club.value}"></option>-->
+<!--        </select>-->
+<!--      </label>-->
 
-      <label>Wybierz adres:
-        <select th:field="*{facilityAddress}" class="form-control" id="dropDownList2">
-          <option value="0">Wybierz dostępny adres</option>
-          <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"
-                  th:text="${address.value}"></option>
-        </select>
-      </label>
+<!--      <label>Wybierz adres:-->
+<!--        <select th:field="*{facilityAddress}" class="form-control" id="dropDownList2">-->
+<!--          <option value="0">Wybierz dostępny adres</option>-->
+<!--          <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"-->
+<!--                  th:text="${address.value}"></option>-->
+<!--        </select>-->
+<!--      </label>-->
 
-      <input type="submit" value="Stwórz obiekt">
-    </form>
+<!--      <input type="submit" value="Stwórz obiekt">-->
+<!--    </form>-->
   </fieldset>
 </main>
 </body>

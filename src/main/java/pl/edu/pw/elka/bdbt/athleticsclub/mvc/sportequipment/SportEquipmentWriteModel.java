@@ -4,43 +4,48 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer.EquipmentProducer;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class SportEquipmentWriteModel {
 
-    //to samo co w ReadModelu
-    Date dateOfPurchase;
+    @NotNull(message = "Pole Data zakupu nie może być puste!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate dateOfPurchase;
+    @NotNull(message = "Pole Liczba sprzętu nie może być puste!")
     Integer numberOfEquipment;
+    @NotNull(message = "Pole Wartość sprzętu nie może być puste!")
     BigDecimal valueOfEquipment;
+    @NotBlank(message = "Pole Stan nie może być puste!")
     String condition;
+    @NotNull(message = "Zaznacz odpowiedź!")
     Boolean inUse;
-    AthleticsClub athleticsClubEquipment;
-    SportFacility equipmentStorage;
-    EquipmentProducer equipmentProducer;
+    Integer athleticsClubEquipment;
+    Integer equipmentStorage;
+    Integer equipmentProducer;
 
-    public static SportEquipment toEntity(final SportEquipmentWriteModel writeModel) {
-        var toSaveModel = new SportEquipment();
-        toSaveModel.setCondition(writeModel.getCondition());
-        //nie trzeba to pobierać z formularza
-        toSaveModel.setDateOfPurchase(writeModel.getDateOfPurchase());
-        toSaveModel.setNumberOfEquipment(writeModel.getNumberOfEquipment());
-        toSaveModel.setValueOfEquipment(writeModel.getValueOfEquipment());
-        toSaveModel.setInUse(writeModel.getInUse());
-        //
-        toSaveModel.setAthleticsClubEquipment(new AthleticsClub());
-        //
-        toSaveModel.setEquipmentProducer(new EquipmentProducer());
-        //
-        toSaveModel.setEquipmentStorage(new SportFacility());
-        return toSaveModel;
+    public static SportEquipment toEntity(final SportEquipmentWriteModel writeModel, final AthleticsClub club,
+                                          final SportFacility sportFacility, final EquipmentProducer equipmentProducer) {
+        var entity = new SportEquipment();
+        entity.setDateOfPurchase(writeModel.getDateOfPurchase());
+        entity.setCondition(writeModel.getCondition());
+        entity.setNumberOfEquipment(writeModel.getNumberOfEquipment());
+        entity.setValueOfEquipment(writeModel.getValueOfEquipment());
+        entity.setInUse(writeModel.getInUse());
+        entity.setAthleticsClubEquipment(club);
+        entity.setEquipmentProducer(equipmentProducer);
+        entity.setEquipmentStorage(sportFacility);
+        return entity;
     }
 }

@@ -42,7 +42,7 @@ public class SportFacilityController {
     }
 
     @PostMapping("create")
-    String createSportFacility(@ModelAttribute("sportFacility") @Valid SportFacilityWriteModel sportFacilityWriteModel,
+    String createSportFacility(@ModelAttribute("sportfacility") @Valid SportFacilityWriteModel sportFacilityWriteModel,
                                BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             prepareEntryModel(model);

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -16,9 +18,9 @@ public class EquipmentProducerReadModel {
 
     String brand;
     String model;
-    // TODO: Zmiana date na YEAR (model, writemodel i  readmodel)
-    Date productionYear;
+    LocalDate productionYear;
     String destiny;
+    // TODO: CHECK THIS!
     String sportEquipment;
 
     public static EquipmentProducerReadModel toReadModel(final EquipmentProducer entity) {

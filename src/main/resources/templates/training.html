@@ -5,6 +5,26 @@
         <meta charset="UTF-8">
         <title>Treningi</title>
         <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
+        <style>
+            .Bd {
+                border: solid 1px black;
+            }
+
+            .Bdc\(red\) {
+                border-color: red !important;
+            }
+
+            .C\(red\) {
+                color: red;
+            }
+
+            .P\(0\) {
+                padding: 0;
+            }
+            .P\(10px\) {
+                padding: 10px;
+            }
+        </style>
     </head>
 </head>
 <body>
@@ -33,19 +53,28 @@
 
         <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/-->
         <form method="post" th:action="@{/training/create}" th:object="${training}">
-            <label>Data treningu
-                <input type="date" autofocus="autofocus" th:field="*{trainingDate}">
+            <label>Data treningu:
+                <input type="date" autofocus="autofocus" th:field="*{trainingDate}" th:errorclass="'Bdc(red)'" placeholder="Data treningu">
+                <p class="C(red)" th:if="${#fields.hasErrors('trainingDate')}"  th:errors="*{trainingDate}" />
             </label>
-            <label>Dyscyplina
-                <input type="text" autofocus="autofocus" th:field="*{discipline}">
+            <label>Dyscyplina:
+                <input type="text" autofocus="autofocus" th:field="*{discipline}" th:errorclass="'Bdc(red)'" placeholder="Dyscyplina">
+                <p class="C(red)" th:if="${#fields.hasErrors('discipline')}"  th:errors="*{discipline}" />
             </label>
-            <label>Typ
-                <input type="text" autofocus="autofocus" th:field="*{type}">
+            <label>Typ treningu:
+                <input type="text" autofocus="autofocus" th:field="*{type}" th:errorclass="'Bdc(red)'" placeholder="Typ treningu">
+                <p class="C(red)" th:if="${#fields.hasErrors('type')}"  th:errors="*{type}" />
             </label>
-            <label>Obciążenie treningu
-                <input type="text" autofocus="autofocus" th:field="*{forceLoad}">
+            <label>Obciążenie treningu:
+                <select th:field="*{forceLoad}" class="form-control" id="dropDownList" th:errorclass="'Bdc(red)'">
+                    <option value="Małe">Małe</option>
+                    <option value="Średnie">Umiarkowane</option>
+                    <option value="Duże">Duże</option>
+                    <p class="C(red)" th:if="${#fields.hasErrors('forceLoad')}"  th:errors="*{forceLoad}" />
+                </select>
+
             </label>
-            <label>Wybierz klub
+            <label>Wybierz klub:
                 <select th:field="*{athleticsClub}" class="form-control" id="dropDownList1">
                     <option value="0">Wybierz dostępny adres</option>
                     <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"

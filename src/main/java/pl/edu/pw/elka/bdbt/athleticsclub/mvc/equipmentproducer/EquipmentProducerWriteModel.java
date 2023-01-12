@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.Collections;
 import java.util.Date;
 
@@ -19,8 +23,9 @@ public class EquipmentProducerWriteModel {
     String brand;
     @NotBlank(message = "Pole Model nie może być puste!")
     String model;
-    @NotBlank(message = "Pole Rok produkcji nie może być puste!")
-    Date productionYear;
+    @NotNull(message = "Pole Data produkcji nie może być puste!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate productionYear;
     String destiny;
 
     public static EquipmentProducer toEntity(final EquipmentProducerWriteModel writeModel) {

@@ -4,12 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -26,19 +29,22 @@ public class WorkerWriteModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirthday;
     @NotBlank(message = "Pole PESEL nie może być puste!")
+    @Size(min = 11, max = 11, message = "Numer Pesel powinien mieć 11 cyfr!")
     String pesel;
     @NotBlank(message = "Pole Płeć nie może być puste!")
     String sex;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfEmployment;
+    @Size(min = 26,max = 26, message = "Numer konta powinien mieć 26 cyfr!")
     String bankAccount;
     String email;
     @NotBlank(message = "Pole Numer telefonu nie może być puste!")
     String phoneNumber;
 
     Integer athleticsClubWorker;
-    Integer workerSalary;
     Integer workerAddressNumber;
+
+    BigDecimal monthlySalary;
 
 
     public static Worker toEntity(
@@ -56,9 +62,10 @@ public class WorkerWriteModel {
         entity.setEmail(writeModel.getEmail());
         entity.setPhoneNumber(writeModel.getPhoneNumber());
         entity.setAthleticsClubWorker(athleticsClub);
-//        entity.setWorkerSalary(salary);
         entity.setWorkerAddressNumber(address);
+        entity.setMonthlySalary(writeModel.getMonthlySalary());
         return entity;
     }
+
 
 }

@@ -8,5 +8,4 @@ import java.util.List;
 @Repository
 public interface WorkerRepository extends JpaRepository<Worker, Integer> {
 
-        List<Worker> findAllByOrderByWorkerSalaryAsc();
 }

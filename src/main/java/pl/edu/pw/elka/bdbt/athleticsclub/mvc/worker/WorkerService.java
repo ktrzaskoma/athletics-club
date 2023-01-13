@@ -7,18 +7,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class WorkerService {
 
-    private final WorkerRepository workerRepository;
 
-//  sorting data by given parameters
-    public String getMenWorkersEmployedAfter2000() {
-        return String.valueOf(
-                workerRepository
-                        .findAll()
-                        .stream()
-                        .filter(entry -> entry.getDateOfEmployment().getYear() > 2000 && entry.getSex().equals('M'))
-                        .count()
-        );
-    }
 
 
 }

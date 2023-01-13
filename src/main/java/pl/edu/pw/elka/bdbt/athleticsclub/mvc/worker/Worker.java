@@ -5,6 +5,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.salary.Salary;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -54,13 +55,22 @@ public class Worker {
     @JoinColumn(name = "Nr_klubu")
     private AthleticsClub athleticsClubWorker;
 
-    @ManyToOne
-    @JoinColumn(name = "Nr_wynagrodzenia")
-    private Salary workerSalary;
 
     @OneToOne
     @JoinColumn(name = "Nr_adresu")
     private Address workerAddressNumber;
+
+    @Column(name = "wynagrodzenie_miesięczne", precision = 10, scale = 2)
+    private BigDecimal monthlySalary;
+
+
+    public BigDecimal getMonthlySalary() {
+        return monthlySalary;
+    }
+
+    public void setMonthlySalary(BigDecimal monthlySalary) {
+        this.monthlySalary = monthlySalary;
+    }
 
     public Address getWorkerAddressNumber() {
         return workerAddressNumber;
@@ -70,13 +80,6 @@ public class Worker {
         this.workerAddressNumber = workerAddressNumber;
     }
 
-    public Salary getWorkerSalary() {
-        return workerSalary;
-    }
-
-    public void setWorkerSalary(Salary workerSalary) {
-        this.workerSalary = workerSalary;
-    }
 
     public AthleticsClub getAthleticsClubWorker() {
         return athleticsClubWorker;

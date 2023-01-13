@@ -24,6 +24,7 @@ public class WorkerReadModel {
     String bankAccount;
     String email;
     String phoneNumber;
+    BigDecimal monthlySalary;
 
 
     public static WorkerReadModel toReadModel(final Worker entity) {
@@ -37,7 +38,8 @@ public class WorkerReadModel {
                 entity.getDateOfEmployment(),
                 entity.getBankAccount(),
                 entity.getEmail(),
-                entity.getPhoneNumber());
+                entity.getPhoneNumber(),
+                entity.getMonthlySalary());
     }
 
     @Override

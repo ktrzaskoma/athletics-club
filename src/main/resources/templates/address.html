@@ -61,7 +61,7 @@
                 <p class="C(red)" th:if="${#fields.hasErrors('city')}"  th:errors="*{city}"/>
             </label>
             <label>Kod pocztowy:
-                <input type="text" autofocus="autofocus" th:field="*{zipCode}" th:errorclass="'Bdc(red)'" placeholder="Kod pocztowy">
+                <input type="text" autofocus="autofocus" th:field="*{zipCode}" pattern="^\d{2}-\d{3}$" th:errorclass="'Bdc(red)'" placeholder="__-___">
                 <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}"  th:errors="*{zipCode}" />
             </label>
             <label>Ulica:

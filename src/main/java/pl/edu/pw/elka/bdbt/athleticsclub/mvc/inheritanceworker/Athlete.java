@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Zawodnicy")
-@PrimaryKeyJoinColumn(name = "nr_pracownika")
+//@PrimaryKeyJoinColumn(name = "nr_pracownika")
 public class Athlete extends Worker {
 
     @OneToOne(fetch = FetchType.LAZY)

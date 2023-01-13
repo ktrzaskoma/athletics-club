@@ -2,11 +2,13 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.salary.Salary;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicense;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -55,13 +57,20 @@ public class Worker {
     @JoinColumn(name = "Nr_klubu")
     private AthleticsClub athleticsClubWorker;
 
-
     @OneToOne
     @JoinColumn(name = "Nr_adresu")
     private Address workerAddressNumber;
 
     @Column(name = "wynagrodzenie_miesięczne", precision = 10, scale = 2)
     private BigDecimal monthlySalary;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "licencje_zwodnikow",
+            joinColumns = @JoinColumn(name = "nr_pracownika"),
+            inverseJoinColumns = @JoinColumn(name = "nr_licencji_sportowej")
+    )
+    private Set<SportLicense> licenses = new HashSet<>();
 
 
     public BigDecimal getMonthlySalary() {

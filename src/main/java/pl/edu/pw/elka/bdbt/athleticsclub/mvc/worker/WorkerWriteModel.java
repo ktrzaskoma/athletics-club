@@ -29,7 +29,7 @@ public class WorkerWriteModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirthday;
     @NotBlank(message = "Pole PESEL nie może być puste!")
-    @Size(min = 11, max = 11, message = "Numer Pesel powinien mieć 11 cyfr!")
+    @Size(min = 11, max = 11, message = "Numer PESEL powinien mieć 11 cyfr!")
     String pesel;
     @NotBlank(message = "Pole Płeć nie może być puste!")
     String sex;

@@ -11,9 +11,9 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressRepository;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.salary.SalaryRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -42,18 +42,6 @@ public class WorkerController {
         prepareEntryModel(model);
         return "/worker";
     }
-
-//    @GetMapping("/sortbysalary")
-//    String sortBySalary(Model model) {
-//        var workersBySalary = workerRepository.findAllByOrderByWorkerSalaryAsc()
-//                .stream().map(
-//                        WorkerReadModel::toReadModel
-//                ).toList();
-//        model.addAttribute("workers", workersBySalary);
-//        model.addAttribute("worker", new WorkerWriteModel());
-//        prepareEntryModel(model);
-//        return "/worker";
-//    }
 
     @PostMapping("/create")
     String createWorker(@ModelAttribute("worker") @Valid

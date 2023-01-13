@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Trenerzy")
-@PrimaryKeyJoinColumn(name = "nr_pracownika")
+//@PrimaryKeyJoinColumn(name = "nr_pracownika")
 public class Trainer extends Worker {
 
     @Basic(optional = false)

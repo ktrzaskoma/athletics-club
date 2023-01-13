@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Pracownicy_biurowi")
-@PrimaryKeyJoinColumn(name = "nr_pracownika")
+//@PrimaryKeyJoinColumn(name = "nr_pracownika")
 public class OfficeWorker extends Worker {
 
     @Basic(optional = false)

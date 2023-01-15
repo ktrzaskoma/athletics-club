@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="https://www.thymeleaf.org/">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Strona główna</title>
@@ -8,92 +7,195 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </head>
-
 <style>
-    marquee{
-        font-size: 30px;
-        color: #b00404;
-        font-family: SansSerif;
-    }
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu .navbar navbar-expand-lg navbar{
+    background-color: #000000;
+    color:#5a8c7d;
 
-    main {
-        max-width: 1792px;
-        height: 4096px;
-        background-image: url('image1.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-        /*background-position-y: 41px;*/
-        background-clip: padding-box;
-        padding-bottom:1000px;
-    }
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close */
+
+
+  }
+  .col-2{
+    width: 15%;
+  }
+  .dropdown-menu{
+    width: fit-content;
+  }
+  .dropdown-item{
+    padding-left: 10px;
+  }
+  .carousel-item{
+    data-mdb-interval:5s;
+  }
 </style>
 
-<header>
-    <ul class="nav nav-tabs justify-content-lg-center" style="background-color: aliceblue; ">
-        <nav class="nav nav-pills nav-fill" style="color:#5a8c7d;">
-            <a class="nav-link active" aria-current="page" th:href="@{/home}";>Strona główna</a>
-        </nav>
-    <ul class="nav nav-tabs">
 
-        <a class="nav-link dropdown-toggle" th:href="@{/club}" role="button" data-bs-toggle="dropdown" aria-expanded="false">O klubie</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" th:href="@{/owner}">Właściciele</a>
-            <a class="dropdown-item" th:href="@{/createowner}">Dodaj właściciela</a>
-            <a class="dropdown-item" th:href="@{/postoffice}">Poczta</a>
-            <a class="dropdown-item" th:href="@{/createpostoffice}">Dodaj pocztę</a>
-            <a class="dropdown-item" th:href="@{/address}">Adres</a>
-            <a class="dropdown-item" th:href="@{/createaddress}">Dodaj adres</a>
-            <a class="dropdown-item" th:href="@{/license}">Licencje</a>
-            <a class="dropdown-item" th:href="@{/createlicense}">Dodaj licencję</a>
+<body>
+<header style="background-color:#5a8c7d ">
+  <div class="row" style="margin-left: 15%; margin-right: 15%; justify-content: center">
+    <div class="col-1"></div>
+    <div class="col-2">
+      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center; text-align: right"  >
+        <div class="collapse navbar-collapse" style="align-items: center">
+          <ul class="navbar-nav">
+              <button class="btn btn" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/home}" style="align-items: center;">
+                Home
+              </button>
+              </ul>
+          </ul>
         </div>
-
-        <a class="nav-link dropdown-toggle" th:href="@{/training}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Treningi</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" th:href="@{/training/getAll}">Lista treningów</a>
-            <a class="dropdown-item" th:href="@{/createTraining}">Dodaj trening</a>
-            <a class="dropdown-item" th:href="@{/singup}">Zapisz się!</a>
+      </nav>
+    </div>
+    <div class="col-2">
+      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center">
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/club}">
+                O klubie
+              </button>
+              <ul class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/owner}">Właściciele</a>
+                <a class="dropdown-item" th:href="@{/createowner}">Dodaj właściciela</a>
+                <a class="dropdown-item" th:href="@{/address}">Adres</a>
+                <a class="dropdown-item" th:href="@{/address}">Dodaj adres</a>
+                <a class="dropdown-item" th:href="@{/license}">Licencje</a>
+                <a class="dropdown-item" th:href="@{/license}">Dodaj licencję</a>
+              </ul>
+            </li>
+          </ul>
         </div>
-
-        <a class="nav-link dropdown-toggle" th:href="@{/sportfacilities}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Obiekty</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" th:href="@{/sportfacility/getAll}">Lista obiektów</a>
-            <a class="dropdown-item" th:href="@{/createSportFacility}">Dodaj obiekt</a>
+      </nav>
+    </div>
+    <div class="col-2">
+      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center">
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/training}">
+                Treningi
+              </button>
+              <ul class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/training/getAll}">Lista treningów</a>
+                <a class="dropdown-item" th:href="@{/training}">Dodaj trening</a>
+                <a class="dropdown-item" th:href="@{/training}">Zapisz się!</a>
+              </ul>
+            </li>
+          </ul>
         </div>
-
-        <a class="nav-link dropdown-toggle" th:href="@{/worker}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pracownicy</a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" th:href="@{/worker}">Pracownicy</a>
-            <a class="dropdown-item" th:href="@{/worker/getAll}">Wypisz pracowników</a>
-            <a class="dropdown-item" th:href="@{/worker/sortview}">Sortuj pracowników</a>
-            <a class="dropdown-item" th:href="@{/worker/salaryview}">Sortuj wg płac</a>
+      </nav>
+    </div>
+    <div class="col-2">
+      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center" >
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"; th:href="@{/sportfacilities}">
+                Obiekty
+              </button>
+              <ul class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/sportfacility/getAll}">Lista obiektów</a>
+                <a class="dropdown-item" th:href="@{/sportfacility}">Dodaj obiekt</a>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <a class="nav-link dropdown-toggle" th:href="@{/equipment}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sprzęt</a>
-        <div class="dropdown-menu">
-            <a  class="dropdown-item" th:href="@{equipment/getAll}">Cały sprzęt</a>
-            <a  class="dropdown-item" th:href="@{/createequpment}">Dodaj sprzęt</a>
-            <a  class="dropdown-item" th:href="@{/createequipmentproducer}">Dodaj producenta</a>
-            <a  class="dropdown-item" th:href="@{/equipmentproducer}">Wyświetl producentów</a>
+      </nav>
+    </div>
+    <div class="col-2">
+      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center">
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/worker}">
+                Pracownicy
+              </button>
+              <ul class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/worker}">Pracownicy</a>
+                <a class="dropdown-item" th:href="@{/worker/getAll}">Wypisz pracowników</a>
+                <a class="dropdown-item" th:href="@{/worker/sortview}">Sortuj pracowników</a>
+                <a class="dropdown-item" th:href="@{/worker/salaryview}">Sortuj wg płac</a>
+              </ul>
+            </li>
+          </ul>
         </div>
-    </ul>
-
-
-<!--    <img src="" id="image">-->
-
-<!--    <script type="text/javascript">-->
-<!--        let image = document.getElementById('image');-->
-<!--        let images = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg']-->
-<!--        setInterval(function () {-->
-<!--            let random = Math.floor(Math.random()* 4);-->
-<!--            image.src = images[random];-->
-<!--        }, 800);-->
-<!--    </script>-->
-    </ul>
+     </nav>
+    </div>
+    <div class="col-2">
+      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center">
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/equipment}">
+                Sprzęt
+              </button>
+              <ul class="dropdown-menu">
+                <a  class="dropdown-item" th:href="@{equipment/getAll}">Cały sprzęt</a>
+                <a  class="dropdown-item" th:href="@{/equipment}">Dodaj sprzęt</a>
+                <a  class="dropdown-item" th:href="@{/equipmentproducer}">Wyświetl producentów</a>
+                <a  class="dropdown-item" th:href="@{/equipment}">Dodaj producenta</a>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="col-1"></div>
 </header>
 
-<main>
-    <marquee behavior="" direction="">Dołącz już dziś!</marquee>
 
-</main>
+  <div id="carouselExampleCaptions" class="carousel slide" data-mdb-ride="carousel" style="padding-bottom:0px">
+    <div class="carousel-indicators">
+      <button
+              type="button"
+              data-mdb-target="#carouselExampleCaptions"
+              data-mdb-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+      ></button>
+      <button
+              type="button"
+              data-mdb-target="#carouselExampleCaptions"
+              data-mdb-slide-to="1"
+              aria-label="Slide 2"
+      ></button>
+      <button
+              type="button"
+              data-mdb-target="#carouselExampleCaptions"
+              data-mdb-slide-to="2"
+              aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img1.webp" class="d-block w-100" alt="płotki"/>
+      </div>
+      <div class="carousel-item">
+        <img src="img2.webp" class="d-block w-100" alt="bieg"/>
+      </div>
+      <div class="carousel-item">
+        <img src="img3.webp" class="d-block w-100" alt="oszczep"/>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+
+
 </body>
 </html>

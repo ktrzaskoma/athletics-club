@@ -10,7 +10,7 @@ public class LoginController {
 
     @GetMapping
     public String viewHomePage() {
-        return "startPage";
+        return "home";
     }
 
 

@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,6 +28,8 @@ public class SportLicenseWriteModel {
     @NotBlank(message = "Pole Uprawnienia nie może być puste!")
     String permission;
     String ageCategory;
+
+    Set<WorkerWriteModel> worker = new HashSet<>();
 
     public static SportLicense toEntity(final SportLicenseWriteModel writeModel){
         var entity = new SportLicense();

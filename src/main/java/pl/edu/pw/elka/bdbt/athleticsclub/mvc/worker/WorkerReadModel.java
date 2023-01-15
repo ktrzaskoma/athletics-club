@@ -26,7 +26,6 @@ public class WorkerReadModel {
     String phoneNumber;
     BigDecimal monthlySalary;
 
-
     public static WorkerReadModel toReadModel(final Worker entity) {
         return new WorkerReadModel(
                 entity.getNumber(),

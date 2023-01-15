@@ -1,11 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense;
 
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "Licencje_sportowe")
@@ -29,8 +25,6 @@ public class SportLicense {
 
     @Column(name = "kategoria_wiekowa")
     private String ageCategory;
-
-
 
     public Integer getSportLicenseNumber() {
         return sportLicenseNumber;

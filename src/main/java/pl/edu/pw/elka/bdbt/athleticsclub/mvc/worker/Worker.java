@@ -64,14 +64,15 @@ public class Worker {
     @Column(name = "wynagrodzenie_miesięczne", precision = 10, scale = 2)
     private BigDecimal monthlySalary;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "licencje_zwodnikow",
-            joinColumns = @JoinColumn(name = "nr_pracownika"),
-            inverseJoinColumns = @JoinColumn(name = "nr_licencji_sportowej")
+    @OneToOne
+    @JoinColumn(
+            name = "Nr_licencji_sportowej"
     )
-    private Set<SportLicense> licenses = new HashSet<>();
+    private SportLicense license;
 
+    public void setLicense(SportLicense license) {
+        this.license = license;
+    }
 
     public BigDecimal getMonthlySalary() {
         return monthlySalary;

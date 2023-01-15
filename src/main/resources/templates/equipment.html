@@ -31,7 +31,7 @@
 <body>
 <main sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" >
     <fieldset>
-        <a th:href="@{/home}">Strona główna</a>
+        <a th:href="@{/}">Strona główna</a>
         <a th:href="@{/equipment/getAll}">Pokaż wszystkie sprzęty</a>
 
     </fieldset>

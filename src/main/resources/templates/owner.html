@@ -30,7 +30,7 @@
 </head>
 <body>
 
-<main sec:authorize="hasAnyRole('ADMIN')">
+<main>
     <fieldset>
         <legend>Właścicel</legend>
         <a th:href="@{/home}">Strona główna</a>
@@ -70,10 +70,25 @@
             <label>PESEL:
                 <input type="number" autofocus="autofocus" th:field="*{pesel}" placeholder="PESEL" >
             </label>
-            <label>Płeć:
-                <input type="text" autofocus="autofocus" th:field="*{sex}" th:errorclass="'Bdc(red)'">
-                <p class="C(red)" th:if="${#fields.hasErrors('sex')}"  th:errors="*{sex}" />
-            </label>
+            <div style="margin-top: 20px">
+                <label>Płeć:</label>
+                <div class="form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="Mężczyzna" name="Mężczyzna" class="custom-control-input" value="Mężczyzna" th:field="*{sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Mężczyzna">Mężczyzna</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="Kobieta" name="Kobieta" class="custom-control-input" value="Kobieta" th:field="*{sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Kobieta">Kobieta</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="Inna" name="Inna" class="custom-control-input" value="Inna" th:field="*{sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Inna">Inna</label>
+                    </div>
+                    <p class="C(red)" th:if="${#fields.hasErrors('sex')}"  th:errors="*{sex}"></p>
+                </div>
+
+            </div>
             <label>Numer konta bankowego:
                 <input type="number" autofocus="autofocus" th:field="*{bankAccountNumber}" placeholder="Numer konta bankowego">
             </label>

@@ -35,7 +35,7 @@
 </head>
 <body>
 
-<main sec:authorize="hasAnyRole('ADMIN')">
+<main >
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
         <a th:href="@{/worker/getAll}">Wypisz pracowników</a>
@@ -83,7 +83,7 @@
             </div>
             <div style="margin-top: 20px">
                 <label for="pesel">Numer PESEL:</label>
-                <input type="text" autofocus="autofocus" id="pesel" th:field="${worker.pesel}" th:errorclass="'Bdc(red)'" placeholder="PESEL">
+                <input type="text" min="0" autofocus="autofocus" id="pesel" th:field="${worker.pesel}" th:errorclass="'Bdc(red)'" placeholder="PESEL">
                 <p class="C(red)" th:if="${#fields.hasErrors('worker.pesel')}"  th:errors="${worker.pesel}"></p>
 
             </div >
@@ -108,13 +108,13 @@
             </div>
             <div style="margin-top: 20px">
                 <label for="phoneNumber">Numer telefonu:</label>
-                <input type="tel" autofocus="autofocus" th:field="${worker.phoneNumber}" id="phoneNumber" th:errorclass="'Bdc(red)'" placeholder="Numer telefonu">
+                <input type="tel" min="0" autofocus="autofocus" th:field="${worker.phoneNumber}" id="phoneNumber" th:errorclass="'Bdc(red)'" placeholder="Numer telefonu">
                 <p class="C(red)" th:if="${#fields.hasErrors('worker.phoneNumber')}"  th:errors="${worker.phoneNumber}"></p>
 
             </div>
             <div style="margin-top: 20px">
                 <label for="bankAccount">Numer konta bankowego:</label>
-                <input type="text" autofocus="autofocus" th:field="${worker.bankAccount}" id="bankAccount" th:errorclass="'Bdc(red)'" placeholder="Numer konta bankowego">
+                <input type="text" min="0" autofocus="autofocus" th:field="${worker.bankAccount}" id="bankAccount" th:errorclass="'Bdc(red)'" placeholder="Numer konta bankowego">
                 <p class="C(red)" th:if="${#fields.hasErrors('worker.bankAccount')}"  th:errors="${worker.bankAccount}"></p>
 
             </div>
@@ -125,7 +125,7 @@
 
             <div style="margin-top: 20px">
                 <label for="monthlySalary">Wynagrodzenie miesięczne:</label>
-                <input type="number" autofocus="autofocus" th:field="${worker.monthlySalary}" id="monthlySalary" placeholder="Wynagrodzenie">
+                <input type="number" min="0" autofocus="autofocus" th:field="${worker.monthlySalary}" id="monthlySalary" placeholder="Wynagrodzenie">
 
             </div>
 

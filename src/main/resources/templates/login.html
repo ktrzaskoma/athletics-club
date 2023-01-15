@@ -37,21 +37,22 @@
 
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="text" id="username" class="form-control form-control-lg"/>
+                                    <input type="username" id="username" class="form-control form-control-lg" required="">
                                     <label class="form-label" for="username">Nazwa użytkownika</label>
+
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" id="password" class="form-control form-control-lg"/>
+                                    <input type="password" id="password" class="form-control form-control-lg" required="">
                                     <label class="form-label" for="password">Hasło</label>
                                 </div>
                                 <button class="btn btn-outline-light btn-lg px-5"  type="submit">Zaloguj
                                     się
                                 </button>
 
-                                <div  th:if="${param.error}" style="color: red; margin-top: 20px">
-                                    Niepoprawna nazwa lub hasło użytkownika.
-                                </div>
+<!--                                <div  th:if="${param.error}" style="color: red; margin-top: 20px">-->
+<!--                                    Niepoprawna nazwa lub hasło użytkownika.-->
+<!--                                </div>-->
                             </form>
 
 

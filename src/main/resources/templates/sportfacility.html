@@ -69,7 +69,7 @@
         <p class="C(red)" th:if="${#fields.hasErrors('coveredFacility')}"  th:errors="*{coveredFacility}" />
       </label>
       <label>Pojemność trybun:
-        <input type="number" autofocus="autofocus" th:field="*{capacity}" th:errorclass="'Bdc(red)'" placeholder="Pojemność trybun">
+        <input type="number" min="0" autofocus="autofocus" th:field="*{capacity}" th:errorclass="'Bdc(red)'" placeholder="Pojemność trybun">
         <p class="C(red)" th:if="${#fields.hasErrors('capacity')}"  th:errors="*{capacity}" />
       </label>
       <label>Wybierz klub:

@@ -14,10 +14,10 @@ public class LoginController {
     }
 
 
-    @GetMapping("/login")
-    public String viewLoginPage() {
-        return "login";
-    }
+//    @GetMapping("/login")
+//    public String viewLoginPage() {
+//        return "login";
+//    }
 
 
 

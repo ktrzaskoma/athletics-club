@@ -23,6 +23,10 @@ public class Training {
     private String trainingDiscipline;
 
     @Basic(optional = false)
+    @Column(name = "liczba_osob")
+    private Integer numberOfParticipants;
+
+    @Basic(optional = false)
     @Column(name = "rodzaj_treningu")
     private String typeOfTraining;
 
@@ -40,6 +44,14 @@ public class Training {
 
     public void setAthleticsClubTraining(AthleticsClub athleticsClubTraining) {
         this.athleticsClubTraining = athleticsClubTraining;
+    }
+
+    public Integer getNumberOfParticipants() {
+        return numberOfParticipants;
+    }
+
+    public void setNumberOfParticipants(Integer numberOfParticipants) {
+        this.numberOfParticipants = numberOfParticipants;
     }
 
     public Integer getTrainingNumber() {

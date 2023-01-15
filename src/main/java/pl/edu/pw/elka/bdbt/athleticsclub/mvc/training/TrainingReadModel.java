@@ -13,15 +13,18 @@ public class TrainingReadModel {
 
     LocalDate trainingDate;
     String discipline;
+    Integer numberOfParticipants;
     String typeOfTraining;
     String trainingForce;
     String athleticsClubTraining;
+
 
     public static TrainingReadModel toReadModel(final Training entity) {
         return new TrainingReadModel(
 
                 entity.getTrainingDate(),
                 entity.getTrainingDiscipline(),
+                entity.getNumberOfParticipants(),
                 entity.getTypeOfTraining(),
                 entity.getTrainingForceLoad(),
                 entity.getAthleticsClubTraining().getClubName());

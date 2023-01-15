@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<main sec:authorize="hasAnyRole('ADMIN', 'TRAINER', 'ATHLETE')">
+<main>
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
         <a th:href="@{/training/getAll}">Pokaż wszystkie treningi</a>
@@ -44,6 +44,7 @@
         <tr th:each="training : ${trainings}">
             <td th:text="${training.trainingDate}"></td>
             <td th:text="${training.discipline}"></td>
+            <td th:text="${training.numberOfParticipants}"></td>
             <td th:text="${training.typeOfTraining}"></td>
             <td th:text="${training.trainingForce}"></td>
             <td th:text="${training.athleticsClubTraining}"></td>
@@ -62,6 +63,10 @@
             <label>Dyscyplina:
                 <input type="text" autofocus="autofocus" th:field="*{discipline}" th:errorclass="'Bdc(red)'" placeholder="Dyscyplina">
                 <p class="C(red)" th:if="${#fields.hasErrors('discipline')}"  th:errors="*{discipline}" />
+            </label>
+            <label>Liczba uczestników:
+                <input type="number" min="0" autofocus="autofocus" th:field="*{numberOfParticipants}" th:errorclass="'Bdc(red)'" placeholder="Liczba uczestników">
+                <p class="C(red)" th:if="${#fields.hasErrors('numberOfParticipants')}"  th:errors="*{numberOfParticipants}" />
             </label>
             <label>Typ treningu:
                 <input type="text" autofocus="autofocus" th:field="*{type}" th:errorclass="'Bdc(red)'" placeholder="Typ treningu">

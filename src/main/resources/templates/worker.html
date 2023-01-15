@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 >
 <head>
     <meta charset="UTF-8" content="width=device-width initial-scale=1.0">
     <title>Pracownicy</title>
     <link rel="stylesheet" href="https://unpkg.com/awsm.css/dist/awsm.min.css">
     <style>
+        /*main{*/
+        /*    background-color: #3e4251;*/
+        /*}*/
         .Bd {
             border: solid 1px black;
         }
@@ -29,7 +33,7 @@
 </head>
 <body>
 
-<main>
+<main sec:authorize="hasAnyRole('ADMIN')">
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
         <a th:href="@{/worker/getAll}">Wypisz pracowników</a>
@@ -92,6 +96,10 @@
                         <input type="radio" id="Kobieta" name="Kobieta" class="custom-control-input" value="Kobieta" th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
                         <label class="custom-control-label" for="Kobieta">Kobieta</label>
                     </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="Inna" name="Inna" class="custom-control-input" value="Inna" th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Inna">Inna</label>
+                    </div>
                     <p class="C(red)" th:if="${#fields.hasErrors('worker.sex')}"  th:errors="${worker.sex}"></p>
                 </div>
 
@@ -138,6 +146,13 @@
 
             </div>
 
+            <label>Uprawnienia:
+                <select th:field="${licence.permission}" class="form-control" id="dropDownList1" th:errorclass="'Bdc(red)'">
+                    <option value="Trener">Trener</option>
+                    <option value="Zawodnik">Zawodnik</option>
+                    <p class="C(red)" th:if="${#fields.hasErrors('licence.permission')}"  th:errors="${licence.permission}"></p>
+                </select>
+            </label>
             <label>Data ważności:
                 <input type="date" autofocus="autofocus" th:field="${licence.expirationDate}">
                 <p class="C(red)" th:if="${#fields.hasErrors('licence.expirationDate')}"  th:errors="${licence.expirationDate}"></p>
@@ -145,13 +160,6 @@
             <label>Data wydania:
                 <input type="date" autofocus="autofocus" th:field="${licence.releaseDate}">
                 <p class="C(red)" th:if="${#fields.hasErrors('licence.releaseDate')}"  th:errors="${licence.releaseDate}"></p>
-            </label>
-            <label>Uprawnienia:
-                <select th:field="${licence.permission}" class="form-control" id="dropDownList1" th:errorclass="'Bdc(red)'">
-                    <option value="Trener">Trener</option>
-                    <option value="Zawodnik">Zawodnik</option>
-                    <p class="C(red)" th:if="${#fields.hasErrors('licence.permission')}"  th:errors="${licence.permission}"></p>
-                </select>
             </label>
             <label>Kategoria wiekowa:
                 <select th:field="${licence.ageCategory}" class="form-control" id="dropDownList2" >

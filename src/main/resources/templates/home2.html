@@ -20,7 +20,7 @@
 
   }
   .col-2{
-    width: 15%;
+    width: 150px;
   }
   .dropdown-menu{
     width: fit-content;
@@ -28,21 +28,17 @@
   .dropdown-item{
     padding-left: 10px;
   }
-  .carousel-item{
-    data-mdb-interval:5s;
-  }
 </style>
 
 
 <body>
 <header style="background-color:#5a8c7d ">
-  <div class="row" style="margin-left: 15%; margin-right: 15%; justify-content: center">
-    <div class="col-1"></div>
+  <div class="row" style="margin-left: 100px; margin-right: 80px;">
     <div class="col-2">
-      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center; text-align: right"  >
-        <div class="collapse navbar-collapse" style="align-items: center">
+      <nav class="navbar navbar-expand-lg navbar" style="color: #3e4251; align-items: center"  >
+        <div class="collapse navbar-collapse" >
           <ul class="navbar-nav">
-              <button class="btn btn" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/home}" style="align-items: center;">
+              <button class="btn btn" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/home}">
                 Home
               </button>
               </ul>
@@ -145,56 +141,7 @@
       </nav>
     </div>
   </div>
-  <div class="col-1"></div>
 </header>
-
-
-  <div id="carouselExampleCaptions" class="carousel slide" data-mdb-ride="carousel" style="padding-bottom:0px">
-    <div class="carousel-indicators">
-      <button
-              type="button"
-              data-mdb-target="#carouselExampleCaptions"
-              data-mdb-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"
-      ></button>
-      <button
-              type="button"
-              data-mdb-target="#carouselExampleCaptions"
-              data-mdb-slide-to="1"
-              aria-label="Slide 2"
-      ></button>
-      <button
-              type="button"
-              data-mdb-target="#carouselExampleCaptions"
-              data-mdb-slide-to="2"
-              aria-label="Slide 3"
-      ></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="img1.webp" class="d-block w-100" alt="płotki"/>
-      </div>
-      <div class="carousel-item">
-        <img src="img2.webp" class="d-block w-100" alt="bieg"/>
-      </div>
-      <div class="carousel-item">
-        <img src="img3.webp" class="d-block w-100" alt="oszczep"/>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-
-
 
 
 </body>

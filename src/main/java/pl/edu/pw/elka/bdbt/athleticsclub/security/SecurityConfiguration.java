@@ -19,10 +19,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/address/create").hasAuthority("ROLE_TRAINER")
                 .antMatchers(HttpMethod.GET, "address/getAll").hasAuthority("ROLE_TRAINER")
-                .antMatchers("/startPage").permitAll()
+
+
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .permitAll()
                 .and()
                 .httpBasic();
     }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 >
 <head>
     <meta charset="UTF-8">
@@ -29,7 +30,7 @@
 </head>
 <body>
 
-<main>
+<main sec:authorize="hasAnyRole('ADMIN')">
     <fieldset>
         <a th:href="@{/home}">Strona główna</a>
         <a th:href="@{/equipmentproducer/getAll}">Pokaż wszystkich producentów</a>

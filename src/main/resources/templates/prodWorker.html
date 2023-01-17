@@ -5,37 +5,14 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Dodawanie adresu</title>
+    <title>Pracownicy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
 
-</head>
-<head>
     <style>
-
-        .Bd {
-            border: solid 1px black;
-        }
-
-        .Bdc\(red\) {
-            border-color: red !important;
-        }
-
-        .C\(red\) {
-            color: #ff0000;
-        }
-
-        .P\(0\) {
-            padding: 0;
-        }
-
-        .P\(10px\) {
-            padding: 10px;
-        }
-
         main {
             background-color: black;
         }
@@ -96,8 +73,8 @@
                                 Klub
                             </button>
                             <ul class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/club}">Kluby</a>
-                                <a class="dropdown-item" th:href="@{/owner}">Właściciele</a>
+                                <a class="dropdown-item" th:href="@{/club/getAll}">Kluby</a>
+                                <a class="dropdown-item" th:href="@{/owner/getAll}">Właściciele</a>
                                 <a class="dropdown-item" th:href="@{/address/getAll}">Adresy</a>
                             </ul>
                         </li>
@@ -168,7 +145,7 @@
                                 Sprzęt
                             </button>
                             <ul class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{equipment}">Sprzęt</a>
+                                <a class="dropdown-item" th:href="@{/equipment}">Sprzęt</a>
                                 <a class="dropdown-item" th:href="@{/equipment/create}">Dodaj sprzęt</a>
                                 <a class="dropdown-item" th:href="@{/equipmentproducer}">Producenci sprzętu</a>
                                 <a class="dropdown-item" th:href="@{/equipmentproducer/create}">Dodaj producenta</a>
@@ -217,137 +194,45 @@
 </header>
 
 <!--tutaj są formsy-->
-
-<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 10px">
-
-    <fieldset style="margin-top: 50px">
-
-        <div th:if="${!edit}">
-            <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
-            <form method="post" th:action="@{/address/create}" th:object="${address}">
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="country">Kraj</label>
-                    <input type="text" id="country" th:field="*{country}" class="form-control"
-                           th:errorclass="'Bdc(red)'"
-                           placeholder="Kraj"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label" for="city">Miasto</label>
-                            <input type="text" id="city" th:field="*{city}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Miasto"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
-
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label" for="zipcode">Kod pocztowy</label>
-                            <input type="text" id="zipcode" th:field="*{zipCode}" class="form-control"
-                                   pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"
-                                   maxlength="6" minlength="6"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="street">Ulica</label>
-                    <input type="text" id="street" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Ulica"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="buildingNumber">Numer budynku</label>
-                    <input type="number" min="1" id="buildingNumber" th:field="*{buildingNumber}" class="form-control"
-                           th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="apartmentNumber">Numer mieszkania</label>
-                    <input type="number" min="1" id="apartmentNumber" th:field="*{apartmentNumber}"
-                           aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
-                    <small id="numHelp" class="form-text text-muted">Pole opcjonalne</small>
-                </div>
-
-                <div class="align-content-center">
-                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
-                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
-                </div>
-            </form>
-        </div>
-
-        <div th:if="${edit}">
-            <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
-            <form method="post" th:action="@{'/address/edit/' + ${address.addressNumber}}" th:object="${address}">
-                <div class="form-outline mb-4">
-                    <label class="form-label">Kraj</label>
-                    <input type="text" th:field="*{country}" class="form-control"
-                           th:errorclass="'Bdc(red)'"
-                           placeholder="Kraj"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Miasto</label>
-                            <input type="text" th:field="*{city}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Miasto"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
-
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Kod pocztowy</label>
-                            <input type="text" th:field="*{zipCode}" class="form-control"
-                                   pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"
-                                   maxlength="6" minlength="6"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Ulica</label>
-                    <input type="text" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Ulica"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Numer budynku</label>
-                    <input type="number" min="1" th:field="*{buildingNumber}" class="form-control"
-                           th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="apartmentNumber">Numer mieszkania</label>
-                    <input type="number" min="1" th:field="*{apartmentNumber}"
-                           aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
-                    <small class="form-text text-muted">Pole opcjonalne</small>
-                </div>
-
-                <div class="align-content-center">
-                    <button type="submit" class="btn btn-success btn-block mb-4 a">Zapisz</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
-                </div>
-            </form>
-        </div>
-
-
-    </fieldset>
+<div class="container" style="margin-top: 50px">
+    <div class="col-md-12 text-center">
+        <a type="button" class="btn btn-dark" th:href="@{/worker}">Dodaj nowego pracownika</a>
+    </div>
 </div>
-</body>
 
+<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 50px">
+
+    <table class="table table-hover border-dark table-hover ">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Data urodzenia</th>
+            <th scope="col">PESEL</th>
+            <th scope="col">Data zatrudnienia</th>
+            <th scope="col">Płeć</th>
+            <th class="text-right">Numer telefonu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="workers" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel"*/-->
+        <tr th:each="worker : ${workers}">
+            <td th:text="${worker.name}"></td>
+            <td th:text="${worker.surname}"></td>
+            <td th:text="${worker.birthday}"></td>
+            <td th:text="${worker.pesel}"></td>
+            <td th:text="${worker.dateOfEmployment}"></td>
+            <td th:text="${worker.sex}"></td>
+            <td th:text="${worker.phoneNumber}"></td>
+            <td class="text-right">
+                <a class="btn btn-primary float-right" th:href="@{'/worker/edit/' + ${worker.number}}">Edytuj</a>
+                <a class="btn btn-danger float-right" th:href="@{'/worker/delete/' + ${worker.number}}">Usuń</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
 </html>

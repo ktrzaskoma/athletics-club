@@ -50,6 +50,7 @@ public class WorkerWriteModel {
 
     Set<SportLicense> sportLicenses = new HashSet<>();
     SportLicense sportLicense;
+    Integer number;
 
 
     public static Worker toEntity(

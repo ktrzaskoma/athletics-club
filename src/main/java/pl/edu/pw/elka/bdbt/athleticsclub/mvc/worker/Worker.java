@@ -73,6 +73,9 @@ public class Worker {
     @ManyToMany
     private Set<Training> trainings;
 
+    public SportLicense getLicense() {
+        return license;
+    }
 
     public void setLicense(SportLicense license) {
         this.license = license;

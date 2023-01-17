@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie nowego pracownika</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+
+</head>
+<head>
+    <style>
+
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: #ff0000;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+
+        .P\(10px\) {
+            padding: 10px;
+        }
+
+        main {
+            background-color: black;
+        }
+
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar-nav .open .dropdown-menu .navbar navbar-expand-lg navbar {
+            background-color: #000000;
+            color: #5a8c7d;
+
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; /* remove the gap so it doesn't close */
+
+
+        }
+
+        .col-2 {
+            width: 10%;
+        }
+
+        .dropdown-menu {
+            width: fit-content;
+        }
+
+        .dropdown-item {
+            padding-left: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body style="background-color: tan">
+
+<header style="background-color:#000000 ">
+    <div class="row" style="margin-left: 5%; margin-right: 5%; justify-content: center">
+        <div class="col-1" style="color:whitesmoke; text-align: right; font-size: larger; margin-top: 5px"></div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar"
+                 style="color: whitesmoke; align-items: center; text-align: right">
+                <div class="collapse navbar-collapse" style="align-items: center">
+                    <ul class="navbar-nav">
+                        <a class="btn btn" aria-expanded="false" th:href="@{/}"
+                           style="align-items: center; color: whitesmoke">Home</a>
+                    </ul>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/club}" style="color: whitesmoke">
+                                Klub
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/club}">Kluby</a>
+                                <a class="dropdown-item" th:href="@{/owner}">Właściciele</a>
+                                <a class="dropdown-item" th:href="@{/address/getAll}">Adresy</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/training}" style="color: whitesmoke">
+                                Treningi
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/training}">Dodaj trening</a>
+                                <a class="dropdown-item" th:href="@{/training/signup}">Zapisz się!</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" ;
+                                    th:href="@{/sportfacilities}" style="color: whitesmoke">
+                                Obiekty
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/sportfacility/getAll}">Lista obiektów</a>
+                                <a class="dropdown-item" th:href="@{/sportfacility}">Dodaj obiekt</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/worker}" style="color: whitesmoke">
+                                Pracownicy
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/worker/getAll}">Pracownicy</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/equipment}" style="color: whitesmoke">
+                                Sprzęt
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{equipment}">Sprzęt</a>
+                                <a class="dropdown-item" th:href="@{/equipment/create}">Dodaj sprzęt</a>
+                                <a class="dropdown-item" th:href="@{/equipmentproducer}">Producenci sprzętu</a>
+                                <a class="dropdown-item" th:href="@{/equipmentproducer/create}">Dodaj producenta</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <div sec:authorize="isAnonymous()">
+                <div id="form1">
+                    <div class="container">
+                        <a class="btn text-white" style="background-color: #6a7d8e; width: 130px; margin-top: 8px"
+                           th:href="@{/login}" role="button">
+                            Zaloguj się
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <div id="form2">
+                    <div class="container">
+                        <a class="btn text-white" style="background-color: #6a7d8e; width: 130px; margin-top: 8px"
+                           th:href="@{/logout}" role="button">
+                            Wyloguj się
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div sec:authorize="isAuthenticated()">
+                <div id="form3">
+                    <div class="container">
+                        <a class="btn" style="color: lightgray; width: 270px; margin-top: 8px">
+                            <span sec:authorize="hasRole('ADMIN')">Administrator</span>
+                            <span sec:authorize="hasRole('TRAINER')">Trener</span>
+                            <span sec:authorize="hasRole('ATHLETE')">Zawodnik</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--tutaj są formsy-->
+
+<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 10px">
+
+    <fieldset style="margin-top: 50px">
+
+        <div th:if="${!edit}">
+            <!--/*@thymesVar id="license" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicenseWriteModel"*/-->
+            <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
+            <form method="post" th:action="@{/worker/create}">
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label" for="name">Imię</label>
+                        <input type="text" id="name" th:field="${worker.name}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Imię"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.name')}" th:errors="${worker.name}"></p>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="lastname">Nazwisko</label>
+                            <input type="text" id="lastname" th:field="${worker.lastname}" class="form-control"
+                                   th:errorclass="'Bdc(red)'"
+                                   placeholder="Nazwisko"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.lastname')}"
+                               th:errors="${worker.lastname}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label" for="pesel">Pesel</label>
+                        <input type="number" id="pesel" th:field="${worker.pesel}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="PESEL"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.pesel')}" th:errors="${worker.pesel}"></p>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="dateOfBirthday">Data urodzenia</label>
+                            <input type="date" id="dateOfBirthday" th:field="${worker.dateOfBirthday}"
+                                   class="form-control"
+                                   placeholder="Data urodzenia" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.dateOfBirthday')}"
+                               th:errors="${worker.dateOfBirthday}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <label>Płeć:</label>
+                <div class="form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="Mężczyzna" name="Mężczyzna" class="custom-control-input"
+                               value="Mężczyzna" th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Mężczyzna">Mężczyzna</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="Kobieta" name="Kobieta" class="custom-control-input" value="Kobieta"
+                               th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Kobieta">Kobieta</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="Inna" name="Inna" class="custom-control-input" value="Inna"
+                               th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Inna">Inna</label>
+                    </div>
+                    <p class="C(red)" th:if="${#fields.hasErrors('worker.sex')}" th:errors="${worker.sex}"></p>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="phoneNumber">Numer telefonu</label>
+                        <input type="number" id="phoneNumber" th:field="${worker.phoneNumber}" class="form-control"
+                               th:errorclass="'Bdc(red)'" placeholder="Numer telefonu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.phoneNumber')}"
+                           th:errors="${worker.phoneNumber}"></p>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="bankAccount">Numer konta bankowego</label>
+                        <input type="number" min="1" id="bankAccount" th:field="${worker.bankAccount}"
+                               class="form-control" placeholder="Numer konta bankowego"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.bankAccount')}"
+                           th:errors="${worker.bankAccount}"></p>
+                    </div>
+
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" id="email" th:field="${worker.email}"
+                                   class="form-control" placeholder="Email"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.email')}"
+                               th:errors="${worker.email}"></p>
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="monthlySalary">Wynagrodzenie</label>
+                            <input type="number" id="monthlySalary" th:field="${worker.monthlySalary}"
+                                   class="form-control" placeholder="Wynagordzenie"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.monthlySalary')}"
+                               th:errors="${worker.monthlySalary}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label for="workerAddressNumber">Wybierz adres</label>
+                        <select th:field="${worker.workerAddressNumber}" class="form-control" id="workerAddressNumber">
+                            <option value="0">Wybierz dostępny adres</option>
+                            <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"
+                                    th:text="${address.value}"></option>
+                        </select>
+
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label for="athleticsClubWorker">Wybierz klub</label>
+                        <select th:field="${worker.athleticsClubWorker}" class="form-control" id="athleticsClubWorker">
+                            <option value="0">Wybierz dostępny klub</option>
+                            <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"
+                                    th:text="${club.value}"></option>
+                        </select>
+                    </div>
+
+                    <b>Licencja sportowa</b>
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label">Uprawnienia
+                                <select th:field="${license.permission}" style="width: auto" class="form-control"
+                                        id="dropDownList1" th:errorclass="'Bdc(red)'">
+                                    <option value="Trener">Trener</option>
+                                    <option value="Zawodnik">Zawodnik</option>
+                                    <p class="C(red)" th:if="${#fields.hasErrors('license.permission')}"
+                                       th:errors="${license.permission}"></p>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Kategoria wiekowa
+                                <select th:field="${license.ageCategory}" class="form-control" id="dropDownList2">
+                                    <option value="Młodzik">Młodzik</option>
+                                    <option value="Junior młodszy">Junior młodszy</option>
+                                    <option value="Junior">Junior</option>
+                                    <option value="Młodzieżowiec">Młodzieżowiec</option>
+                                    <option value="Senior">Senior</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="releaseDate">Data wydania</label>
+                                <input type="date" id="releaseDate" th:field="${license.releaseDate}"
+                                       class="form-control"
+                                       placeholder="Data wydania" th:errorclass="'Bdc(red)'"/>
+                                <p class="C(red)" th:if="${#fields.hasErrors('license.releaseDate')}"
+                                   th:errors="${license.releaseDate}"></p>
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="expirationDate">Data ważności</label>
+                                <input type="date" id="expirationDate" th:field="${license.expirationDate}"
+                                       class="form-control"
+                                       placeholder="Data ważności" th:errorclass="'Bdc(red)'"/>
+                                <p class="C(red)" th:if="${#fields.hasErrors('license.expirationDate')}"
+                                   th:errors="${license.expirationDate}"></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="align-content-center">
+                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
+                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
+                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+</div>
+</body>
+
+</html>

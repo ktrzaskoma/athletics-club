@@ -47,11 +47,12 @@ public class WorkerController {
     @PostMapping("/create")
     String createWorker(@ModelAttribute("worker") @Valid
                         WorkerWriteModel workerWriteModel,
+                        BindingResult bindingResultWorker,
                         @ModelAttribute("licence") @Valid
                         SportLicenseWriteModel sportLicenseWriteModel,
-                        BindingResult bindingResult,
+                        BindingResult bindingResultLicense,
                         Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()) {
             prepareEntryModel(model);
             return "/worker";
         }

@@ -1,10 +1,12 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.training;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Treningi")
@@ -37,6 +39,17 @@ public class Training {
     @ManyToOne
     @JoinColumn(name = "nr_klubu")
     private AthleticsClub athleticsClubTraining;
+
+    @ManyToMany
+    private Set<Worker> workers;
+
+    public Set<Worker> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(Set<Worker> workers) {
+        this.workers = workers;
+    }
 
     public AthleticsClub getAthleticsClubTraining() {
         return athleticsClubTraining;

@@ -40,15 +40,16 @@
 
     <fieldset style="margin-top: 30px">
         <legend>Lista treningów</legend>
+
         <!--/*@thymesVar id="trainings" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingReadModel"*/-->
-        <tr th:each="training : ${trainings}">
+        <dl th:each="training : ${trainings}">
             <td th:text="${training.trainingDate}"></td>
             <td th:text="${training.discipline}"></td>
             <td th:text="${training.numberOfParticipants}"></td>
             <td th:text="${training.typeOfTraining}"></td>
             <td th:text="${training.trainingForce}"></td>
             <td th:text="${training.athleticsClubTraining}"></td>
-        </tr>
+        </dl>
     </fieldset>
 
     <fieldset style="margin-top: 30px">

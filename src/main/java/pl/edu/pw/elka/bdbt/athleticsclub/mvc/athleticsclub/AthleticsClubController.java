@@ -39,7 +39,7 @@ public class AthleticsClubController {
         model.addAttribute("clubs", athleticsClubList);
         model.addAttribute("club", new AthleticsClubWriteModel());
         prepareEntryModel(model);
-        return "/club";
+        return "/prodClub";
     }
 
     @PostMapping("/create")

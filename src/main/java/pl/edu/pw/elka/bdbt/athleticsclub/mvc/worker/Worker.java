@@ -3,15 +3,15 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicense;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Pracownicy")
 public class Worker {
     @Id
@@ -69,6 +69,10 @@ public class Worker {
             name = "Nr_licencji_sportowej"
     )
     private SportLicense license;
+
+    @ManyToMany
+    private Set<Training> trainings;
+
 
     public void setLicense(SportLicense license) {
         this.license = license;

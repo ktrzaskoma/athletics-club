@@ -65,7 +65,7 @@
             <div style="margin-top: 20px">
             <label for="name">Imię:</label>
                 <input type="text" autofocus="autofocus" th:field="${worker.name}" id="name" th:errorclass="'Bdc(red)'" placeholder="Imię">
-                <p class="C(red)" th:if="${#fields.hasErrors('worker.name')}"  th:errors="${worker.name}"></p>
+                <p class="C(red)" th:if="${#fields.hasErrors('worker.name')}"  th:errors="${name}"></p>
             </div>
 
             <div style="margin-top: 20px">
@@ -148,7 +148,7 @@
 
             </div>
 
-
+            <b>Licencja sportowa</b>
             <label>Uprawnienia:
                 <select th:field="${licence.permission}" class="form-control" id="dropDownList1" th:errorclass="'Bdc(red)'">
                     <option value="Trener">Trener</option>

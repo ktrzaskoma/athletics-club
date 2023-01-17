@@ -58,27 +58,27 @@
             <label>Kraj:
                 <input type="text" autofocus="autofocus" th:field="*{country}" th:errorclass="'Bdc(red)'"
                        placeholder="Kraj">
-                <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"/>
+                <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
             </label>
             <label>Miasto:
                 <input type="text" autofocus="autofocus" th:field="*{city}" th:errorclass="'Bdc(red)'"
                        placeholder="Miasto">
-                <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"/>
+                <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
             </label>
             <label>Kod pocztowy:
                 <input type="text" autofocus="autofocus" th:field="*{zipCode}" pattern="^\d{2}-\d{3}$"
                        th:errorclass="'Bdc(red)'" placeholder="__-___">
-                <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"/>
+                <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
             </label>
             <label>Ulica:
                 <input type="text" autofocus="autofocus" th:field="*{street}" th:errorclass="'Bdc(red)'"
                        placeholder="Ulica">
-                <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"/>
+                <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
             </label>
             <label>Numer budynku:
                 <input type="number" autofocus="autofocus" th:field="*{buildingNumber}" th:errorclass="'Bdc(red)'"
                        placeholder="Numer budynku">
-                <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"/>
+                <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
             </label>
             <label>Numer apartamentu:
                 <input type="number" autofocus="autofocus" th:field="*{apartmentNumber}"
@@ -88,8 +88,6 @@
             <button type="reset">Wyczyść</button>
         </form>
     </fieldset>
-
-
 </main>
 </body>
 </html>

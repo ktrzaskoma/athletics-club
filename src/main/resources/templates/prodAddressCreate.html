@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie adresu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</head>
+<head>
+    <style>
+
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: #ff0000;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+        .P\(10px\) {
+            padding: 10px;
+        }
+        main{
+            background-color: black;
+        }
+        .navbar-default .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu .navbar navbar-expand-lg navbar{
+            background-color: #000000;
+            color:#5a8c7d;
+
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; /* remove the gap so it doesn't close */
+
+
+        }
+        .col-2{
+            width: 10%;
+        }
+        .dropdown-menu{
+            width: fit-content;
+        }
+        .dropdown-item{
+            padding-left: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body style="background-color: tan">
+
+<header style="background-color:#000000 ">
+    <div class="row" style="margin-left: 5%; margin-right: 5%; justify-content: center">
+        <div class="col-1"style="color:whitesmoke; text-align: right; font-size: larger; margin-top: 5px"></div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center; text-align: right"  >
+                <div class="collapse navbar-collapse" style="align-items: center">
+                    <ul class="navbar-nav">
+                        <a class="btn btn" aria-expanded="false" th:href="@{/}" style="align-items: center; color: whitesmoke">Home</a>
+                    </ul>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse" >
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/club}" style="color: whitesmoke">
+                                Klub
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/club}">Kluby</a>
+                                <a class="dropdown-item" th:href="@{/owner}">Właściciele</a>
+                                <a class="dropdown-item" th:href="@{/address/getAll}">Adresy</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse" >
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/training}"style="color: whitesmoke">
+                                Treningi
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/training}">Dodaj trening</a>
+                                <a class="dropdown-item" th:href="@{/training/signup}">Zapisz się!</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center" >
+                <div class="collapse navbar-collapse" >
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"; th:href="@{/sportfacilities}"style="color: whitesmoke">
+                                Obiekty
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/sportfacility/getAll}">Lista obiektów</a>
+                                <a class="dropdown-item" th:href="@{/sportfacility}">Dodaj obiekt</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse" >
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/worker}"style="color: whitesmoke">
+                                Pracownicy
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/worker}">Pracownicy</a>
+                                <a class="dropdown-item" th:href="@{/worker/getAll}">Lista pracowników</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse" >
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/equipment}"style="color: whitesmoke">
+                                Sprzęt
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a  class="dropdown-item" th:href="@{equipment}">Sprzęt</a>
+                                <a  class="dropdown-item" th:href="@{/equipment/create}">Dodaj sprzęt</a>
+                                <a  class="dropdown-item" th:href="@{/equipmentproducer}">Producenci sprzętu</a>
+                                <a  class="dropdown-item" th:href="@{/equipmentproducer/create}">Dodaj producenta</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-1">
+            <div id="form">
+                <div class="container">
+                    <a class="btn text-white" style="background-color: #6a7d8e; width: 130px; margin-top: 8px" th:href="@{/login}" role="button">
+                        Zaloguj się
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--tutaj są formsy-->
+
+<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 10px">
+
+    <fieldset style="margin-top: 50px">
+
+        <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
+        <form method="post" th:action="@{/address/create}" th:object="${address}">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="country">Kraj</label>
+                <input type="text" id="country" th:field="*{country}" class="form-control" th:errorclass="'Bdc(red)'" placeholder="Kraj" />
+                <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="city">Miasto</label>
+                        <input type="text" id="city" th:field="*{city}" class="form-control" th:errorclass="'Bdc(red)'" placeholder="Miasto" />
+                        <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" for="zipcode">Kod pocztowy</label>
+                        <input type="text" id="zipcode" th:field="*{zipCode}" class="form-control" pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="street">Ulica</label>
+                <input type="text" id="street" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'" placeholder="Ulica" />
+                <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="buildingNumber">Numer budynku</label>
+                <input type="number" min="1" id="buildingNumber" th:field="*{buildingNumber}" class="form-control" th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
+                <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="apartmentNumber">Numer mieszkania</label>
+                <input type="number" min="1" id="apartmentNumber" th:field="*{apartmentNumber}" aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
+                <small id="numHelp" class="form-text text-muted">Pole opcjonalne</small>
+            </div>
+
+                <div class="align-content-center">
+                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
+                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
+                </div>
+
+        </form>
+    </fieldset>
+</div>
+</body>
+
+</html>

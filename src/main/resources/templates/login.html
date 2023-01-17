@@ -12,6 +12,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+<body style="background-color: tan">
 <section class="vh-200 gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -47,10 +48,9 @@
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">
                                     Zaloguj się
                                 </button>
-
-                                <!--                                <div  th:if="${param.error}" style="color: red; margin-top: 20px">-->
-                                <!--                                    Niepoprawna nazwa lub hasło użytkownika.-->
-                                <!--                                </div>-->
+                                <div  th:if="${param.error}" style="color: red; margin-top: 20px">
+                                    Niepoprawna nazwa lub hasło użytkownika.
+                                </div>
                             </form>
 
 

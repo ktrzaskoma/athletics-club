@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.Collections;
 
 @Controller
 @RequestMapping("/address")
@@ -29,13 +28,13 @@ public class AddressController {
                 ).toList();
         model.addAttribute("addresses", addressList);
         model.addAttribute("address", new AddressWriteModel());
-        return "/address";
+        return "prodAddress";
     }
 
     @PostMapping("/create")
     String createAddress(@ModelAttribute("address") @Valid AddressWriteModel addressWriteModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/address";
+            return "/prodAddressCreate";
         }
         addressRepository.save(AddressWriteModel.toEntity(addressWriteModel));
         return "redirect:/address";
@@ -44,7 +43,7 @@ public class AddressController {
     @GetMapping
     String viewPage(Model model) {
         model.addAttribute("address", new AddressWriteModel());
-        return "/address";
+        return "/prodAddressCreate";
     }
 
 

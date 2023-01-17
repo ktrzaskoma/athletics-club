@@ -43,6 +43,6 @@ public class WorkerReadModel {
 
     @Override
     public String toString() {
-        return name + ", " + surname + ", " + pesel;
+        return name + ", " + surname;
     }
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -41,5 +42,7 @@ public class TrainingWriteModel {
         entity.setAthleticsClubTraining(athleticsClub);
         return entity;
     }
+
+
 
 }

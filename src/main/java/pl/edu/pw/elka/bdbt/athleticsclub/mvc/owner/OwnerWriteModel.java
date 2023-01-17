@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -34,6 +33,7 @@ public class OwnerWriteModel {
     @NotBlank(message = "Pole Numer telefonu nie może być puste!")
     String phoneNumber;
     Integer addressNumber;
+    Integer number;
 
     public static Owner toEntity(final OwnerWriteModel writeModel, final Address address) {
         var entity = new Owner();
@@ -46,6 +46,7 @@ public class OwnerWriteModel {
         entity.setEmail(writeModel.getEmail());
         entity.setOwnerPhoneNumber(writeModel.getPhoneNumber());
         entity.setOwnerAddressNumber(address);
+        entity.setOwnerNumber(entity.getOwnerNumber());
         return entity;
     }
 

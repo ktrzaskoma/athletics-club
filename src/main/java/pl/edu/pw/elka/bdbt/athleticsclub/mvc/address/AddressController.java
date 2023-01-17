@@ -40,7 +40,7 @@ public class AddressController {
     }
 
     @PostMapping("/edit/{idAddress}")
-    String saveAddress(@ModelAttribute("address") @Valid AddressWriteModel addressWriteModel,
+    String editAddress(@ModelAttribute("address") @Valid AddressWriteModel addressWriteModel,
                        BindingResult bindingResult,
                        @PathVariable("idAddress") String idAddress,
                        Model model) {

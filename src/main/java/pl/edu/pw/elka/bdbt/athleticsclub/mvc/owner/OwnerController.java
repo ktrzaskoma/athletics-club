@@ -1,40 +1,34 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Controller
 @RequestMapping("/owner")
+@Log4j2
 public class OwnerController {
-    private final OwnerRepository ownerRepository;
-    private final AddressRepository addressRepository;
 
-    public OwnerController(OwnerRepository ownerRepository, AddressRepository addressRepository) {
-        this.ownerRepository = ownerRepository;
-        this.addressRepository = addressRepository;
+    private final OwnerService ownerService;
+
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
     }
 
     @GetMapping("/getAll")
     String getAll(Model model) {
-        var owners = ownerRepository.findAll()
-                .stream().map(
-                        OwnerReadModel::toReadModel
-                ).toList();
-        model.addAttribute("owners", owners);
-        model.addAttribute("owner", new OwnerWriteModel());
-        prepareEntryModel(model);
-        return "/owner";
+        var owners = ownerService.getOwners();
+        prepareInitialModel(model, owners);
+        return "/prodOwner";
+    }
+
+    private void prepareInitialModel(Model model, List<OwnerReadModel> readModelList) {
+        model.addAttribute("owners", readModelList);
     }
 
     @PostMapping("/create")
@@ -42,27 +36,58 @@ public class OwnerController {
                          BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             prepareEntryModel(model);
-            return "/owner";
+            return "/prodOwnerCreate";
         }
-        var address = addressRepository.getById(writeModel.getAddressNumber());
-        ownerRepository.save(OwnerWriteModel.toEntity(writeModel, address));
-        return "redirect:/owner";
+        ownerService.saveOwner(writeModel);
+        return "redirect:/owner/getAll";
     }
 
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
         model.addAttribute("owner", new OwnerWriteModel());
-        return "/owner";
+        return "/prodOwnerCreate";
+    }
+
+    @GetMapping("/delete/{idOwner}")
+    String deleteAddress(@PathVariable("idOwner") String idOwner) {
+        log.info("Try to delete entry!");
+        ownerService.deleteOwner(idOwner);
+        return "redirect:/owner/getAll";
+    }
+
+    @PostMapping("/edit/{idOwner}")
+    String editOwner(@ModelAttribute("owner") @Valid OwnerWriteModel writeModel,
+                     BindingResult bindingResult,
+                     @PathVariable("idOwner") String idOwner,
+                     Model model) {
+        if (bindingResult.hasErrors()) {
+            log.warn("Errors founds, try to show them in view!");
+            var addresses = ownerService.getAddresses();
+            model.addAttribute("addresses", addresses);
+            model.addAttribute("edit", true);
+            return "/prodOwnerCreate";
+        }
+        writeModel.setNumber(Integer.valueOf(idOwner));
+        ownerService.modyfiOwner(writeModel);
+        return "redirect:/owner/getAll";
+    }
+
+    @GetMapping("/edit/{idOwner}")
+    String getOwnerToEdit(@PathVariable("idOwner") String idOwner, Model model) {
+        log.info("Try to edit entry!");
+        var editEntity = ownerService.editOwner(idOwner);
+        model.addAttribute("owner", editEntity);
+        var addresses = ownerService.getAddresses();
+        model.addAttribute("addresses", addresses);
+        model.addAttribute("edit", true);
+        return "/prodOwnerCreate";
     }
 
     private Model prepareEntryModel(Model model) {
-        var addresses = addressRepository.findAll().stream().map(
-                AddressReadModel::toReadModel
-        ).collect(Collectors.toMap(AddressReadModel::getNumber, AddressReadModel::toString));
+        var addresses = ownerService.getAddresses();
         model.addAttribute("addresses", addresses);
+        model.addAttribute("edit", false);
         return model;
     }
-
-
 }

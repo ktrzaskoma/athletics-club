@@ -13,7 +13,6 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerRepository;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 @Controller
@@ -72,7 +71,7 @@ public class AthleticsClubController {
 
         var owners = ownerRepository.findAll().stream().map(
                 OwnerReadModel::toReadModel
-        ).collect(Collectors.toMap(OwnerReadModel::getOwnerNumber, OwnerReadModel::toString));
+        ).collect(Collectors.toMap(OwnerReadModel::getNumber, OwnerReadModel::toString));
 
         model.addAttribute("addresses", addresses);
         model.addAttribute("owners", owners);

@@ -43,6 +43,24 @@ class WorkerService {
         workerRepository.save(WorkerWriteModel.toEntity(workerWriteModel, club, savedLicense, address));
     }
 
+    void modifyWorker(final WorkerWriteModel workerWriteModel, final SportLicenseWriteModel sportLicenseWriteModel) {
+        log.info("Saving entry in DB!");
+        var club = athleticsClubRepository.getById(workerWriteModel.getAthleticsClubWorker());
+        var address = addressRepository.getById(workerWriteModel.getWorkerAddressNumber());
+        var savedLicense = sportLicenseRepository.save(SportLicenseWriteModel.toEntity(
+                sportLicenseWriteModel
+        ));
+
+        var workerToModify = workerRepository.getById(workerWriteModel.getNumber());
+        var licenseNumber = workerToModify.getLicense().getSportLicenseNumber();
+        workerToModify.setWorkerAddressNumber(null);
+        workerToModify.setAthleticsClubWorker(null);
+        workerToModify.setLicense(null);
+        workerRepository.save(workerToModify);
+        sportLicenseRepository.deleteById(licenseNumber);
+        workerRepository.save(WorkerWriteModel.toEntity(workerWriteModel, club, savedLicense, address));
+    }
+
     Map<Integer, String> getFormattedAddresses() {
         return addressRepository.findAll().stream().map(
                 AddressReadModel::toReadModel

@@ -44,6 +44,7 @@ public class WorkerController {
         if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()) {
             log.warn("Errors founds, try to show them in view!");
             prepareEntryModel(model);
+            model.addAttribute("edit", false);
             return "/prodWorkerCreate";
         }
         workerService.saveWorker(workerWriteModel, sportLicenseWriteModel);
@@ -53,6 +54,7 @@ public class WorkerController {
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
+        model.addAttribute("edit", false);
         model.addAttribute("worker", new WorkerWriteModel());
         model.addAttribute("license", new SportLicenseWriteModel());
         return "/prodWorkerCreate";
@@ -66,22 +68,24 @@ public class WorkerController {
     }
 
     @PostMapping("/edit/{idWorker}")
-    String saveAddress(@ModelAttribute("worker") @Valid
-                               WorkerWriteModel workerWriteModel,
-                       BindingResult bindingResultWorker,
-                       @ModelAttribute("license") @Valid
-                               SportLicenseWriteModel sportLicenseWriteModel,
-                       BindingResult bindingResultLicense,
-                       @PathVariable("idWorker") String idWorker,
-                       Model model) {
+    String editWorker(@ModelAttribute("worker") @Valid
+                              WorkerWriteModel workerWriteModel,
+                      BindingResult bindingResultWorker,
+                      @ModelAttribute("license") @Valid
+                              SportLicenseWriteModel sportLicenseWriteModel,
+                      BindingResult bindingResultLicense,
+                      @PathVariable("idWorker") String idWorker,
+                      Model model) {
         if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()) {
             log.warn("Errors founds, try to show them in view!");
+            prepareEntryModel(model);
             model.addAttribute("edit", true);
-            return "/prodAddressCreate";
+            return "/prodWorkerCreate";
         }
-        workerService.saveWorker(workerWriteModel, sportLicenseWriteModel);
+        workerWriteModel.setNumber(Integer.valueOf(idWorker));
+        workerService.modifyWorker(workerWriteModel, sportLicenseWriteModel);
 
-        return "redirect:/address/getAll";
+        return "redirect:/worker/getAll";
     }
 
     @GetMapping("/edit/{idWorker}")
@@ -91,8 +95,9 @@ public class WorkerController {
         model.addAttribute("worker", editWorker);
         var editLicense = workerService.editLicense(editWorker.getSportLicense().getSportLicenseNumber().toString());
         model.addAttribute("license", editLicense);
+        prepareEntryModel(model);
         model.addAttribute("edit", true);
-        return "/prodAddressCreate";
+        return "/prodWorkerCreate";
     }
 
 
@@ -102,7 +107,6 @@ public class WorkerController {
 
         model.addAttribute("addresses", addresses);
         model.addAttribute("clubs", clubs);
-        model.addAttribute("edit", false);
         return model;
     }
 

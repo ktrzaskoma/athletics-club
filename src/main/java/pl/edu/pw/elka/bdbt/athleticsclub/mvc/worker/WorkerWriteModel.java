@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -42,7 +43,6 @@ public class WorkerWriteModel {
     String email;
     @NotBlank(message = "Pole Numer telefonu nie może być puste!")
     String phoneNumber;
-
     Integer athleticsClubWorker;
     Integer workerAddressNumber;
 
@@ -72,6 +72,9 @@ public class WorkerWriteModel {
         entity.setWorkerAddressNumber(address);
         entity.setMonthlySalary(writeModel.getMonthlySalary());
         entity.setLicense(sportLicense);
+        if (Objects.nonNull(writeModel.getNumber())) {
+            entity.setNumber(writeModel.getNumber());
+        }
         return entity;
     }
 

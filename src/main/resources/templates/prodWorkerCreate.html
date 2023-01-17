@@ -400,6 +400,184 @@
                 </div>
             </form>
         </div>
+
+        <div th:if="${edit}">
+            <!--/*@thymesVar id="license" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicenseWriteModel"*/-->
+            <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
+            <form method="post" th:action="@{'/worker/edit/' + ${worker.number}}" >
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label">Imię</label>
+                        <input type="text" th:field="${worker.name}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Imię"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.name')}" th:errors="${worker.name}"></p>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Nazwisko</label>
+                            <input type="text" th:field="${worker.lastname}" class="form-control"
+                                   th:errorclass="'Bdc(red)'"
+                                   placeholder="Nazwisko"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.lastname')}"
+                               th:errors="${worker.lastname}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label">Pesel</label>
+                        <input type="number" th:field="${worker.pesel}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="PESEL"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.pesel')}" th:errors="${worker.pesel}"></p>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Data urodzenia</label>
+                            <input type="date" th:field="${worker.dateOfBirthday}"
+                                   class="form-control"
+                                   placeholder="Data urodzenia" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.dateOfBirthday')}"
+                               th:errors="${worker.dateOfBirthday}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <label>Płeć:</label>
+                <div class="form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="Mężczyzna" class="custom-control-input"
+                               value="Mężczyzna" th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Mężczyzna">Mężczyzna</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="Kobieta" class="custom-control-input" value="Kobieta"
+                               th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Kobieta">Kobieta</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="Inna" class="custom-control-input" value="Inna"
+                               th:field="${worker.sex}" th:errorclass="'Bdc(red)'">
+                        <label class="custom-control-label" for="Inna">Inna</label>
+                    </div>
+                    <p class="C(red)" th:if="${#fields.hasErrors('worker.sex')}" th:errors="${worker.sex}"></p>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Numer telefonu</label>
+                        <input type="number" th:field="${worker.phoneNumber}" class="form-control"
+                               th:errorclass="'Bdc(red)'" placeholder="Numer telefonu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.phoneNumber')}"
+                           th:errors="${worker.phoneNumber}"></p>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Numer konta bankowego</label>
+                        <input type="number" th:field="${worker.bankAccount}"
+                               class="form-control" placeholder="Numer konta bankowego"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('worker.bankAccount')}"
+                           th:errors="${worker.bankAccount}"></p>
+                    </div>
+
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label">Email</label>
+                            <input type="email" th:field="${worker.email}"
+                                   class="form-control" placeholder="Email"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.email')}"
+                               th:errors="${worker.email}"></p>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Wynagrodzenie</label>
+                            <input type="number" th:field="${worker.monthlySalary}"
+                                   class="form-control" placeholder="Wynagordzenie"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('worker.monthlySalary')}"
+                               th:errors="${worker.monthlySalary}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Wybierz adres</label>
+                        <select th:field="${worker.workerAddressNumber}" class="form-control">
+                            <option value="0">Wybierz dostępny adres</option>
+                            <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"
+                                    th:text="${address.value}"></option>
+                        </select>
+
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label>Wybierz klub</label>
+                        <select th:field="${worker.athleticsClubWorker}" class="form-control">
+                            <option value="0">Wybierz dostępny klub</option>
+                            <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"
+                                    th:text="${club.value}"></option>
+                        </select>
+                    </div>
+
+                    <b>Licencja sportowa</b>
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label">Uprawnienia
+                                <select th:field="${license.permission}" style="width: auto" class="form-control" th:errorclass="'Bdc(red)'">
+                                    <option value="Trener">Trener</option>
+                                    <option value="Zawodnik">Zawodnik</option>
+                                    <p class="C(red)" th:if="${#fields.hasErrors('license.permission')}"
+                                       th:errors="${license.permission}"></p>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="form-label">Kategoria wiekowa
+                                <select th:field="${license.ageCategory}" class="form-control">
+                                    <option value="Młodzik">Młodzik</option>
+                                    <option value="Junior młodszy">Junior młodszy</option>
+                                    <option value="Junior">Junior</option>
+                                    <option value="Młodzieżowiec">Młodzieżowiec</option>
+                                    <option value="Senior">Senior</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label">Data wydania</label>
+                                <input type="date" th:field="${license.releaseDate}"
+                                       class="form-control"
+                                       placeholder="Data wydania" th:errorclass="'Bdc(red)'"/>
+                                <p class="C(red)" th:if="${#fields.hasErrors('license.releaseDate')}"
+                                   th:errors="${license.releaseDate}"></p>
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label">Data ważności</label>
+                                <input type="date" th:field="${license.expirationDate}"
+                                       class="form-control"
+                                       placeholder="Data ważności" th:errorclass="'Bdc(red)'"/>
+                                <p class="C(red)" th:if="${#fields.hasErrors('license.expirationDate')}"
+                                   th:errors="${license.expirationDate}"></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="align-content-center">
+                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
+                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
+                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
+                </div>
+            </form>
+        </div>
     </fieldset>
 </div>
 </body>

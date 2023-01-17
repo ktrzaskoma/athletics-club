@@ -6,26 +6,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class AddressWriteModel {
+class AddressWriteModel {
 
     @NotBlank(message = "Pole Kraj nie może być puste!")
     String country;
     @NotBlank(message = "Pole Miasto nie może być puste!")
     String city;
     @NotBlank(message = "Pole Kod pocztowy nie może być puste!")
+    @Size(max = 6, min = 6, message = "Podaj poprawny kod pocztowy!")
     String zipCode;
     @NotBlank(message = "Pole Ulica nie może być puste!")
     String street;
     @NotBlank(message = "Pole Numer budynku nie może być puste!")
     String buildingNumber;
     String apartmentNumber;
+    String addressNumber;
 
-    public static Address toEntity(final AddressWriteModel writeModel) {
+    static Address toEntity(final AddressWriteModel writeModel) {
         var entity = new Address();
         entity.setCountry(writeModel.getCountry());
         entity.setCity(writeModel.getCity());
@@ -33,6 +37,9 @@ public class AddressWriteModel {
         entity.setStreet(writeModel.getStreet());
         entity.setBuildingNumber(writeModel.getBuildingNumber());
         entity.setApartmentNumber(writeModel.getApartmentNumber());
+        if (Objects.nonNull(writeModel.getAddressNumber())) {
+            entity.setAddressNumber(Integer.valueOf(writeModel.getAddressNumber()));
+        }
         return entity;
     }
 }

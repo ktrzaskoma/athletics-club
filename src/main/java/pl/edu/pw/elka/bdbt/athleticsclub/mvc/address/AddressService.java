@@ -1,5 +1,6 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.address;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -7,13 +8,10 @@ import java.util.List;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 class AddressService {
 
     private final AddressRepository addressRepository;
-
-    AddressService(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
-    }
 
     List<AddressReadModel> getAddresses() {
         log.info("Finding all entries in DB!");

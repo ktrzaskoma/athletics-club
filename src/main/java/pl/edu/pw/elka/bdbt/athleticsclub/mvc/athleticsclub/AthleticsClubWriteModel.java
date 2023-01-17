@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,6 +32,7 @@ public class AthleticsClubWriteModel {
     String webPage;
     Integer addressNumber;
     Integer ownerOfAthleticsClub;
+    Integer number;
 
     public static AthleticsClub toEntity(final AthleticsClubWriteModel athleticsClubWriteModel,
                                          final Address address,
@@ -44,6 +46,9 @@ public class AthleticsClubWriteModel {
         entity.setClubWebPage(athleticsClubWriteModel.getWebPage());
         entity.setClubAddressNumber(address);
         entity.setOwnerOfAthleticsClub(owner);
+        if (Objects.nonNull(athleticsClubWriteModel.getNumber())) {
+            entity.setClubNumber(athleticsClubWriteModel.number);
+        }
         return entity;
     }
 }

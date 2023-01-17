@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 public class OwnerReadModel {
 
-    Integer ownerNumber;
+    Integer number;
     String name;
     String surname;
     LocalDate dateOfBirth;

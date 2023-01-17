@@ -29,9 +29,10 @@ public class AddressController {
     }
 
     @PostMapping("/create")
-    String createAddress(@ModelAttribute("address") @Valid AddressWriteModel addressWriteModel, BindingResult bindingResult) {
+    String createAddress(@ModelAttribute("address") @Valid AddressWriteModel addressWriteModel, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             log.warn("Errors founds, try to show them in view!");
+            model.addAttribute("edit", false);
             return "/prodAddressCreate";
         }
         addressService.saveAddress(addressWriteModel);
@@ -39,11 +40,13 @@ public class AddressController {
     }
 
     @PostMapping("/edit/{idAddress}")
-    String saveAddress(@ModelAttribute("address") @Valid AddressWriteModel addressWriteModel,
+    String editAddress(@ModelAttribute("address") @Valid AddressWriteModel addressWriteModel,
                        BindingResult bindingResult,
-                       @PathVariable("idAddress") String idAddress) {
+                       @PathVariable("idAddress") String idAddress,
+                       Model model) {
         if (bindingResult.hasErrors()) {
             log.warn("Errors founds, try to show them in view!");
+            model.addAttribute("edit", true);
             return "/prodAddressCreate";
         }
         addressWriteModel.setAddressNumber(idAddress);

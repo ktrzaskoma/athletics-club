@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
@@ -18,8 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/address/create").hasAuthority("ROLE_TRAINER")
-                .antMatchers(HttpMethod.GET, "address/getAll").hasAuthority("ROLE_TRAINER")
+                .antMatchers(HttpMethod.POST, "/address/create").hasAnyRole("TRAINER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "address/getAll").hasAnyRole("TRAINER", "ADMIN")
 
                 // feature test
 //                .antMatchers("/training/**").permitAll()
@@ -36,9 +37,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .passwordParameter("password")
                 .usernameParameter("username")
-                .defaultSuccessUrl("/",true)
+                .defaultSuccessUrl("/", true)
                 .permitAll()
 
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
                 .and()
                 .httpBasic();
     }
@@ -55,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("admin")
                 .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN", "TRAINER", "ATHLETE")
+                .roles("ADMIN")
                 .and()
                 .withUser("trainer")
                 .password(passwordEncoder().encode("trainer"))

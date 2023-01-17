@@ -69,7 +69,7 @@ public class OwnerController {
             return "/prodOwnerCreate";
         }
         writeModel.setNumber(Integer.valueOf(idOwner));
-        ownerService.modyfiOwner(writeModel);
+        ownerService.modifyOwner(writeModel);
         return "redirect:/owner/getAll";
     }
 

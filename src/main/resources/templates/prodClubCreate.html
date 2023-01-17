@@ -5,7 +5,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Dodawanie adresu</title>
+    <title>Dodawanie nowego klubu lekkoatletycznego</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -223,57 +223,91 @@
     <fieldset style="margin-top: 50px">
 
         <div th:if="${!edit}">
-            <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
-            <form method="post" th:action="@{/address/create}" th:object="${address}">
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="country">Kraj</label>
-                    <input type="text" id="country" th:field="*{country}" class="form-control"
-                           th:errorclass="'Bdc(red)'"
-                           placeholder="Kraj"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
+            <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
+            <form method="post" th:action="@{/club/create}" th:object="${club}">
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label" for="name">Nazwa klubu</label>
+                        <input type="text" id="name" th:field="*{name}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Nazwa klubu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="establishedDate">Data założenia</label>
+                            <input type="date" id="establishedDate" th:field="*{establishedDate}"
+                                   class="form-control"
+                                   placeholder="Data założenia" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('establishedDate')}"
+                               th:errors="*{establishedDate}"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row mb-4">
                     <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label" for="city">Miasto</label>
-                            <input type="text" id="city" th:field="*{city}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Miasto"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
-
-                        </div>
+                        <label class="form-label" for="phoneNumber">Numer telefonu</label>
+                        <input type="number" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Numer telefonu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                        </p>
                     </div>
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label" for="zipcode">Kod pocztowy</label>
-                            <input type="text" id="zipcode" th:field="*{zipCode}" class="form-control"
-                                   pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"
-                                   maxlength="6" minlength="6"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
+                            <label class="form-label" for="phoneNumber2">Dodatkowy numer telefonu</label>
+                            <input type="number" id="phoneNumber2" th:field="*{phoneNumber2}"
+                                   class="form-control"
+                                   placeholder="Dodatkowy numer telefonu" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber2')}"
+                               th:errors="*{phoneNumber2}"></p>
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
 
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="street">Ulica</label>
-                    <input type="text" id="street" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Ulica"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
-                </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" id="email" th:field="*{email}"
+                                   class="form-control" placeholder="Email"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}"></p>
+                        </div>
 
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="buildingNumber">Numer budynku</label>
-                    <input type="number" min="1" id="buildingNumber" th:field="*{buildingNumber}" class="form-control"
-                           th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
-                </div>
+                        <div class="col">
+                            <label class="form-label" for="email">Strona WWW</label>
+                            <input type="text" id="webPage" th:field="*{webPage}"
+                                   class="form-control" placeholder="Strona WWW"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('webPage')}"
+                               th:errors="*{webPage}"></p>
+                        </div>
+                    </div>
 
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="apartmentNumber">Numer mieszkania</label>
-                    <input type="number" min="1" id="apartmentNumber" th:field="*{apartmentNumber}"
-                           aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
-                    <small id="numHelp" class="form-text text-muted">Pole opcjonalne</small>
+                    <div class="form-outline mb-4">
+                        <label for="addressNumber">Wybierz adres</label>
+                        <select th:field="*{addressNumber}" class="form-control" id="addressNumber">
+                            <option value="0">Wybierz dostępny adres</option>
+                            <option th:each="address : ${addresses.entrySet()}"
+                                    th:value="${address.key}"
+                                    th:text="${address.value}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label for="addressNumber">Właściciel</label>
+                        <select th:field="*{ownerOfAthleticsClub}" class="form-control" id="ownerOfAthleticsClub">
+                            <option value="0">Wybierz właściciela</option>
+                            <option th:each="owner : ${owners.entrySet()}"
+                                    th:value="${owner.key}"
+                                    th:text="${owner.value}"></option>
+                        </select>
+                    </div>
+
+
                 </div>
 
                 <div class="align-content-center">
@@ -285,67 +319,99 @@
         </div>
 
         <div th:if="${edit}">
-            <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
-            <form method="post" th:action="@{'/address/edit/' + ${address.addressNumber}}" th:object="${address}">
-                <div class="form-outline mb-4">
-                    <label class="form-label">Kraj</label>
-                    <input type="text" th:field="*{country}" class="form-control"
-                           th:errorclass="'Bdc(red)'"
-                           placeholder="Kraj"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
+            <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
+            <form method="post" th:action="@{'/club/edit/' + ${club.number}}"  th:object="${club}">
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label">Nazwa klubu</label>
+                        <input type="text" th:field="*{name}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Nazwa klubu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Data założenia</label>
+                            <input type="date" th:field="*{establishedDate}"
+                                   class="form-control"
+                                   placeholder="Data założenia" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('establishedDate')}"
+                               th:errors="*{establishedDate}"></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row mb-4">
                     <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Miasto</label>
-                            <input type="text" th:field="*{city}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Miasto"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
-
-                        </div>
+                        <label class="form-label">Numer telefonu</label>
+                        <input type="number" th:field="*{phoneNumber}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Numer telefonu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                        </p>
                     </div>
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label">Kod pocztowy</label>
-                            <input type="text" th:field="*{zipCode}" class="form-control"
-                                   pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"
-                                   maxlength="6" minlength="6"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
+                            <label class="form-label">Dodatkowy numer telefonu</label>
+                            <input type="number" th:field="*{phoneNumber2}"
+                                   class="form-control"
+                                   placeholder="Dodatkowy numer telefonu" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber2')}"
+                               th:errors="*{phoneNumber2}"></p>
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
 
-                <div class="form-outline mb-4">
-                    <label class="form-label">Ulica</label>
-                    <input type="text" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Ulica"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
-                </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label">Email</label>
+                            <input type="email" th:field="*{email}"
+                                   class="form-control" placeholder="Email"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}"></p>
+                        </div>
 
-                <div class="form-outline mb-4">
-                    <label class="form-label">Numer budynku</label>
-                    <input type="number" min="1" th:field="*{buildingNumber}" class="form-control"
-                           th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
-                </div>
+                        <div class="col">
+                            <label class="form-label" for="email">Strona WWW</label>
+                            <input type="text" th:field="*{webPage}"
+                                   class="form-control" placeholder="Strona WWW"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('webPage')}"
+                               th:errors="*{webPage}"></p>
+                        </div>
+                    </div>
 
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="apartmentNumber">Numer mieszkania</label>
-                    <input type="number" min="1" th:field="*{apartmentNumber}"
-                           aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
-                    <small class="form-text text-muted">Pole opcjonalne</small>
+                    <div class="form-outline mb-4">
+                        <label>Wybierz adres</label>
+                        <select th:field="*{addressNumber}" class="form-control">
+                            <option value="0">Wybierz dostępny adres</option>
+                            <option th:each="address : ${addresses.entrySet()}"
+                                    th:value="${address.key}"
+                                    th:text="${address.value}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Właściciel</label>
+                        <select th:field="*{ownerOfAthleticsClub}" class="form-control">
+                            <option value="0">Wybierz właściciela</option>
+                            <option th:each="owner : ${owners.entrySet()}"
+                                    th:value="${owner.key}"
+                                    th:text="${owner.value}"></option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="align-content-center">
-                    <button type="submit" class="btn btn-success btn-block mb-4 a">Zapisz</button>
+                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
                     <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
+                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
                 </div>
             </form>
         </div>
-
-
     </fieldset>
 </div>
 </body>

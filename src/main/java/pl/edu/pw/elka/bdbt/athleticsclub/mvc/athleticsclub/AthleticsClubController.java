@@ -1,80 +1,94 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerRepository;
+import org.springframework.web.bind.annotation.*;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerWriteModel;
 
 import javax.validation.Valid;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Controller
 @RequestMapping("/club")
+@Log4j2
 public class AthleticsClubController {
 
-    private final AthleticsClubRepository athleticsClubRepository;
-    private final AddressRepository addressRepository;
-    private final OwnerRepository ownerRepository;
+    private final AthleticsClubService clubService;
 
-    public AthleticsClubController(final AthleticsClubRepository athleticsClubRepository, AddressRepository addressRepository, OwnerRepository ownerRepository) {
-        this.athleticsClubRepository = athleticsClubRepository;
-        this.addressRepository = addressRepository;
-        this.ownerRepository = ownerRepository;
+    public AthleticsClubController(AthleticsClubService athleticsClubRepository) {
+        this.clubService = athleticsClubRepository;
     }
 
     @GetMapping("/getAll")
     String getAll(Model model) {
-        var athleticsClubList = athleticsClubRepository.findAll()
-                .stream().map(
-                        AthleticsClubReadModel::toReadModel
-                ).toList();
-        model.addAttribute("clubs", athleticsClubList);
-        model.addAttribute("club", new AthleticsClubWriteModel());
-        prepareEntryModel(model);
+        var athleticsClubList = clubService.getClubs();
+        prepareInitialModel(model, athleticsClubList);
         return "/prodClub";
     }
 
+    private void prepareInitialModel(Model model, List<AthleticsClubReadModel> readModelList) {
+        model.addAttribute("clubs", readModelList);
+    }
+
     @PostMapping("/create")
-    String createClub(@ModelAttribute("club") @Valid AthleticsClubWriteModel clubToWrite,
+    String createClub(@ModelAttribute("club") @Valid AthleticsClubWriteModel writeModel,
                       BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             prepareEntryModel(model);
-            return "/club";
+            return "/prodClubCreate";
         }
+        clubService.saveClub(writeModel);
+        return "redirect:/club/getAll";
+    }
 
-        var address = addressRepository.getById(clubToWrite.getAddressNumber());
-        var owner = ownerRepository.getById(clubToWrite.getOwnerOfAthleticsClub());
-        athleticsClubRepository.save(AthleticsClubWriteModel.toEntity(clubToWrite, address, owner));
+    @PostMapping("/edit/{idClub}")
+    String editClub(@ModelAttribute("club") @Valid AthleticsClubWriteModel writeModel,
+                    BindingResult bindingResult,
+                    @PathVariable("idClub") String idClub,
+                    Model model) {
+        if (bindingResult.hasErrors()) {
+            log.warn("Errors founds, try to show them in view!");
+            prepareEntryModel(model);
+            model.addAttribute("edit", true);
+            return "/prodClubCreate";
+        }
+        writeModel.setNumber(Integer.valueOf(idClub));
+        clubService.modifyClub(writeModel);
+        return "redirect:/club/getAll";
+    }
 
-        return "redirect:/club";
+    @GetMapping("/edit/{idClub}")
+    String getClubToEdit(@PathVariable("idClub") String idClub, Model model) {
+        log.info("Try to edit entry!");
+        var editEntity = clubService.editClub(idClub);
+        model.addAttribute("club", editEntity);
+        model.addAttribute("edit", true);
+        prepareEntryModel(model);
+        return "/prodClubCreate";
     }
 
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
+        model.addAttribute("edit", false);
         model.addAttribute("club", new AthleticsClubWriteModel());
-        return "/club";
+        return "/prodClubCreate";
     }
 
-
     private Model prepareEntryModel(Model model) {
-        var addresses = addressRepository.findAll().stream().map(
-                AddressReadModel::toReadModel
-        ).collect(Collectors.toMap(AddressReadModel::getNumber, AddressReadModel::toString));
-
-        var owners = ownerRepository.findAll().stream().map(
-                OwnerReadModel::toReadModel
-        ).collect(Collectors.toMap(OwnerReadModel::getNumber, OwnerReadModel::toString));
-
+        var addresses = clubService.getFormattedAddresses();
+        var owners = clubService.getFormattedOwners();
         model.addAttribute("addresses", addresses);
         model.addAttribute("owners", owners);
         return model;
+    }
+
+    @GetMapping("/delete/{idClub}")
+    String deleteAddress(@PathVariable("idClub") String idClub) {
+        log.info("Try to delete entry!");
+        clubService.deleteClub(idClub);
+        return "redirect:/club/getAll";
     }
 }

@@ -34,7 +34,7 @@ public class OwnerService {
                 .collect(Collectors.toMap(AddressReadModel::getNumber, AddressReadModel::toString));
     }
 
-    void modyfiOwner(final OwnerWriteModel writeModel) {
+    void modifyOwner(final OwnerWriteModel writeModel) {
         log.info("Saving entry in DB!");
         var addressToSave = addressRepository.getById(writeModel.getAddressNumber());
         deleteOwner(writeModel.getNumber().toString());

@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TrainingReadModel {
 
-    Integer trainingNumber;
+    Integer number;
     LocalDate trainingDate;
     String discipline;
     Integer numberOfParticipants;

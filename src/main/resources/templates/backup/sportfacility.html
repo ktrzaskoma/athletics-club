@@ -31,18 +31,18 @@
 <main >
   <fieldset>
     <a th:href="@{/}">Strona główna</a>
-    <a th:href="@{/sportfacility/getAll}">Pokaż wszystkie obiekty</a>
+    <a th:href="@{/facility/getAll}">Pokaż wszystkie obiekty</a>
   </fieldset>
 
   <fieldset style="margin-top: 30px">
     <legend>Lista obiektów</legend>
-    <!--/*@thymesVar id="sportfacilities" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityReadModel"*/-->
-    <tr th:each="sportfacility : ${sportfacilities}">
-      <td th:text="${sportfacility.facilityName}"></td>
-      <td th:text="${sportfacility.openDate}"></td>
-      <td th:text="${sportfacility.facilityType}"></td>
-      <td th:text="${sportfacility.coveredFacility}"></td>
-      <td th:text="${sportfacility.capacity}"></td>
+    <!--/*@thymesVar id="facility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityReadModel"*/-->
+      <tr th:each="facility : ${facilities}">
+      <td th:text="${facility.facilityName}"></td>
+      <td th:text="${facility.openDate}"></td>
+      <td th:text="${facility.facilityType}"></td>
+      <td th:text="${facility.coveredFacility}"></td>
+      <td th:text="${facility.capacity}"></td>
     </tr>
   </fieldset>
 
@@ -50,8 +50,8 @@
   <fieldset style="margin-top: 30px">
     <legend>Nowy obiekt</legend>
 
-    <!--/*@thymesVar id="sportfacility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacilityWriteModel"*/-->
-    <form method="post" th:action="@{/sportfacility/create}" th:object="${sportfacility}">
+    <!--/*@thymesVar id="facility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityWriteModel"*/-->
+    <form method="post" th:action="@{/facility/create}" th:object="${facility}">
       <label>Nazwa:
         <input type="text" autofocus="autofocus" th:field="*{facilityName}" th:errorclass="'Bdc(red)'" placeholder="Nazwa">
         <p class="C(red)" th:if="${#fields.hasErrors('facilityName')}"  th:errors="*{facilityName}" />

@@ -115,7 +115,7 @@
                                 Treningi
                             </button>
                             <ul class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/training}">Dodaj trening</a>
+                                <a class="dropdown-item" th:href="@{/training/getAll}">Treningi</a>
                                 <a class="dropdown-item" th:href="@{/training/signup}">Zapisz się!</a>
                             </ul>
                         </li>
@@ -129,12 +129,11 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" ;
-                                    th:href="@{/sportfacilities}" style="color: whitesmoke">
+                                    th:href="@{/facility}" style="color: whitesmoke">
                                 Obiekty
                             </button>
                             <ul class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/sportfacility/getAll}">Lista obiektów</a>
-                                <a class="dropdown-item" th:href="@{/sportfacility}">Dodaj obiekt</a>
+                                <a class="dropdown-item" th:href="@{/facility/getAll}">Obiekty sportowe</a>
                             </ul>
                         </li>
                     </ul>
@@ -164,14 +163,12 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-                                    th:href="@{/equipment}" style="color: whitesmoke">
+                                    th:href="@{/equipment/getAll}" style="color: whitesmoke">
                                 Sprzęt
                             </button>
                             <ul class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{equipment}">Sprzęt</a>
-                                <a class="dropdown-item" th:href="@{/equipment/create}">Dodaj sprzęt</a>
-                                <a class="dropdown-item" th:href="@{/equipmentproducer}">Producenci sprzętu</a>
-                                <a class="dropdown-item" th:href="@{/equipmentproducer/create}">Dodaj producenta</a>
+                                <a class="dropdown-item" th:href="@{/equipment/getAll}">Sprzęt</a>
+                                <a class="dropdown-item" th:href="@{/producer/getAll}">Producenci sprzętu</a>
                             </ul>
                         </li>
                     </ul>

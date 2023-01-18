@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,6 +32,7 @@ public class TrainingWriteModel {
     @NotBlank(message = "Pole Obciążenie treningu nie może być puste!")
     String forceLoad;
     Integer athleticsClub;
+    Integer number;
 
     public static Training toEntity(final TrainingWriteModel writeModel, final AthleticsClub athleticsClub) {
         var entity = new Training();
@@ -40,9 +42,11 @@ public class TrainingWriteModel {
         entity.setTypeOfTraining(writeModel.getType());
         entity.setTrainingForceLoad(writeModel.getForceLoad());
         entity.setAthleticsClubTraining(athleticsClub);
+        if (Objects.nonNull(writeModel.getNumber())) {
+            entity.setTrainingNumber(writeModel.getNumber());
+        }
         return entity;
     }
-
 
 
 }

@@ -5,7 +5,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Dodawanie nowego klubu lekkoatletycznego</title>
+    <title>Dodawanie nowego obiektu sportowego</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -220,73 +220,63 @@
     <fieldset style="margin-top: 50px">
 
         <div th:if="${!edit}">
-            <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
-            <form method="post" th:action="@{/club/create}" th:object="${club}">
+            <!--/*@thymesVar id="facility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityWriteModel"*/-->
+            <form method="post" th:action="@{/facility/create}" th:object="${facility}">
 
                 <div class="row mb-4">
                     <div class="col">
-                        <label class="form-label" for="name">Nazwa klubu</label>
-                        <input type="text" id="name" th:field="*{name}" class="form-control"
+                        <label class="form-label" for="name">Nazwa</label>
+                        <input type="text" id="name" th:field="*{facilityName}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Nazwa klubu"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                               placeholder="Nazwa"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('facilityName')}" th:errors="*{facilityName}"></p>
                     </div>
 
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label" for="establishedDate">Data założenia</label>
-                            <input type="date" id="establishedDate" th:field="*{establishedDate}"
+                            <label class="form-label" for="openDate">Data otwarcia</label>
+                            <input type="date" id="openDate" th:field="*{openDate}"
                                    class="form-control"
                                    placeholder="Data założenia" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('establishedDate')}"
-                               th:errors="*{establishedDate}"></p>
+                            <p class="C(red)" th:if="${#fields.hasErrors('openDate')}"
+                               th:errors="*{openDate}"></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mb-4">
                     <div class="col">
-                        <label class="form-label" for="phoneNumber">Numer telefonu</label>
-                        <input type="number" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
+                        <label class="form-label" for="facilityType">Typ obiektu</label>
+                        <input type="text" id="facilityType" th:field="*{facilityType}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Numer telefonu"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                               placeholder="Typ obiektu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('facilityType')}" th:errors="*{facilityType}"></p>
                         </p>
                     </div>
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label" for="phoneNumber2">Dodatkowy numer telefonu</label>
-                            <input type="number" id="phoneNumber2" th:field="*{phoneNumber2}"
+                            <label class="form-label" for="coveredFacility">Czy obiekt jest zakryty</label>
+                            <input type="text" id="coveredFacility" th:field="*{coveredFacility}"
                                    class="form-control"
-                                   placeholder="Dodatkowy numer telefonu" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber2')}"
-                               th:errors="*{phoneNumber2}"></p>
+                                   placeholder="Czy obiekt jest zakryty" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('coveredFacility')}"
+                               th:errors="*{coveredFacility}"></p>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
 
-                    <div class="row mb-4">
-                        <div class="col">
-                            <label class="form-label" for="email">Email</label>
-                            <input type="email" id="email" th:field="*{email}"
-                                   class="form-control" placeholder="Email"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('email')}"
-                               th:errors="*{email}"></p>
-                        </div>
-
-                        <div class="col">
-                            <label class="form-label" for="email">Strona WWW</label>
-                            <input type="text" id="webPage" th:field="*{webPage}"
-                                   class="form-control" placeholder="Strona WWW"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('webPage')}"
-                               th:errors="*{webPage}"></p>
-                        </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Pojemność trybun</label>
+                        <input type="number" th:field="*{capacity}"
+                               class="form-control" placeholder="Pojemność trybun" th:errorclass="'Bdc(red)'"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('capacity')}"
+                           th:errors="*{capacity}"></p>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label for="addressNumber">Wybierz adres</label>
-                        <select th:field="*{addressNumber}" class="form-control" id="addressNumber">
+                        <label for="facilityAddress">Wybierz adres</label>
+                        <select th:field="*{facilityAddress}" class="form-control" id="facilityAddress">
                             <option value="0">Wybierz dostępny adres</option>
                             <option th:each="address : ${addresses.entrySet()}"
                                     th:value="${address.key}"
@@ -295,12 +285,12 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label for="addressNumber">Właściciel</label>
-                        <select th:field="*{ownerOfAthleticsClub}" class="form-control" id="ownerOfAthleticsClub">
+                        <label for="athleticsClubFacility">Wybierz klub</label>
+                        <select th:field="*{athleticsClubFacility}" class="form-control" id="athleticsClubFacility">
                             <option value="0">Wybierz właściciela</option>
-                            <option th:each="owner : ${owners.entrySet()}"
-                                    th:value="${owner.key}"
-                                    th:text="${owner.value}"></option>
+                            <option th:each="club : ${clubs.entrySet()}"
+                                    th:value="${club.key}"
+                                    th:text="${club.value}"></option>
                         </select>
                     </div>
 
@@ -316,73 +306,63 @@
         </div>
 
         <div th:if="${edit}">
-            <!--/*@thymesVar id="club" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel"*/-->
-            <form method="post" th:action="@{'/club/edit/' + ${club.number}}"  th:object="${club}">
+            <!--/*@thymesVar id="facility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityWriteModel"*/-->
+            <form method="post" th:action="@{'/facility/edit/' + ${facility.number}}" th:object="${facility}">
 
                 <div class="row mb-4">
                     <div class="col">
-                        <label class="form-label">Nazwa klubu</label>
-                        <input type="text" th:field="*{name}" class="form-control"
+                        <label class="form-label">Nazwa</label>
+                        <input type="text" th:field="*{facilityName}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Nazwa klubu"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                               placeholder="Nazwa"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('facilityName')}" th:errors="*{facilityName}"></p>
                     </div>
 
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label">Data założenia</label>
-                            <input type="date" th:field="*{establishedDate}"
+                            <label class="form-label">Data otwarcia</label>
+                            <input type="date" th:field="*{openDate}"
                                    class="form-control"
                                    placeholder="Data założenia" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('establishedDate')}"
-                               th:errors="*{establishedDate}"></p>
+                            <p class="C(red)" th:if="${#fields.hasErrors('openDate')}"
+                               th:errors="*{openDate}"></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mb-4">
                     <div class="col">
-                        <label class="form-label">Numer telefonu</label>
-                        <input type="number" th:field="*{phoneNumber}" class="form-control"
+                        <label class="form-label">Typ obiektu</label>
+                        <input type="text" th:field="*{facilityType}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Numer telefonu"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                               placeholder="Typ obiektu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('facilityType')}" th:errors="*{facilityType}"></p>
                         </p>
                     </div>
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label">Dodatkowy numer telefonu</label>
-                            <input type="number" th:field="*{phoneNumber2}"
+                            <label class="form-label">Czy obiekt jest zakryty</label>
+                            <input type="text" th:field="*{coveredFacility}"
                                    class="form-control"
-                                   placeholder="Dodatkowy numer telefonu" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber2')}"
-                               th:errors="*{phoneNumber2}"></p>
+                                   placeholder="Czy obiekt jest zakryty" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('coveredFacility')}"
+                               th:errors="*{coveredFacility}"></p>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
 
-                    <div class="row mb-4">
-                        <div class="col">
-                            <label class="form-label">Email</label>
-                            <input type="email" th:field="*{email}"
-                                   class="form-control" placeholder="Email"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('email')}"
-                               th:errors="*{email}"></p>
-                        </div>
-
-                        <div class="col">
-                            <label class="form-label" for="email">Strona WWW</label>
-                            <input type="text" th:field="*{webPage}"
-                                   class="form-control" placeholder="Strona WWW"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('webPage')}"
-                               th:errors="*{webPage}"></p>
-                        </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Pojemność trybun</label>
+                        <input type="number" th:field="*{capacity}"
+                               class="form-control" placeholder="Pojemność trybun" th:errorclass="'Bdc(red)'"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('capacity')}"
+                           th:errors="*{capacity}"></p>
                     </div>
 
                     <div class="form-outline mb-4">
                         <label>Wybierz adres</label>
-                        <select th:field="*{addressNumber}" class="form-control">
+                        <select th:field="*{facilityAddress}" class="form-control">
                             <option value="0">Wybierz dostępny adres</option>
                             <option th:each="address : ${addresses.entrySet()}"
                                     th:value="${address.key}"
@@ -391,14 +371,15 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Właściciel</label>
-                        <select th:field="*{ownerOfAthleticsClub}" class="form-control">
+                        <label>Wybierz klub</label>
+                        <select th:field="*{athleticsClubFacility}" class="form-control">
                             <option value="0">Wybierz właściciela</option>
-                            <option th:each="owner : ${owners.entrySet()}"
-                                    th:value="${owner.key}"
-                                    th:text="${owner.value}"></option>
+                            <option th:each="club : ${clubs.entrySet()}"
+                                    th:value="${club.key}"
+                                    th:text="${club.value}"></option>
                         </select>
                     </div>
+
 
                 </div>
 

@@ -49,7 +49,7 @@
 
     <fieldset style="margin-top: 30px">
         <legend>Dodaj sprzęt</legend>
-        <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipmentWriteModel"*/-->
+        <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.EquipmentWriteModel"*/-->
         <form method="post" th:action="@{/equipment/create}" th:object="${equipment}">
             <label>Data zakupu:
                 <input type="date" autofocus="autofocus" th:field="*{dateOfPurchase}" th:errorclass="'Bdc(red)'" placeholder="Data zakupu">
@@ -73,7 +73,7 @@
             </label>
 
             <label>Wybierz producenta:
-                <select th:field="*{equipmentProducer}" class="form-control" id="dropDownList1">
+                <select th:field="*{producer}" class="form-control" id="dropDownList1">
                     <option value="0">Wybierz dostępnego producenta</option>
                     <option th:each="producer : ${producers.entrySet()}" th:value="${producer.key}"
                             th:text="${producer.value}"></option>

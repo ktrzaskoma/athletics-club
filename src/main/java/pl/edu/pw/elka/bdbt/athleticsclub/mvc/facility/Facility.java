@@ -1,17 +1,16 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.Equipment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "Obiekty_sportowe")
-public class SportFacility {
+public class Facility {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "nr_obiektu")
@@ -46,14 +45,14 @@ public class SportFacility {
     private Address facilityAddressNumber;
 
     @OneToMany(mappedBy = "equipmentStorage")
-    private Set<SportEquipment> sportEquipment;
+    private Set<Equipment> equipment;
 
-    private Set<SportEquipment> getSportEquipment() {
-        return sportEquipment;
+    private Set<Equipment> getSportEquipment() {
+        return equipment;
     }
 
-    private void setSportEquipment(Set<SportEquipment> sportEquipment) {
-        this.sportEquipment = sportEquipment;
+    private void setSportEquipment(Set<Equipment> equipment) {
+        this.equipment = equipment;
     }
 
     public AthleticsClub getAthleticsClubFacility() {

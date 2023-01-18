@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class WorkerReadModel {
 
-    String number;
+    Integer number;
     String name;
     String surname;
     LocalDate birthday;
@@ -28,7 +28,7 @@ public class WorkerReadModel {
 
     public static WorkerReadModel toReadModel(final Worker entity) {
         return new WorkerReadModel(
-                entity.getNumber().toString(),
+                entity.getNumber(),
                 entity.getName(),
                 entity.getSurname(),
                 entity.getDateOfBirth(),

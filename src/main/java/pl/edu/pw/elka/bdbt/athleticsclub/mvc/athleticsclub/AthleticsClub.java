@@ -2,14 +2,13 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.Owner;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.Equipment;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -51,10 +50,10 @@ public class AthleticsClub {
     private Owner ownerOfAthleticsClub;
 
     @OneToMany(mappedBy = "athleticsClubFacility")
-    private Set<SportFacility> sportFacilities;
+    private Set<Facility> sportFacilities;
 
     @OneToMany(mappedBy = "athleticsClubEquipment")
-    private Set<SportEquipment> sportEquipments;
+    private Set<Equipment> equipment;
 
     @OneToMany(mappedBy = "athleticsClubTraining")
     private Set<Training> trainings;
@@ -135,20 +134,20 @@ public class AthleticsClub {
         this.ownerOfAthleticsClub = ownerOfAthleticsClub;
     }
 
-    private Set<SportFacility> getSportFacilities() {
+    private Set<Facility> getSportFacilities() {
         return sportFacilities;
     }
 
-    private void setSportFacilities(Set<SportFacility> sportFacilities) {
+    private void setSportFacilities(Set<Facility> sportFacilities) {
         this.sportFacilities = sportFacilities;
     }
 
-    private Set<SportEquipment> getSportEquipments() {
-        return sportEquipments;
+    private Set<Equipment> getSportEquipments() {
+        return equipment;
     }
 
-    private void setSportEquipments(Set<SportEquipment> sportEquipments) {
-        this.sportEquipments = sportEquipments;
+    private void setSportEquipments(Set<Equipment> equipment) {
+        this.equipment = equipment;
     }
 
     private Set<Training> getTrainings() {

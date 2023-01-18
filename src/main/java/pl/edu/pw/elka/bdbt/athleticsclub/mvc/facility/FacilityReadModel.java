@@ -1,17 +1,15 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class SportFacilityReadModel {
+public class FacilityReadModel {
 
     Integer number;
     String facilityName;
@@ -21,15 +19,14 @@ public class SportFacilityReadModel {
     Integer capacity;
 
 
-    public static SportFacilityReadModel toReadModel(final SportFacility entity){
-        return new SportFacilityReadModel(
+    public static FacilityReadModel toReadModel(final Facility entity) {
+        return new FacilityReadModel(
                 entity.getFacilityNumber(),
                 entity.getFacilityName(),
                 entity.getOpenDate(),
                 entity.getFacilityType(),
                 entity.getCoveredFacility(),
                 entity.getCapacityOfStands());
-
     }
 
     @Override

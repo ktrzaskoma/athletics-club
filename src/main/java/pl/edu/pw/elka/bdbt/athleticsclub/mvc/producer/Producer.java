@@ -1,16 +1,14 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer;
 
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.Equipment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Year;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "Producenci_sprzetu")
-public class EquipmentProducer {
+public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "nr_producenta")
@@ -31,15 +29,15 @@ public class EquipmentProducer {
     @Column(name = "przeznaczenie_dyscyplinowe")
     private String destiny;
 
-    @OneToMany(mappedBy = "equipmentProducer")
-    private Set<SportEquipment> sportEquipment;
+    @OneToMany(mappedBy = "producer")
+    private Set<Equipment> equipment;
 
-    public Set<SportEquipment> getSportEquipment() {
-        return sportEquipment;
+    public Set<Equipment> getSportEquipment() {
+        return equipment;
     }
 
-    public void setSportEquipment(Set<SportEquipment> sportEquipment) {
-        this.sportEquipment = sportEquipment;
+    public void setSportEquipment(Set<Equipment> equipment) {
+        this.equipment = equipment;
     }
 
     public Integer getProducerNumber() {

@@ -2,12 +2,11 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer.EquipmentProducer;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "Sprzet_sportowy")
@@ -43,7 +42,7 @@ public class SportEquipment {
 
     @ManyToOne
     @JoinColumn(name = "nr_obiektu")
-    private SportFacility equipmentStorage;
+    private Facility equipmentStorage;
 
     @ManyToOne
     @JoinColumn(name = "nr_producenta")
@@ -58,11 +57,11 @@ public class SportEquipment {
         this.athleticsClubEquipment = athleticsClubEquipment;
     }
 
-    public SportFacility getEquipmentStorage() {
+    public Facility getEquipmentStorage() {
         return equipmentStorage;
     }
 
-    public void setEquipmentStorage(SportFacility equipmentStorage) {
+    public void setEquipmentStorage(Facility equipmentStorage) {
         this.equipmentStorage = equipmentStorage;
     }
 

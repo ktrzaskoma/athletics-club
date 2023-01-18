@@ -2,7 +2,7 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.address;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.Owner;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
 import javax.persistence.*;
@@ -50,7 +50,7 @@ public class Address {
 
 //    mapping column to sport facilities
     @OneToOne(mappedBy = "facilityAddressNumber")
-    private SportFacility sportFacility;
+    private Facility facility;
 
 //    mapping column to workers
     @OneToOne(mappedBy = "workerAddressNumber")

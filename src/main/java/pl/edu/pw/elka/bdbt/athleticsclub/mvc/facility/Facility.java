@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
@@ -6,12 +6,11 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "Obiekty_sportowe")
-public class SportFacility {
+public class Facility {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "nr_obiektu")

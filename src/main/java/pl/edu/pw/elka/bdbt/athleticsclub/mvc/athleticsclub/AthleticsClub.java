@@ -3,13 +3,12 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.Owner;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -51,7 +50,7 @@ public class AthleticsClub {
     private Owner ownerOfAthleticsClub;
 
     @OneToMany(mappedBy = "athleticsClubFacility")
-    private Set<SportFacility> sportFacilities;
+    private Set<Facility> sportFacilities;
 
     @OneToMany(mappedBy = "athleticsClubEquipment")
     private Set<SportEquipment> sportEquipments;
@@ -135,11 +134,11 @@ public class AthleticsClub {
         this.ownerOfAthleticsClub = ownerOfAthleticsClub;
     }
 
-    private Set<SportFacility> getSportFacilities() {
+    private Set<Facility> getSportFacilities() {
         return sportFacilities;
     }
 
-    private void setSportFacilities(Set<SportFacility> sportFacilities) {
+    private void setSportFacilities(Set<Facility> sportFacilities) {
         this.sportFacilities = sportFacilities;
     }
 

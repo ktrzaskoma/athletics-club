@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +11,13 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class SportFacilityWriteModel {
+public class FacilityWriteModel {
 
     @NotBlank(message = "Pole nazwa nie może być puste!")
     String facilityName;
@@ -28,19 +29,23 @@ public class SportFacilityWriteModel {
     @NotNull(message = "Pole Czy obiekt jest zakryty nie może być puste!")
     Boolean coveredFacility;
     @NotNull(message = "Pole Pojemność trybun nie może być puste!")
-    Integer capacity;
+    String capacity;
     Integer athleticsClubFacility;
     Integer facilityAddress;
+    Integer number;
 
-    public static SportFacility toEntity(final SportFacilityWriteModel writeModel, final AthleticsClub club, final Address address) {
-        var entity = new SportFacility();
+    public static Facility toEntity(final FacilityWriteModel writeModel, final AthleticsClub club, final Address address) {
+        var entity = new Facility();
         entity.setFacilityName(writeModel.getFacilityName());
         entity.setOpenDate(writeModel.getOpenDate());
         entity.setFacilityType(writeModel.getFacilityType());
         entity.setCoveredFacility(writeModel.getCoveredFacility());
-        entity.setCapacityOfStands(writeModel.getCapacity());
+        entity.setCapacityOfStands(Integer.valueOf(writeModel.getCapacity()));
         entity.setAthleticsClubFacility(club);
         entity.setFacilityAddressNumber(address);
+        if(Objects.nonNull(writeModel.getNumber())){
+            entity.setFacilityNumber(writeModel.getNumber());
+        }
         return entity;
     }
 

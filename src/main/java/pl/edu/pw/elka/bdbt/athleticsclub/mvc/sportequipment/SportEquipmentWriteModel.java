@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer.EquipmentProducer;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportfacility.SportFacility;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -36,7 +36,7 @@ public class SportEquipmentWriteModel {
     Integer equipmentProducer;
 
     public static SportEquipment toEntity(final SportEquipmentWriteModel writeModel, final AthleticsClub club,
-                                          final SportFacility sportFacility, final EquipmentProducer equipmentProducer) {
+                                          final Facility facility, final EquipmentProducer equipmentProducer) {
         var entity = new SportEquipment();
         entity.setDateOfPurchase(writeModel.getDateOfPurchase());
         entity.setCondition(writeModel.getCondition());
@@ -45,7 +45,7 @@ public class SportEquipmentWriteModel {
         entity.setInUse(writeModel.getInUse());
         entity.setAthleticsClubEquipment(club);
         entity.setEquipmentProducer(equipmentProducer);
-        entity.setEquipmentStorage(sportFacility);
+        entity.setEquipmentStorage(facility);
         return entity;
     }
 }

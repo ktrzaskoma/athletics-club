@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer.EquipmentProducerReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer.EquipmentProducerRepository;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer.ProducerReadModel;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer.ProducerRepository;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityRepository;
 
@@ -22,16 +22,16 @@ import java.util.stream.Collectors;
 public class SportEquipmentController {
 
     private final SportEquipmentRepository sportEquipmentRepository;
-    private final EquipmentProducerRepository equipmentProducerRepository;
+    private final ProducerRepository producerRepository;
     private final AthleticsClubRepository athleticsClubRepository;
     private final FacilityRepository facilityRepository;
 
     public SportEquipmentController(SportEquipmentRepository sportEquipmentRepository,
-                                    EquipmentProducerRepository equipmentProducerRepository,
+                                    ProducerRepository producerRepository,
                                     AthleticsClubRepository athleticsClubRepository,
                                     FacilityRepository facilityRepository) {
         this.sportEquipmentRepository = sportEquipmentRepository;
-        this.equipmentProducerRepository = equipmentProducerRepository;
+        this.producerRepository = producerRepository;
         this.athleticsClubRepository = athleticsClubRepository;
         this.facilityRepository = facilityRepository;
     }
@@ -58,7 +58,7 @@ public class SportEquipmentController {
         }
         var club = athleticsClubRepository.getById(writeModel.getAthleticsClubEquipment());
         var facility = facilityRepository.getById(writeModel.getEquipmentStorage());
-        var producer = equipmentProducerRepository.getById(writeModel.getEquipmentProducer());
+        var producer = producerRepository.getById(writeModel.getEquipmentProducer());
         sportEquipmentRepository.save(SportEquipmentWriteModel.toEntity(writeModel, club, facility, producer));
         return "redirect:/equipment";
     }
@@ -70,9 +70,9 @@ public class SportEquipmentController {
         return "/equipment";
     }
     private Model prepareEntryModel(Model model) {
-        var producers = equipmentProducerRepository.findAll()
-                .stream().map(EquipmentProducerReadModel::toReadModel)
-                .collect(Collectors.toMap(EquipmentProducerReadModel::getNumber, EquipmentProducerReadModel::toString));
+        var producers = producerRepository.findAll()
+                .stream().map(ProducerReadModel::toReadModel)
+                .collect(Collectors.toMap(ProducerReadModel::getNumber, ProducerReadModel::toString));
 
         var clubs = athleticsClubRepository.findAll()
                 .stream().map(AthleticsClubReadModel::toReadModel)

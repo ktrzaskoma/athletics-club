@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,15 +9,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.Year;
 import java.util.Collections;
-import java.util.Date;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class EquipmentProducerWriteModel {
+public class ProducerWriteModel {
 
     @NotBlank(message = "Pole Marka nie może być puste!")
     String brand;
@@ -27,15 +26,17 @@ public class EquipmentProducerWriteModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate productionYear;
     String destiny;
+    Integer number;
 
-    public static EquipmentProducer toEntity(final EquipmentProducerWriteModel writeModel) {
-        var entity = new EquipmentProducer();
+    public static Producer toEntity(final ProducerWriteModel writeModel) {
+        var entity = new Producer();
         entity.setBrand(writeModel.getBrand());
         entity.setModel(writeModel.getModel());
         entity.setProductionYear(writeModel.getProductionYear());
         entity.setDestiny(writeModel.getDestiny());
-        //to do refaktoru, bo tu trzeba podać listę
-        entity.setSportEquipment(Collections.emptySet());
+        if (Objects.nonNull(writeModel.getNumber())) {
+            entity.setProducerNumber(writeModel.getNumber());
+        }
         return entity;
     }
 }

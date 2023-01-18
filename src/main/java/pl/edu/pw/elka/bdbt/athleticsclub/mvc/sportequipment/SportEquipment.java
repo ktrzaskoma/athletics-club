@@ -1,7 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer.EquipmentProducer;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer.Producer;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 
 import javax.persistence.*;
@@ -46,7 +46,7 @@ public class SportEquipment {
 
     @ManyToOne
     @JoinColumn(name = "nr_producenta")
-    private EquipmentProducer equipmentProducer;
+    private Producer producer;
 
 
     public AthleticsClub getAthleticsClubEquipment() {
@@ -65,12 +65,12 @@ public class SportEquipment {
         this.equipmentStorage = equipmentStorage;
     }
 
-    public EquipmentProducer getEquipmentProducer() {
-        return equipmentProducer;
+    public Producer getEquipmentProducer() {
+        return producer;
     }
 
-    public void setEquipmentProducer(EquipmentProducer equipmentProducer) {
-        this.equipmentProducer = equipmentProducer;
+    public void setEquipmentProducer(Producer producer) {
+        this.producer = producer;
     }
 
     public Integer getSportEquipmentNumber() {

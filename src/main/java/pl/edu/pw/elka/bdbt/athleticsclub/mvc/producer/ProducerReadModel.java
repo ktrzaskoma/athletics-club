@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipmentproducer;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,31 +7,26 @@ import lombok.Setter;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
 
 import java.time.LocalDate;
-import java.time.Year;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class EquipmentProducerReadModel {
+public class ProducerReadModel {
 
     Integer number;
     String brand;
     String model;
     LocalDate productionYear;
     String destiny;
-    // TODO: CHECK THIS!
-    String sportEquipment;
 
-    public static EquipmentProducerReadModel toReadModel(final EquipmentProducer entity) {
-        return new EquipmentProducerReadModel(
+    public static ProducerReadModel toReadModel(final Producer entity) {
+        return new ProducerReadModel(
                 entity.getProducerNumber(),
                 entity.getBrand(),
                 entity.getModel(),
                 entity.getProductionYear(),
-                entity.getDestiny(),
-                entity.getSportEquipment().stream().map(SportEquipment::getSportEquipmentNumber).toList().toString()
+                entity.getDestiny()
         );
     }
 

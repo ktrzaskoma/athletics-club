@@ -73,7 +73,7 @@
             </label>
 
             <label>Wybierz producenta:
-                <select th:field="*{equipmentProducer}" class="form-control" id="dropDownList1">
+                <select th:field="*{producer}" class="form-control" id="dropDownList1">
                     <option value="0">Wybierz dostępnego producenta</option>
                     <option th:each="producer : ${producers.entrySet()}" th:value="${producer.key}"
                             th:text="${producer.value}"></option>

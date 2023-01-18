@@ -1,39 +1,28 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.training;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubRepository;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerRepository;
 
 import javax.validation.Valid;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/training")
+@Log4j2
 public class TrainingController {
 
-    private final TrainingRepository trainingRepository;
-    private final AthleticsClubRepository athleticsClubRepository;
-    private final WorkerRepository workerRepository;
+    private final TrainingService trainingService;
 
-    public TrainingController(TrainingRepository trainingRepository, AthleticsClubRepository athleticsClubRepository, WorkerRepository workerRepository) {
-        this.trainingRepository = trainingRepository;
-        this.athleticsClubRepository = athleticsClubRepository;
-        this.workerRepository = workerRepository;
+    public TrainingController(TrainingService trainingService) {
+        this.trainingService = trainingService;
     }
-
 
     // Training sign up area
     @GetMapping("signup")
     String signUpForTraining(Model model) {
-        var trainings = trainingRepository.findAll()
-                .stream().map(
-                        TrainingReadModel::toReadModel
-                ).toList();
+        var trainings = trainingService.getTrainings();
         model.addAttribute("trainings", trainings);
         model.addAttribute("training", new TrainingWriteModel());
         prepareEntryModel(model);
@@ -41,56 +30,73 @@ public class TrainingController {
     }
 
     @PostMapping("signup/{idTraining}")
-    String saveTraining(@RequestParam("idAthlete") String idAthlete, @PathVariable String idTraining) {
-        var athlete = workerRepository.getById(Integer.valueOf(idAthlete));
-        var training = trainingRepository.getById(Integer.valueOf(idTraining));
-        var athletes = training.getWorkers();
-        athletes.add(athlete);
-        training.setWorkers(athletes);
-        trainingRepository.save(training);
+    String addAtheleteToTraining(@RequestParam("idAthlete") String idAthlete, @PathVariable String idTraining) {
+        trainingService.addAthleteToTraining(idAthlete, idTraining);
         return "redirect:/training/signup";
     }
 
     @GetMapping("getAll")
     String getAll(Model model) {
-        var trainings = trainingRepository.findAll()
-                .stream().map(
-                        TrainingReadModel::toReadModel
-                ).toList();
+        var trainings = trainingService.getTrainings();
         model.addAttribute("trainings", trainings);
-        model.addAttribute("training", new TrainingWriteModel());
-        prepareEntryModel(model);
-        return "/training";
+        return "/prodTraining";
     }
 
     @PostMapping("create")
-    String createTraining(@ModelAttribute("training") @Valid TrainingWriteModel trainingWriteModel,
+    String createTraining(@ModelAttribute("training") @Valid TrainingWriteModel writeModel,
                           BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             prepareEntryModel(model);
-            return "/training";
+            model.addAttribute("edit", false);
+            return "/prodTrainingCreate";
         }
-        var club = athleticsClubRepository.getById(trainingWriteModel.getAthleticsClub());
-        trainingRepository.save(TrainingWriteModel.toEntity(trainingWriteModel, club));
-        return "redirect:/training";
+        trainingService.saveTraining(writeModel);
+        return "redirect:/training/getAll";
     }
 
     @GetMapping
     String viewPage(Model model) {
         prepareEntryModel(model);
         model.addAttribute("training", new TrainingWriteModel());
-        return "/training";
+        model.addAttribute("edit", false);
+        return "/prodTrainingCreate";
+    }
+
+    @PostMapping("/edit/{idTraining}")
+    String editAddress(@ModelAttribute("training") @Valid TrainingWriteModel writeModel,
+                       BindingResult bindingResult,
+                       @PathVariable("idTraining") String idTraining,
+                       Model model) {
+        if (bindingResult.hasErrors()) {
+            log.warn("Errors founds, try to show them in view!");
+            model.addAttribute("edit", true);
+            return "/prodTrainingCreate";
+        }
+        writeModel.setNumber(Integer.valueOf(idTraining));
+        trainingService.modifyTraining(writeModel);
+        return "redirect:/training/getAll";
+    }
+
+    @GetMapping("/delete/{idTraining}")
+    String deleteTraining(@PathVariable("idTraining") String idTraining) {
+        log.info("Try to delete entry!");
+        trainingService.deleteTraining(idTraining);
+        return "redirect:/training/getAll";
+    }
+
+    @GetMapping("/edit/{idTraining}")
+    String getTrainingToEdit(@PathVariable("idTraining") String idTraining, Model model) {
+        log.info("Try to edit entry!");
+        var editEntry = trainingService.editTraining(idTraining);
+        model.addAttribute("training", editEntry);
+        prepareEntryModel(model);
+        model.addAttribute("edit", true);
+        return "/prodTrainingCreate";
     }
 
     private Model prepareEntryModel(Model model) {
-        var clubs = athleticsClubRepository.findAll().stream().map(
-                AthleticsClubReadModel::toReadModel
-        ).collect(Collectors.toMap(AthleticsClubReadModel::getNumber, AthleticsClubReadModel::toString));
-
-        var workers = workerRepository.findAll().stream().map(
-                WorkerReadModel::toReadModel
-        ).collect(Collectors.toMap(WorkerReadModel::getNumber, WorkerReadModel::toString));
-
+        var clubs = trainingService.getFormattedClubs();
+        var workers = trainingService.getFormattedWorkers();
         model.addAttribute("clubs", clubs);
         model.addAttribute("workers", workers);
         return model;

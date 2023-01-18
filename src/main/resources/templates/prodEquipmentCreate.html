@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie nowego sprzętu sportowego</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+
+</head>
+<head>
+    <style>
+
+        .Bd {
+            border: solid 1px black;
+        }
+
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+
+        .C\(red\) {
+            color: #ff0000;
+        }
+
+        .P\(0\) {
+            padding: 0;
+        }
+
+        .P\(10px\) {
+            padding: 10px;
+        }
+
+        main {
+            background-color: black;
+        }
+
+        .navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar-nav .open .dropdown-menu .navbar navbar-expand-lg navbar {
+            background-color: #000000;
+            color: #5a8c7d;
+
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; /* remove the gap so it doesn't close */
+
+
+        }
+
+        .col-2 {
+            width: 10%;
+        }
+
+        .dropdown-menu {
+            width: fit-content;
+        }
+
+        .dropdown-item {
+            padding-left: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body style="background-color: tan">
+
+<header style="background-color:#000000 ">
+    <div class="row" style="margin-left: 5%; margin-right: 5%; justify-content: center">
+        <div class="col-1" style="color:whitesmoke; text-align: right; font-size: larger; margin-top: 5px"></div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar"
+                 style="color: whitesmoke; align-items: center; text-align: right">
+                <div class="collapse navbar-collapse" style="align-items: center">
+                    <ul class="navbar-nav">
+                        <a class="btn btn" aria-expanded="false" th:href="@{/}"
+                           style="align-items: center; color: whitesmoke">Home</a>
+                    </ul>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/club/getAll}" style="color: whitesmoke">
+                                Klub
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/club/getAll}">Kluby</a>
+                                <a class="dropdown-item" th:href="@{/owner/getAll}">Właściciele</a>
+                                <a class="dropdown-item" th:href="@{/address/getAll}">Adresy</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/training}" style="color: whitesmoke">
+                                Treningi
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/training}">Dodaj trening</a>
+                                <a class="dropdown-item" th:href="@{/training/signup}">Zapisz się!</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" ;
+                                    th:href="@{/facility}" style="color: whitesmoke">
+                                Obiekty
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/facility/getAll}">Obiekty sportowe</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/worker}" style="color: whitesmoke">
+                                Pracownicy
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/worker/getAll}">Pracownicy</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <nav class="navbar navbar-expand-lg navbar" style="color: whitesmoke; align-items: center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <button class="btn btn- dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                                    th:href="@{/equipment/getAll}" style="color: whitesmoke">
+                                Sprzęt
+                            </button>
+                            <ul class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/equipment/getAll}">Sprzęt</a>
+                                <a class="dropdown-item" th:href="@{/producer/getAll}">Producenci sprzętu</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-2">
+            <div sec:authorize="isAnonymous()">
+                <div id="form1">
+                    <div class="container">
+                        <a class="btn text-white" style="background-color: #6a7d8e; width: 130px; margin-top: 8px"
+                           th:href="@{/login}" role="button">
+                            Zaloguj się
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <div id="form2">
+                    <div class="container">
+                        <a class="btn text-white" style="background-color: #6a7d8e; width: 130px; margin-top: 8px"
+                           th:href="@{/logout}" role="button">
+                            Wyloguj się
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div sec:authorize="isAuthenticated()">
+                <div id="form3">
+                    <div class="container">
+                        <a class="btn" style="color: lightgray; width: 270px; margin-top: 8px">
+                            <span sec:authorize="hasRole('ADMIN')">Administrator</span>
+                            <span sec:authorize="hasRole('TRAINER')">Trener</span>
+                            <span sec:authorize="hasRole('ATHLETE')">Zawodnik</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--tutaj są formsy-->
+
+<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 10px">
+
+    <fieldset style="margin-top: 50px">
+
+        <div th:if="${!edit}">
+            <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.EquipmentWriteModel"*/-->
+            <form method="post" th:action="@{/equipment/create}" th:object="${equipment}">
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label">Data zakupu</label>
+                        <input type="date" th:field="*{dateOfPurchase}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Data zakupu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('dateOfPurchase')}"
+                           th:errors="*{dateOfPurchase}"></p>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Ilość sprzętu</label>
+                            <input type="number" th:field="*{numberOfEquipment}"
+                                   class="form-control"
+                                   placeholder="Ilość sprzętu" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('numberOfEquipment')}"
+                               th:errors="*{numberOfEquipment}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label">Wartość sprzętu</label>
+                        <input type="number" th:field="*{valueOfEquipment}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Wartość sprzętu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('valueOfEquipment')}"
+                           th:errors="*{valueOfEquipment}"></p>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Stan</label>
+                            <input type="text" th:field="*{condition}"
+                                   class="form-control"
+                                   placeholder="Stan" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('condition')}"
+                               th:errors="*{condition}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label">W użyciu</label>
+                            <input type="text" th:field="*{inUse}"
+                                   class="form-control" placeholder="W użyciu"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('inUse')}"
+                               th:errors="*{inUse}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Wybierz producenta</label>
+                        <select th:field="*{equipmentProducer}" class="form-control">
+                            <option value="0">Wybierz dostępny producenta</option>
+                            <option th:each="producer : ${producers.entrySet()}"
+                                    th:value="${producer.key}"
+                                    th:text="${producer.value}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Wybierz klub</label>
+                        <select th:field="*{athleticsClubEquipment}" class="form-control">
+                            <option value="0">Wybierz dostępny klub</option>
+                            <option th:each="club : ${clubs.entrySet()}"
+                                    th:value="${club.key}"
+                                    th:text="${club.value}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Wybierz obiekt</label>
+                        <select th:field="*{equipmentStorage}" class="form-control">
+                            <option value="0">Wybierz dostępny obiekt</option>
+                            <option th:each="facility : ${facilities.entrySet()}"
+                                    th:value="${facility.key}"
+                                    th:text="${facility.value}"></option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <div class="align-content-center">
+                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
+                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
+                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
+                </div>
+            </form>
+        </div>
+
+        <div th:if="${edit}">
+            <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.EquipmentWriteModel"*/-->
+            <form method="post" th:action="@{'/equipment/edit/' + ${equipment.number}}" th:object="${equipment}">
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label">Data zakupu</label>
+                        <input type="date" th:field="*{dateOfPurchase}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Data zakupu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('dateOfPurchase')}"
+                           th:errors="*{dateOfPurchase}"></p>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Ilość sprzętu</label>
+                            <input type="number" th:field="*{numberOfEquipment}"
+                                   class="form-control"
+                                   placeholder="Ilość sprzętu" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('numberOfEquipment')}"
+                               th:errors="*{numberOfEquipment}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label">Wartość sprzętu</label>
+                        <input type="number" th:field="*{valueOfEquipment}" class="form-control"
+                               th:errorclass="'Bdc(red)'"
+                               placeholder="Wartość sprzętu"/>
+                        <p class="C(red)" th:if="${#fields.hasErrors('valueOfEquipment')}"
+                           th:errors="*{valueOfEquipment}"></p>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Stan</label>
+                            <input type="text" th:field="*{condition}"
+                                   class="form-control"
+                                   placeholder="Stan" th:errorclass="'Bdc(red)'"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('condition')}"
+                               th:errors="*{condition}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label">W użyciu</label>
+                            <input type="text" th:field="*{inUse}"
+                                   class="form-control" placeholder="W użyciu"/>
+                            <p class="C(red)" th:if="${#fields.hasErrors('inUse')}"
+                               th:errors="*{inUse}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Wybierz producenta</label>
+                        <select th:field="*{equipmentProducer}" class="form-control">
+                            <option value="0">Wybierz dostępny producenta</option>
+                            <option th:each="producer : ${producers.entrySet()}"
+                                    th:value="${producer.key}"
+                                    th:text="${producer.value}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Wybierz klub</label>
+                        <select th:field="*{athleticsClubEquipment}" class="form-control">
+                            <option value="0">Wybierz dostępny klub</option>
+                            <option th:each="club : ${clubs.entrySet()}"
+                                    th:value="${club.key}"
+                                    th:text="${club.value}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label>Wybierz obiekt</label>
+                        <select th:field="*{equipmentStorage}" class="form-control">
+                            <option value="0">Wybierz dostępny obiekt</option>
+                            <option th:each="facility : ${facilities.entrySet()}"
+                                    th:value="${facility.key}"
+                                    th:text="${facility.value}"></option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <div class="align-content-center">
+                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
+                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
+                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+</div>
+</body>
+
+</html>

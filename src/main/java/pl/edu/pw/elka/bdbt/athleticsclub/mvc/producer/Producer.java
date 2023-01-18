@@ -1,6 +1,6 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer;
 
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.Equipment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -30,14 +30,14 @@ public class Producer {
     private String destiny;
 
     @OneToMany(mappedBy = "producer")
-    private Set<SportEquipment> sportEquipment;
+    private Set<Equipment> equipment;
 
-    public Set<SportEquipment> getSportEquipment() {
-        return sportEquipment;
+    public Set<Equipment> getSportEquipment() {
+        return equipment;
     }
 
-    public void setSportEquipment(Set<SportEquipment> sportEquipment) {
-        this.sportEquipment = sportEquipment;
+    public void setSportEquipment(Set<Equipment> equipment) {
+        this.equipment = equipment;
     }
 
     public Integer getProducerNumber() {

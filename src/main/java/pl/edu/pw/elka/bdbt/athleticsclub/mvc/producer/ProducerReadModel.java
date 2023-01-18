@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
 
 import java.time.LocalDate;
 

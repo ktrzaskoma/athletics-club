@@ -2,7 +2,7 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.Equipment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -45,14 +45,14 @@ public class Facility {
     private Address facilityAddressNumber;
 
     @OneToMany(mappedBy = "equipmentStorage")
-    private Set<SportEquipment> sportEquipment;
+    private Set<Equipment> equipment;
 
-    private Set<SportEquipment> getSportEquipment() {
-        return sportEquipment;
+    private Set<Equipment> getSportEquipment() {
+        return equipment;
     }
 
-    private void setSportEquipment(Set<SportEquipment> sportEquipment) {
-        this.sportEquipment = sportEquipment;
+    private void setSportEquipment(Set<Equipment> equipment) {
+        this.equipment = equipment;
     }
 
     public AthleticsClub getAthleticsClubFacility() {

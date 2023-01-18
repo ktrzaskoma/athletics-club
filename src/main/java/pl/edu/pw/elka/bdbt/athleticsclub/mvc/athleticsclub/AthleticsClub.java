@@ -2,7 +2,7 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.Owner;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment.SportEquipment;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.Equipment;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.Training;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
@@ -53,7 +53,7 @@ public class AthleticsClub {
     private Set<Facility> sportFacilities;
 
     @OneToMany(mappedBy = "athleticsClubEquipment")
-    private Set<SportEquipment> sportEquipments;
+    private Set<Equipment> equipment;
 
     @OneToMany(mappedBy = "athleticsClubTraining")
     private Set<Training> trainings;
@@ -142,12 +142,12 @@ public class AthleticsClub {
         this.sportFacilities = sportFacilities;
     }
 
-    private Set<SportEquipment> getSportEquipments() {
-        return sportEquipments;
+    private Set<Equipment> getSportEquipments() {
+        return equipment;
     }
 
-    private void setSportEquipments(Set<SportEquipment> sportEquipments) {
-        this.sportEquipments = sportEquipments;
+    private void setSportEquipments(Set<Equipment> equipment) {
+        this.equipment = equipment;
     }
 
     private Set<Training> getTrainings() {

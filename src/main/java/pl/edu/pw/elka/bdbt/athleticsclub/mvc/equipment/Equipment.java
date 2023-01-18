@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment;
 
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer.Producer;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Sprzet_sportowy")
-public class SportEquipment {
+public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "nr_sprzetu")

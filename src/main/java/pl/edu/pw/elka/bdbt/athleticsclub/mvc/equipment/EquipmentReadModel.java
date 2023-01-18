@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
-public class SportEquipmentReadModel {
+public class EquipmentReadModel {
 
     Integer number;
     LocalDate dateOfPurchase;
@@ -19,8 +19,8 @@ public class SportEquipmentReadModel {
     String condition;
     Boolean inUse;
 
-    public static SportEquipmentReadModel toReadModel(final SportEquipment entity) {
-        return new SportEquipmentReadModel(
+    public static EquipmentReadModel toReadModel(final Equipment entity) {
+        return new EquipmentReadModel(
                 entity.getSportEquipmentNumber(),
                 entity.getDateOfPurchase(),
                 entity.getNumberOfEquipment(),

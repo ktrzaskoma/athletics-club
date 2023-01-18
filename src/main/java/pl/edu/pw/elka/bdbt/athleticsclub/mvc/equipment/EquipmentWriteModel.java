@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportequipment;
+package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,12 +13,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class SportEquipmentWriteModel {
+public class EquipmentWriteModel {
 
     @NotNull(message = "Pole Data zakupu nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -34,10 +35,11 @@ public class SportEquipmentWriteModel {
     Integer athleticsClubEquipment;
     Integer equipmentStorage;
     Integer equipmentProducer;
+    Integer number;
 
-    public static SportEquipment toEntity(final SportEquipmentWriteModel writeModel, final AthleticsClub club,
-                                          final Facility facility, final Producer producer) {
-        var entity = new SportEquipment();
+    public static Equipment toEntity(final EquipmentWriteModel writeModel, final AthleticsClub club,
+                                     final Facility facility, final Producer producer) {
+        var entity = new Equipment();
         entity.setDateOfPurchase(writeModel.getDateOfPurchase());
         entity.setCondition(writeModel.getCondition());
         entity.setNumberOfEquipment(writeModel.getNumberOfEquipment());
@@ -46,6 +48,9 @@ public class SportEquipmentWriteModel {
         entity.setAthleticsClubEquipment(club);
         entity.setEquipmentProducer(producer);
         entity.setEquipmentStorage(facility);
+        if (Objects.nonNull(writeModel.getNumber())) {
+            entity.setNumberOfEquipment(writeModel.getNumber());
+        }
         return entity;
     }
 }

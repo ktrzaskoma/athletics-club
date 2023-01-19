@@ -257,11 +257,14 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Przeznaczenie</label>
-                            <input type="text" th:field="*{destiny}"
-                                   class="form-control"
-                                   placeholder="Przeznaczenie" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('destiny')}"
-                               th:errors="*{destiny}"></p>
+                            <select th:field="*{destiny}" class="form-control">
+                                <option value="Trening siłowy">Trening siłowy</option>
+                                <option value="Trening kondycyjny">Trening kondycyjny</option>
+                                <option value="Trening aerobowy">Trening aerobowy</option>
+                                <option value="Pływanie">Pływanie</option>
+                                <option value="Gimnastyka">Gimnastyka</option>
+                                <option value="Narciarstwo">Narciarstwo</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -308,21 +311,24 @@
                            th:errors="*{productionYear}"></p>
                         </p>
                     </div>
+
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Przeznaczenie</label>
-                            <input type="text" th:field="*{destiny}"
-                                   class="form-control"
-                                   placeholder="Przeznaczenie" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('destiny')}"
-                               th:errors="*{destiny}"></p>
+                            <select th:field="*{destiny}" class="form-control">
+                                <option value="Trening siłowy">Trening siłowy</option>
+                                <option value="Trening kondycyjny">Trening kondycyjny</option>
+                                <option value="Trening aerobowy">Trening aerobowy</option>
+                                <option value="Pływanie">Pływanie</option>
+                                <option value="Gimnastyka">Gimnastyka</option>
+                                <option value="Narciarstwo">Narciarstwo</option>
+                            </select>
                         </div>
                     </div>
+
                 </div>
                 <div class="align-content-center">
                     <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
-                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
                 </div>
             </form>
         </div>

@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -18,19 +20,23 @@ import java.time.LocalDate;
 @Setter
 public class OwnerWriteModel {
 
-    @NotBlank(message = "Pole Imię nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String name;
-    @NotBlank(message = "Pole Nazwisko nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String surname;
-    @NotNull(message = "Pole Data urodzenia nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirth;
+    @PESEL(message = "Podaj poprawny numer PESEL")
     String pesel;
-    @NotBlank(message = "Pole Płeć nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String sex;
+    @NotBlank(message = "Pole nie może być puste!")
+    @Size(min = 26, max = 26, message = "Pole musi zawierać 26 cyfr!")
     String bankAccountNumber;
     String email;
-    @NotBlank(message = "Pole Numer telefonu nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
+    @Size(min = 9, max = 9)
     String phoneNumber;
     Integer addressNumber;
     Integer number;

@@ -285,8 +285,8 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label for="addressNumber">Wybierz adres</label>
-                        <select th:field="*{addressNumber}" class="form-control" id="addressNumber">
+                        <label class="form-label">Wybierz adres</label>
+                        <select th:field="*{addressNumber}" class="form-control">
                             <option value="0">Wybierz dostępny adres</option>
                             <option th:each="address : ${addresses.entrySet()}"
                                     th:value="${address.key}"
@@ -295,8 +295,8 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label for="addressNumber">Właściciel</label>
-                        <select th:field="*{ownerOfAthleticsClub}" class="form-control" id="ownerOfAthleticsClub">
+                        <label class="form-label">Właściciel</label>
+                        <select th:field="*{ownerOfAthleticsClub}" class="form-control">
                             <option value="0">Wybierz właściciela</option>
                             <option th:each="owner : ${owners.entrySet()}"
                                     th:value="${owner.key}"
@@ -381,7 +381,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Wybierz adres</label>
+                        <label class="form-label">Wybierz adres</label>
                         <select th:field="*{addressNumber}" class="form-control">
                             <option value="0">Wybierz dostępny adres</option>
                             <option th:each="address : ${addresses.entrySet()}"
@@ -391,7 +391,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Właściciel</label>
+                        <label class="form-label">Właściciel</label>
                         <select th:field="*{ownerOfAthleticsClub}" class="form-control">
                             <option value="0">Wybierz właściciela</option>
                             <option th:each="owner : ${owners.entrySet()}"
@@ -404,8 +404,6 @@
 
                 <div class="align-content-center">
                     <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
-                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
                 </div>
             </form>
         </div>

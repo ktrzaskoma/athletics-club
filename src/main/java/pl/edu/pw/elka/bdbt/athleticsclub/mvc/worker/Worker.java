@@ -61,8 +61,8 @@ public class Worker {
     @JoinColumn(name = "Nr_adresu")
     private Address workerAddressNumber;
 
-    @Column(name = "wynagrodzenie_miesięczne", precision = 10, scale = 2)
-    private BigDecimal monthlySalary;
+    @Column(name = "wynagrodzenie_miesięczne")
+    private String monthlySalary;
 
     @OneToOne
     @JoinColumn(
@@ -81,11 +81,11 @@ public class Worker {
         this.license = license;
     }
 
-    public BigDecimal getMonthlySalary() {
+    public String getMonthlySalary() {
         return monthlySalary;
     }
 
-    public void setMonthlySalary(BigDecimal monthlySalary) {
+    public void setMonthlySalary(String monthlySalary) {
         this.monthlySalary = monthlySalary;
     }
 

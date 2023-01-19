@@ -231,13 +231,14 @@
 
                 <div class="row mb-4">
                     <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Dyscyplina</label>
-                            <input type="text" th:field="*{discipline}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Dyscyplina"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('discipline')}" th:errors="*{discipline}"></p>
-                        </div>
+                        <label class="form-label">Dyscyplina</label>
+                        <select th:field="*{discipline}" class="form-control" th:errorclass="'Bdc(red)'">
+                            <option value="Pływanie">Pływanie</option>
+                            <option value="Narciarstwo">Narciarstwo</option>
+                            <option value="Rzut młotem">Rzut młotem</option>
+                            <option value="Rzut kulą">Rzut kulą</option>
+                            <p class="C(red)" th:if="${#fields.hasErrors('discipline')}" th:errors="*{discipline}"/>
+                        </select>
                     </div>
                     <div class="col">
                         <div class="form-outline">
@@ -252,24 +253,34 @@
                     </div>
                 </div>
 
-                <div class="form-outline mb-4">
-                    <label class="form-label">Typ treningu</label>
-                    <input type="text" th:field="*{type}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Typ treningu"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
+                <div class="row mb-4">
+
+                    <div class="col">
+                        <label class="form-label">Typ treningu</label>
+                        <select th:field="*{type}" class="form-control" th:errorclass="'Bdc(red)'">
+                            <option value="Trening siłowy">Trening siłowy</option>
+                            <option value="Trening kondycyjny">Trening kondycyjny</option>
+                            <option value="Trening aerobowy">Trening aerobowy</option>
+                            <option value="Pływanie">Pływanie</option>
+                            <option value="Narciarstwo">Narciarstwo</option>
+                            <p class="C(red)" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"/>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label class="form-label">Obciążenie treningu</label>
+                        <select th:field="*{forceLoad}" class="form-control" th:errorclass="'Bdc(red)'">
+                            <option value="Małe">Małe</option>
+                            <option value="Średnie">Umiarkowane</option>
+                            <option value="Duże">Duże</option>
+                            <option value="Ekstremalne">Ekstremalne</option>
+                            <p class="C(red)" th:if="${#fields.hasErrors('forceLoad')}" th:errors="*{forceLoad}"/>
+                        </select>
+                    </div>
                 </div>
 
-                <label>Obciążenie treningu:
-                    <select th:field="*{forceLoad}" class="form-control" th:errorclass="'Bdc(red)'">
-                        <option value="Małe">Małe</option>
-                        <option value="Średnie">Umiarkowane</option>
-                        <option value="Duże">Duże</option>
-                        <p class="C(red)" th:if="${#fields.hasErrors('forceLoad')}" th:errors="*{forceLoad}"/>
-                    </select>
-                </label>
-
                 <div class="form-outline mb-4">
-                    <label>Wybierz klub</label>
+                    <label class="form-label">Wybierz klub</label>
                     <select th:field="*{athleticsClub}" class="form-control">
                         <option value="0">Wybierz dostępny klub</option>
                         <option th:each="club : ${clubs.entrySet()}"
@@ -298,13 +309,14 @@
 
                 <div class="row mb-4">
                     <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Dyscyplina</label>
-                            <input type="text" th:field="*{discipline}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Dyscyplina"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('discipline')}" th:errors="*{discipline}"></p>
-                        </div>
+                        <label class="form-label">Dyscyplina</label>
+                        <select th:field="*{discipline}" class="form-control" th:errorclass="'Bdc(red)'">
+                            <option value="Pływanie">Pływanie</option>
+                            <option value="Narciarstwo">Narciarstwo</option>
+                            <option value="Rzut młotem">Rzut młotem</option>
+                            <option value="Rzut kulą">Rzut kulą</option>
+                            <p class="C(red)" th:if="${#fields.hasErrors('discipline')}" th:errors="*{discipline}"/>
+                        </select>
                     </div>
                     <div class="col">
                         <div class="form-outline">
@@ -319,24 +331,34 @@
                     </div>
                 </div>
 
-                <div class="form-outline mb-4">
-                    <label class="form-label">Typ treningu</label>
-                    <input type="text" th:field="*{type}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Typ treningu"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
+                <div class="row mb-4">
+
+                    <div class="col">
+                        <label class="form-label">Typ treningu</label>
+                        <select th:field="*{type}" class="form-control" th:errorclass="'Bdc(red)'">
+                            <option value="Trening siłowy">Trening siłowy</option>
+                            <option value="Trening kondycyjny">Trening kondycyjny</option>
+                            <option value="Trening aerobowy">Trening aerobowy</option>
+                            <option value="Pływanie">Pływanie</option>
+                            <option value="Narciarstwo">Narciarstwo</option>
+                            <p class="C(red)" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"/>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label class="form-label">Obciążenie treningu</label>
+                        <select th:field="*{forceLoad}" class="form-control" th:errorclass="'Bdc(red)'">
+                            <option value="Małe">Małe</option>
+                            <option value="Średnie">Umiarkowane</option>
+                            <option value="Duże">Duże</option>
+                            <option value="Ekstremalne">Ekstremalne</option>
+                            <p class="C(red)" th:if="${#fields.hasErrors('forceLoad')}" th:errors="*{forceLoad}"/>
+                        </select>
+                    </div>
                 </div>
 
-                <label>Obciążenie treningu:
-                    <select th:field="*{forceLoad}" class="form-control" th:errorclass="'Bdc(red)'">
-                        <option value="Małe">Małe</option>
-                        <option value="Średnie">Umiarkowane</option>
-                        <option value="Duże">Duże</option>
-                        <p class="C(red)" th:if="${#fields.hasErrors('forceLoad')}" th:errors="*{forceLoad}"/>
-                    </select>
-                </label>
-
                 <div class="form-outline mb-4">
-                    <label>Wybierz klub</label>
+                    <label class="form-label">Wybierz klub</label>
                     <select th:field="*{athleticsClub}" class="form-control">
                         <option value="0">Wybierz dostępny klub</option>
                         <option th:each="club : ${clubs.entrySet()}"
@@ -347,8 +369,6 @@
 
                 <div class="align-content-center">
                     <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
-                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
                 </div>
             </form>
         </div>

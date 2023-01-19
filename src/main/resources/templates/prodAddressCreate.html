@@ -223,8 +223,8 @@
             <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
             <form method="post" th:action="@{/address/create}" th:object="${address}">
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="country">Kraj</label>
-                    <input type="text" id="country" th:field="*{country}" class="form-control"
+                    <label class="form-label">Kraj</label>
+                    <input type="text" th:field="*{country}" class="form-control"
                            th:errorclass="'Bdc(red)'"
                            placeholder="Kraj"/>
                     <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
@@ -233,8 +233,8 @@
                 <div class="row mb-4">
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label" for="city">Miasto</label>
-                            <input type="text" id="city" th:field="*{city}" class="form-control"
+                            <label class="form-label">Miasto</label>
+                            <input type="text" th:field="*{city}" class="form-control"
                                    th:errorclass="'Bdc(red)'"
                                    placeholder="Miasto"/>
                             <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
@@ -243,8 +243,8 @@
                     </div>
                     <div class="col">
                         <div class="form-outline">
-                            <label class="form-label" for="zipcode">Kod pocztowy</label>
-                            <input type="text" id="zipcode" th:field="*{zipCode}" class="form-control"
+                            <label class="form-label">Kod pocztowy</label>
+                            <input type="text" th:field="*{zipCode}" class="form-control"
                                    pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"
                                    maxlength="6" minlength="6"/>
                             <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
@@ -253,22 +253,22 @@
                 </div>
 
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="street">Ulica</label>
-                    <input type="text" id="street" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
+                    <label class="form-label">Ulica</label>
+                    <input type="text" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
                            placeholder="Ulica"/>
                     <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
                 </div>
 
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="buildingNumber">Numer budynku</label>
-                    <input type="number" min="1" id="buildingNumber" th:field="*{buildingNumber}" class="form-control"
+                    <label class="form-label">Numer budynku</label>
+                    <input type="number" minlength="1" maxlength="3" th:field="*{buildingNumber}" class="form-control"
                            th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
                     <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
                 </div>
 
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="apartmentNumber">Numer mieszkania</label>
-                    <input type="number" min="1" id="apartmentNumber" th:field="*{apartmentNumber}"
+                    <label class="form-label">Numer mieszkania</label>
+                    <input type="number" maxlength="2" th:field="*{apartmentNumber}"
                            aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
                     <small id="numHelp" class="form-text text-muted">Pole opcjonalne</small>
                 </div>
@@ -323,26 +323,23 @@
 
                 <div class="form-outline mb-4">
                     <label class="form-label">Numer budynku</label>
-                    <input type="number" min="1" th:field="*{buildingNumber}" class="form-control"
+                    <input type="number" minlength="1" maxlength="3" th:field="*{buildingNumber}" class="form-control"
                            th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
                     <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
                 </div>
 
                 <div class="form-outline mb-4">
-                    <label class="form-label" for="apartmentNumber">Numer mieszkania</label>
-                    <input type="number" min="1" th:field="*{apartmentNumber}"
+                    <label class="form-label">Numer mieszkania</label>
+                    <input type="number" maxlength="2" th:field="*{apartmentNumber}"
                            aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
                     <small class="form-text text-muted">Pole opcjonalne</small>
                 </div>
 
                 <div class="align-content-center">
-                    <button type="submit" class="btn btn-success btn-block mb-4 a">Zapisz</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
+                    <button type="submit" class="btn btn-success btn-block mb-4 a">Zapisz zmiany</button>
                 </div>
             </form>
         </div>
-
-
     </fieldset>
 </div>
 </body>

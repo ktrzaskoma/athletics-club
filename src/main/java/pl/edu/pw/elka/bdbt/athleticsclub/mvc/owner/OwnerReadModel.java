@@ -40,6 +40,6 @@ public class OwnerReadModel {
 
     @Override
     public String toString() {
-        return name + " " + surname;
+        return name + " " + surname + ", nr tel. " + phoneNumber + " , data ur. " + dateOfBirth.toString();
     }
 }

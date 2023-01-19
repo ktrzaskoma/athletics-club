@@ -19,16 +19,16 @@ import java.util.Objects;
 @Setter
 public class FacilityWriteModel {
 
-    @NotBlank(message = "Pole nazwa nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String facilityName;
-    @NotNull(message = "Pole Data otwarcia nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate openDate;
-    @NotBlank(message = "Pole Typ obiektu nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String facilityType;
-    @NotNull(message = "Pole Czy obiekt jest zakryty nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     Boolean coveredFacility;
-    @NotNull(message = "Pole Pojemność trybun nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String capacity;
     Integer athleticsClubFacility;
     Integer facilityAddress;

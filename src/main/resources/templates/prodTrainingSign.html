@@ -5,37 +5,14 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Dodawanie adresu</title>
+    <title>Zapis na trening</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
 
-</head>
-<head>
     <style>
-
-        .Bd {
-            border: solid 1px black;
-        }
-
-        .Bdc\(red\) {
-            border-color: red !important;
-        }
-
-        .C\(red\) {
-            color: #ff0000;
-        }
-
-        .P\(0\) {
-            padding: 0;
-        }
-
-        .P\(10px\) {
-            padding: 10px;
-        }
-
         main {
             background-color: black;
         }
@@ -213,135 +190,49 @@
     </div>
 </header>
 
-<!--tutaj są formsy-->
+<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 50px; width: 400px">
 
-<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 10px">
-
-    <fieldset style="margin-top: 50px">
-
-        <div th:if="${!edit}">
-            <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
-            <form method="post" th:action="@{/address/create}" th:object="${address}">
-                <div class="form-outline mb-4">
-                    <label class="form-label">Kraj</label>
-                    <input type="text" th:field="*{country}" class="form-control"
-                           th:errorclass="'Bdc(red)'"
-                           placeholder="Kraj"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Miasto</label>
-                            <input type="text" th:field="*{city}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Miasto"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
-
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Kod pocztowy</label>
-                            <input type="text" th:field="*{zipCode}" class="form-control"
-                                   pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"
-                                   maxlength="6" minlength="6"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Ulica</label>
-                    <input type="text" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Ulica"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Numer budynku</label>
-                    <input type="number" minlength="1" maxlength="3" th:field="*{buildingNumber}" class="form-control"
-                           th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Numer mieszkania</label>
-                    <input type="number" maxlength="2" th:field="*{apartmentNumber}"
-                           aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
-                    <small id="numHelp" class="form-text text-muted">Pole opcjonalne</small>
-                </div>
-
-                <div class="align-content-center">
-                    <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
-                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
-                </div>
-            </form>
+    <!--/*@thymesVar id="workers" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel"*/-->
+    <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingReadModel"*/-->
+    <form method="post" th:action="@{'/training/sign/' + ${training.number}}">
+        <div class="form-outline mb-4">
+            <label class="form-label">Data treningu</label>
+            <output type="date" th:text="${training.trainingDate}" class="form-control"/>
         </div>
 
-        <div th:if="${edit}">
-            <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
-            <form method="post" th:action="@{'/address/edit/' + ${address.addressNumber}}" th:object="${address}">
-                <div class="form-outline mb-4">
-                    <label class="form-label">Kraj</label>
-                    <input type="text" th:field="*{country}" class="form-control"
-                           th:errorclass="'Bdc(red)'"
-                           placeholder="Kraj"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Miasto</label>
-                            <input type="text" th:field="*{city}" class="form-control"
-                                   th:errorclass="'Bdc(red)'"
-                                   placeholder="Miasto"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
-
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline">
-                            <label class="form-label">Kod pocztowy</label>
-                            <input type="text" th:field="*{zipCode}" class="form-control"
-                                   pattern="^\d{2}-\d{3}$" placeholder="__-___" th:errorclass="'Bdc(red)'"
-                                   maxlength="6" minlength="6"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Ulica</label>
-                    <input type="text" th:field="*{street}" class="form-control" th:errorclass="'Bdc(red)'"
-                           placeholder="Ulica"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Numer budynku</label>
-                    <input type="number" minlength="1" maxlength="3" th:field="*{buildingNumber}" class="form-control"
-                           th:errorclass="'Bdc(red)'" placeholder="Numer budynku"/>
-                    <p class="C(red)" th:if="${#fields.hasErrors('buildingNumber')}" th:errors="*{buildingNumber}"></p>
-                </div>
-
-                <div class="form-outline mb-4">
-                    <label class="form-label">Numer mieszkania</label>
-                    <input type="number" maxlength="2" th:field="*{apartmentNumber}"
-                           aria-describedby="numHelp" class="form-control" placeholder="Numer mieszkania"/>
-                    <small class="form-text text-muted">Pole opcjonalne</small>
-                </div>
-
-                <div class="align-content-center">
-                    <button type="submit" class="btn btn-success btn-block mb-4 a">Zapisz zmiany</button>
-                </div>
-            </form>
+        <div class="form-outline mb-4">
+                <label class="form-label">Dyscyplina</label>
+                <output th:text="${training.discipline}" class="form-control"/>
         </div>
-    </fieldset>
+
+        <div class="form-outline mb-4">
+                <label class="form-label">Typ treningu</label>
+                <output th:text="${training.typeOfTraining}" class="form-control"/>
+        </div>
+
+        <div class="form-outline mb-4">
+                <label class="form-label">Obciążenie treningu</label>
+                <output th:text="${training.trainingForce}" class="form-control">
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label">Wybierz klub</label>
+            <select th:name="idAthlete" class="form-control">
+                <option value="0">Wybierz zawodnika:</option>
+                <option th:each="worker : ${workers.entrySet()}" th:value="${worker.key}"
+                        th:text="${worker.value}"></option>
+            </select>
+            </select>
+        </div>
+
+        <div>
+            <div class="align-content-center" style="text-align: center">
+                <button type="submit" class="btn btn-success btn-block mb-4 a">Zapisz na trening</button>
+            </div>
+        </div>
+    </form>
+
+
 </div>
-</body>
 
+</body>
 </html>

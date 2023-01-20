@@ -24,7 +24,7 @@ public class WorkerReadModel {
     String bankAccount;
     String email;
     String phoneNumber;
-    BigDecimal monthlySalary;
+    String monthlySalary;
 
     public static WorkerReadModel toReadModel(final Worker entity) {
         return new WorkerReadModel(

@@ -28,7 +28,12 @@ public class TrainingService {
                 ).toList();
     }
 
-    void addAthleteToTraining(final String idAthlete, final String idTraining){
+    TrainingReadModel getTrainingById(final String itTraining) {
+        var entity = trainingRepository.getById(Integer.valueOf(itTraining));
+        return TrainingReadModel.toReadModel(entity);
+    }
+
+    void addAthleteToTraining(final String idAthlete, final String idTraining) {
         var athlete = workerRepository.getById(Integer.valueOf(idAthlete));
         var training = trainingRepository.getById(Integer.valueOf(idTraining));
         var athletes = training.getWorkers();
@@ -36,7 +41,6 @@ public class TrainingService {
         training.setWorkers(athletes);
         trainingRepository.save(training);
     }
-
 
 
     Map<Integer, String> getFormattedClubs() {

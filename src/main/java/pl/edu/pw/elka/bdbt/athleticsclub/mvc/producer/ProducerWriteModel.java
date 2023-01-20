@@ -18,11 +18,11 @@ import java.util.Objects;
 @Setter
 public class ProducerWriteModel {
 
-    @NotBlank(message = "Pole Marka nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String brand;
-    @NotBlank(message = "Pole Model nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String model;
-    @NotNull(message = "Pole Data produkcji nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate productionYear;
     String destiny;

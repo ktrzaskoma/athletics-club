@@ -246,10 +246,13 @@
 
                 <div class="row mb-4">
                     <div class="col">
-                        <label class="form-label" for="pesel">Pesel</label>
-                        <input type="number" id="pesel" th:field="*{pesel}" class="form-control"
+                        <label class="form-label">Pesel</label>
+                        <input type="number" th:field="*{pesel}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="PESEL"/>
+                               placeholder="PESEL"
+                               maxlength="11"
+                               minlength="11"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('pesel')}" th:errors="*{pesel}"></p>
                         </p>
                     </div>
@@ -265,59 +268,59 @@
                     </div>
                 </div>
 
-                <label>Płeć:</label>
-                <div class="form-group">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="Mężczyzna" name="Mężczyzna" class="custom-control-input"
-                               value="Mężczyzna" th:field="*{sex}" th:errorclass="'Bdc(red)'">
-                        <label class="custom-control-label" for="Mężczyzna">Mężczyzna</label>
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Płeć</label>
+                            <select th:field="*{sex}" class="form-control" th:errorclass="'Bdc(red)'">
+                                <option value="Kobieta">Kobieta</option>
+                                <option value="Mężczyzna">Mężczyzna</option>
+                                <option value="Inna">Inna</option>
+                                <p class="C(red)" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"/>
+                            </select>
+                        </div>
                     </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="Kobieta" name="Kobieta" class="custom-control-input" value="Kobieta"
-                               th:field="*{sex}" th:errorclass="'Bdc(red)'">
-                        <label class="custom-control-label" for="Kobieta">Kobieta</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="Inna" name="Inna" class="custom-control-input" value="Inna"
-                               th:field="*{sex}" th:errorclass="'Bdc(red)'">
-                        <label class="custom-control-label" for="Inna">Inna</label>
-                    </div>
-                    <p class="C(red)" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></p>
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="phoneNumber">Numer telefonu</label>
-                        <input type="number" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
-                               th:errorclass="'Bdc(red)'" placeholder="Numer telefonu"/>
+                    <div class="col">
+                        <label class="form-label">Numer telefonu</label>
+                        <input type="number" th:field="*{phoneNumber}" class="form-control"
+                               th:errorclass="'Bdc(red)'" placeholder="Numer telefonu"
+                               maxlength="9"
+                               minlength="9"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}"
                            th:errors="*{phoneNumber}"></p>
                     </div>
+                </div>
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="bankAccountNumber">Numer konta bankowego</label>
-                        <input type="number" id="bankAccountNumber" th:field="*{bankAccountNumber}"
-                               class="form-control" placeholder="Numer konta bankowego"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('bankAccountNumber')}"
-                           th:errors="*{bankAccountNumber}"></p>
-                    </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label">Numer konta bankowego</label>
+                    <input type="number" th:field="*{bankAccountNumber}"
+                           class="form-control" placeholder="Numer konta bankowego"
+                           maxlength="26"
+                           minlength="26"
+                    />
+                    <p class="C(red)" th:if="${#fields.hasErrors('bankAccountNumber')}"
+                       th:errors="*{bankAccountNumber}"></p>
+                </div>
 
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="email" id="email" th:field="*{email}"
-                               class="form-control" placeholder="Email"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('email')}"
-                           th:errors="*{email}"></p>
-                    </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" th:field="*{email}"
+                           class="form-control" placeholder="Email"/>
+                    <p class="C(red)" th:if="${#fields.hasErrors('email')}"
+                       th:errors="*{email}"></p>
+                </div>
 
-                    <div class="form-outline mb-4">
-                        <label for="addressNumber">Wybierz adres</label>
-                        <select th:field="*{addressNumber}" class="form-control" id="addressNumber">
-                            <option value="0">Wybierz dostępny adres</option>
-                            <option th:each="address : ${addresses.entrySet()}"
-                                    th:value="${address.key}"
-                                    th:text="${address.value}"></option>
-                        </select>
-                    </div>
+                <div class="form-outline mb-4">
+                    <label for="addressNumber">Wybierz adres</label>
+                    <select th:field="*{addressNumber}" class="form-control" id="addressNumber">
+                        <option value="0">Wybierz dostępny adres</option>
+                        <option th:each="address : ${addresses.entrySet()}"
+                                th:value="${address.key}"
+                                th:text="${address.value}"></option>
+                    </select>
                 </div>
 
                 <div class="align-content-center">
@@ -358,7 +361,10 @@
                         <label class="form-label">Pesel</label>
                         <input type="number" th:field="*{pesel}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="PESEL"/>
+                               placeholder="PESEL"
+                               maxlength="11"
+                               minlength="11"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('pesel')}" th:errors="*{pesel}"></p>
                         </p>
                     </div>
@@ -374,59 +380,60 @@
                     </div>
                 </div>
 
-                <label>Płeć:</label>
-                <div class="form-group">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="Mężczyzna" class="custom-control-input"
-                               value="Mężczyzna" th:field="*{sex}" th:errorclass="'Bdc(red)'">
-                        <label class="custom-control-label" for="Mężczyzna">Mężczyzna</label>
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label">Płeć</label>
+                            <select th:field="*{sex}" class="form-control" th:errorclass="'Bdc(red)'">
+                                <option value="Kobieta">Kobieta</option>
+                                <option value="Mężczyzna">Mężczyzna</option>
+                                <option value="Inna">Inna</option>
+                                <p class="C(red)" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"/>
+                            </select>
+                        </div>
                     </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="Kobieta" class="custom-control-input" value="Kobieta"
-                               th:field="*{sex}" th:errorclass="'Bdc(red)'">
-                        <label class="custom-control-label" for="Kobieta">Kobieta</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="Inna" class="custom-control-input" value="Inna"
-                               th:field="*{sex}" th:errorclass="'Bdc(red)'">
-                        <label class="custom-control-label" for="Inna">Inna</label>
-                    </div>
-                    <p class="C(red)" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></p>
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="phoneNumber">Numer telefonu</label>
+                    <div class="col">
+                        <label class="form-label">Numer telefonu</label>
                         <input type="number" th:field="*{phoneNumber}" class="form-control"
-                               th:errorclass="'Bdc(red)'" placeholder="Numer telefonu"/>
+                               th:errorclass="'Bdc(red)'" placeholder="Numer telefonu"
+                               maxlength="9"
+                               minlength="9"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('phoneNumber')}"
                            th:errors="*{phoneNumber}"></p>
                     </div>
+                </div>
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="bankAccountNumber">Numer konta bankowego</label>
-                        <input type="number" th:field="*{bankAccountNumber}"
-                               class="form-control" placeholder="Numer konta bankowego"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('bankAccountNumber')}"
-                           th:errors="*{bankAccountNumber}"></p>
-                    </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label">Numer konta bankowego</label>
+                    <input type="number" th:field="*{bankAccountNumber}"
+                           class="form-control" placeholder="Numer konta bankowego"
+                           maxlength="26"
+                           minlength="26"
+
+                    />
+                    <p class="C(red)" th:if="${#fields.hasErrors('bankAccountNumber')}"
+                       th:errors="*{bankAccountNumber}"></p>
+                </div>
 
 
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="email" th:field="*{email}"
-                               class="form-control" placeholder="Email"/>
-                        <p class="C(red)" th:if="${#fields.hasErrors('email')}"
-                           th:errors="*{email}"></p>
-                    </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" th:field="*{email}"
+                           class="form-control" placeholder="Email"/>
+                    <p class="C(red)" th:if="${#fields.hasErrors('email')}"
+                       th:errors="*{email}"></p>
+                </div>
 
-                    <div class="form-outline mb-4">
-                        <label>Wybierz adres</label>
-                        <select th:field="*{addressNumber}" class="form-control">
-                            <option value="0">Wybierz dostępny adres</option>
-                            <option th:each="address : ${addresses.entrySet()}"
-                                    th:value="${address.key}"
-                                    th:text="${address.value}"></option>
-                        </select>
-                    </div>
+                <div class="form-outline mb-4">
+                    <label>Wybierz adres</label>
+                    <select th:field="*{addressNumber}" class="form-control">
+                        <option value="0">Wybierz dostępny adres</option>
+                        <option th:each="address : ${addresses.entrySet()}"
+                                th:value="${address.key}"
+                                th:text="${address.value}"></option>
+                    </select>
                 </div>
 
                 <div class="align-content-center">

@@ -24,30 +24,28 @@ import java.util.Set;
 @Setter
 public class WorkerWriteModel {
 
-    @NotBlank(message = "Pole Imię nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String name;
-    @NotBlank(message = "Pole Nazwisko nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String lastname;
-    @NotNull(message = "Pole Data urodzenia nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirthday;
-    @NotBlank(message = "Pole PESEL nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     @Size(min = 11, max = 11, message = "Numer PESEL powinien mieć 11 cyfr!")
     String pesel;
-    @NotBlank(message = "Pole Płeć nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String sex;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfEmployment;
     @Size(min = 26, max = 26, message = "Numer konta powinien mieć 26 cyfr!")
     String bankAccount;
     String email;
-    @NotBlank(message = "Pole Numer telefonu nie może być puste!")
+    @NotBlank(message = "Pole nie może być puste!")
     String phoneNumber;
     Integer athleticsClubWorker;
     Integer workerAddressNumber;
-
-    BigDecimal monthlySalary;
-
+    String monthlySalary;
     Set<SportLicense> sportLicenses = new HashSet<>();
     SportLicense sportLicense;
     Integer number;

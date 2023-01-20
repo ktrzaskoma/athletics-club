@@ -258,11 +258,11 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Stan</label>
-                            <input type="text" th:field="*{condition}"
-                                   class="form-control"
-                                   placeholder="Stan" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('condition')}"
-                               th:errors="*{condition}"></p>
+                            <select th:field="*{condition}" class="form-control">
+                                <option value="Nowy">Nowy</option>
+                                <option value="Używany">Używany</option>
+                                <option value="Uszkodzony">Uszkodzony</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -270,16 +270,20 @@
 
                     <div class="row mb-4">
                         <div class="col">
-                            <label class="form-label">W użyciu</label>
-                            <input type="text" th:field="*{inUse}"
-                                   class="form-control" placeholder="W użyciu"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('inUse')}"
-                               th:errors="*{inUse}"></p>
+                            <div class="form-outline">
+                                <label class="form-label">W użyciu</label>
+                                <select th:field="*{inUse}" class="form-control" th:errorclass="'Bdc(red)'">
+                                    <option value="true">Tak</option>
+                                    <option value="false">Nie</option>
+                                    <p class="C(red)" th:if="${#fields.hasErrors('inUse')}"
+                                       th:errors="*{inUse}"></p>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Wybierz producenta</label>
+                        <label class="form-label">Wybierz producenta</label>
                         <select th:field="*{equipmentProducer}" class="form-control">
                             <option value="0">Wybierz dostępny producenta</option>
                             <option th:each="producer : ${producers.entrySet()}"
@@ -289,7 +293,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Wybierz klub</label>
+                        <label class="form-label">Wybierz klub</label>
                         <select th:field="*{athleticsClubEquipment}" class="form-control">
                             <option value="0">Wybierz dostępny klub</option>
                             <option th:each="club : ${clubs.entrySet()}"
@@ -299,7 +303,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Wybierz obiekt</label>
+                        <label class="form-label">Wybierz obiekt</label>
                         <select th:field="*{equipmentStorage}" class="form-control">
                             <option value="0">Wybierz dostępny obiekt</option>
                             <option th:each="facility : ${facilities.entrySet()}"
@@ -358,28 +362,33 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Stan</label>
-                            <input type="text" th:field="*{condition}"
-                                   class="form-control"
-                                   placeholder="Stan" th:errorclass="'Bdc(red)'"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('condition')}"
-                               th:errors="*{condition}"></p>
+                            <select th:field="*{condition}" class="form-control">
+                                <option value="Nowy">Nowy</option>
+                                <option value="Używany">Używany</option>
+                                <option value="Uszkodzony">Uszkodzony</option>
+                            </select>
                         </div>
                     </div>
+
                 </div>
                 <div class="form-group">
 
                     <div class="row mb-4">
                         <div class="col">
-                            <label class="form-label">W użyciu</label>
-                            <input type="text" th:field="*{inUse}"
-                                   class="form-control" placeholder="W użyciu"/>
-                            <p class="C(red)" th:if="${#fields.hasErrors('inUse')}"
-                               th:errors="*{inUse}"></p>
+                            <div class="form-outline">
+                                <label class="form-label">W użyciu</label>
+                                <select th:field="*{inUse}" class="form-control" th:errorclass="'Bdc(red)'">
+                                    <option value="true">Tak</option>
+                                    <option value="false">Nie</option>
+                                    <p class="C(red)" th:if="${#fields.hasErrors('inUse')}"
+                                       th:errors="*{inUse}"></p>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Wybierz producenta</label>
+                        <label class="form-label">Wybierz producenta</label>
                         <select th:field="*{equipmentProducer}" class="form-control">
                             <option value="0">Wybierz dostępny producenta</option>
                             <option th:each="producer : ${producers.entrySet()}"
@@ -389,7 +398,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Wybierz klub</label>
+                        <label class="form-label">Wybierz klub</label>
                         <select th:field="*{athleticsClubEquipment}" class="form-control">
                             <option value="0">Wybierz dostępny klub</option>
                             <option th:each="club : ${clubs.entrySet()}"
@@ -399,7 +408,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                        <label>Wybierz obiekt</label>
+                        <label class="form-label">Wybierz obiekt</label>
                         <select th:field="*{equipmentStorage}" class="form-control">
                             <option value="0">Wybierz dostępny obiekt</option>
                             <option th:each="facility : ${facilities.entrySet()}"
@@ -413,8 +422,6 @@
 
                 <div class="align-content-center">
                     <button type="submit" class="btn btn-success btn-block mb-4 a">Dodaj</button>
-                    <button type="reset" class="btn btn-dark btn-block mb-4 a">Reset danych</button>
-                    <a type="button" class="btn btn-danger btn-block mb-4 a" onclick="history.back()">Cofnij</a>
                 </div>
             </form>
         </div>

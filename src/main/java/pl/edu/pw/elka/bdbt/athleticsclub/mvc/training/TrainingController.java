@@ -19,20 +19,20 @@ public class TrainingController {
         this.trainingService = trainingService;
     }
 
-    // Training sign up area
-    @GetMapping("signup")
-    String signUpForTraining(Model model) {
-        var trainings = trainingService.getTrainings();
-        model.addAttribute("trainings", trainings);
-        model.addAttribute("training", new TrainingWriteModel());
-        prepareEntryModel(model);
-        return "/trainingSign";
+    @GetMapping("sign/{idTraining}")
+    String signUpForTraining(@PathVariable String idTraining, Model model) {
+        var training = trainingService.getTrainingById(idTraining);
+        var workers = trainingService.getFormattedWorkers();
+        model.addAttribute("training", training);
+        //warunek, ze jesli nie znajdzie worker'ow nie moze sie wyswietlac -> przekierowac na strone bledow
+        model.addAttribute("workers", workers);
+        return "/prodTrainingSign";
     }
 
-    @PostMapping("signup/{idTraining}")
+    @PostMapping("sign/{idTraining}")
     String addAtheleteToTraining(@RequestParam("idAthlete") String idAthlete, @PathVariable String idTraining) {
         trainingService.addAthleteToTraining(idAthlete, idTraining);
-        return "redirect:/training/signup";
+        return "redirect:/training/getAll";
     }
 
     @GetMapping("getAll")

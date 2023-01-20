@@ -22,7 +22,6 @@ class AddressWriteModel {
     String city;
     @NotBlank(message = "Pole Kod pocztowy nie może być puste!")
     @Size(max = 6, min = 6, message = "Podaj poprawny kod pocztowy!")
-    @Pattern(regexp = "^d{2}-d{3}$", message = "Podaj kod pocztowy w poprawnym formacie!")
     String zipCode;
     @NotBlank(message = "Pole Ulica nie może być puste!")
     String street;

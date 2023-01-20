@@ -24,7 +24,7 @@ public class OwnerWriteModel {
     String name;
     @NotBlank(message = "Pole nie może być puste!")
     String surname;
-    @NotBlank(message = "Pole nie może być puste!")
+    @NotNull(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirth;
     @PESEL(message = "Podaj poprawny numer PESEL")
@@ -36,7 +36,7 @@ public class OwnerWriteModel {
     String bankAccountNumber;
     String email;
     @NotBlank(message = "Pole nie może być puste!")
-    @Size(min = 9, max = 9)
+    @Size(min = 9, max = 9, message = "Pole musi zawierać 9 cyfr!")
     String phoneNumber;
     Integer addressNumber;
     Integer number;

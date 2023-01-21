@@ -19,15 +19,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/address/create").hasAnyRole("TRAINER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "address/getAll").hasAnyRole("TRAINER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/address/create").hasAnyRole("TRAINER", "ADMIN", "ATHLETE")
+                .antMatchers(HttpMethod.GET, "address/getAll").hasAnyRole("TRAINER", "ADMIN", "ATHLETE")
 
-                // feature test
-//                .antMatchers("/training/**").permitAll()
-//                .antMatchers("/worker/**").permitAll()
-//                .antMatchers("/address/**").permitAll()
-//                .antMatchers("/club/**").permitAll()
-//                .antMatchers("/owner/**").permitAll()
 
 
                 .antMatchers("/").permitAll()

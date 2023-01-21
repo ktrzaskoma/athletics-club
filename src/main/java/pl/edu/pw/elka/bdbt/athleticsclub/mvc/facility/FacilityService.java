@@ -65,7 +65,7 @@ public class FacilityService {
                 editEntry.getOpenDate(),
                 editEntry.getFacilityType(),
                 editEntry.getCoveredFacility(),
-                editEntry.getCapacityOfStands().toString(),
+                editEntry.getCapacityOfStands(),
                 editEntry.getAthleticsClubFacility().getClubNumber(),
                 editEntry.getFacilityAddressNumber().getAddressNumber(),
                 editEntry.getFacilityNumber()

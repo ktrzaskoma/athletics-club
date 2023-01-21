@@ -37,6 +37,7 @@ public class AthleticsClubController {
                       BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             prepareEntryModel(model);
+            model.addAttribute("edit", false);
             return "/prodClubCreate";
         }
         clubService.saveClub(writeModel);

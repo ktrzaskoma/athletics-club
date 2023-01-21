@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.pl.PESEL;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.Address;
 
@@ -24,10 +23,10 @@ public class OwnerWriteModel {
     String name;
     @NotBlank(message = "Pole nie może być puste!")
     String surname;
-    @NotBlank(message = "Pole nie może być puste!")
+    @NotNull(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirth;
-    @PESEL(message = "Podaj poprawny numer PESEL")
+    @NotNull(message = "Podaj poprawny numer PESEL")
     String pesel;
     @NotBlank(message = "Pole nie może być puste!")
     String sex;
@@ -36,7 +35,7 @@ public class OwnerWriteModel {
     String bankAccountNumber;
     String email;
     @NotBlank(message = "Pole nie może być puste!")
-    @Size(min = 9, max = 9)
+    @Size(min = 9, max = 9, message = "Pole musi zawierać 9 cyfr!")
     String phoneNumber;
     Integer addressNumber;
     Integer number;

@@ -21,12 +21,12 @@ public class FacilityWriteModel {
 
     @NotBlank(message = "Pole nie może być puste!")
     String facilityName;
-    @NotBlank(message = "Pole nie może być puste!")
+    @NotNull(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate openDate;
     @NotBlank(message = "Pole nie może być puste!")
     String facilityType;
-    @NotBlank(message = "Pole nie może być puste!")
+    @NotNull(message = "Pole nie może być puste!")
     Boolean coveredFacility;
     @NotBlank(message = "Pole nie może być puste!")
     String capacity;

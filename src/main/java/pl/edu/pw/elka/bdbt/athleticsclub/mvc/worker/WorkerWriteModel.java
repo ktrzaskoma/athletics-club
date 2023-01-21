@@ -28,7 +28,7 @@ public class WorkerWriteModel {
     String name;
     @NotBlank(message = "Pole nie może być puste!")
     String lastname;
-    @NotBlank(message = "Pole nie może być puste!")
+    @NotNull(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirthday;
     @NotBlank(message = "Pole nie może być puste!")

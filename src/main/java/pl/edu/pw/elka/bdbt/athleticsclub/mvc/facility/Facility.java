@@ -34,7 +34,7 @@ public class Facility {
 
     @Basic(optional = false)
     @Column(name = "pojemnosc_trybun")
-    private Integer capacityOfStands;
+    private String capacityOfStands;
 
     @ManyToOne
     @JoinColumn(name = "nr_klubu")
@@ -111,11 +111,11 @@ public class Facility {
         this.coveredFacility = coveredFacility;
     }
 
-    public Integer getCapacityOfStands() {
+    public String getCapacityOfStands() {
         return capacityOfStands;
     }
 
-    public void setCapacityOfStands(Integer capacityOfStands) {
+    public void setCapacityOfStands(String capacityOfStands) {
         this.capacityOfStands = capacityOfStands;
     }
 }

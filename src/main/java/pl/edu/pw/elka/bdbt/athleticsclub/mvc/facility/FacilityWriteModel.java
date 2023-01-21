@@ -40,7 +40,7 @@ public class FacilityWriteModel {
         entity.setOpenDate(writeModel.getOpenDate());
         entity.setFacilityType(writeModel.getFacilityType());
         entity.setCoveredFacility(writeModel.getCoveredFacility());
-        entity.setCapacityOfStands(Integer.valueOf(writeModel.getCapacity()));
+        entity.setCapacityOfStands(writeModel.getCapacity());
         entity.setAthleticsClubFacility(club);
         entity.setFacilityAddressNumber(address);
         if(Objects.nonNull(writeModel.getNumber())){

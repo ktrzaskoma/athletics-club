@@ -19,15 +19,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/address/create").hasAnyRole("TRAINER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "address/getAll").hasAnyRole("TRAINER", "ADMIN")
 
-                // feature test
-//                .antMatchers("/training/**").permitAll()
-//                .antMatchers("/worker/**").permitAll()
-//                .antMatchers("/address/**").permitAll()
-//                .antMatchers("/club/**").permitAll()
-//                .antMatchers("/owner/**").permitAll()
+                // adres
+                .antMatchers( "/address/**").hasAnyRole( "ADMIN")
+
+                .antMatchers( "/training/**").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
+
+
+                
+//
+//                .antMatchers(HttpMethod.POST, "/address/create").hasAnyRole( "ADMIN")
+
+//                .antMatchers(HttpMethod.GET, "/worker/getAll").hasAnyRole( "ADMIN")
+//                .antMatchers(HttpMethod.POST, "/worker/create").hasAnyRole( "ADMIN")
+//
+//                .antMatchers(HttpMethod.GET, "/equipment/getAll").hasAnyRole( "ADMIN", "TRAINER")
+//                .antMatchers(HttpMethod.POST, "/equipment/create").hasAnyRole( "ADMIN", "TRAINER")
+//
+//                .antMatchers(HttpMethod.GET, "/producer/getAll").hasAnyRole( "ADMIN", "TRAINER")
+//                .antMatchers(HttpMethod.POST, "/producer/create").hasAnyRole( "ADMIN", "TRAINER")
+//
+//                .antMatchers(HttpMethod.GET, "/facility/getAll").hasAnyRole( "ADMIN")
+//                .antMatchers(HttpMethod.POST, "/facility/create").hasAnyRole( "ADMIN")
+//
+//                .antMatchers("/").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
+//                .antMatchers(HttpMethod.POST, "/equipment/create").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
+
+
 
 
                 .antMatchers("/").permitAll()

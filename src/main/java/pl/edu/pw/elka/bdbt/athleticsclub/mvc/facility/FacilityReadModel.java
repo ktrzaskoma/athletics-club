@@ -16,7 +16,7 @@ public class FacilityReadModel {
     LocalDate openDate;
     String facilityType;
     Boolean coveredFacility;
-    Integer capacity;
+    String capacity;
 
 
     public static FacilityReadModel toReadModel(final Facility entity) {
@@ -31,7 +31,7 @@ public class FacilityReadModel {
 
     @Override
     public String toString() {
-        return facilityName + ", " + facilityType;
+        return facilityName + ", " + facilityType + ", pojemność: " + capacity;
     }
 
 }

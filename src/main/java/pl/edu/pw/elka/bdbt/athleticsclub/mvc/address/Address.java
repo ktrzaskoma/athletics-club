@@ -39,7 +39,6 @@ public class Address {
     private String apartmentNumber;
 
 
-
 //    mapping column to athletics club
     @OneToOne(mappedBy = "clubAddressNumber")
     private AthleticsClub athleticsClub;

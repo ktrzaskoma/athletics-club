@@ -22,7 +22,7 @@ public class ProducerWriteModel {
     String brand;
     @NotBlank(message = "Pole nie może być puste!")
     String model;
-    @NotBlank(message = "Pole nie może być puste!")
+    @NotNull(message = "Pole nie może być puste!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate productionYear;
     String destiny;

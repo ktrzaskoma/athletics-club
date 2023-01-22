@@ -55,7 +55,7 @@
                  style="color: whitesmoke; align-items: center; text-align: right">
                 <div class="collapse navbar-collapse" style="align-items: center">
                     <ul class="navbar-nav">
-                        <button class="btn btn" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/home}"
+                        <button class="btn btn" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/}"
                                 style="align-items: center; color: whitesmoke">
                             Home
                         </button>
@@ -192,8 +192,12 @@
     </div>
 </header>
 
-<div class="text-center" size="6" style="margin-top: 90px">
+<div class="text-center"  style="margin-top: 90px">
     <h1>Uwaga wystąpił błąd 400. Niepoprawne żądanie.</h1>
+    <a class="btn-danger" style="color: #ff0000; font-size: 35px" th:href="@{/}">Powrót do strony głównej.</a>
+
+
+
 </div>
 
 

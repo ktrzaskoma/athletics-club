@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org/"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
->
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <meta charset="UTF-8">
-  <title>Obiekty sportowe</title>
+  <title>Strona główna </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -43,11 +42,11 @@
     }
 
 
+
   </style>
 
 </head>
 <body style="background-color: tan">
-
 <header style="background-color:#000000 ">
   <div class="row" style="margin-left: 5%; margin-right: 5%; justify-content: center">
     <div class="col-1" style="color:whitesmoke; text-align: right; font-size: larger; margin-top: 5px"></div>
@@ -56,8 +55,10 @@
            style="color: whitesmoke; align-items: center; text-align: right">
         <div class="collapse navbar-collapse" style="align-items: center">
           <ul class="navbar-nav">
-            <a class="btn btn" aria-expanded="false" th:href="@{/}"
-               style="align-items: center; color: whitesmoke">Home</a>
+            <button class="btn btn" data-bs-toggle="dropdown" aria-expanded="false" th:href="@{/}"
+                    style="align-items: center; color: whitesmoke">
+              Home
+            </button>
           </ul>
           </ul>
         </div>
@@ -128,6 +129,7 @@
               </button>
               <ul class="dropdown-menu">
                 <a class="dropdown-item" th:href="@{/worker/getAll}">Pracownicy</a>
+
               </ul>
             </li>
           </ul>
@@ -190,45 +192,11 @@
   </div>
 </header>
 
-<!--tutaj są formsy-->
-<div class="container" style="margin-top: 50px">
-  <div class="col-md-12 text-center">
-    <a sec:authorize="hasAnyRole('ADMIN')" type="button" class="btn btn-dark" th:href="@{/facility}">Dodaj nowy obiekt sportowy</a>
-  </div>
+<div class="text-center" size="6" style="margin-top: 90px">
+  <h1>Uwaga wystąpił błąd 405. Żądanie nie dozwolone.</h1>
+  <a class="btn-danger" style="color: #ff0000; font-size: 35px" th:href="@{/}">Powrót do strony głównej.</a>
 </div>
 
-<div class="container square-box d-flex justify-content-center align-items-center" style="margin-top: 50px">
-
-  <table class="table table-hover border-dark table-hover">
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">Nazwa obiektu</th>
-      <th scope="col">Data otwarcia</th>
-      <th scope="col">Typ obiektu</th>
-      <th scope="col">Czy obiekt zadaszony?</th>
-      <th scope="col">Pojemność trybun</th>
-      <th scope="col">Klub zarządzający</th>
-      <th sec:authorize="hasAnyRole('ADMIN')" class="text-right">Funkcje</th>
-    </tr>
-    </thead>
-    <tbody>
-
-    <!--/*@thymesVar id="facility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityReadModel"*/-->
-    <tr th:each="facility : ${facilities}">
-      <td th:text="${facility.facilityName}"></td>
-      <td th:text="${facility.openDate}"></td>
-      <td th:text="${facility.facilityType}"></td>
-      <td th:text="${facility.coveredFacility}"></td>
-      <td th:text="${facility.capacity}"></td>
-      <td th:text="${facility.athleticsClubFacility}"></td>
-      <td sec:authorize="hasAnyRole('ADMIN')" class="text-right">
-        <a sec:authorize="hasAnyRole('ADMIN')" class="btn btn-primary float-right" th:href="@{'/facility/edit/' + ${facility.number}}">Edytuj</a>
-        <a sec:authorize="hasAnyRole('ADMIN')" class="btn btn-danger float-right" th:href="@{'/facility/delete/' + ${facility.number}}">Usuń</a>
-      </td>
-    </tbody>
-  </table>
-
-</div>
 
 </body>
 </html>

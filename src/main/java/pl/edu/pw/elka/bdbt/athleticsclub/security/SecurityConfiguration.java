@@ -22,29 +22,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 // adres
                 .antMatchers( "/address/**").hasAnyRole( "ADMIN")
-
-                .antMatchers( "/training/**").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
-
-
-                
-//
-//                .antMatchers(HttpMethod.POST, "/address/create").hasAnyRole( "ADMIN")
-
-//                .antMatchers(HttpMethod.GET, "/worker/getAll").hasAnyRole( "ADMIN")
-//                .antMatchers(HttpMethod.POST, "/worker/create").hasAnyRole( "ADMIN")
-//
-//                .antMatchers(HttpMethod.GET, "/equipment/getAll").hasAnyRole( "ADMIN", "TRAINER")
-//                .antMatchers(HttpMethod.POST, "/equipment/create").hasAnyRole( "ADMIN", "TRAINER")
-//
-//                .antMatchers(HttpMethod.GET, "/producer/getAll").hasAnyRole( "ADMIN", "TRAINER")
-//                .antMatchers(HttpMethod.POST, "/producer/create").hasAnyRole( "ADMIN", "TRAINER")
-//
-//                .antMatchers(HttpMethod.GET, "/facility/getAll").hasAnyRole( "ADMIN")
-//                .antMatchers(HttpMethod.POST, "/facility/create").hasAnyRole( "ADMIN")
-//
-//                .antMatchers("/").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
-//                .antMatchers(HttpMethod.POST, "/equipment/create").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
-
+                // wlasciciel
+                .antMatchers( "/owner/**").hasAnyRole( "ADMIN", "TRAINER")
+                // klub
+                .antMatchers( "/club/**").hasAnyRole( "ADMIN", "TRAINER")
+                // treningi
+                .antMatchers("/training/**").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
+                // obiekty
+                .antMatchers("/facility/**").hasAnyRole( "ADMIN", "TRAINER", "ATHLETE")
+                // pracownicy
+                .antMatchers("/worker/**").hasAnyRole( "ADMIN", "TRAINER")
+                // sprzet
+                .antMatchers("/equipment/**").hasAnyRole( "ADMIN", "TRAINER")
+                // producent
+                .antMatchers("/producer/**").hasAnyRole( "ADMIN", "TRAINER")
 
 
 

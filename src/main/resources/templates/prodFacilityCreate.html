@@ -398,7 +398,7 @@
                     <div class="form-outline mb-4">
                         <label class="form-label">Wybierz klub</label>
                         <select th:field="*{athleticsClubFacility}" class="form-control">
-                            <option value="0">Wybierz właściciela</option>
+                            <option value="0">Wybierz klub</option>
                             <option th:each="club : ${clubs.entrySet()}"
                                     th:value="${club.key}"
                                     th:text="${club.value}"></option>

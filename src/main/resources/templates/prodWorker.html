@@ -209,7 +209,7 @@
             <th scope="col">Data zatrudnienia</th>
             <th scope="col">Płeć</th>
             <th class="col">Numer telefonu</th>
-            <th class="text-right">Funkcje</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" class="text-right">Funkcje</th>
         </tr>
         </thead>
         <tbody>
@@ -222,9 +222,9 @@
             <td th:text="${worker.dateOfEmployment}"></td>
             <td th:text="${worker.sex}"></td>
             <td th:text="${worker.phoneNumber}"></td>
-            <td class="text-right">
-                <a class="btn btn-primary float-right" th:href="@{'/worker/edit/' + ${worker.number}}">Edytuj</a>
-                <a class="btn btn-danger float-right" th:href="@{'/worker/delete/' + ${worker.number}}">Usuń</a>
+            <td sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" class="text-right">
+                <a sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" class="btn btn-primary float-right" th:href="@{'/worker/edit/' + ${worker.number}}">Edytuj</a>
+                <a sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" class="btn btn-danger float-right" th:href="@{'/worker/delete/' + ${worker.number}}">Usuń</a>
             </td>
         </tr>
         </tbody>

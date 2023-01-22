@@ -165,4 +165,9 @@ public class AthleticsClub {
     private void setWorkers(Set<Worker> workers) {
         this.workers = workers;
     }
+
+    @Override
+    public String toString() {
+        return clubName;
+    }
 }

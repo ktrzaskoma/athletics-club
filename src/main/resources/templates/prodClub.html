@@ -170,7 +170,7 @@
 <!--tutaj są formsy-->
 <div class="container" style="margin-top: 50px">
     <div class="col-md-12 text-center">
-        <a type="button" class="btn btn-dark" th:href="@{/club}">Dodaj nowy klub</a>
+        <a sec:authorize="hasRole('ADMIN')" type="button" class="btn btn-dark" th:href="@{/club}">Dodaj nowy klub</a>
     </div>
 </div>
 
@@ -185,7 +185,7 @@
             <th scope="col">Dodatkowy numer telefonu</th>
             <th scope="col">Email</th>
             <th scope="col">Adres strony WWW</th>
-            <th class="text-right">Funkcje</th>
+            <th sec:authorize="hasRole('ADMIN')" class="text-right">Funkcje</th>
         </tr>
         </thead>
         <tbody>
@@ -198,7 +198,7 @@
             <td th:text="${club.phoneNumber2}"></td>
             <td th:text="${club.email}"></td>
             <td th:text="${club.webPage}"></td>
-            <td class="text-right">
+            <td sec:authorize="hasRole('ADMIN')" class="text-right">
                 <a class="btn btn-primary float-right" th:href="@{'/club/edit/' + ${club.number}}">Edytuj</a>
                 <a class="btn btn-danger float-right" th:href="@{'/club/delete/' + ${club.number}}">Usuń</a>
             </td>

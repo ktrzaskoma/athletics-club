@@ -41,7 +41,7 @@ public class AthleticsClub {
     private String clubWebPage;
 
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "nr_adresu")
     private Address clubAddressNumber;
 

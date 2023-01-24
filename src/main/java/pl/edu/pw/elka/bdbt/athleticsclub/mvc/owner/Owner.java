@@ -43,7 +43,7 @@ public class Owner {
     @Column(name = "nr_telefonu")
     private String ownerPhoneNumber;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "nr_adresu")
     private Address ownerAddressNumber;
 

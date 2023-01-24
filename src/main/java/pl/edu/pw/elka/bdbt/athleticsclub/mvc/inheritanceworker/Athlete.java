@@ -6,7 +6,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Zawodnicy")
+
 //@PrimaryKeyJoinColumn(name = "nr_pracownika")
 public class Athlete extends Worker {
 

@@ -57,7 +57,7 @@ public class Worker {
     @JoinColumn(name = "Nr_klubu")
     private AthleticsClub athleticsClubWorker;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Nr_adresu")
     private Address workerAddressNumber;
 

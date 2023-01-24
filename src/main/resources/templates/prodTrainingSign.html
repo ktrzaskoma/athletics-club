@@ -192,9 +192,9 @@
                 </output>
         </div>
         <div class="form-outline mb-4">
-            <label class="form-label">Wybierz klub</label>
+            <label class="form-label">Wybierz Zawodnika/Trenera</label>
             <select th:name="idAthlete" class="form-control">
-                <option value="0">Wybierz zawodnika:</option>
+                <option value="0">Zawodnik/Trener</option>
                 <option th:each="worker : ${workers.entrySet()}" th:value="${worker.key}"
                         th:text="${worker.value}"></option>
             </select>

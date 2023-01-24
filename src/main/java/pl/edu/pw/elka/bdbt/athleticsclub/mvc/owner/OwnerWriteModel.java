@@ -27,6 +27,7 @@ public class OwnerWriteModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate dateOfBirth;
     @NotNull(message = "Podaj poprawny numer PESEL")
+    @Size(min = 11, max = 11, message = "Numer PESEL powinien mieć 11 cyfr!")
     String pesel;
     @NotBlank(message = "Pole nie może być puste!")
     String sex;

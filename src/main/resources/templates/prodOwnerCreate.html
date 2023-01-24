@@ -339,8 +339,8 @@
                         <input type="number" th:field="*{pesel}" class="form-control"
                                th:errorclass="'Bdc(red)'"
                                placeholder="PESEL"
-                               max="11"
-                               min="11"
+                               maxlength="11"
+                               minlength="11"
                         />
                         <p class="C(red)" th:if="${#fields.hasErrors('pesel')}" th:errors="*{pesel}"></p>
                         </p>

@@ -40,7 +40,7 @@ public class Facility {
     @JoinColumn(name = "nr_klubu")
     private AthleticsClub athleticsClubFacility;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "nr_adresu")
     private Address facilityAddressNumber;
 

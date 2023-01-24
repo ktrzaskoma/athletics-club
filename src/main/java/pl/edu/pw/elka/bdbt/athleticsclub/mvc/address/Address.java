@@ -6,6 +6,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Adresy")
@@ -40,20 +41,20 @@ public class Address {
 
 
 //    mapping column to athletics club
-    @OneToOne(mappedBy = "clubAddressNumber")
-    private AthleticsClub athleticsClub;
+    @OneToMany(mappedBy = "clubAddressNumber")
+    private Set<AthleticsClub> athleticsClub;
 
 //    mapping column to owners
-    @OneToOne(mappedBy = "ownerAddressNumber")
-    private Owner owner;
+    @OneToMany(mappedBy = "ownerAddressNumber")
+    private Set<Owner> owner;
 
 //    mapping column to sport facilities
-    @OneToOne(mappedBy = "facilityAddressNumber")
-    private Facility facility;
+    @OneToMany(mappedBy = "facilityAddressNumber")
+    private Set<Facility> facility;
 
 //    mapping column to workers
-    @OneToOne(mappedBy = "workerAddressNumber")
-    private Worker worker;
+    @OneToMany(mappedBy = "workerAddressNumber")
+    private Set<Worker> worker;
 
 
     public String getZipCode() {

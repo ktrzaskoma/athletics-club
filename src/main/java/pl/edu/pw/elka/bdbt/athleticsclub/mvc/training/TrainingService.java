@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubRepository;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerRepository;
 
@@ -42,6 +43,31 @@ public class TrainingService {
         trainingRepository.save(training);
     }
 
+    List<WorkerReadModel> getFormattedAthletesForTrainingTraining(final String idTraining) {
+        var training = trainingRepository.getById(Integer.valueOf(idTraining)).getWorkers()
+                .stream().map(Worker::getNumber).toList();
+        var athletes = workerRepository.findAll();
+        return athletes.stream().filter(entity -> training.contains(entity.getNumber())).map(
+                WorkerReadModel::toReadModel).toList();
+    }
+
+    void signOffAthlete(final String idAthlete, final String idTraining) {
+        var athlete = workerRepository.getById(Integer.valueOf(idAthlete));
+        var trainingsForAthlete = athlete.getTrainings().stream()
+                .filter(entity -> !idTraining.equals(entity.getTrainingNumber().toString()))
+                .collect(Collectors.toSet());
+        athlete.setTrainings(trainingsForAthlete);
+
+        var training = trainingRepository.getById(Integer.valueOf(idTraining));
+        var athletesForTraining = training.getWorkers().stream()
+                .filter(entity -> !idAthlete.equals(entity.getNumber().toString()))
+                .collect(Collectors.toSet());
+        training.setWorkers(athletesForTraining);
+
+        workerRepository.save(athlete);
+        trainingRepository.save(training);
+    }
+
 
     Map<Integer, String> getFormattedClubs() {
         return athleticsClubRepository.findAll()
@@ -51,6 +77,15 @@ public class TrainingService {
 
     Map<Integer, String> getFormattedWorkers() {
         return workerRepository.findAll().stream().map(
+                WorkerReadModel::toReadModel
+        ).collect(Collectors.toMap(WorkerReadModel::getNumber, WorkerReadModel::toString));
+    }
+
+    Map<Integer, String> getFormattedWorkersAvailableForTraining(final String idTraining) {
+        var training = trainingRepository.getById(Integer.valueOf(idTraining)).getWorkers()
+                .stream().map(Worker::getNumber).toList();
+        var athletes = workerRepository.findAll();
+        return athletes.stream().filter(entity -> !training.contains(entity.getNumber())).map(
                 WorkerReadModel::toReadModel
         ).collect(Collectors.toMap(WorkerReadModel::getNumber, WorkerReadModel::toString));
     }

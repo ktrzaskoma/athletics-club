@@ -22,9 +22,8 @@ public class TrainingController {
     @GetMapping("sign/{idTraining}")
     String signUpForTraining(@PathVariable String idTraining, Model model) {
         var training = trainingService.getTrainingById(idTraining);
-        var workers = trainingService.getFormattedWorkers();
+        var workers = trainingService.getFormattedWorkersAvailableForTraining(idTraining);
         model.addAttribute("training", training);
-        //warunek, ze jesli nie znajdzie worker'ow nie moze sie wyswietlac -> przekierowac na strone bledow
         model.addAttribute("workers", workers);
         return "/prodTrainingSign";
     }
@@ -92,6 +91,23 @@ public class TrainingController {
         prepareEntryModel(model);
         model.addAttribute("edit", true);
         return "/prodTrainingCreate";
+    }
+
+    @GetMapping("/athletes/{idTraining}")
+    String getAthletesForTraining(@PathVariable("idTraining") String idTraining, Model model) {
+        var athletesForTraining = trainingService.getFormattedAthletesForTrainingTraining(idTraining);
+        model.addAttribute("athletes", athletesForTraining);
+        model.addAttribute("trainingNumber", idTraining);
+        return "prodAthletesForTraining";
+    }
+
+    @GetMapping("/athletes/delete/{idTraining}/{idAthlete}")
+    String deleteAthlete(@PathVariable("idTraining") String idTraining, @PathVariable("idAthlete") String idAthlete, Model model) {
+        trainingService.signOffAthlete(idAthlete, idTraining);
+        var athletesForTraining = trainingService.getFormattedAthletesForTrainingTraining(idTraining);
+        model.addAttribute("athletes", athletesForTraining);
+        model.addAttribute("trainingNumber", idTraining);
+        return "prodAthletesForTraining";
     }
 
     private Model prepareEntryModel(Model model) {

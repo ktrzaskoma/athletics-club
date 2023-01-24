@@ -185,4 +185,12 @@ public class Worker {
     public void setPhoneNumber(String workerPhoneNumber) {
         this.phoneNumber = workerPhoneNumber;
     }
+
+    public Set<Training> getTrainings() {
+        return trainings;
+    }
+
+    public void setTrainings(Set<Training> trainings) {
+        this.trainings = trainings;
+    }
 }

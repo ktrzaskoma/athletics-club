@@ -22,9 +22,8 @@ public class TrainingController {
     @GetMapping("sign/{idTraining}")
     String signUpForTraining(@PathVariable String idTraining, Model model) {
         var training = trainingService.getTrainingById(idTraining);
-        var workers = trainingService.getFormattedWorkers();
+        var workers = trainingService.getFormattedWorkersAvailableForTraining(idTraining);
         model.addAttribute("training", training);
-        //warunek, ze jesli nie znajdzie worker'ow nie moze sie wyswietlac -> przekierowac na strone bledow
         model.addAttribute("workers", workers);
         return "/prodTrainingSign";
     }

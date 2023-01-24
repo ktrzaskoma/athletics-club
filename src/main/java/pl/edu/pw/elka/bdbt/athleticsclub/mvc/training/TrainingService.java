@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubRepository;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerRepository;
 
@@ -51,6 +52,15 @@ public class TrainingService {
 
     Map<Integer, String> getFormattedWorkers() {
         return workerRepository.findAll().stream().map(
+                WorkerReadModel::toReadModel
+        ).collect(Collectors.toMap(WorkerReadModel::getNumber, WorkerReadModel::toString));
+    }
+
+    Map<Integer, String> getFormattedWorkersAvailableForTraining(final String idTraining) {
+        var training = trainingRepository.getById(Integer.valueOf(idTraining)).getWorkers()
+                .stream().map(Worker::getNumber).toList();
+        var athletes = workerRepository.findAll();
+        return athletes.stream().filter(entity -> !training.contains(entity.getNumber())).map(
                 WorkerReadModel::toReadModel
         ).collect(Collectors.toMap(WorkerReadModel::getNumber, WorkerReadModel::toString));
     }

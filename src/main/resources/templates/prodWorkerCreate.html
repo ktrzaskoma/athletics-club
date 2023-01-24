@@ -301,7 +301,7 @@
                                 <option value="5000-15000">5000 - 15000 PLN</option>
                                 <option value="powyżej 15000">powyżej 15000 PLN</option>
                                 <p class="C(red)" th:if="${#fields.hasErrors('worker.monthlySalary')}"
-                                   th:errors="${worker.monthlySalary}"/>
+                                   th:errors="${worker.monthlySalary}"></p>
                             </select>
                         </div>
                     </div>
@@ -346,12 +346,10 @@
                         <div class="form-outline">
                             <label class="form-label">Kategoria wiekowa</label>
                             <select th:field="${license.ageCategory}" class="form-control">
-                                <option value="Orlik">Orlik</option>
-                                <option value="Żak">Żak</option>
-                                <option value="Trampkarz">Trampkarz</option>
+                                <option value="Junior młodszy">Junior młodszy</option>
+                                <option value="Junior">Junior</option>
                                 <option value="Młodzieżowiec">Młodzieżowiec</option>
                                 <option value="Senior">Senior</option>
-                                <option value="Oldboj">Oldboj</option>
                             </select>
                         </div>
                     </div>

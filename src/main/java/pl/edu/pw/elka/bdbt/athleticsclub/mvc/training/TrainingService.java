@@ -43,6 +43,31 @@ public class TrainingService {
         trainingRepository.save(training);
     }
 
+    List<WorkerReadModel> getFormattedAthletesForTrainingTraining(final String idTraining) {
+        var training = trainingRepository.getById(Integer.valueOf(idTraining)).getWorkers()
+                .stream().map(Worker::getNumber).toList();
+        var athletes = workerRepository.findAll();
+        return athletes.stream().filter(entity -> training.contains(entity.getNumber())).map(
+                WorkerReadModel::toReadModel).toList();
+    }
+
+    void signOffAthlete(final String idAthlete, final String idTraining) {
+        var athlete = workerRepository.getById(Integer.valueOf(idAthlete));
+        var trainingsForAthlete = athlete.getTrainings().stream()
+                .filter(entity -> !idTraining.equals(entity.getTrainingNumber().toString()))
+                .collect(Collectors.toSet());
+        athlete.setTrainings(trainingsForAthlete);
+
+        var training = trainingRepository.getById(Integer.valueOf(idTraining));
+        var athletesForTraining = training.getWorkers().stream()
+                .filter(entity -> !idAthlete.equals(entity.getNumber().toString()))
+                .collect(Collectors.toSet());
+        training.setWorkers(athletesForTraining);
+
+        workerRepository.save(athlete);
+        trainingRepository.save(training);
+    }
+
 
     Map<Integer, String> getFormattedClubs() {
         return athleticsClubRepository.findAll()

@@ -93,6 +93,23 @@ public class TrainingController {
         return "/prodTrainingCreate";
     }
 
+    @GetMapping("/athletes/{idTraining}")
+    String getAthletesForTraining(@PathVariable("idTraining") String idTraining, Model model) {
+        var athletesForTraining = trainingService.getFormattedAthletesForTrainingTraining(idTraining);
+        model.addAttribute("athletes", athletesForTraining);
+        model.addAttribute("trainingNumber", idTraining);
+        return "prodAthletesForTraining";
+    }
+
+    @GetMapping("/athletes/delete/{idTraining}/{idAthlete}")
+    String deleteAthlete(@PathVariable("idTraining") String idTraining, @PathVariable("idAthlete") String idAthlete, Model model) {
+        trainingService.signOffAthlete(idAthlete, idTraining);
+        var athletesForTraining = trainingService.getFormattedAthletesForTrainingTraining(idTraining);
+        model.addAttribute("athletes", athletesForTraining);
+        model.addAttribute("trainingNumber", idTraining);
+        return "prodAthletesForTraining";
+    }
+
     private Model prepareEntryModel(Model model) {
         var clubs = trainingService.getFormattedClubs();
         var workers = trainingService.getFormattedWorkers();

@@ -3,6 +3,7 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.Facility;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ public class EquipmentReadModel {
     Integer numberOfEquipment;
     BigDecimal valueOfEquipment;
     String condition;
-    Boolean inUse;
+    String inUse;
 
     public static EquipmentReadModel toReadModel(final Equipment entity) {
         return new EquipmentReadModel(
@@ -26,7 +27,10 @@ public class EquipmentReadModel {
                 entity.getNumberOfEquipment(),
                 entity.getValueOfEquipment(),
                 entity.getCondition(),
-                entity.getInUse());
+                resolveInUse(entity));
     }
 
+    private static String resolveInUse(final Equipment entity) {
+        return entity.getInUse() ? "Tak" : "Nie";
+    }
 }

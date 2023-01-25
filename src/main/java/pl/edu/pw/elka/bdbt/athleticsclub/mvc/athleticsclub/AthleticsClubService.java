@@ -7,6 +7,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressRepository;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerReadModel;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerRepository;
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerRepository;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class AthleticsClubService {
     private final AthleticsClubRepository athleticsClubRepository;
     private final AddressRepository addressRepository;
     private final OwnerRepository ownerRepository;
+    private final WorkerRepository workerRepository;
 
     List<AthleticsClubReadModel> getClubs() {
         log.info("Finding all entries in DB!");
@@ -54,6 +56,12 @@ public class AthleticsClubService {
         var clubToDelete = athleticsClubRepository.getById(Integer.valueOf(idClub));
         clubToDelete.setClubAddressNumber(null);
         clubToDelete.setOwnerOfAthleticsClub(null);
+        clubToDelete.setWorkers(null);
+
+        workerRepository.findAll()
+                .stream().filter(entity -> idClub.equals(entity.getAthleticsClubWorker().getClubNumber().toString()))
+                .forEach(worker -> worker.setAthleticsClubWorker(null));
+
         var savedClub = athleticsClubRepository.save(clubToDelete);
         athleticsClubRepository.deleteById(savedClub.getClubNumber());
     }

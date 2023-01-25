@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment;
 
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,9 +33,9 @@ public class EquipmentController {
                                    EquipmentWriteModel writeModel,
                            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            prepareEntryModel(model);
             model.addAttribute("edit", false);
-            return "/prodEquipmentCreate";
+            var validation = prepareEntryModel(model);
+            return validation.isEmpty() ? "/prodEquipmentCreate" : validation;
         }
         equipmentService.saveEquipment(writeModel);
         return "redirect:/equipment/getAll";
@@ -42,10 +43,10 @@ public class EquipmentController {
 
     @GetMapping
     String viewPage(Model model) {
-        prepareEntryModel(model);
         model.addAttribute("equipment", new EquipmentWriteModel());
         model.addAttribute("edit", false);
-        return "/prodEquipmentCreate";
+        var validation = prepareEntryModel(model);
+        return validation.isEmpty() ? "/prodEquipmentCreate" : validation;
     }
 
     @GetMapping("/delete/{idEquipment}")
@@ -61,34 +62,42 @@ public class EquipmentController {
         var editEntity = equipmentService.editEquipment(idEquipment);
         model.addAttribute("equipment", editEntity);
         model.addAttribute("edit", true);
-        prepareEntryModel(model);
-        return "/prodEquipmentCreate";
+        var validation = prepareEntryModel(model);
+        return validation.isEmpty() ? "/prodEquipmentCreate" : validation;
     }
 
     @PostMapping("/edit/{idEquipment}")
     String editEquipment(@ModelAttribute("equipment") @Valid EquipmentWriteModel writeModel,
-                    BindingResult bindingResult,
-                    @PathVariable("idEquipment") String idEquipment,
-                    Model model) {
+                         BindingResult bindingResult,
+                         @PathVariable("idEquipment") String idEquipment,
+                         Model model) {
         if (bindingResult.hasErrors()) {
             log.warn("Errors founds, try to show them in view!");
-            prepareEntryModel(model);
             model.addAttribute("edit", true);
-            return "/prodEquipmentCreate";
+            var validation = prepareEntryModel(model);
+            return validation.isEmpty() ? "/prodEquipmentCreate" : validation;
         }
         writeModel.setNumber(Integer.valueOf(idEquipment));
         equipmentService.modifyEquipment(writeModel);
         return "redirect:/equipment/getAll";
     }
 
-    private Model prepareEntryModel(Model model) {
+    private String prepareEntryModel(Model model) {
         var producers = equipmentService.getFormattedProducers();
+        if (producers.isEmpty()) {
+            return "redirect:/producer";
+        }
         var clubs = equipmentService.getFormattedClubs();
+        if (clubs.isEmpty()) {
+            return "redirect:/club";
+        }
         var facilities = equipmentService.getFormattedFacilities();
-
+        if (facilities.isEmpty()) {
+            return "redirect:/facility";
+        }
         model.addAttribute("producers", producers);
         model.addAttribute("clubs", clubs);
         model.addAttribute("facilities", facilities);
-        return model;
+        return StringUtils.EMPTY;
     }
 }

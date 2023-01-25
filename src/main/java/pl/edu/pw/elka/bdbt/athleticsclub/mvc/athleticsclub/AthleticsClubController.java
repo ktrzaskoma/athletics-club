@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub;
 
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,9 +37,9 @@ public class AthleticsClubController {
     String createClub(@ModelAttribute("club") @Valid AthleticsClubWriteModel writeModel,
                       BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            prepareEntryModel(model);
             model.addAttribute("edit", false);
-            return "/prodClubCreate";
+            var validation = prepareEntryModel(model);
+            return validation.isEmpty() ? "/prodClubCreate" : validation;
         }
         clubService.saveClub(writeModel);
         return "redirect:/club/getAll";
@@ -51,9 +52,9 @@ public class AthleticsClubController {
                     Model model) {
         if (bindingResult.hasErrors()) {
             log.warn("Errors founds, try to show them in view!");
-            prepareEntryModel(model);
             model.addAttribute("edit", true);
-            return "/prodClubCreate";
+            var validation = prepareEntryModel(model);
+            return validation.isEmpty() ? "/prodClubCreate" : validation;
         }
         writeModel.setNumber(Integer.valueOf(idClub));
         clubService.modifyClub(writeModel);
@@ -66,24 +67,30 @@ public class AthleticsClubController {
         var editEntity = clubService.editClub(idClub);
         model.addAttribute("club", editEntity);
         model.addAttribute("edit", true);
-        prepareEntryModel(model);
-        return "/prodClubCreate";
+        var validation = prepareEntryModel(model);
+        return validation.isEmpty() ? "/prodClubCreate" : validation;
     }
 
     @GetMapping
     String viewPage(Model model) {
-        prepareEntryModel(model);
+        var validation = prepareEntryModel(model);
         model.addAttribute("edit", false);
         model.addAttribute("club", new AthleticsClubWriteModel());
-        return "/prodClubCreate";
+        return validation.isEmpty() ? "/prodClubCreate" : validation;
     }
 
-    private Model prepareEntryModel(Model model) {
+    private String prepareEntryModel(Model model) {
         var addresses = clubService.getFormattedAddresses();
+        if (addresses.isEmpty()) {
+            return "redirect:/address";
+        }
         var owners = clubService.getFormattedOwners();
+        if (owners.isEmpty()) {
+            return "redirect:/owner";
+        }
         model.addAttribute("addresses", addresses);
         model.addAttribute("owners", owners);
-        return model;
+        return StringUtils.EMPTY;
     }
 
     @GetMapping("/delete/{idClub}")

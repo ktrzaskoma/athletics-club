@@ -44,7 +44,7 @@ public class Facility {
     @JoinColumn(name = "nr_adresu")
     private Address facilityAddressNumber;
 
-    @OneToMany(mappedBy = "equipmentStorage")
+    @OneToMany(mappedBy = "equipmentStorage", orphanRemoval = true)
     private Set<Equipment> equipment;
 
     private Set<Equipment> getSportEquipment() {

@@ -3,7 +3,6 @@ package pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClub;
 
 import java.time.LocalDate;
 
@@ -16,7 +15,7 @@ public class FacilityReadModel {
     String facilityName;
     LocalDate openDate;
     String facilityType;
-    Boolean coveredFacility;
+    String coveredFacility;
     String capacity;
     String athleticsClubFacility;
 
@@ -27,9 +26,13 @@ public class FacilityReadModel {
                 entity.getFacilityName(),
                 entity.getOpenDate(),
                 entity.getFacilityType(),
-                entity.getCoveredFacility(),
+                resolveCoveredFacility(entity),
                 entity.getCapacityOfStands(),
                 entity.getAthleticsClubFacility().toString());
+    }
+
+    private static String resolveCoveredFacility(Facility entity) {
+        return entity.getCoveredFacility() ? "Tak" : "Nie";
     }
 
     @Override

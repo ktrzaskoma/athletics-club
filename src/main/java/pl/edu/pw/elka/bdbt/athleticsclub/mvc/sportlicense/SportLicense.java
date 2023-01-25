@@ -1,5 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense;
 
+import pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.Worker;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -25,6 +27,17 @@ public class SportLicense {
 
     @Column(name = "kategoria_wiekowa")
     private String ageCategory;
+
+    @OneToOne(mappedBy = "license")
+    private Worker worker;
+
+    public Worker getWorker() {
+        return worker;
+    }
+
+    public void setWorker(Worker worker) {
+        this.worker = worker;
+    }
 
     public Integer getSportLicenseNumber() {
         return sportLicenseNumber;

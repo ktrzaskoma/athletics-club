@@ -198,6 +198,8 @@
     <fieldset style="margin-top: 50px">
 
         <div th:if="${!edit}">
+
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Dodawanie nowego sprzętu</b></p>
             <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.EquipmentWriteModel"*/-->
             <form method="post" th:action="@{/equipment/create}" th:object="${equipment}">
 
@@ -302,6 +304,7 @@
         </div>
 
         <div th:if="${edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Edytowanie sprzętu</b></p>
             <!--/*@thymesVar id="equipment" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.equipment.EquipmentWriteModel"*/-->
             <form method="post" th:action="@{'/equipment/edit/' + ${equipment.number}}" th:object="${equipment}">
 

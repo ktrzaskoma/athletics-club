@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.training;
 
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,9 @@ public class TrainingController {
         var training = trainingService.getTrainingById(idTraining);
         var workers = trainingService.getFormattedWorkersAvailableForTraining(idTraining);
         model.addAttribute("training", training);
+        if (workers.isEmpty()) {
+            return "redirect:/prodWorkerCreate";
+        }
         model.addAttribute("workers", workers);
         return "/prodTrainingSign";
     }
@@ -45,9 +49,9 @@ public class TrainingController {
     String createTraining(@ModelAttribute("training") @Valid TrainingWriteModel writeModel,
                           BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            prepareEntryModel(model);
             model.addAttribute("edit", false);
-            return "/prodTrainingCreate";
+            var validation = prepareEntryModel(model);
+            return validation.isEmpty() ? "/prodTrainingCreate" : validation;
         }
         trainingService.saveTraining(writeModel);
         return "redirect:/training/getAll";
@@ -55,10 +59,10 @@ public class TrainingController {
 
     @GetMapping
     String viewPage(Model model) {
-        prepareEntryModel(model);
         model.addAttribute("training", new TrainingWriteModel());
         model.addAttribute("edit", false);
-        return "/prodTrainingCreate";
+        var validation = prepareEntryModel(model);
+        return validation.isEmpty() ? "/prodTrainingCreate" : validation;
     }
 
     @PostMapping("/edit/{idTraining}")
@@ -88,9 +92,9 @@ public class TrainingController {
         log.info("Try to edit entry!");
         var editEntry = trainingService.editTraining(idTraining);
         model.addAttribute("training", editEntry);
-        prepareEntryModel(model);
         model.addAttribute("edit", true);
-        return "/prodTrainingCreate";
+        var validation = prepareEntryModel(model);
+        return validation.isEmpty() ? "/prodTrainingCreate" : validation;
     }
 
     @GetMapping("/athletes/{idTraining}")
@@ -110,11 +114,17 @@ public class TrainingController {
         return "prodAthletesForTraining";
     }
 
-    private Model prepareEntryModel(Model model) {
+    private String prepareEntryModel(Model model) {
         var clubs = trainingService.getFormattedClubs();
         var workers = trainingService.getFormattedWorkers();
+        if (clubs.isEmpty()) {
+            return "redirect:/prodClubCreate";
+        }
+        if (workers.isEmpty()) {
+            return "redirect:/prodWorkerCreate";
+        }
         model.addAttribute("clubs", clubs);
         model.addAttribute("workers", workers);
-        return model;
+        return StringUtils.EMPTY;
     }
 }

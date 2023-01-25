@@ -49,13 +49,13 @@ public class AthleticsClub {
     @JoinColumn(name = "nr_wlasciciela")
     private Owner ownerOfAthleticsClub;
 
-    @OneToMany(mappedBy = "athleticsClubFacility")
+    @OneToMany(mappedBy = "athleticsClubFacility", orphanRemoval = true)
     private Set<Facility> sportFacilities;
 
-    @OneToMany(mappedBy = "athleticsClubEquipment")
+    @OneToMany(mappedBy = "athleticsClubEquipment", orphanRemoval = true)
     private Set<Equipment> equipment;
 
-    @OneToMany(mappedBy = "athleticsClubTraining")
+    @OneToMany(mappedBy = "athleticsClubTraining", orphanRemoval = true)
     private Set<Training> trainings;
 
     @OneToMany(mappedBy = "athleticsClubWorker")
@@ -162,7 +162,7 @@ public class AthleticsClub {
         return workers;
     }
 
-    private void setWorkers(Set<Worker> workers) {
+    public void setWorkers(Set<Worker> workers) {
         this.workers = workers;
     }
 

@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility;
 
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,9 +36,9 @@ public class FacilityController {
     String createFacility(@ModelAttribute("facility") @Valid FacilityWriteModel writeModel,
                           BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            prepareEntryModel(model);
             model.addAttribute("edit", false);
-            return "/prodFacilityCreate";
+            var validation = prepareEntryModel(model);
+            return validation.isEmpty() ? "/prodFacilityCreate" : validation;
         }
         facilityService.saveFacility(writeModel);
         return "redirect:/facility/getAll";
@@ -50,9 +51,9 @@ public class FacilityController {
                         Model model) {
         if (bindingResult.hasErrors()) {
             log.warn("Errors founds, try to show them in view!");
-            prepareEntryModel(model);
             model.addAttribute("edit", true);
-            return "/prodFacilityCreate";
+            var validation = prepareEntryModel(model);
+            return validation.isEmpty() ? "/prodFacilityCreate" : validation;
         }
         writeModel.setNumber(Integer.valueOf(idFacility));
         facilityService.modifyFacility(writeModel);
@@ -61,10 +62,10 @@ public class FacilityController {
 
     @GetMapping
     String viewPage(Model model) {
-        prepareEntryModel(model);
         model.addAttribute("facility", new FacilityWriteModel());
         model.addAttribute("edit", false);
-        return "/prodFacilityCreate";
+        var validation = prepareEntryModel(model);
+        return validation.isEmpty() ? "/prodFacilityCreate" : validation;
     }
 
     @GetMapping("/delete/{idFacility}")
@@ -80,16 +81,22 @@ public class FacilityController {
         var editEntity = facilityService.editFacility(idFacility);
         model.addAttribute("facility", editEntity);
         model.addAttribute("edit", true);
-        prepareEntryModel(model);
-        return "/prodFacilityCreate";
+        var validation = prepareEntryModel(model);
+        return validation.isEmpty() ? "/prodFacilityCreate" : validation;
     }
 
-    private Model prepareEntryModel(Model model) {
+    private String prepareEntryModel(Model model) {
         var clubs = facilityService.getFormattedClubs();
         var addresses = facilityService.getFormattedAddresses();
+        if (clubs.isEmpty()) {
+            return "redirect:/prodClubCreate";
+        }
+        if (addresses.isEmpty()) {
+            return "redirect:/prodAddressCreate";
+        }
         model.addAttribute("clubs", clubs);
         model.addAttribute("addresses", addresses);
-        return model;
+        return StringUtils.EMPTY;
     }
 
 }

@@ -13,6 +13,7 @@ import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicenseWriteModel
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,6 +77,13 @@ class WorkerService {
     WorkerWriteModel editWorker(final String idWorker) {
         log.info("Edit entry in DB!");
         var editEntry = workerRepository.getById(Integer.valueOf(idWorker));
+
+        var clubNumber = Objects.nonNull(editEntry.getAthleticsClubWorker()) ?
+                editEntry.getAthleticsClubWorker().getClubNumber() : null;
+
+        var addressNumber = Objects.nonNull(editEntry.getWorkerAddressNumber()) ?
+                editEntry.getWorkerAddressNumber().getAddressNumber() : null;
+
         return new WorkerWriteModel(
                 editEntry.getName(),
                 editEntry.getSurname(),
@@ -86,10 +94,9 @@ class WorkerService {
                 editEntry.getBankAccount(),
                 editEntry.getEmail(),
                 editEntry.getPhoneNumber(),
-                editEntry.getAthleticsClubWorker().getClubNumber(),
-                editEntry.getWorkerAddressNumber().getAddressNumber(),
+                clubNumber,
+                addressNumber,
                 editEntry.getMonthlySalary(),
-                Collections.emptySet(),
                 editEntry.getLicense(),
                 editEntry.getNumber()
         );
@@ -110,9 +117,12 @@ class WorkerService {
     void deleteWorker(final String idWorker) {
         log.info("Delete entry in DB!");
         var workerToDelete = workerRepository.getById(Integer.valueOf(idWorker));
+        var licenseIdToDelete = workerToDelete.getLicense().getSportLicenseNumber();
         workerToDelete.setAthleticsClubWorker(null);
         workerToDelete.setWorkerAddressNumber(null);
+        workerToDelete.setLicense(null);
         var savedWorker = workerRepository.save(workerToDelete);
         workerRepository.deleteById(savedWorker.getNumber());
+        sportLicenseRepository.deleteById(licenseIdToDelete);
     }
 }

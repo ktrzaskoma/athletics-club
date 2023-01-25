@@ -46,7 +46,6 @@ public class WorkerWriteModel {
     Integer athleticsClubWorker;
     Integer workerAddressNumber;
     String monthlySalary;
-    Set<SportLicense> sportLicenses = new HashSet<>();
     SportLicense sportLicense;
     Integer number;
 
@@ -66,10 +65,16 @@ public class WorkerWriteModel {
         entity.setBankAccount(writeModel.getBankAccount());
         entity.setEmail(writeModel.getEmail());
         entity.setPhoneNumber(writeModel.getPhoneNumber());
-        entity.setAthleticsClubWorker(athleticsClub);
-        entity.setWorkerAddressNumber(address);
+        if (Objects.nonNull(athleticsClub)) {
+            entity.setAthleticsClubWorker(athleticsClub);
+        }
+        if (Objects.nonNull(address)) {
+            entity.setWorkerAddressNumber(address);
+        }
         entity.setMonthlySalary(writeModel.getMonthlySalary());
-        entity.setLicense(sportLicense);
+        if (Objects.nonNull(sportLicense)) {
+            entity.setLicense(sportLicense);
+        }
         if (Objects.nonNull(writeModel.getNumber())) {
             entity.setNumber(writeModel.getNumber());
         }

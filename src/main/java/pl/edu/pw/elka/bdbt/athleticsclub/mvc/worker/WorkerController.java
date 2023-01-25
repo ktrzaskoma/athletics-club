@@ -37,10 +37,10 @@ public class WorkerController {
 
     @PostMapping("/create")
     String createWorker(@ModelAttribute("worker") @Valid
-                                WorkerWriteModel workerWriteModel,
+                        WorkerWriteModel workerWriteModel,
                         BindingResult bindingResultWorker,
                         @ModelAttribute("license") @Valid
-                                SportLicenseWriteModel sportLicenseWriteModel,
+                        SportLicenseWriteModel sportLicenseWriteModel,
                         BindingResult bindingResultLicense,
                         Model model) {
         if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()) {
@@ -71,10 +71,10 @@ public class WorkerController {
 
     @PostMapping("/edit/{idWorker}")
     String editWorker(@ModelAttribute("worker") @Valid
-                              WorkerWriteModel workerWriteModel,
+                      WorkerWriteModel workerWriteModel,
                       BindingResult bindingResultWorker,
                       @ModelAttribute("license") @Valid
-                              SportLicenseWriteModel sportLicenseWriteModel,
+                      SportLicenseWriteModel sportLicenseWriteModel,
                       BindingResult bindingResultLicense,
                       @PathVariable("idWorker") String idWorker,
                       Model model) {

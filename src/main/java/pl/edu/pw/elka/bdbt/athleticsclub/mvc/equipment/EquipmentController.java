@@ -32,12 +32,12 @@ public class EquipmentController {
 
     @PostMapping("/create")
     String createEquipment(@ModelAttribute("equipment") @Valid
-                                   EquipmentWriteModel writeModel,
+                           EquipmentWriteModel writeModel,
                            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors() ||
-                Objects.isNull(writeModel.getAthleticsClubEquipment()) ||
-                Objects.isNull(writeModel.getEquipmentProducer()) ||
-                Objects.isNull(writeModel.getEquipmentStorage())) {
+                writeModel.getAthleticsClubEquipment() == 0 ||
+                writeModel.getEquipmentProducer() == 0 ||
+                writeModel.getEquipmentStorage() == 0) {
             model.addAttribute("edit", false);
             var validation = prepareEntryModel(model);
             return validation.isEmpty() ? "/prodEquipmentCreate" : validation;
@@ -77,9 +77,9 @@ public class EquipmentController {
                          @PathVariable("idEquipment") String idEquipment,
                          Model model) {
         if (bindingResult.hasErrors() ||
-                Objects.isNull(writeModel.getAthleticsClubEquipment()) ||
-                Objects.isNull(writeModel.getEquipmentProducer()) ||
-                Objects.isNull(writeModel.getEquipmentStorage())) {
+                writeModel.getAthleticsClubEquipment() == 0 ||
+                writeModel.getEquipmentProducer() == 0 ||
+                writeModel.getEquipmentStorage() == 0) {
             log.warn("Errors founds, try to show them in view!");
             model.addAttribute("edit", true);
             var validation = prepareEntryModel(model);

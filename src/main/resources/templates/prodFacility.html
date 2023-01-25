@@ -185,6 +185,7 @@
       <th scope="col">Czy obiekt zadaszony?</th>
       <th scope="col">Pojemność trybun</th>
       <th scope="col">Klub zarządzający</th>
+      <th scope="col">Adres</th>
       <th sec:authorize="hasAnyRole('ADMIN')" class="text-right">Funkcje</th>
     </tr>
     </thead>
@@ -198,6 +199,7 @@
       <td th:text="${facility.coveredFacility}"></td>
       <td th:text="${facility.capacity}"></td>
       <td th:text="${facility.athleticsClubFacility}"></td>
+      <td th:text="${facility.facilityAddressNumber}"></td>
       <td sec:authorize="hasAnyRole('ADMIN')" class="text-right">
         <a sec:authorize="hasAnyRole('ADMIN')" class="btn btn-primary float-right" th:href="@{'/facility/edit/' + ${facility.number}}">Edytuj</a>
         <a sec:authorize="hasAnyRole('ADMIN')" class="btn btn-danger float-right" th:href="@{'/facility/delete/' + ${facility.number}}">Usuń</a>

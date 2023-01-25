@@ -196,10 +196,11 @@
 
     <fieldset style="margin-top: 50px">
 
+
         <div th:if="${!edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Dodawanie nowego właściciela</b></p>
             <!--/*@thymesVar id="owner" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerWriteModel"*/-->
             <form method="post" th:action="@{/owner/create}" th:object="${owner}">
-
                 <div class="row mb-4">
                     <div class="col">
                         <label class="form-label" for="name">Imię</label>
@@ -312,6 +313,7 @@
         </div>
 
         <div th:if="${edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Edytowanie właściciela</b></p>
             <!--/*@thymesVar id="owner" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerWriteModel"*/-->
             <form method="post" th:action="@{'/owner/edit/' + ${owner.number}}" th:object="${owner}">
 

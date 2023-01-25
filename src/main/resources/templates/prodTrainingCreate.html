@@ -196,6 +196,8 @@
 
     <fieldset style="margin-top: 50px">
         <div th:if="${!edit}">
+
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Dodawanie nowego treningu</b></p>
             <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/-->
             <form method="post" th:action="@{/training/create}" th:object="${training}">
                 <div class="form-outline mb-4">
@@ -277,6 +279,7 @@
             </form>
         </div>
         <div th:if="${edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Edytowanie treningu</b></p>
             <!--/*@thymesVar id="training" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.training.TrainingWriteModel"*/-->
             <form method="post" th:action="@{'/training/edit/' + ${training.number}}" th:object="${training}">
                 <div class="form-outline mb-4">

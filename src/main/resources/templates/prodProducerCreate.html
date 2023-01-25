@@ -197,6 +197,7 @@
     <fieldset style="margin-top: 50px">
 
         <div th:if="${!edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Dodawanie nowego producenta</b></p>
             <!--/*@thymesVar id="producer" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer.ProducerWriteModel"*/-->
             <form method="post" th:action="@{/producer/create}" th:object="${producer}">
 
@@ -256,6 +257,7 @@
         </div>
 
         <div th:if="${edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Edytowanie producenta</b></p>
             <!--/*@thymesVar id="producer" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.producer.ProducerWriteModel"*/-->
             <form method="post" th:action="@{'/producer/edit/' + ${producer.number}}" th:object="${producer}">
 

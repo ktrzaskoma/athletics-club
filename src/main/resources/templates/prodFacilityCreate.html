@@ -197,6 +197,7 @@
     <fieldset style="margin-top: 50px">
 
         <div th:if="${!edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Dodawanie nowego obiektu</b></p>
             <!--/*@thymesVar id="facility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityWriteModel"*/-->
             <form method="post" th:action="@{/facility/create}" th:object="${facility}">
 
@@ -297,6 +298,7 @@
         </div>
 
         <div th:if="${edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Edytowanie obiektu</b></p>
             <!--/*@thymesVar id="facility" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.facility.FacilityWriteModel"*/-->
             <form method="post" th:action="@{'/facility/edit/' + ${facility.number}}" th:object="${facility}">
 

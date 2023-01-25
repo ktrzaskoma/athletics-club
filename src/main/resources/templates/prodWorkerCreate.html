@@ -197,6 +197,7 @@
     <fieldset style="margin-top: 50px">
 
         <div th:if="${!edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Dodawanie nowego pracownika</b></p>
             <!--/*@thymesVar id="license" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicenseWriteModel"*/-->
             <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
             <form method="post" th:action="@{/worker/create}">
@@ -399,6 +400,7 @@
         </div>
 
         <div th:if="${edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Edytowanie pracownika</b></p>
             <!--/*@thymesVar id="license" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicenseWriteModel"*/-->
             <!--/*@thymesVar id="worker" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.worker.WorkerWriteModel"*/-->
             <form method="post" th:action="@{'/worker/edit/' + ${worker.number}}">

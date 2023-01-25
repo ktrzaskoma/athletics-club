@@ -215,9 +215,13 @@
                     <div class="col">
                         <label class="form-label">Dyscyplina</label>
                         <select th:field="*{discipline}" class="form-control" th:errorclass="'Bdc(red)'">
-                            <option value="Pływanie">Pływanie</option>
-                            <option value="Narciarstwo">Narciarstwo</option>
+                            <option value="Sztafeta">Sztafeta</option>
+                            <option value="Bieg na 100m">Bieg na 100m</option>
+                            <option value="Skok o tyczce">Skok o tyczce</option>
+                            <option value="Bieg płotkarski">Bieg płotkarski</option>
                             <option value="Rzut młotem">Rzut młotem</option>
+                            <option value="Skok w dal">Skok w dal</option>
+                            <option value="Rzut oszczepem">Rzut oszczepem</option>
                             <option value="Rzut kulą">Rzut kulą</option>
                             <p class="C(red)" th:if="${#fields.hasErrors('discipline')}" th:errors="*{discipline}"/>
                         </select>
@@ -242,10 +246,10 @@
                         <select th:field="*{type}" class="form-control" th:errorclass="'Bdc(red)'">
                             <option value="Trening siłowy">Trening siłowy</option>
                             <option value="Trening kondycyjny">Trening kondycyjny</option>
-                            <option value="Trening aerobowy">Trening aerobowy</option>
-                            <option value="Pływanie">Pływanie</option>
-                            <option value="Narciarstwo">Narciarstwo</option>
-                            <p class="C(red)" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"/>
+                            <option value="Trening techniczny">Trening techniczny</option>
+                            <option value="Trening regeneracyjny">Trening regeneracyjny</option>
+                            <option value="Testy sprawnościowe">Testy sprawnościowe</option>
+                            <p class="C(red)" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
                         </select>
                     </div>
 
@@ -297,9 +301,13 @@
                     <div class="col">
                         <label class="form-label">Dyscyplina</label>
                         <select th:field="*{discipline}" class="form-control" th:errorclass="'Bdc(red)'">
-                            <option value="Pływanie">Pływanie</option>
-                            <option value="Narciarstwo">Narciarstwo</option>
+                            <option value="Sztafeta">Sztafeta</option>
+                            <option value="Bieg na 100m">Bieg na 100m</option>
+                            <option value="Skok o tyczce">Skok o tyczce</option>
+                            <option value="Bieg płotkarski">Bieg płotkarski</option>
                             <option value="Rzut młotem">Rzut młotem</option>
+                            <option value="Skok w dal">Skok w dal</option>
+                            <option value="Rzut oszczepem">Rzut oszczepem</option>
                             <option value="Rzut kulą">Rzut kulą</option>
                             <p class="C(red)" th:if="${#fields.hasErrors('discipline')}" th:errors="*{discipline}"/>
                         </select>
@@ -324,9 +332,9 @@
                         <select th:field="*{type}" class="form-control" th:errorclass="'Bdc(red)'">
                             <option value="Trening siłowy">Trening siłowy</option>
                             <option value="Trening kondycyjny">Trening kondycyjny</option>
-                            <option value="Trening aerobowy">Trening aerobowy</option>
-                            <option value="Pływanie">Pływanie</option>
-                            <option value="Narciarstwo">Narciarstwo</option>
+                            <option value="Trening techniczny">Trening techniczny</option>
+                            <option value="Trening regeneracyjny">Trening regeneracyjny</option>
+                            <option value="Testy sprawnościowe">Testy sprawnościowe</option>
                             <p class="C(red)" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"/>
                         </select>
                     </div>

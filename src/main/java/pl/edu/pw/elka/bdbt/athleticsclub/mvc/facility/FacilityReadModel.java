@@ -18,6 +18,7 @@ public class FacilityReadModel {
     String coveredFacility;
     String capacity;
     String athleticsClubFacility;
+    String facilityAddressNumber;
 
 
     public static FacilityReadModel toReadModel(final Facility entity) {
@@ -28,7 +29,8 @@ public class FacilityReadModel {
                 entity.getFacilityType(),
                 resolveCoveredFacility(entity),
                 entity.getCapacityOfStands(),
-                entity.getAthleticsClubFacility().toString());
+                entity.getAthleticsClubFacility().toString(),
+                entity.getFacilityAddressNumber().toString());
     }
 
     private static String resolveCoveredFacility(Facility entity) {
@@ -37,7 +39,7 @@ public class FacilityReadModel {
 
     @Override
     public String toString() {
-        return facilityName + ", " + facilityType + ", pojemność: " + capacity;
+        return facilityName + ", " + facilityType;
     }
 
 }

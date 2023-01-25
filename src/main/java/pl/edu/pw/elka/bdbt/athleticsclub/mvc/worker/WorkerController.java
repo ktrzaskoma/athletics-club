@@ -38,13 +38,16 @@ public class WorkerController {
 
     @PostMapping("/create")
     String createWorker(@ModelAttribute("worker") @Valid
-                                WorkerWriteModel workerWriteModel,
+                        WorkerWriteModel workerWriteModel,
                         BindingResult bindingResultWorker,
                         @ModelAttribute("license") @Valid
-                                SportLicenseWriteModel sportLicenseWriteModel,
+                        SportLicenseWriteModel sportLicenseWriteModel,
                         BindingResult bindingResultLicense,
                         Model model) {
-        if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()) {
+        if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()
+                || workerWriteModel.athleticsClubWorker == 0
+                || workerWriteModel.workerAddressNumber == 0
+        ) {
             log.warn("Errors founds, try to show them in view!");
             model.addAttribute("edit", false);
             var validation = prepareEntryModel(model);
@@ -72,14 +75,17 @@ public class WorkerController {
 
     @PostMapping("/edit/{idWorker}")
     String editWorker(@ModelAttribute("worker") @Valid
-                              WorkerWriteModel workerWriteModel,
+                      WorkerWriteModel workerWriteModel,
                       BindingResult bindingResultWorker,
                       @ModelAttribute("license") @Valid
-                              SportLicenseWriteModel sportLicenseWriteModel,
+                      SportLicenseWriteModel sportLicenseWriteModel,
                       BindingResult bindingResultLicense,
                       @PathVariable("idWorker") String idWorker,
                       Model model) {
-        if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()) {
+        if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()
+                || workerWriteModel.athleticsClubWorker == 0
+                || workerWriteModel.workerAddressNumber == 0
+        ) {
             log.warn("Errors founds, try to show them in view!");
             model.addAttribute("edit", true);
             var validation = prepareEntryModel(model);

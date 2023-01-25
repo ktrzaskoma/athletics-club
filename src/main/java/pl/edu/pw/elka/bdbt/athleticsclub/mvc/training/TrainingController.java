@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/training")
@@ -50,7 +49,7 @@ public class TrainingController {
     @PostMapping("create")
     String createTraining(@ModelAttribute("training") @Valid TrainingWriteModel writeModel,
                           BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAthleticsClub())) {
+        if (bindingResult.hasErrors() || writeModel.getAthleticsClub() == 0) {
             model.addAttribute("edit", false);
             var validation = prepareEntryModel(model);
             return validation.isEmpty() ? "/prodTrainingCreate" : validation;
@@ -72,7 +71,7 @@ public class TrainingController {
                        BindingResult bindingResult,
                        @PathVariable("idTraining") String idTraining,
                        Model model) {
-        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAthleticsClub())) {
+        if (bindingResult.hasErrors() || writeModel.getAthleticsClub() == 0) {
             log.warn("Errors founds, try to show them in view!");
             model.addAttribute("edit", true);
             return "/prodTrainingCreate";

@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "Adresy")
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "nr_adresu")
@@ -111,6 +112,14 @@ public class Address {
 
     public void setApartmentNumber(String apartmentNumber) {
         this.apartmentNumber = apartmentNumber;
+    }
+
+    @Override
+    public String toString() {
+        if (apartmentNumber.isEmpty()) {
+            return country + ", " + city + ", "+ zipCode + ", ul." + street + " " + buildingNumber;
+        }else
+            return country + ", " + city + ", "+ zipCode + ", ul." + street + " " + buildingNumber + "/" + apartmentNumber;
     }
 
 }

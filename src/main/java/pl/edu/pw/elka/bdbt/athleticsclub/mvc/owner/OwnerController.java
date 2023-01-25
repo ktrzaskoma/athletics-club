@@ -37,7 +37,7 @@ public class OwnerController {
     @PostMapping("/create")
     String createAddress(@ModelAttribute("owner") @Valid OwnerWriteModel writeModel,
                          BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAddressNumber())) {
+        if (bindingResult.hasErrors() || writeModel.getAddressNumber() == 0) {
             var validation = prepareEntryModel(model);
             return validation.isEmpty() ? "/prodOwnerCreate" : validation;
         }
@@ -64,7 +64,7 @@ public class OwnerController {
                      BindingResult bindingResult,
                      @PathVariable("idOwner") String idOwner,
                      Model model) {
-        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAddressNumber())) {
+        if (bindingResult.hasErrors() || writeModel.getAddressNumber() == 0) {
             log.warn("Errors founds, try to show them in view!");
             var addresses = ownerService.getAddresses();
             if (addresses.isEmpty()) {

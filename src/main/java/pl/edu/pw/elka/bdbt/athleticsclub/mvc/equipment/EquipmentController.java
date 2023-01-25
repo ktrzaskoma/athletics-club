@@ -85,15 +85,15 @@ public class EquipmentController {
     private String prepareEntryModel(Model model) {
         var producers = equipmentService.getFormattedProducers();
         if (producers.isEmpty()) {
-            return "redirect:/prodProducerCreate";
+            return "redirect:/producer";
         }
         var clubs = equipmentService.getFormattedClubs();
         if (clubs.isEmpty()) {
-            return "redirect:/prodClubCreate";
+            return "redirect:/club";
         }
         var facilities = equipmentService.getFormattedFacilities();
         if (facilities.isEmpty()) {
-            return "redirect:/prodFacilityCreate";
+            return "redirect:/facility";
         }
         model.addAttribute("producers", producers);
         model.addAttribute("clubs", clubs);

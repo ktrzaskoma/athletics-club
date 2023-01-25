@@ -118,10 +118,10 @@ public class TrainingController {
         var clubs = trainingService.getFormattedClubs();
         var workers = trainingService.getFormattedWorkers();
         if (clubs.isEmpty()) {
-            return "redirect:/prodClubCreate";
+            return "redirect:/club";
         }
         if (workers.isEmpty()) {
-            return "redirect:/prodWorkerCreate";
+            return "redirect:/worker";
         }
         model.addAttribute("clubs", clubs);
         model.addAttribute("workers", workers);

@@ -89,10 +89,10 @@ public class FacilityController {
         var clubs = facilityService.getFormattedClubs();
         var addresses = facilityService.getFormattedAddresses();
         if (clubs.isEmpty()) {
-            return "redirect:/prodClubCreate";
+            return "redirect:/club";
         }
         if (addresses.isEmpty()) {
-            return "redirect:/prodAddressCreate";
+            return "redirect:/address";
         }
         model.addAttribute("clubs", clubs);
         model.addAttribute("addresses", addresses);

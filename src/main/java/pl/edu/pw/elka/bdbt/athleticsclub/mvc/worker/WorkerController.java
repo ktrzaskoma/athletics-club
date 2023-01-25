@@ -108,11 +108,11 @@ public class WorkerController {
     private String prepareEntryModel(Model model) {
         var addresses = workerService.getFormattedAddresses();
         if (addresses.isEmpty()) {
-            return "redirect:/prodAddressCreate";
+            return "redirect:/address";
         }
         var clubs = workerService.getFormattedClubs();
         if (clubs.isEmpty()) {
-            return "redirect:/prodClubCreate";
+            return "redirect:/club";
         }
         model.addAttribute("addresses", addresses);
         model.addAttribute("clubs", clubs);

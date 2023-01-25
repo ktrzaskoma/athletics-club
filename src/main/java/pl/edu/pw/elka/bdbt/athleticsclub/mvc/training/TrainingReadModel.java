@@ -19,13 +19,12 @@ public class TrainingReadModel {
     String trainingForce;
     String athleticsClubTraining;
 
-
     public static TrainingReadModel toReadModel(final Training entity) {
         return new TrainingReadModel(
                 entity.getTrainingNumber(),
                 entity.getTrainingDate(),
                 entity.getTrainingDiscipline(),
-                entity.getNumberOfParticipants(),
+                entity.getWorkers().size(),
                 entity.getTypeOfTraining(),
                 entity.getTrainingForceLoad(),
                 entity.getAthleticsClubTraining().getClubName());

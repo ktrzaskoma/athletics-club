@@ -212,9 +212,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label" for="openDate">Data otwarcia</label>
+                            <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                             <input type="date" id="openDate" th:field="*{openDate}"
                                    class="form-control"
-                                   placeholder="Data założenia" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data założenia" th:errorclass="'Bdc(red)'"
+                                   min="1899-01-01" th:max="${maxDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('openDate')}"
                                th:errors="*{openDate}"></p>
                         </div>
@@ -309,9 +312,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Data otwarcia</label>
+                            <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                             <input type="date" th:field="*{openDate}"
                                    class="form-control"
-                                   placeholder="Data założenia" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data założenia" th:errorclass="'Bdc(red)'"
+                                   min="1899-01-01" th:max="${maxDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('openDate')}"
                                th:errors="*{openDate}"></p>
                         </div>

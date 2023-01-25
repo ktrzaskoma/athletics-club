@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/equipment")
@@ -32,7 +34,10 @@ public class EquipmentController {
     String createEquipment(@ModelAttribute("equipment") @Valid
                                    EquipmentWriteModel writeModel,
                            BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() ||
+                Objects.isNull(writeModel.getAthleticsClubEquipment()) ||
+                Objects.isNull(writeModel.getEquipmentProducer()) ||
+                Objects.isNull(writeModel.getEquipmentStorage())) {
             model.addAttribute("edit", false);
             var validation = prepareEntryModel(model);
             return validation.isEmpty() ? "/prodEquipmentCreate" : validation;
@@ -71,7 +76,10 @@ public class EquipmentController {
                          BindingResult bindingResult,
                          @PathVariable("idEquipment") String idEquipment,
                          Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() ||
+                Objects.isNull(writeModel.getAthleticsClubEquipment()) ||
+                Objects.isNull(writeModel.getEquipmentProducer()) ||
+                Objects.isNull(writeModel.getEquipmentStorage())) {
             log.warn("Errors founds, try to show them in view!");
             model.addAttribute("edit", true);
             var validation = prepareEntryModel(model);
@@ -98,6 +106,7 @@ public class EquipmentController {
         model.addAttribute("producers", producers);
         model.addAttribute("clubs", clubs);
         model.addAttribute("facilities", facilities);
+        model.addAttribute("maxDate", LocalDate.now().toString());
         return StringUtils.EMPTY;
     }
 }

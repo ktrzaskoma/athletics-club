@@ -8,7 +8,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/owner")
@@ -35,7 +37,7 @@ public class OwnerController {
     @PostMapping("/create")
     String createAddress(@ModelAttribute("owner") @Valid OwnerWriteModel writeModel,
                          BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAddressNumber())) {
             var validation = prepareEntryModel(model);
             return validation.isEmpty() ? "/prodOwnerCreate" : validation;
         }
@@ -62,7 +64,7 @@ public class OwnerController {
                      BindingResult bindingResult,
                      @PathVariable("idOwner") String idOwner,
                      Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAddressNumber())) {
             log.warn("Errors founds, try to show them in view!");
             var addresses = ownerService.getAddresses();
             if (addresses.isEmpty()) {
@@ -98,6 +100,7 @@ public class OwnerController {
         }
         model.addAttribute("addresses", addresses);
         model.addAttribute("edit", false);
+        model.addAttribute("maxDate", LocalDate.now().minusYears(18L).toString());
         return StringUtils.EMPTY;
     }
 }

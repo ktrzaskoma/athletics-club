@@ -104,7 +104,6 @@ public class TrainingService {
         trainingRepository.deleteById(savedTraining.getTrainingNumber());
     }
 
-
     TrainingWriteModel editTraining(final String idTraining) {
         log.info("Edit entry in DB!");
         var editEntry = trainingRepository.getById(Integer.valueOf(idTraining));
@@ -112,7 +111,6 @@ public class TrainingService {
         return new TrainingWriteModel(
                 editEntry.getTrainingDate(),
                 editEntry.getTrainingDiscipline(),
-                editEntry.getNumberOfParticipants(),
                 editEntry.getTypeOfTraining(),
                 editEntry.getTrainingForceLoad(),
                 editEntry.getAthleticsClubTraining().getClubNumber(),

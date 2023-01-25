@@ -204,9 +204,12 @@
                 <div class="row mb-4">
                     <div class="col">
                         <label class="form-label">Data zakupu</label>
+                        <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                         <input type="date" th:field="*{dateOfPurchase}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Data zakupu"/>
+                               placeholder="Data zakupu"
+                               min="2000-01-01" th:max="${maxDate}"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('dateOfPurchase')}"
                            th:errors="*{dateOfPurchase}"></p>
                     </div>
@@ -216,7 +219,10 @@
                             <label class="form-label">Ilość sprzętu</label>
                             <input type="number" th:field="*{numberOfEquipment}"
                                    class="form-control"
-                                   placeholder="Ilość sprzętu" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Ilość sprzętu" th:errorclass="'Bdc(red)'"
+                                   min="1"
+                                   max="99"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('numberOfEquipment')}"
                                th:errors="*{numberOfEquipment}"></p>
                         </div>
@@ -228,7 +234,10 @@
                         <label class="form-label">Wartość sprzętu</label>
                         <input type="number" th:field="*{valueOfEquipment}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Wartość sprzętu"/>
+                               placeholder="Wartość sprzętu"
+                               min="1"
+                               max="9999"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('valueOfEquipment')}"
                            th:errors="*{valueOfEquipment}"></p>
                         </p>
@@ -308,9 +317,13 @@
                 <div class="row mb-4">
                     <div class="col">
                         <label class="form-label">Data zakupu</label>
+                        <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                         <input type="date" th:field="*{dateOfPurchase}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Data zakupu"/>
+                               placeholder="Data zakupu"
+                               min="2000-01-01" th:max="${maxDate}"
+
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('dateOfPurchase')}"
                            th:errors="*{dateOfPurchase}"></p>
                     </div>
@@ -320,7 +333,10 @@
                             <label class="form-label">Ilość sprzętu</label>
                             <input type="number" th:field="*{numberOfEquipment}"
                                    class="form-control"
-                                   placeholder="Ilość sprzętu" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Ilość sprzętu" th:errorclass="'Bdc(red)'"
+                                   min="1"
+                                   max="99"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('numberOfEquipment')}"
                                th:errors="*{numberOfEquipment}"></p>
                         </div>
@@ -332,7 +348,10 @@
                         <label class="form-label">Wartość sprzętu</label>
                         <input type="number" th:field="*{valueOfEquipment}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Wartość sprzętu"/>
+                               placeholder="Wartość sprzętu"
+                               min="1"
+                               max="9999"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('valueOfEquipment')}"
                            th:errors="*{valueOfEquipment}"></p>
                         </p>

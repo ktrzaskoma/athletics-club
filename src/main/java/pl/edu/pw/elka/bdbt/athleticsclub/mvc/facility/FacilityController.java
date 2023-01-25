@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.athleticsclub.AthleticsClubWriteModel;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/facility")
@@ -35,7 +37,7 @@ public class FacilityController {
     @PostMapping("create")
     String createFacility(@ModelAttribute("facility") @Valid FacilityWriteModel writeModel,
                           BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getFacilityAddress()) || Objects.isNull(writeModel.getAthleticsClubFacility())) {
             model.addAttribute("edit", false);
             var validation = prepareEntryModel(model);
             return validation.isEmpty() ? "/prodFacilityCreate" : validation;
@@ -49,7 +51,8 @@ public class FacilityController {
                         BindingResult bindingResult,
                         @PathVariable("idFacility") String idFacility,
                         Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getFacilityAddress()) || Objects.isNull(writeModel.getAthleticsClubFacility()))
+        {
             log.warn("Errors founds, try to show them in view!");
             model.addAttribute("edit", true);
             var validation = prepareEntryModel(model);
@@ -96,6 +99,7 @@ public class FacilityController {
         }
         model.addAttribute("clubs", clubs);
         model.addAttribute("addresses", addresses);
+        model.addAttribute("maxDate", LocalDate.now().toString());
         return StringUtils.EMPTY;
     }
 

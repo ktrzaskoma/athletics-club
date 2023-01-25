@@ -197,6 +197,7 @@
     <fieldset style="margin-top: 50px">
 
         <div th:if="${!edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Dodawanie nowego adresu</b></p>
             <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
             <form method="post" th:action="@{/address/create}" th:object="${address}">
                 <div class="form-outline mb-4">
@@ -259,6 +260,7 @@
         </div>
 
         <div th:if="${edit}">
+            <p class="h4 text-center" style="margin-bottom: 40px" ><b>Edytowania adresu</b></p>
             <!--/*@thymesVar id="address" type="pl.edu.pw.elka.bdbt.athleticsclub.mvc.address.AddressWriteModel"*/-->
             <form method="post" th:action="@{'/address/edit/' + ${address.addressNumber}}" th:object="${address}">
                 <div class="form-outline mb-4">

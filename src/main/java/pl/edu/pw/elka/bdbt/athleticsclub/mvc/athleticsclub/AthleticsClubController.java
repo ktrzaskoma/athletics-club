@@ -6,10 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pw.elka.bdbt.athleticsclub.mvc.owner.OwnerWriteModel;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/club")
@@ -36,7 +37,7 @@ public class AthleticsClubController {
     @PostMapping("/create")
     String createClub(@ModelAttribute("club") @Valid AthleticsClubWriteModel writeModel,
                       BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAddressNumber()) || Objects.isNull(writeModel.getOwnerOfAthleticsClub())) {
             model.addAttribute("edit", false);
             var validation = prepareEntryModel(model);
             return validation.isEmpty() ? "/prodClubCreate" : validation;
@@ -50,7 +51,7 @@ public class AthleticsClubController {
                     BindingResult bindingResult,
                     @PathVariable("idClub") String idClub,
                     Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || Objects.isNull(writeModel.getAddressNumber()) || Objects.isNull(writeModel.getOwnerOfAthleticsClub())) {
             log.warn("Errors founds, try to show them in view!");
             model.addAttribute("edit", true);
             var validation = prepareEntryModel(model);
@@ -90,6 +91,7 @@ public class AthleticsClubController {
         }
         model.addAttribute("addresses", addresses);
         model.addAttribute("owners", owners);
+        model.addAttribute("maxDate", LocalDate.now().toString());
         return StringUtils.EMPTY;
     }
 

@@ -225,9 +225,12 @@
                 <div class="row mb-4">
                     <div class="col">
                         <label class="form-label">Data produkcji</label>
+                        <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                         <input type="date" th:field="*{productionYear}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Data produkcji"/>
+                               placeholder="Data produkcji"
+                               min="2000-01-01" th:max="${maxDate}"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('productionYear')}"
                            th:errors="*{productionYear}"></p>
                         </p>
@@ -282,9 +285,12 @@
                 <div class="row mb-4">
                     <div class="col">
                         <label class="form-label">Data produkcji</label>
+                        <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                         <input type="date" th:field="*{productionYear}" class="form-control"
                                th:errorclass="'Bdc(red)'"
-                               placeholder="Data produkcji"/>
+                               placeholder="Data produkcji"
+                               min="2000-01-01" th:max="${maxDate}"
+                        />
                         <p class="C(red)" th:if="${#fields.hasErrors('productionYear')}"
                            th:errors="*{productionYear}"></p>
                         </p>

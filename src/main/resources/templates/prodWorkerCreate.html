@@ -238,9 +238,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Data urodzenia</label>
+                            <!--/*@thymesVar id="maxBirthDate" type="java.lang.String"*/-->
                             <input type="date" th:field="${worker.dateOfBirthday}"
                                    class="form-control"
-                                   placeholder="Data urodzenia" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data urodzenia" th:errorclass="'Bdc(red)'"
+                                   min="1950-01-01" th:max="${maxBirthDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('worker.dateOfBirthday')}"
                                th:errors="${worker.dateOfBirthday}"></p>
                         </div>
@@ -360,9 +363,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Data wydania</label>
+                            <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                             <input type="date" th:field="${license.releaseDate}"
                                    class="form-control"
-                                   placeholder="Data wydania" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data wydania" th:errorclass="'Bdc(red)'"
+                                   min="2000-01-01" th:max="${maxDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('license.releaseDate')}"
                                th:errors="${license.releaseDate}"></p>
 
@@ -371,9 +377,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Data ważności</label>
+                            <!--/*@thymesVar id="maxLicenceDate" type="java.lang.String"*/-->
                             <input type="date" th:field="${license.expirationDate}"
                                    class="form-control"
-                                   placeholder="Data ważności" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data ważności" th:errorclass="'Bdc(red)'"
+                                   min="2000-01-01" th:max="${maxLicenceDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('license.expirationDate')}"
                                th:errors="${license.expirationDate}"></p>
 
@@ -432,9 +441,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Data urodzenia</label>
+                            <!--/*@thymesVar id="maxBirthDate" type="java.lang.String"*/-->
                             <input type="date" th:field="${worker.dateOfBirthday}"
                                    class="form-control"
-                                   placeholder="Data urodzenia" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data urodzenia" th:errorclass="'Bdc(red)'"
+                                   min="1950-01-01" th:max="${maxBirthDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('worker.dateOfBirthday')}"
                                th:errors="${worker.dateOfBirthday}"></p>
                         </div>
@@ -502,7 +514,7 @@
                 </div>
 
                 <div class="form-outline mb-4">
-                    <label>Wybierz adres</label>
+                    <label class="form-label">Wybierz adres</label>
                     <select th:field="${worker.workerAddressNumber}" class="form-control">
                         <option value="0">Wybierz dostępny adres</option>
                         <option th:each="address : ${addresses.entrySet()}" th:value="${address.key}"
@@ -511,7 +523,7 @@
 
                 </div>
                 <div class="form-outline mb-4">
-                    <label>Wybierz klub</label>
+                    <label class="form-label">Wybierz klub</label>
                     <select th:field="${worker.athleticsClubWorker}" class="form-control">
                         <option value="0">Wybierz dostępny klub</option>
                         <option th:each="club : ${clubs.entrySet()}" th:value="${club.key}"
@@ -551,9 +563,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Data wydania</label>
+                            <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                             <input type="date" th:field="${license.releaseDate}"
                                    class="form-control"
-                                   placeholder="Data wydania" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data wydania" th:errorclass="'Bdc(red)'"
+                                   min="2000-01-01" th:max="${maxDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('license.releaseDate')}"
                                th:errors="${license.releaseDate}"></p>
 
@@ -562,9 +577,13 @@
                     <div class="col">
                         <div class="form-outline">
                             <label class="form-label">Data ważności</label>
+                            <!--/*@thymesVar id="maxLicenceDate" type="java.lang.String"*/-->
+                            <!--/*@thymesVar id="maxDate" type="java.lang.String"*/-->
                             <input type="date" th:field="${license.expirationDate}"
                                    class="form-control"
-                                   placeholder="Data ważności" th:errorclass="'Bdc(red)'"/>
+                                   placeholder="Data ważności" th:errorclass="'Bdc(red)'"
+                                   th:min="${maxDate}" th:max="${maxLicenceDate}"
+                            />
                             <p class="C(red)" th:if="${#fields.hasErrors('license.expirationDate')}"
                                th:errors="${license.expirationDate}"></p>
 

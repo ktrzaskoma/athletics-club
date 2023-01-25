@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/producer")
@@ -49,6 +50,7 @@ public class ProducerController {
     String viewPage(Model model) {
         model.addAttribute("producer", new ProducerWriteModel());
         model.addAttribute("edit", false);
+        model.addAttribute("maxDate", LocalDate.now().toString());
         return "/prodProducerCreate";
     }
 
@@ -58,6 +60,7 @@ public class ProducerController {
         var editEntity = producerService.editProducer(idProducer);
         model.addAttribute("producer", editEntity);
         model.addAttribute("edit", true);
+        model.addAttribute("maxDate", LocalDate.now().toString());
         return "/prodProducerCreate";
     }
 

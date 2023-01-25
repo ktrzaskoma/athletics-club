@@ -25,8 +25,6 @@ public class TrainingWriteModel {
     LocalDate trainingDate;
     @NotBlank(message = "Pole Dyscyplina nie może być puste!")
     String discipline;
-    @NotNull(message = "Pole Liczba uczestników nie może być puste!")
-    Integer numberOfParticipants;
     @NotBlank(message = "Pole Typ treningu nie może być puste!")
     String type;
     @NotBlank(message = "Pole Obciążenie treningu nie może być puste!")
@@ -38,7 +36,6 @@ public class TrainingWriteModel {
         var entity = new Training();
         entity.setTrainingDate(writeModel.getTrainingDate());
         entity.setTrainingDiscipline(writeModel.getDiscipline());
-        entity.setNumberOfParticipants(writeModel.getNumberOfParticipants());
         entity.setTypeOfTraining(writeModel.getType());
         entity.setTrainingForceLoad(writeModel.getForceLoad());
         entity.setAthleticsClubTraining(athleticsClub);

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.bdbt.athleticsclub.mvc.sportlicense.SportLicenseWriteModel;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,10 +38,10 @@ public class WorkerController {
 
     @PostMapping("/create")
     String createWorker(@ModelAttribute("worker") @Valid
-                        WorkerWriteModel workerWriteModel,
+                                WorkerWriteModel workerWriteModel,
                         BindingResult bindingResultWorker,
                         @ModelAttribute("license") @Valid
-                        SportLicenseWriteModel sportLicenseWriteModel,
+                                SportLicenseWriteModel sportLicenseWriteModel,
                         BindingResult bindingResultLicense,
                         Model model) {
         if (bindingResultWorker.hasErrors() || bindingResultLicense.hasErrors()) {
@@ -71,10 +72,10 @@ public class WorkerController {
 
     @PostMapping("/edit/{idWorker}")
     String editWorker(@ModelAttribute("worker") @Valid
-                      WorkerWriteModel workerWriteModel,
+                              WorkerWriteModel workerWriteModel,
                       BindingResult bindingResultWorker,
                       @ModelAttribute("license") @Valid
-                      SportLicenseWriteModel sportLicenseWriteModel,
+                              SportLicenseWriteModel sportLicenseWriteModel,
                       BindingResult bindingResultLicense,
                       @PathVariable("idWorker") String idWorker,
                       Model model) {
@@ -116,6 +117,9 @@ public class WorkerController {
         }
         model.addAttribute("addresses", addresses);
         model.addAttribute("clubs", clubs);
+        model.addAttribute("maxDate", LocalDate.now().toString());
+        model.addAttribute("maxBirthDate", LocalDate.now().minusYears(6L).toString());
+        model.addAttribute("maxLicenceDate", LocalDate.now().plusYears(3L));
         return StringUtils.EMPTY;
     }
 

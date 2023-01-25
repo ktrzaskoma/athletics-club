@@ -184,10 +184,10 @@
         <tr>
             <th scope="col">Imię</th>
             <th scope="col">Nazwisko</th>
-            <th scope="col">Data urodzenia</th>
-            <th scope="col">PESEL</th>
-            <th scope="col">Data zatrudnienia</th>
-            <th scope="col">Płeć</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" scope="col">Data urodzenia</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" scope="col">PESEL</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" scope="col">Data zatrudnienia</th>
+            <th sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" scope="col">Płeć</th>
             <th class="col">Numer telefonu</th>
             <th sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" class="text-right">Funkcje</th>
         </tr>
@@ -197,10 +197,10 @@
         <tr th:each="athlete : ${athletes}">
             <td th:text="${athlete.name}"></td>
             <td th:text="${athlete.surname}"></td>
-            <td th:text="${athlete.birthday}"></td>
-            <td th:text="${athlete.pesel}"></td>
-            <td th:text="${athlete.dateOfEmployment}"></td>
-            <td th:text="${athlete.sex}"></td>
+            <td sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" th:text="${athlete.birthday}"></td>
+            <td sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" th:text="${athlete.pesel}"></td>
+            <td sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" th:text="${athlete.dateOfEmployment}"></td>
+            <td sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" th:text="${athlete.sex}"></td>
             <td th:text="${athlete.phoneNumber}"></td>
             <td sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" class="text-right">
                 <a sec:authorize="hasAnyRole('ADMIN', 'TRAINER')" class="btn btn-danger float-right"
